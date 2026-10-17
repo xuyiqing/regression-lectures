@@ -84,7 +84,7 @@ R packages used by the scripts: `ggplot2`, `sandwich`, `lmtest`, `foreign`, `car
 
 ## Videos
 
-Each lecture has a video of five to twelve minutes (Manim animation, captions drawn into the frame).
+Each lecture has a video of five to twelve minutes (Manim animation, in 4K, with captions as YouTube subtitles).
 It presents the main ideas, one or two real examples, and the numbers from the lecture's own R code.
 We recommend that students watch a video before the lecture to preview the ideas and again
 afterwards to review them.
