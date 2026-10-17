@@ -1,0 +1,41 @@
+# fig_tdist.R output: tests and intervals for the running example (Lecture 4-3)
+# Y = trump (Trump % of two-party vote, 2024); X = ba (% adults 25+ with BA+, ACS 2019-23); 50 states
+
+> lm.out <- lm(trump ~ ba, data = states)
+> summary(lm.out)
+
+Call:
+lm(formula = trump ~ ba, data = states)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.0560  -4.9467  -0.6189   4.2927  14.1364 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 102.8376     5.9818  17.192  < 2e-16 ***
+ba           -1.4537     0.1738  -8.366  6.2e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.589 on 48 degrees of freedom
+Multiple R-squared:  0.5932,	Adjusted R-squared:  0.5847 
+F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
+
+
+> confint(lm.out)
+                2.5 %     97.5 %
+(Intercept) 90.810450 114.864702
+ba          -1.803061  -1.104313
+
+# ---- numbers on the slides
+n = 50; residual df = 48
+b1 = -1.4537; SE(b1) = 0.17376
+two-sided critical value qt(0.975, 48) = 2.0106 (slides: 2.01)
+one-sided critical value qt(0.95, 48) = 1.6772 (slides: 1.68; lower tail -1.68)
+T for H0: b1 = 0: -1.4537 / 0.17376 = -8.3659 (slides: -1.4537/0.17376 = -8.37)
+two-sided p-value = 6.2e-11
+one-sided p-value for H1: b1 < 0 = 3.1e-11
+95% CI by hand: -1.4537 +/- 2.0106 * 0.1738 = [-1.8031, -1.1043] (slides: [-1.80, -1.10])
+with rounded inputs: -1.45 +/- 2.01 * 0.174 = [-1.7997, -1.1003]
+interpretation slide: a state with a 1-point higher BA share has a fitted Trump share 1.45 points lower

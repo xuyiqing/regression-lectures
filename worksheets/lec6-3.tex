@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{epsfig}
+\usepackage{fancyvrb}
+\usepackage{bm}
+
+\renewcommand\r{\right}
+\renewcommand\l{\left}
+\definecolor{dgreen}{rgb}{0,.6,0.8}
+\newtheorem{assumption}{Assumption}
+\newtheorem{iass}{Identification Assumption}
+\newtheorem{ires}{Identification Result}
+\newtheorem{estm}{Estimand}
+\newtheorem{esti}{Estimator}
+\newtheorem{question}{Question}
+\newtheorem{answer}{Answer}
+\newtheorem{proposition}{Proposition}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\newcommand{\real}{\mathbb{R}}
+\renewcommand{\u}{\ensuremath{\mb{u}}}
+\renewcommand{\v}{\ensuremath{\mb{v}}}
+\newcommand{\U}{\ensuremath{\mb{U}}}
+\newcommand{\M}{\ensuremath{\mb{M}}}
+\newcommand{\X}{\ensuremath{\mb{X}}}
+\newcommand{\x}{\ensuremath{\mb{x}}}
+\newcommand{\y}{\ensuremath{\mb{y}}}
+\renewcommand{\b}{\ensuremath{\bs{\beta}}}
+\newcommand{\e}{\ensuremath{\bs{\epsilon}}}
+\newcommand{\bhat}{\ensuremath{\hat{\bs{\beta}}}}
+\newcommand{\XX}{\ensuremath{\X'\X}}
+\newcommand{\XXinv}{\ensuremath{\left(\XX\right)^{-1}}}
+\newcommand{\hatsig}{\ensuremath{\hat{\sigma}^2}}
+\newcommand{\sig}{\ensuremath{\sigma^2}}
+\newcommand{\hatmat}{\ensuremath{\X \XXinv \X'}}
+\newcommand{\ehat}{\ensuremath{\hat{\e}}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\Sig}{\ensuremath{\bs{\Sigma}}}
+\newcommand{\SigInv}{\ensuremath{\bs{\Sigma^{-1}}}}
+\newcommand{\W}{\ensuremath{\mb{W}}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand\spacingset[1]{\renewcommand{\baselinestretch}{#1}\small\normalsize}
+\newcommand{\var}{\text{Var}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\cov}{\mbox{Cov}}
+\newcommand{\Cov}{\mbox{Cov}}
+\newcommand{\cor}{\mbox{Cor}}
+\newcommand{\avepop}{\frac{1}{n}\sum_{i=1}^n}
+\newcommand{\indep}{{\bot\negthickspace\negthickspace\bot}}
+\newcommand\iid{\stackrel{\rm i.i.d.}{\sim}}
+\DeclareMathOperator*\plim{plim}
+
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\usepackage{setspace}
+
+\title{\Large Lecture 6-3: Violations of Homoskedasticity}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Diagnose and correct violations of homoskedasticity in regression, focusing on heteroskedasticity, clustering, and serial correlation.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Violations of homoskedasticity
+\item Heteroskedasticity
+\begin{itemize}
+\item Definition
+\item Consequences for inference
+\item Visual diagnostics and residual plots
+\item Formal tests (Breusch-Pagan, White)
+\item Remedies: transformations, WLS, robust errors
+\item White’s heteroskedasticity-robust SE
+\end{itemize}
+\item Clustering
+\begin{itemize}
+\item Concept of cluster dependence
+\item Error variance matrix structure
+\item Estimation of cluster-robust SE
+\end{itemize}
+\item Serial correlation
+\begin{itemize}
+\item Time dependence in errors
+\item AR(1) error structure
+\item Variance and covariance of AR errors
+\item Detection: plots, Durbin-Watson
+\item Corrections: Newey-West HAC, AR adjustments
+\end{itemize}
+\item Summary
+\begin{itemize}
+\item Three key violations: heteroskedasticity, clustering, serial correlation
+\item Detection through plots and tests
+\item Use of robust or cluster-robust standard errors
+\end{itemize}
+\end{itemize}
+
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep15em
+
+% \item Explain why $\hat{\b}$ remains unbiased and consistent under heteroskedasticity?
+
+
+
+\item The classic variance estimator is
+\[
+\widehat V_{0}
+= \hat\sigma^2(\X'\X)^{-1}.
+\]
+The White estimator is
+\[
+\widehat V_{HC0}
+= (\X'\X)^{-1}\X'\mathrm{diag}(\hat u_1^2,\ldots,\hat u_n^2)\X(\X'\X)^{-1}.
+\]
+Assume (1) $E[u_i\mid \X]=0$; (2) $\var(u_i\mid\X)=\sigma^2$; (3) $\frac{1}{n}\X'\X\to Q\succ0$; and (4) standard regularity conditions. Show that
+\[
+\plim (n\,\widehat V_0)=\plim (n\,\widehat V_{HC0})=\sigma^2 Q^{-1}.
+\]
+
+\noindent\textbf{Hint:}
+\[
+\frac{1}{n}\sum_{i=1}^n \x_i\x_i'\hat u_i^2
+= \frac{1}{n}\sum_{i=1}^n \x_i\x_i' u_i^2 + o_p(1)
+\xrightarrow{p}\sigma^2 E[\x_i\x_i']=\sigma^2 Q.
+\]
+
+\clearpage
+
+\item Consider the linear regression model
+\[
+y_{ij} \ = \ \beta_0 + \beta_1 x_{ij} + \varepsilon_{ij} \ = \
+\beta_0 + \beta_1 x_{ij} + v_j + u_{ij},
+\]
+where units $i$ are nested in clusters $j$ and
+\[
+v_j \iid N(0,\rho\sigma^2),\qquad
+u_{ij} \iid N(0,(1-\rho)\sigma^2),
+\]
+with $v_j$ and $u_{ij}$ mutually independent and independent of $x_{ij}$. The parameter $\rho\in[0,1]$ is called the within-cluster correlation.
+
+Suppose we have $M=2$ clusters and $N=6$ units:
+cluster $1$ contains units $i=1,2,3$ and cluster $2$ contains units $i=4,5,6$.
+Stack the errors in the order
+\[
+\bm{\varepsilon}
+=
+(\varepsilon_{1,1},\varepsilon_{2,1},\varepsilon_{3,1},
+\varepsilon_{4,2},\varepsilon_{5,2},\varepsilon_{6,2})'.
+\]
+
+\begin{enumerate}
+\item Show that $V[\varepsilon_{ij}] = \sigma^2$ for all $i,j$.
+
+\item For two units $i\neq \ell$ in the \emph{same} cluster $j$, compute $\cov(\varepsilon_{ij},\varepsilon_{\ell j}).$
+
+\item For units in \emph{different} clusters $j\neq k$, compute $\cov(\varepsilon_{ij},\varepsilon_{\ell k}).$
+
+\item Using your answers above, write out the $6\times 6$ covariance matrix $\Sigma = V[\bm{\varepsilon}]$ for the given ordering
+$(\varepsilon_{1,1},\varepsilon_{2,1},\varepsilon_{3,1},
+\varepsilon_{4,2},\varepsilon_{5,2},\varepsilon_{6,2})'$.
+
+\item Compute the correlation $\cor(\varepsilon_{ij},\varepsilon_{\ell j})$
+for $i\neq \ell$ in the same cluster $j$ and verify that it equals $\rho$.
+\end{enumerate}
+
+\clearpage
+
+
+\item The general cluster-robust variance estimator can be written as  
+\[
+\widehat{V}_{CR}[\hat{\b}] = (\X'\X)^{-1}\left(\sum_{j=1}^M \X_j'\hat{\u}_j\hat{\u}_j'\X_j\right)(\X'\X)^{-1},
+\]
+where $\hat{\u}_j$ is the vector of residuals in cluster $j$.  
+\textbf{Explain} how this generalizes the White estimator.
+
+
+
+% \item Show that
+% \[
+% DW \xrightarrow{p} 2(1 - \hat{\rho}),
+% \]
+% where $\hat{\rho} = \frac{\sum_{t=2}^{T}\hat{u}_t\hat{u}_{t-1}}{\sum_{t=1}^{T}\hat{u}_t^2}$ is the sample autocorrelation of the residuals (the OLS estimate of $\rho$).  
+% In other words, as $T\to\infty$, the Durbin–Watson statistic converges in probability to $2(1-\hat{\rho})$. Explain: (1) if $DW\approx2$ then $\widehat{\rho}\approx0$; (2) if $DW<1$ we have serious positive serial correlation; and (3) if $DW>3$ we have serious negative serial correlation.
+
+\end{enumerate}
+
+
+\end{document}

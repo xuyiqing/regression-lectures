@@ -1,0 +1,521 @@
+\documentclass[xcolor=svgnames,9pt,english,aspectratio=169,t]{beamer}
+%\documentclass[xcolor=svgnames,9pt,english,handout,aspectratio=169,t]{beamer}
+\newcommand{\handout}{0}
+
+\input{../course_preamble.tex}   % theme, layout, packages, notation
+\input{../course_theme.tex}      % colors and slide furniture
+
+\graphicspath{{./figs/}}
+
+\title[Interval Estimation]{450A Political Methodology I}
+\subtitle{Lecture 2: Univariate Statistical Inference \\ 2. Interval Estimation}
+\author{Stanford University}
+\date{}
+
+\begin{document}
+\begin{frame}[plain,c]
+  \titlepage
+  \addtocounter{framenumber}{-1}
+\end{frame}
+
+\section{Interval Estimation}
+
+\frame{
+\frametitle{What is Interval Estimation?}
+\begin{itemize}
+\item A \alert{point estimator} $\hat{\theta}$ estimates a scalar population parameter $\theta$ with a single number. \pause
+\item However, because we are dealing with a random sample,
+we might also want to report \alert{uncertainty} in our estimate.
+
+\pause
+\medskip
+
+\item An \alert{interval estimator} for $\theta$ takes the following form:
+$$
+[ \hat{\theta}_{lower}, \hat{\theta}_{upper} ]
+$$
+where $\hat\theta_{lower}$ and $\hat\theta_{upper}$ are random quantities that vary
+from sample to sample. \pause
+\item The interval represents the range of possible values within which we estimate
+the true value of $\theta$ to fall.
+
+\pause
+\medskip
+
+\item An \alert{interval estimate} is a realized value from an interval estimator.
+The estimated interval typically forms what we call a \alert{confidence interval}, which
+we will define shortly.
+\end{itemize}
+}
+
+
+
+
+\section{Mean of Normal Population with Known Variance}
+
+\frame{
+\frametitle{Normal Population with Known $\sigma^2$}
+\small
+Suppose we have an i.i.d. random sample of size $n$, $X_1,...,X_n$, from $X \stackrel{iid}{\sim} N(\mu,1)$. \\
+\bigskip
+
+Because a sum of independent normal variables is normal, the sampling distribution of the sample average is exactly (for every $n$):
+$$ \overline{X}_n \sim \ \pause N(\mu,\sigma^2/n) \equiv N(\mu,1/n) $$ \pause
+
+Therefore, the standardized sample average is distributed as follows:
+$$\frac{\overline{X}_n - \mu}{1/\sqrt{n}} \ \sim \ \pause N(0,1)$$ \pause
+
+This implies
+$$ \Pr \l(-1.96 < \frac{\overline{X}_n - \mu}{1/\sqrt{n}} < 1.96\r) \ = \ .95$$
+Why?
+
+}
+
+% [c]: a lone full-height figure, centered on the slide (the deck default is t)
+\frame[c]{
+\frametitle{CDF of the Standard Normal Distribution}
+
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.82\textheight]{std_normal_cdf.pdf}
+\end{figure}
+
+}
+
+
+\frame{
+\frametitle{Constructing a Confidence Interval with Known $\sigma^2$}
+So we know that:
+$$\Pr\l(-1.96 < \frac{\overline{X}_n - \mu}{1/\sqrt{n}}  <1.96\r) \ = \ .95$$
+
+Rearranging yields:
+$$\Pr\l( \overline{X}_n -1.96/\sqrt{n} \ < \ \mu \ < \ \overline{X}_n + 1.96/ \sqrt{n}\r)
+\ = \ .95
+$$
+\pause
+
+This implies that the following interval estimator
+$$
+\l[\, \overline{X}_n -1.96/\sqrt{n}\, ,\, \overline{X}_n +1.96/\sqrt{n}\, \r]
+$$
+contains the true population mean $\mu$ with probability $0.95$. \\
+\pause
+\medskip
+
+We call this estimator a 95\% \alert{confidence interval} for $\mu$.
+}
+
+\frame{
+\frametitle{Interpreting a Confidence Interval}
+\small
+\begin{itemize}
+\item Imagine we implement the interval estimator $\overline{X}_n \pm 1.96/\sqrt{n}$ for a particular sample and obtain the estimate of $[2.5, \ 3.3]$.
+\item Does this mean that there is a .95 probability that the true parameter value $\mu$ lies between these two particular numbers? \pause No! \pause
+  \item Confidence intervals are easy to construct, but difficult to interpret:
+  \begin{itemize}
+  \item Each confidence interval estima\underline{te} from a particular sample
+  either contains $\mu$ or not \medskip
+  \item However, if we were to repeatedly calculate the interval estima\underline{tor} over
+  many random samples from the same population, 95\% of the time the constructed
+  confidence intervals would cover $\mu$ \medskip
+  \item Therefore, we refer to .95 as the \alert{coverage probability}
+  \end{itemize}
+\end{itemize}
+}
+
+\begin{frame}
+\frametitle{Simulating Coverage Probability of Confidence Intervals}
+100 samples of size 100 from $N(0, 1)$:
+\vspace{-.4cm}
+\begin{center}
+\only<1|handout:0>{\includegraphics[height=0.80\textheight]{ci_sim_step1.pdf}}%
+\only<2|handout:0>{\includegraphics[height=0.80\textheight]{ci_sim_step2.pdf}}%
+\only<3|handout:1>{\includegraphics[height=0.80\textheight]{ci_sim_step3.pdf}}
+\end{center}
+\end{frame}
+
+\frame{
+\frametitle{Constructing a Confidence Interval with Known $\sigma^2$}
+
+\begin{itemize}
+  \item The same principle easily extends to normal populations with any known variance.
+\medskip
+  \item If $X \stackrel{iid}{\sim} N(\mu,\sigma^2)$ and we draw an i.i.d. random sample of size $n$,
+  $X_1,...,X_n$, a 95\% confidence interval for the population mean $\mu$
+  is:
+$$
+\l[\overline{X}_n -1.96 \sigma/\sqrt{n}, \ \overline{X}_n + 1.96 \sigma/ \sqrt{n}\r] $$
+\pause
+\vspace{-.5\baselineskip}
+  \item More generally, a $100(1-\alpha)$\% confidence interval for $\mu$ is
+$$
+\l[\overline{X}_n - z_{\alpha/2}\, \sigma/\sqrt{n}, \ \overline{X}_n + z_{\alpha/2}\, \sigma/ \sqrt{n}\r]
+$$
+where $z_{\alpha/2}$ is the $100(1-\alpha/2)$ percentile of the standard normal distribution.
+\end{itemize}
+\vspace{-.5\baselineskip}
+\begin{columns}
+\column{.4\textwidth}
+{\footnotesize
+\begin{center}
+\begin{tabular}{ccc}
+ \hline
+  \alert{Confidence level} & $\alpha$ & $z_{\alpha/2}$ \\
+  \hline
+  90\% & .1  & 1.645 \\
+  95\% & .05 & 1.960 \\
+  99\% & .01  & 2.576 \\
+  \hline
+\end{tabular}
+\end{center}
+}
+
+\column{.4\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{z_upper_tail}
+\end{center}
+\end{columns}
+
+}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Example: Feeling Thermometer Scores in ANES 2020}
+
+\begin{footnotesize}
+\begin{verbatim}
+==============================================================
+      INTRO PRE-ELECTION POLITICAL FIGURE THERMOMETERS
+==============================================================
+
+I'd like to get your feelings toward some of our political
+leaders and other people who are in the news these days. I'll
+read the name of a person and I'd like you to rate that
+person using something we call the feeling thermometer.
+Ratings between 50 degrees and 100 degrees mean
+that you feel favorable and warm toward the person.
+Ratings between 0 degrees and 50 degrees mean that you
+don't feel favorable toward the person and that you
+don't care too much for that person. You would
+rate the person at the 50 degree mark if you don't feel
+particularly warm or cold toward the person.
+
+How would you rate:  Joe Biden       (V201151)
+How would you rate:  Donald Trump    (V201152)
+\end{verbatim}
+\end{footnotesize}
+\slidesource{American National Election Studies. 2021. ANES 2020 Time Series Study Full Release [dataset and documentation]. February 10, 2022 version. \href{https://electionstudies.org/data-center/2020-time-series-study/}{electionstudies.org/data-center/2020-time-series-study}}
+\end{frame}
+
+\frame{
+\frametitle{Empirical Distribution of FT Scores}
+\begin{center}
+\includegraphics[height=0.82\textheight]{ft_distribution.pdf}
+\end{center}
+}
+
+\frame{
+\frametitle{Feeling Thermometer Example: Normal \&  Known Variance}
+Assume (for now) that Biden's FT scores are (1) normally distributed and (2) we
+(somehow) know that $\sigma = 34.5$. \\
+
+\bigskip
+
+We treat the ANES respondents as an i.i.d.\ sample, ignoring the survey weights and sampling design: $n=8{,}060$ respondents rated Biden, with sample mean FT score $\overline{X}_n=49.24$.
+\\
+
+\bigskip
+
+Q. What is the 95\% confidence interval for the true mean FT score for Biden?\\
+
+\bigskip \pause
+
+A. Plug $n=8{,}060$, $\sigma = 34.5$ and $\overline{X}_n=49.24$ in:
+$$\l[\overline{X}_n -1.96 \sigma/\sqrt{n}, \ \overline{X}_n + 1.96 \sigma/\sqrt{n}\r]$$ \pause
+\vspace{-\baselineskip}
+$$ = \ \l[49.24 -1.96 \cdot 34.5/\sqrt{8{,}060}, \ 49.24 +1.96 \cdot 34.5/\sqrt{8{,}060}\r] $$
+$$ = \ \l[48.49, \ 49.99\r]$$
+
+}
+
+\frame{
+\frametitle{Example: FT Scores Interval Estimates}
+\begin{center}
+\includegraphics[height=0.82\textheight]{ft_intervals.pdf}
+\end{center}
+}
+
+
+\section{Mean of Normal Population with Unknown Variance}
+
+\frame{
+\frametitle{Normal Population with Unknown $\sigma^2$}
+
+In practice, it is rarely the case that we somehow know the true value of $\sigma^2$. \\
+\pause \medskip
+
+Suppose now that we have an i.i.d. random sample $X_1,...,X_n$ from
+$X \stackrel{iid}{\sim} N(\mu,\sigma^2)$, where $\sigma^2$ is \alert{unknown}.
+Then, as before,
+$$
+\overline{X}_n\sim N(\mu,\sigma^2/n) \quad \text{and so} \quad \frac{\overline{X}_n - \mu}{\sigma/\sqrt{n}} \sim N(0,1).
+$$
+\medskip \pause
+Previously, we then constructed the interval:
+$$
+\l[\overline{X}_n - z_{\alpha/2} \sigma/\sqrt{n}, \ \overline{X}_n + z_{\alpha/2} \sigma/\sqrt{n}\r]
+$$
+But we can \textbf{not} directly use this now because \pause $\sigma^2$ is unknown. \\ \pause
+\medskip
+Instead, we need an \alert{estimator} of $\sigma^2$, $\hat\sigma^2$.
+
+}
+
+
+
+
+
+\frame{
+\frametitle{Estimators for the Population Variance}
+\small
+Two possible estimators of population variance:
+\begin{displaymath}
+S_{0n}^2 = \frac{1}{n}\sum_{i=1}^n (X_i-\overline{X}_n)^2\qquad 
+S_{1n}^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X}_n)^2
+\end{displaymath}
+\medskip
+Which do we prefer? \pause Let's check properties of these estimators. \textbf{Show (Worksheet Q1):} \pause
+\begin{enumerate}
+\item Unbiasedness: 
+$$ E[S_{0n}^2] = \frac{n-1}{n}\sigma^2 \quad \text{and} \quad E[S_{1n}^2] = \sigma^2 $$
+\pause
+\vspace{-.5\baselineskip}
+\item Consistency: 
+$$ S_{0n}^2 \ \stackrel{p}{\to} \ \onslide<5>{\sigma^2} \quad \text{and} \quad S_{1n}^2 \ \stackrel{p}{\to} \ \onslide<5>{\sigma^2} $$
+\end{enumerate} \pause
+\vspace{-\baselineskip}
+$S_{1n}^2$ (unbiased and consistent) is commonly called the \alert{sample variance}.
+}
+
+
+\frame{
+\frametitle{Estimating $\sigma^2$ and the Standard Error}
+We use the sample variance $S_n^2 \equiv S_{1n}^2$ to estimate the population variance $\sigma^2$.
+(The plug-in (analogy-principle) estimator of the variance is $S_{0n}^2$; dividing by $n-1$ instead of $n$ corrects its bias.)
+$$
+S_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X}_n)^2
+$$
+Our estimated standard deviation of the sampling distribution (i.e. estimated \alert{standard error}) of $\overline{X}_n$
+is therefore $S_n/\sqrt{n}$.
+\bigskip\pause
+
+Does $\overline{X}_n \sim N(\mu, S_n^2/n)$, which would imply
+$\frac{\overline{X}_n-\mu}{S_n/\sqrt{n}} \sim N(0,1)$? \\
+\pause No, because $S_n$ is a random variable instead of a parameter (like $\sigma$).
+
+\pause
+\bigskip
+Thus, we need to derive the sampling distribution of the new random variable
+$$ T_n \ \equiv \ \frac{\overline{X}_n-\mu}{S_n/\sqrt{n}} \ \sim \ \text{\LARGE ?} $$
+}
+
+
+\frame{
+\frametitle{Sampling Distribution with the Estimated Variance}
+It turns out that $T_n$ follows \alert{Student's $t$-distribution} with $n-1$
+\alert{degrees of freedom}, written $\tau_{n-1}$.
+\begin{theorem}[Distribution of $t$-Value from a Normal Population]
+Suppose we have an i.i.d. random sample of size $n$ from $N(\mu,\sigma^2)$.
+Then, the sample mean $\overline{X}_n$ standardized with the estimated standard
+error $S_n/\sqrt{n}$ satisfies,
+$$ T_n \ \equiv \ \frac{\overline{X}_n-\mu}{S_n/\sqrt{n}} \ \sim \ \tau_{n-1} $$
+\end{theorem}
+\begin{itemize}
+\item \textbf{Prove (Worksheet Q2)}
+\item The quantity $T_n$ is commonly called the \alert{t-value}. It depends on the unknown $\mu$, but for a normal population its distribution does not depend on $\mu$ or $\sigma^2$.
+\item Student's $t$-distribution has well known properties, and so can be used to
+construct confidence intervals like $N(0,1)$.
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Properties of Student's $t$-Distribution}
+\small
+\vspace{-1.25\baselineskip}
+\begin{center}
+\includegraphics[height=.52\textheight]{t_densities.pdf}
+\end{center}
+\vspace{-1.5\baselineskip}
+\begin{itemize}
+  \item The shape of the $t$-distribution is determined by one parameter, $\nu$ (degrees of freedom)
+  \item If $X \sim \tau_\nu$, then $E[X] = 0$ (for $\nu > 1$) and $V[X] = \nu/(\nu - 2)$ (for $\nu > 2$)
+  \item Bell-shaped like the normal distribution, but has fatter tails for $\nu <\infty$
+  \item $X \stackrel{d}{\rightarrow} N(0,1)$ as $\nu \to\infty$
+  \item R functions: \texttt{dt(x, df)} (PDF), \quad \texttt{pt(q, df)} (CDF) \\
+    \qquad \qquad \quad \texttt{qt(p, df)} (quantiles), \quad \texttt{rt(n, df)} (random draws)
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Constructing a Confidence Interval with Unknown $\sigma^2$}
+\small
+To calculate confidence intervals, we follow the same procedure as the case of
+known variance, except that we now use percentiles of $t$ instead of $z$: $t_{\alpha/2,\nu}$ is the
+$100(1-\alpha/2)$ percentile of $\tau_\nu$.
+{\footnotesize
+\begin{center}
+\begin{tabular}{ccccccc}
+ \hline
+  \alert{Confidence level} & $\alpha$
+                & $t_{\alpha/2,1}$ & $t_{\alpha/2,4}$ & $t_{\alpha/2,15}$ & $\cdots$ & $z_{\alpha/2}$ \\
+  \hline
+  90\% & .1  & 6.314 & 2.132 & 1.753 & $\cdots$ & 1.645 \\
+  95\% & .05 & 12.71 & 2.776 & 2.131 & $\cdots$ & 1.960 \\
+  99\% & .01 & 63.66 & 4.604 & 2.947 & $\cdots$ & 2.576 \\
+  \hline
+\end{tabular}
+\end{center}
+}
+\pause
+That is, we have
+$$
+\frac{\overline{X}_n - \mu}{S_n/\sqrt{n}} \ \sim  \ \tau_{n-1}
+$$
+So
+$$\Pr\l(-t_{\alpha/2,(n-1)} < \frac{\overline{X}_n - \mu}{S_n/\sqrt{n}}  < t_{\alpha/2,(n-1)}\r) \ = \ 1-\alpha$$
+$$\Longleftrightarrow \quad
+ \Pr\l( \overline{X}_n - t_{\alpha/2,(n-1)}S_n/\sqrt{n} \ < \ \mu \ < \ \overline{X}_n + t_{\alpha/2,(n-1)}S_n/ \sqrt{n}\r)
+\ = \ 1 - \alpha
+$$
+
+\medskip
+\pause
+
+Therefore, the $100(1-\alpha)$\% confidence interval for $\mu$ with unknown $\sigma^2$ is
+$$
+\l[ \overline{X}_n -t_{\alpha/2,(n-1)}S_n/\sqrt{n}, \ \overline{X}_n +t_{\alpha/2,(n-1)}S_n/\sqrt{n} \r]
+$$
+
+\pause
+\medskip
+
+A good rule of thumb for a 95\% C.I. for a typical sample size is $t_{\alpha/2,(n-1)} \approx 2$.
+
+}
+
+\frame{
+  \frametitle{Worksheet Q3}
+
+Suppose we have an i.i.d. random sample of size $n$, $X_1,...,X_n$, from $X \stackrel{iid}{\sim} N(\mu,\sigma^2)$. For constants $a,b$ with $b\neq0$, derive a $100(1-\alpha)\%$ confidence interval for $(a+b\mu)$ under 
+\begin{itemize}
+  \item[(i)] known $\sigma^2$
+  \item[(ii)] unknown $\sigma^2$
+\end{itemize}
+}
+
+\section{Mean of Population with Unknown Distribution}
+
+\frame{
+\frametitle{Asymptotic Confidence Intervals for Unknown Distribution}
+\small
+Often, observed distribution of $X$ is so far from normal that we do not want to assume
+$X \sim N(\mu,\sigma^2)$ (e.g. Trump's FT scores). \\ \medskip
+
+How can we proceed? \pause {\it The central limit theorem!} \pause \medskip
+
+If $X_1,\dots,X_n$ are i.i.d. with finite variance $\sigma^2 > 0$, the CLT gives
+$$ Z_n \ \equiv \ \frac{\overline{X}_n - \mu}{\sigma/\sqrt{n}} \quad \stackrel{d}{\longrightarrow} \quad N(0,1) $$
+and we also know that
+$$ S_n^2 \quad \stackrel{p}{\longrightarrow} \quad \pause \sigma^2 $$
+as $n \to \infty$. \pause
+
+\medskip
+
+This therefore implies
+$$ T_n \ \equiv \ \frac{\overline{X}_n - \mu}{S_n/\sqrt{n}} \quad \stackrel{d}{\longrightarrow} \pause \quad N(0,1) $$
+
+\pause
+
+{\bf Result:}\\
+{\it If the sample is i.i.d. with finite variance, the normal interval
+$\overline{X}_n \pm z_{\alpha/2}\, S_n/\sqrt{n}$ covers $\mu$ with probability close to $1-\alpha$
+when $n$ is large, even if the population is not normal and $\sigma^2$ is unknown.}
+
+}
+
+\frame{
+\frametitle{Using the $t$ Interval for Robust Inference}
+The asymptotic normal confidence interval is convenient, but we must assume
+that $n$ is large enough. \\ \medskip
+
+If $n$ is small, the normal intervals are typically \alert{overconfident}, i.e. too narrow.
+\\ \medskip \pause
+
+To address this concern, some propose that we use the $t$ interval instead of normal. \\
+\medskip
+
+The logic:
+\begin{itemize}
+\item If $n$ is large, $t_{\alpha/2,(n-1)} \approx z_{\alpha/2}$ (1.984 vs.\ 1.960 at $n = 100$),
+so the $t$ and normal intervals are nearly the same, and the CLT makes both valid.
+\pause
+\smallskip
+\item If $n$ is small, the $t$ interval is wider than the normal interval, so it is less overconfident.
+It can still cover $\mu$ less than 95\% of the time when the population is skewed (next slide).
+\end{itemize}
+\pause
+Therefore, it is sensible to use the $t$ interval even if we do not assume that the
+population distribution is normal, especially if $n$ is small.
+
+}
+
+
+\frame{
+\frametitle{Simulation Study: 95\% Asymptotic Confidence Interval}
+\small
+Population: $X\sim Exp(\mu=1)$ (Exponential Distribution with Mean of 1) \\
+\onslide<2>{Coverage of the asymptotic confidence intervals as $n$ varies from $2$ to $400$}
+\vspace{-\baselineskip}
+\begin{figure}[ht] \centering
+        \only<1|handout:0>{\includegraphics[height=0.74\textheight]{exp_coverage_step1.pdf}}%
+        \only<2|handout:1>{\includegraphics[height=0.74\textheight]{exp_coverage_step2.pdf}}
+\end{figure}
+
+}
+
+
+\section{Summary}
+
+\frame{
+\frametitle{Summary:}
+\small
+To calculate a confidence interval for the population mean:
+\medskip
+\begin{itemize}
+\item If we can safely assume that the population is normal (rather unlikely),
+\medskip
+    \begin{itemize}
+    \addtolength{\itemsep}{.5\baselineskip}
+    \item Use the \alert{normal interval} if the variance is also known (even less likely)
+    \item Use the \alert{$t$ interval} if the variance has to be estimated from data.
+    \end{itemize}
+\pause
+\bigskip
+\item If we do not want to assume a normal population distribution,
+\medskip
+    \begin{itemize}
+    \addtolength{\itemsep}{.5\baselineskip}
+    \item Use either the \alert{normal interval} or \alert{$t$ interval} (choice doesn't matter) if sample size is large ($n > 100$ or so)
+    \item Use the \alert{$t$ interval} if sample size is medium (about $20 \leq n \leq 100$)
+    \item If sample size is smaller than that ($n < 20$) for now also use \alert{$t$ interval}---more on this later in methods sequence
+    \end{itemize}
+\end{itemize}
+\medskip
+Keep in mind that it is almost always better to be conservative when it comes to statistics.
+}
+
+
+
+\end{document}

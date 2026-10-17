@@ -1,0 +1,180 @@
+"country","iso3","year","region","corr100","women","polyarchy","libdem","democracy","gdppc","log_gdppc"
+"Afghanistan","AFG",2024,"Asia & Pacific",68.1,,0.08,0.014,0,1964.5,7.583
+"Albania","ALB",2024,"E. Europe & C. Asia",62.7,35.7,0.51,0.398,1,21641,9.9823
+"Algeria","DZA",2024,"Middle East & N. Africa",66.2,7.9,0.26,0.123,0,15501.9,9.6487
+"Angola","AGO",2024,"Sub-Saharan Africa",54.6,39.6,0.342,0.161,0,8752.8,9.0771
+"Argentina","ARG",2024,"Latin America & Caribbean",39,42.4,0.721,0.558,1,26772,10.1951
+"Armenia","ARM",2024,"E. Europe & C. Asia",37.2,36.5,0.625,0.412,1,20078.8,9.9074
+"Australia","AUS",2024,"W. Europe & N. America",2.9,38,0.848,0.796,1,60309.6,11.0072
+"Austria","AUT",2024,"W. Europe & N. America",11.4,41,0.84,0.762,1,63788,11.0633
+"Azerbaijan","AZE",2024,"E. Europe & C. Asia",90.2,18.1,0.174,0.053,0,22090.5,10.0029
+"Bahrain","BHR",2024,"Middle East & N. Africa",47,20,0.138,0.062,0,59060.2,10.9863
+"Bangladesh","BGD",2024,"Asia & Pacific",92.2,,0.225,0.097,0,8486.8,9.0463
+"Barbados","BRB",2024,"Latin America & Caribbean",7.3,26.7,0.802,0.685,1,21557.5,9.9785
+"Belarus","BLR",2024,"E. Europe & C. Asia",41.9,33.6,0.16,0.036,0,29135.9,10.2797
+"Belgium","BEL",2024,"W. Europe & N. America",3.1,41.3,0.891,0.81,1,63311.3,11.0558
+"Benin","BEN",2024,"Sub-Saharan Africa",19.1,26.6,0.491,0.323,0,3901.3,8.2691
+"Bhutan","BTN",2024,"Asia & Pacific",14.8,4.3,0.565,0.457,1,15603.9,9.6553
+"Bolivia","BOL",2024,"Latin America & Caribbean",65.4,46.2,0.577,0.31,1,11329.2,9.3351
+"Bosnia and Herzegovina","BIH",2024,"E. Europe & C. Asia",76.9,19.1,0.507,0.336,1,20578.5,9.932
+"Botswana","BWA",2024,"Sub-Saharan Africa",24.2,11.1,0.595,0.47,1,18107.6,9.8041
+"Brazil","BRA",2024,"Latin America & Caribbean",43.8,17.5,0.799,0.712,1,19652.4,9.886
+"Bulgaria","BGR",2024,"E. Europe & C. Asia",57.9,26.7,0.645,0.533,1,34221.4,10.4406
+"Burkina Faso","BFA",2024,"Sub-Saharan Africa",38.4,18.3,0.154,0.126,0,2548.5,7.8433
+"Burma/Myanmar","MMR",2024,"Asia & Pacific",85.9,,0.08,0.015,0,5276.3,8.571
+"Burundi","BDI",2024,"Sub-Saharan Africa",82.7,38.2,0.178,0.062,0,1048.1,6.9547
+"Cambodia","KHM",2024,"Asia & Pacific",90.4,13.6,0.184,0.048,0,7011.6,8.8553
+"Cameroon","CMR",2024,"Sub-Saharan Africa",93.2,33.9,0.277,0.126,0,4916.9,8.5004
+"Canada","CAN",2024,"W. Europe & N. America",3,30.4,0.841,0.744,1,57534.1,10.9601
+"Cape Verde","CPV",2024,"Sub-Saharan Africa",26.1,38.9,0.752,0.642,1,9825.5,9.1927
+"Central African Republic","CAF",2024,"Sub-Saharan Africa",85.1,11.4,0.299,0.097,0,1111.2,7.0132
+"Chad","TCD",2024,"Sub-Saharan Africa",95.2,26.1,0.202,0.054,0,2430.7,7.7959
+"Chile","CHL",2024,"Latin America & Caribbean",7.5,35.5,0.845,0.786,1,30267.6,10.3178
+"China","CHN",2024,"Asia & Pacific",55,26.7,0.073,0.037,0,23841.5,10.0792
+"Colombia","COL",2024,"Latin America & Caribbean",39.6,29.4,0.698,0.554,1,18481.8,9.8245
+"Comoros","COM",2024,"Sub-Saharan Africa",80.9,16.7,0.276,0.122,0,3556,8.1764
+"Costa Rica","CRI",2024,"Latin America & Caribbean",20.6,49.1,0.862,0.809,1,27325,10.2156
+"Croatia","HRV",2024,"E. Europe & C. Asia",25.4,33.1,0.71,0.607,1,42828.8,10.665
+"Cuba","CUB",2024,"Latin America & Caribbean",63.1,55.7,0.178,0.056,0,,
+"Cyprus","CYP",2024,"W. Europe & N. America",16.1,14.3,0.777,0.653,1,52861.8,10.8754
+"Czechia","CZE",2024,"E. Europe & C. Asia",9.5,26,0.865,0.811,1,47972.5,10.7784
+"Democratic Republic of the Congo","COD",2024,"Sub-Saharan Africa",90.5,13,0.308,0.123,0,1601.7,7.3788
+"Denmark","DNK",2024,"W. Europe & N. America",0.4,45.3,0.917,0.885,1,71034.6,11.1709
+"Djibouti","DJI",2024,"Sub-Saharan Africa",68.6,26.2,0.25,0.118,0,6871.1,8.8351
+"Dominican Republic","DOM",2024,"Latin America & Caribbean",56.2,36.8,0.71,0.495,1,24229.9,10.0953
+"Ecuador","ECU",2024,"Latin America & Caribbean",65.5,43.1,0.641,0.443,1,13922.4,9.5413
+"Egypt","EGY",2024,"Middle East & N. Africa",72.9,27.7,0.186,0.123,0,16798.2,9.729
+"El Salvador","SLV",2024,"Latin America & Caribbean",68.4,31.7,0.335,0.09,0,11647,9.3628
+"Equatorial Guinea","GNQ",2024,"Sub-Saharan Africa",83.7,32,0.176,0.049,0,14997.8,9.6157
+"Eritrea","ERI",2024,"Sub-Saharan Africa",72.8,,0.069,0.009,0,,
+"Estonia","EST",2024,"E. Europe & C. Asia",2.5,29.7,0.893,0.848,1,41185.8,10.6258
+"Eswatini","SWZ",2024,"Sub-Saharan Africa",54,21.6,0.129,0.101,0,10386.2,9.2482
+"Ethiopia","ETH",2024,"Sub-Saharan Africa",52,41.3,0.26,0.093,0,2892.2,7.9698
+"Fiji","FJI",2024,"Asia & Pacific",28.9,9.1,0.514,0.41,1,13592.5,9.5173
+"Finland","FIN",2024,"W. Europe & N. America",2.3,46,0.827,0.782,1,55901.3,10.9313
+"France","FRA",2024,"W. Europe & N. America",4.9,36.1,0.864,0.8,1,54799.3,10.9114
+"Gabon","GAB",2024,"Sub-Saharan Africa",72.4,25.5,0.227,0.151,0,18923.7,9.8482
+"Georgia","GEO",2024,"E. Europe & C. Asia",18.8,19.3,0.48,0.327,0,24146.6,10.0919
+"Germany","DEU",2024,"W. Europe & N. America",2.4,35.3,0.825,0.778,1,62654.6,11.0454
+"Ghana","GHA",2024,"Sub-Saharan Africa",63.8,14.6,0.665,0.56,1,7072.8,8.864
+"Greece","GRC",2024,"W. Europe & N. America",23.7,23,0.744,0.565,1,37474.3,10.5314
+"Guatemala","GTM",2024,"Latin America & Caribbean",69.1,20,0.609,0.492,1,12644,9.4449
+"Guinea","GIN",2024,"Sub-Saharan Africa",86.2,29.6,0.159,0.075,0,4016.3,8.2981
+"Guinea-Bissau","GNB",2024,"Sub-Saharan Africa",74.7,,0.279,0.14,0,2717.5,7.9075
+"Guyana","GUY",2024,"Latin America & Caribbean",50.7,39.4,0.491,0.314,0,70516.7,11.1636
+"Haiti","HTI",2024,"Latin America & Caribbean",78.6,,0.237,0.101,0,2783.8,7.9316
+"Honduras","HND",2024,"Latin America & Caribbean",74.9,27.3,0.538,0.383,1,6590.8,8.7934
+"Hong Kong","HKG",2024,"Asia & Pacific",9,16,0.158,0.142,0,66186,11.1002
+"Hungary","HUN",2024,"E. Europe & C. Asia",49.4,14.6,0.444,0.325,0,40747.2,10.6151
+"Iceland","ISL",2024,"W. Europe & N. America",2.3,47.6,0.842,0.757,1,68230.4,11.1306
+"India","IND",2024,"Asia & Pacific",68.1,13.7,0.381,0.281,0,9416.1,9.1502
+"Indonesia","IDN",2024,"Asia & Pacific",76.7,22,0.496,0.332,0,14470.7,9.5799
+"Iran","IRN",2024,"Middle East & N. Africa",78.3,6.8,0.166,0.088,0,17484.1,9.769
+"Iraq","IRQ",2024,"Middle East & N. Africa",85,28.9,0.361,0.21,0,12725,9.4513
+"Ireland","IRL",2024,"W. Europe & N. America",3.2,23.1,0.895,0.83,1,118833.3,11.6855
+"Israel","ISR",2024,"Middle East & N. Africa",11.1,25,0.702,0.597,1,47388.7,10.7661
+"Italy","ITA",2024,"W. Europe & N. America",18.2,32.3,0.784,0.687,1,53284.9,10.8834
+"Ivory Coast","CIV",2024,"Sub-Saharan Africa",59.9,13.4,0.429,0.248,0,6747,8.8169
+"Jamaica","JAM",2024,"Latin America & Caribbean",19,27.4,0.798,0.676,1,11340.3,9.3361
+"Japan","JPN",2024,"Asia & Pacific",5,10.8,0.822,0.737,1,47479.8,10.7681
+"Jordan","JOR",2024,"Middle East & N. Africa",43,13.1,0.274,0.27,0,10468.3,9.2561
+"Kazakhstan","KAZ",2024,"E. Europe & C. Asia",72.9,19.4,0.267,0.133,0,35974,10.4906
+"Kenya","KEN",2024,"Sub-Saharan Africa",55.6,23.3,0.557,0.437,1,5841.6,8.6728
+"Kosovo","XKX",2024,"E. Europe & C. Asia",27.2,33,0.648,0.471,1,15716.3,9.6625
+"Kuwait","KWT",2024,"Middle East & N. Africa",31.5,2,0.198,0.179,0,46664.2,10.7507
+"Kyrgyzstan","KGZ",2024,"E. Europe & C. Asia",79.3,21.1,0.321,0.185,0,7210.6,8.8833
+"Laos","LAO",2024,"Asia & Pacific",75.2,22,0.135,0.117,0,8600.3,9.0596
+"Latvia","LVA",2024,"E. Europe & C. Asia",7.1,32,0.834,0.759,1,37615.1,10.5352
+"Lebanon","LBN",2024,"Middle East & N. Africa",84.2,6.3,0.347,0.226,0,10469.2,9.2562
+"Lesotho","LSO",2024,"Sub-Saharan Africa",55.4,25,0.652,0.507,1,2697.6,7.9001
+"Liberia","LBR",2024,"Sub-Saharan Africa",87.7,11,0.61,0.398,1,1646.1,7.4061
+"Libya","LBY",2024,"Middle East & N. Africa",81.9,16.5,0.195,0.109,0,12583.8,9.4402
+"Lithuania","LTU",2024,"E. Europe & C. Asia",16.9,29.3,0.798,0.732,1,47462,10.7677
+"Luxembourg","LUX",2024,"W. Europe & N. America",2.9,33.3,0.869,0.781,1,128475.3,11.7635
+"Madagascar","MDG",2024,"Sub-Saharan Africa",88.3,16,0.403,0.201,0,1659.2,7.4141
+"Malawi","MWI",2024,"Sub-Saharan Africa",72.1,20.7,0.563,0.472,1,1634.2,7.3989
+"Malaysia","MYS",2024,"Asia & Pacific",32.2,13.5,0.513,0.359,1,34116.2,10.4375
+"Maldives","MDV",2024,"Asia & Pacific",41.1,3.2,0.577,0.435,1,23034.4,10.0447
+"Mali","MLI",2024,"Sub-Saharan Africa",71.8,30.7,0.192,0.141,0,2917.9,7.9786
+"Malta","MLT",2024,"W. Europe & N. America",18.6,27.9,0.783,0.621,1,62398.5,11.0413
+"Mauritania","MRT",2024,"Sub-Saharan Africa",85.3,23.3,0.337,0.136,0,6482.7,8.7769
+"Mauritius","MUS",2024,"Sub-Saharan Africa",45.5,20,0.495,0.371,0,27844.9,10.2344
+"Mexico","MEX",2024,"Latin America & Caribbean",58.1,50,0.496,0.246,0,21970.4,9.9974
+"Moldova","MDA",2024,"E. Europe & C. Asia",32.5,40.8,0.622,0.503,1,16393.9,9.7047
+"Mongolia","MNG",2024,"E. Europe & C. Asia",68.7,25.4,0.498,0.385,0,16842.7,9.7317
+"Montenegro","MNE",2024,"E. Europe & C. Asia",47.5,27.2,0.64,0.5,1,28105.6,10.2437
+"Morocco","MAR",2024,"Middle East & N. Africa",66.4,24.3,0.261,0.252,0,9162.7,9.1229
+"Mozambique","MOZ",2024,"Sub-Saharan Africa",69.8,43.2,0.31,0.189,0,1500.7,7.3137
+"Namibia","NAM",2024,"Sub-Saharan Africa",28.3,50,0.624,0.516,1,10276.4,9.2376
+"Nepal","NPL",2024,"Asia & Pacific",62.2,33.1,0.669,0.52,1,5047.4,8.5266
+"Netherlands","NLD",2024,"W. Europe & N. America",1.8,38.7,0.823,0.766,1,70493.9,11.1633
+"New Zealand","NZL",2024,"W. Europe & N. America",1.1,45.5,0.868,0.811,1,48325.4,10.7857
+"Nicaragua","NIC",2024,"Latin America & Caribbean",94.2,53.9,0.151,0.02,0,7661.1,8.9439
+"Niger","NER",2024,"Sub-Saharan Africa",57,,0.237,0.182,0,1795.7,7.4931
+"Nigeria","NGA",2024,"Sub-Saharan Africa",93.2,3.9,0.499,0.314,0,7994,8.9865
+"North Korea","PRK",2024,"Asia & Pacific",67,17.6,0.084,0.014,0,,
+"North Macedonia","MKD",2024,"E. Europe & C. Asia",75.4,39.2,0.557,0.37,1,24203.2,10.0942
+"Norway","NOR",2024,"W. Europe & N. America",1,44.4,0.889,0.847,1,94803.7,11.4596
+"Oman","OMN",2024,"Middle East & N. Africa",25.3,0,0.175,0.139,0,36721.1,10.5111
+"Pakistan","PAK",2024,"Asia & Pacific",81.8,16.2,0.313,0.193,0,5502.1,8.6129
+"Palestine/Gaza","PSG",2024,"Middle East & N. Africa",34.2,,0.095,0.055,0,,
+"Palestine/West Bank","PSE",2024,"Middle East & N. Africa",44.4,,0.212,0.118,0,4190.9,8.3407
+"Panama","PAN",2024,"Latin America & Caribbean",48.4,21.4,0.728,0.578,1,36394.9,10.5022
+"Papua New Guinea","PNG",2024,"Asia & Pacific",69.8,2.7,0.462,0.38,0,4292.7,8.3647
+"Paraguay","PRY",2024,"Latin America & Caribbean",80.1,23.8,0.581,0.39,1,16367.5,9.7031
+"Peru","PER",2024,"Latin America & Caribbean",61.9,38.5,0.642,0.501,1,15708.8,9.662
+"Philippines","PHL",2024,"Asia & Pacific",83.7,27.3,0.411,0.301,0,10378.2,9.2475
+"Poland","POL",2024,"E. Europe & C. Asia",10.6,29.6,0.73,0.613,1,45153,10.7178
+"Portugal","PRT",2024,"W. Europe & N. America",16.6,32.6,0.836,0.754,1,42228.2,10.6508
+"Qatar","QAT",2024,"Middle East & N. Africa",32,4.4,0.087,0.095,0,111314.3,11.6201
+"Republic of the Congo","COG",2024,"Sub-Saharan Africa",83.9,14.6,0.255,0.119,0,6152.6,8.7246
+"Romania","ROU",2024,"E. Europe & C. Asia",38.9,19.2,0.628,0.449,1,40503.8,10.6092
+"Russia","RUS",2024,"E. Europe & C. Asia",79.5,16.4,0.171,0.057,0,41891.2,10.6428
+"Rwanda","RWA",2024,"Sub-Saharan Africa",41.8,63.8,0.201,0.091,0,3325,8.1092
+"Sao Tome and Principe","STP",2024,"Sub-Saharan Africa",28.5,14.6,0.632,0.519,1,5511.9,8.6147
+"Saudi Arabia","SAU",2024,"Middle East & N. Africa",32.6,19.9,0.015,0.047,0,63194.4,11.054
+"Senegal","SEN",2024,"Sub-Saharan Africa",40.4,46.1,0.605,0.461,1,4477.8,8.4069
+"Serbia","SRB",2024,"E. Europe & C. Asia",76,38,0.315,0.225,0,26900.7,10.1999
+"Seychelles","SYC",2024,"Sub-Saharan Africa",4.7,20.6,0.737,0.652,1,29288,10.2849
+"Sierra Leone","SLE",2024,"Sub-Saharan Africa",57.1,29.5,0.471,0.363,0,3098.8,8.0388
+"Singapore","SGP",2024,"Asia & Pacific",3.2,29.3,0.418,0.348,0,134548.8,11.8097
+"Slovakia","SVK",2024,"E. Europe & C. Asia",27.8,22.7,0.746,0.59,1,40302.5,10.6042
+"Slovenia","SVN",2024,"E. Europe & C. Asia",5.7,37.8,0.725,0.63,1,48658,10.7926
+"Solomon Islands","SLB",2024,"Asia & Pacific",60.2,6,0.688,0.536,1,2353.5,7.7637
+"Somalia","SOM",2024,"Sub-Saharan Africa",87,19.6,0.165,0.127,0,1409.3,7.2509
+"Somaliland","SML",2024,"Sub-Saharan Africa",59.8,1.23,0.42,0.272,0,,
+"South Africa","ZAF",2024,"Sub-Saharan Africa",51.7,45.1,0.734,0.648,1,13597.7,9.5177
+"South Korea","KOR",2024,"Asia & Pacific",15.6,20,0.724,0.627,1,55070.9,10.9164
+"South Sudan","SSD",2024,"Sub-Saharan Africa",86.4,32.4,0.154,0.071,0,,
+"Spain","ESP",2024,"W. Europe & N. America",9.8,44.3,0.826,0.743,1,48460.3,10.7885
+"Sri Lanka","LKA",2024,"Asia & Pacific",45.6,5.3,0.677,0.497,1,13793.1,9.5319
+"Sudan","SDN",2024,"Sub-Saharan Africa",83.9,,0.137,0.03,0,1861.4,7.5291
+"Suriname","SUR",2024,"Latin America & Caribbean",14,31.4,0.767,0.634,1,19179.1,9.8616
+"Sweden","SWE",2024,"W. Europe & N. America",0.9,46.7,0.881,0.846,1,62558.4,11.0439
+"Switzerland","CHE",2024,"W. Europe & N. America",2.3,38.5,0.882,0.843,1,85448.1,11.3557
+"Syria","SYR",2024,"Middle East & N. Africa",79.7,,0.143,0.054,0,,
+"Taiwan","TWN",2024,"Asia & Pacific",22,42,0.804,0.707,1,,
+"Tajikistan","TJK",2024,"E. Europe & C. Asia",88.2,27,0.168,0.041,0,4755.9,8.4671
+"Tanzania","TZA",2024,"Sub-Saharan Africa",28.1,37.4,0.413,0.357,0,3713.3,8.2197
+"Thailand","THA",2024,"Asia & Pacific",63.5,19.4,0.41,0.306,0,21882.2,9.9934
+"The Gambia","GMB",2024,"Sub-Saharan Africa",28,8.6,0.63,0.51,1,3057.7,8.0254
+"Timor-Leste","TLS",2024,"Asia & Pacific",22.1,38.5,0.734,0.545,1,3891,8.2664
+"Togo","TGO",2024,"Sub-Saharan Africa",77.3,18.6,0.35,0.167,0,3351.2,8.1171
+"Trinidad and Tobago","TTO",2024,"Latin America & Caribbean",10,28.6,0.773,0.653,1,31960.2,10.3722
+"Tunisia","TUN",2024,"Middle East & N. Africa",41,15.7,0.422,0.271,0,12774.9,9.4552
+"Türkiye","TUR",2024,"Middle East & N. Africa",80,19.9,0.289,0.109,0,36154.5,10.4956
+"Turkmenistan","TKM",2024,"E. Europe & C. Asia",89.1,25.6,0.149,0.034,0,18470.7,9.8239
+"Uganda","UGA",2024,"Sub-Saharan Africa",84.4,33.9,0.261,0.168,0,2879.7,7.9654
+"Ukraine","UKR",2024,"E. Europe & C. Asia",63.3,21.1,0.387,0.23,0,16371.4,9.7033
+"United Arab Emirates","ARE",2024,"Middle East & N. Africa",10.5,50,0.104,0.077,0,69701.8,11.152
+"United Kingdom","GBR",2024,"W. Europe & N. America",4.3,40.5,0.832,0.75,1,53412.1,10.8858
+"United States of America","USA",2024,"W. Europe & N. America",5.1,29,0.843,0.751,1,75698.2,11.2345
+"Uruguay","URY",2024,"Latin America & Caribbean",5.1,25.3,0.846,0.768,1,32149.5,10.3782
+"Uzbekistan","UZB",2024,"E. Europe & C. Asia",83.5,34.6,0.214,0.074,0,10997.2,9.3054
+"Vanuatu","VUT",2024,"Asia & Pacific",27.9,2,0.8,0.686,1,3837,8.2525
+"Venezuela","VEN",2024,"Latin America & Caribbean",97,33,0.196,0.046,0,,
+"Vietnam","VNM",2024,"Asia & Pacific",48.7,30.6,0.159,0.109,0,14396.4,9.5747
+"Yemen","YEM",2024,"Middle East & N. Africa",91,0,0.126,0.047,0,,
+"Zambia","ZMB",2024,"Sub-Saharan Africa",35.1,15,0.512,0.39,1,3708.1,8.2183
+"Zanzibar","ZZB",2024,"Sub-Saharan Africa",52.5,36.8,0.288,0.247,0,,
+"Zimbabwe","ZWE",2024,"Sub-Saharan Africa",82.4,28.1,0.272,0.156,0,5211.9,8.5587

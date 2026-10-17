@@ -1,0 +1,36 @@
+---
+title: "Teaching with the slides"
+---
+
+You are welcome to teach with these slides, in whole or in part, and to adapt them for your own
+course.
+
+## License
+
+- The slides, their LaTeX sources, the worksheets, and the original figures are licensed under
+  [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). You may copy, adapt and teach
+  with them, with credit, but not for commercial purposes.
+- The R code is licensed under the
+  [MIT License](https://github.com/xuyiqing/regression-lectures/blob/main/LICENSE-CODE).
+- The data files keep their own terms, listed with their sources in
+  [SOURCES.md](https://github.com/xuyiqing/regression-lectures/blob/main/SOURCES.md).
+
+## Materials for instructors
+
+Problem sets with solutions, worksheet solutions, and past exams are available to instructors on
+request. Please email [yiqingxu@stanford.edu](mailto:yiqingxu@stanford.edu) from your institutional
+address, name the course you teach, and do not post the solutions publicly.
+
+## Building and adapting the slides
+
+Each lecture's folder in the [repository](https://github.com/xuyiqing/regression-lectures) holds
+the LaTeX Beamer source, the figures, the R scripts that draw them, and the data the scripts read.
+All lectures share one template, `lectures/course_preamble.tex` and `lectures/course_theme.tex`,
+and every R script uses the shared figure style in `lectures/course_figures.R`. You need TeX Live
+2023 or later and R 4.x. The
+[README](https://github.com/xuyiqing/regression-lectures#readme) has the build commands.
+
+## Corrections
+
+Comments and corrections are welcome as
+[issues](https://github.com/xuyiqing/regression-lectures/issues) on GitHub.

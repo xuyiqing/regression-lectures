@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newcommand{\solution}{\bigskip\textbf{\textit{Solution:}}\xspace}
+\DeclareMathOperator*\plim{plim}
+\DeclareMathOperator{\cor}{Cor}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\cN}{\mathcal{N}}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 5-2: OLS Assumptions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Examine OLS assumptions, omitted variable bias, and multicollinearity.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Multiple OLS assumptions
+\begin{itemize}
+\item Linearity in parameters
+\item Random sampling
+\item No perfect collinearity
+\item Zero conditional mean
+\item Homoskedasticity
+\item Normality
+\end{itemize}
+\item Omitted variable bias
+\begin{itemize}
+\item Excluding a relevant variable
+\item Bias direction depends on correlations
+\item Confounders defined
+\end{itemize}
+\item Multicollinearity
+\begin{itemize}
+\item Variance of OLS estimators \& estimation
+\item Detecting multicollinearity
+\item Variance inflation factor
+\end{itemize}
+\item Including irrelevant variables
+\begin{itemize}
+\item No bias, but larger variance
+\end{itemize}
+\end{itemize}
+
+% End outline
+\clearpage
+
+
+% \section*{Worksheet}
+
+% \begin{enumerate}\itemsep12em
+
+% \item (\emph{Two–regressor OVB algebra})  
+% Let the true model satisfy Assumptions I–IV: $y=\beta_0+\beta_1 x_1+\beta_2 x_2+u$. Suppose we estimate the underspecified model $\tilde y=\tilde\beta_0+\tilde\beta_1 x_1$. Regress $x_2$ on $x_1$ with intercept to get $x_2=\tilde\gamma_0+\tilde\delta x_1+v$, where $v$ are residuals orthogonal to $1$ and $x_1$. Show that  
+% \[
+% E[\tilde\beta_1\mid X]=\beta_1+\beta_2\,\tilde\delta,
+% \]
+% identify the two conditions under which $E[\tilde\beta_1\mid X]=\beta_1$, and interpret $\tilde\delta$.
+
+
+% \item (\emph{Including an irrelevant variable})  
+% Suppose the true model is $y=\beta_0+\beta_1 x_1+u$ and Assumptions I–V hold. You nevertheless estimate the overspecified model $\tilde y=\tilde\beta_0+\tilde\beta_1 x_1+\tilde\beta_2 x_2$, where $x_2$ is correlated with $x_1$ but is irrelevant in truth ($\beta_2=0$).
+
+% \begin{enumerate}
+%   \item Show that $E[\hat{\beta}_0]=\beta_0,\, E[\hat{\beta}_1]=\beta_1,\,E[\hat{\beta}_2]=0$.  
+%   \item Explain that the conditional variance inflates according to
+%   \[
+%   V[\tilde\beta_1\mid X]=\frac{\sigma_u^2}{SST_1(1-R_1^2)},\qquad R_1^2\equiv R^2\text{ from regressing }x_1\text{ on }(1,x_2),
+%   \]
+%   and compare to the variance in the correctly specified simple regression, $V[\hat\beta_1^{(SR)}\mid X]=\sigma_u^2/SST_1$.  
+% \end{enumerate}
+
+%\end{enumerate}
+
+
+
+\end{document}

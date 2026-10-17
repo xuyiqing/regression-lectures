@@ -1,0 +1,10 @@
+Fixed design: mean(x1) = 0.52  var(x1) = 0.078 
+True variance-covariance matrix sigma^2 (X'X)^{-1}  [shown on the slide]:
+       b0_hat b1_hat
+b0_hat   0.18  -0.27
+b1_hat  -0.27   0.52
+Variance-covariance matrix of the 5000 simulated estimates:
+       b0_hat b1_hat
+b0_hat   0.18  -0.26
+b1_hat  -0.26   0.50
+Correlation of the estimates (true): -0.88 

@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+
+\title{\Large Lecture 4-2: Statistical Properties of OLS}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Explain the statistical properties of the OLS estimators: the assumptions, unbiasedness, variance, and the Gauss–Markov theorem.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Statistical properties of OLS
+\begin{itemize}
+\item Linear model setup
+\item OLS assumptions I–V
+\item Sampling distributions
+\item Unbiasedness
+\item Variance and estimation
+\item Gauss–Markov theorem
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep8em
+\item (\emph{Unbiasedness of the slope})  
+Under Assumptions I--IV (including $E[u|X]=0$), show $E[\hat\beta_1]=\beta_1$.
+
+\item (\emph{Variance of the slope})  
+Under Assumptions I--V (including homoskedasticity, $\var(u_i\mid X)=\sigma_u^2$), derive $\displaystyle \var(\hat\beta_1\mid X)=\frac{\sigma_u^2}{\sum_{i=1}^n(x_i-\bar x)^2}$.
+
+% \item (\emph{Binary regressor as difference-in-means})  
+% Let $Y=\beta_0+\beta_1 D+u$, $D\in\{0,1\}$. Show $\hat\beta_1=\bar Y_1-\bar Y_0$.
+\end{enumerate}
+
+
+
+\end{document}

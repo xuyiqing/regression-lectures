@@ -1,0 +1,6 @@
+Box corners and whether the F test rejects there (quadratic form > 5.99 ):
+         x        y quad_form F_rejects
+1 3.040036 2.040036      4.80     FALSE
+2 6.959964 2.040036     19.21      TRUE
+3 3.040036 5.959964     19.21      TRUE
+4 6.959964 5.959964      4.80     FALSE

@@ -1,0 +1,16 @@
+all 3034 counties: density from 0.036 (Kenedy County, TX) to 71842 (New York County, NY) people per sq. mile; log -3.33 to 11.18
+log density 0 = 1 person, 4.6 = 100, 6.9 = 1,000 people per sq. mile
+sample of 200 counties (seed 450): log density -0.92 to 7.81; share 24.0 to 92.9
+uniform h=0.5 x0=3.0 estimate=72.63
+uniform h=0.5 x0=3.5 estimate=73.03
+uniform h=0.5 x0=4.0 estimate=71.15
+uniform h=1.5 x0=2.0 estimate=72.44
+uniform h=1.5 x0=4.0 estimate=69.55
+uniform h=1.5 x0=6.0 estimate=60.54
+epanechnikov h=1.5 x0=2.0 estimate=71.47
+epanechnikov h=1.5 x0=4.0 estimate=70.22
+epanechnikov h=1.5 x0=6.0 estimate=58.97
+range of the Epanechnikov curves: h=0.5 47.2 to 88.4 ; h=1.5 48.5 to 86.2 ; h=3 56.0 to 80.0 
+local linear h=1.5 x0=2.0 estimate=72.09
+local linear h=1.5 x0=4.0 estimate=69.82
+local linear h=1.5 x0=6.0 estimate=57.41

@@ -1,0 +1,201 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\usepackage{setspace}
+
+\usepackage{amsmath, amssymb, amsthm, graphicx, xcolor, bm}
+\newcommand{\bs}[1]{\bm{#1}}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newenvironment{solution}{\par\noindent\textbf{Solution.}\ }{\hfill$\square$\par}
+
+\DeclareMathOperator*\plim{plim}
+\DeclareMathOperator{\cor}{Cor}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\cN}{\mathcal{N}}
+
+\providecommand{\mb}{\mathbf}
+\newcommand{\X}{\ensuremath{\mathbf{X}}}
+\newcommand{\y}{\ensuremath{\mathbf{y}}}
+\newcommand{\M}{\ensuremath{\mathbf{M}}}
+\renewcommand{\P}{\ensuremath{\mathbf{P}}}
+\renewcommand{\u}{\ensuremath{\mathbf{u}}}  % override accent for vector u
+\newcommand{\ehat}{\hat{\boldsymbol{\epsilon}}}
+\newcommand{\e}{\ensuremath{\bs{\epsilon}}}
+\newcommand{\I}{\ensuremath{\mathbf{I}}}
+\newcommand{\XX}{\ensuremath{\X' \X}}
+\newcommand{\XXinv}{\ensuremath{(\X' \X)^{-1}}}
+\newcommand{\hatmat}{\ensuremath{\X \XXinv \X'}}
+\renewcommand{\a}{\mathbf{a}}
+\renewcommand{\b}{\ensuremath{\bs{\beta}}}
+\newcommand{\bhat}{\hat{\boldsymbol{\beta}}}
+
+\newcommand{\hatsig}{\ensuremath{\hat{\sigma}^2}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\A}{\mathbf{A}}
+\renewcommand{\r}{\mathbf{r}}
+
+\title{\Large Lecture 6-2: OLS Inference}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Develop statistical inference methods for multiple regression coefficients.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Testing hypotheses about individual coefficients
+\begin{itemize}
+\item $t$-values in multiple regression
+\item Test procedure
+\item Confidence intervals
+\end{itemize}
+\item Testing linear hypotheses: simple case
+\begin{itemize}
+\item Linear combinations of coefficients
+\item Variance of linear combinations
+\end{itemize}
+\item Testing joint significance
+\begin{itemize}
+\item $F$ tests for joint hypotheses
+\item $\chi^2$ and $F$ distributions
+\item Restricted vs unrestricted models
+\item Ex1. Omnibus tests
+\item Ex2. Equality of coefficients tests
+\item Relationship between $t$ and $F$ tests
+\end{itemize}
+\item Testing linear hypotheses: general case
+\begin{itemize}
+\item Limitations of simple $F$ tests
+\item General restriction matrix form
+\item Wald statistic
+\item Large and small sample distributions
+\end{itemize}
+\end{itemize}
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep1em
+
+
+% \item (\emph{t–statistic and its small–sample distribution in multiple regression})  
+% Consider the homoskedastic Gauss–Markov model with normal errors
+% \[
+% \y=\X\b+\e,
+% \qquad \e\sim\cN(0,\sigma^2\I_n),
+% \quad \text{rank}(\X)=k+1<n.
+% \]
+% Let $\hat\b=(\X'\X)^{-1}\X'\y$ and $\hatsig=\frac{1}{n-k-1}\,\ehat'\ehat$ with $\ehat=\y-\X\hat\b$. Fix $j\in\{0,\ldots,k\}$ and a scalar $c$. \\ \bigskip
+
+% Explain why the test statistic $T\;=\;\frac{\hat\beta_j-c}{\widehat{SE}(\hat\beta_j)}$, where  $\widehat{SE}(\hat\beta_j)=\sqrt{\hatsig\;\big[(\X'\X)^{-1}\big]_{(j,j)}}$, has the $t_{\,n-k-1}$ distribution under $H_0:\beta_j=c$.\\ 
+
+% \textbf{Hint}: Need to show (a) $\hat\beta_j$ is normally distributed; (b) $\frac{(n-k-1)\,\hatsig}{\sigma^2}$ is $\chi^2_{,n-k-1}$ distributed; (c) the two parts are independent; and (d) normal-$\chi^2$ ratio characterization. Explain why. 
+
+% \clearpage
+
+\item  (\emph{A linear combination $(\beta_{PS}-2\beta_{S})$ and its standard error}) Return to the Chile model with dummies $S$ (secondary) and $PS$ (post-secondary), with primary schooling as the baseline. The estimated model is
+\[
+\widehat{Y} = \hat\beta_0 + \hat\beta_{fem}\,FEM + \hat\beta_{age}\,AGE + \hat\beta_{S}\,S + \hat\beta_{PS}\,PS.
+\]
+We wish to test whether the 1-2-3 coding of education fits the data:
+\[
+H_0:\ \beta_{PS}-2\beta_{S}=0.
+\]
+\begin{enumerate}
+\item Derive $\var(\hat\beta_{PS}-2\hat\beta_{S})$
+\item Let $\mb{A}=(\X'\X)^{-1}=\big[a_{rs}\big]$ and $\widehat{\var}(\hat\b)=\hatsig\,\mb{A}$. Explain that
+\[
+\widehat{\var}\!\big(\hat\beta_{PS}-2\hat\beta_{S}\big)
+= \hatsig\Big(a_{PS,PS}+4\,a_{S,S}-4\,a_{S,PS}\Big)
+\]
+is an unbiased estimator of $\var(\hat\beta_{PS}-2\hat\beta_{S}\mid\X)$ under Assumptions I--V.
+\end{enumerate}
+
+\clearpage
+
+\item Consider the multiple regression model
+\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k X_k + u,
+\]
+and suppose we wish to test the joint null hypothesis
+\[
+H_0:\ \beta_1=\beta_2=\cdots=\beta_k=0
+\quad\text{versus}\quad
+H_1:\ \text{at least one }\beta_j\neq 0.
+\]
+
+\begin{enumerate}
+\item Explain in words what this hypothesis is asking about the explanatory power of the regressors.
+\item Describe step-by-step how to conduct the $F$ test for this hypothesis, including:
+  \begin{enumerate}
+    \item the unrestricted and restricted models,  
+    \item how to compute the $F$ statistic from the two sum of squared residuals, and  
+    \item how to determine whether to reject $H_0$ at significance level $\alpha$.
+  \end{enumerate}
+\item Interpret the meaning of rejecting versus not rejecting $H_0$ in terms of the overall explanatory power of $X_1,\ldots,X_k$.
+\end{enumerate}
+
+\clearpage
+\item Consider the multiple regression model
+\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \cdots + \beta_k X_k + u,
+\]
+and suppose we want to test whether the first three regressors have the same effect:
+\[
+H_0:\ \beta_1=\beta_2=\beta_3 \quad \text{versus} \quad H_1:\ \text{at least one differs.}
+\]
+
+\begin{enumerate}
+% \item Express $H_0$ as a system of linear restrictions in matrix form, and determine how many independent restrictions are being tested.
+\item Describe the step-by-step $F$ test procedure, including:
+  \begin{enumerate}
+    \item how to construct the restricted model implied by $H_0$,
+    \item how to compute the $F$ statistic using the two sums of squared residuals, and
+    \item the reference distribution used for inference.
+  \end{enumerate}
+\item Provide an intuitive interpretation of what rejecting or failing to reject $H_0$ implies about the relationship between $X_1$, $X_2$, and $X_3$.
+\end{enumerate}
+\clearpage
+
+\item \textit{(General procedure for testing linear hypotheses)} Consider the linear regression model
+\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + u,
+\]
+with coefficient vector $\b = [\beta_0\ \beta_1\ \beta_2\ \beta_3]'$. We wish to test linear hypotheses of the form $R\b=r$. Construct the corresponding $R$ and $r$ in the following two scenarios.
+\begin{enumerate}
+\item Test the hypothesis that all three slope coefficients equal 3:
+\[
+H_0:\ \beta_1=\beta_2=\beta_3=3.
+\]
+Write this null hypothesis in matrix form $R\b=r$ by explicitly constructing $R$ and $r$.
+
+\item Test the composite hypothesis
+\[
+H_0:\ \beta_1 = 2\beta_2 = 0.5\beta_3 + 1.
+\]
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

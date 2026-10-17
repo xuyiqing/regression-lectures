@@ -1,0 +1,44 @@
+Output of code/fig_ttest.R: every number quoted on the slides.
+
+Biden thermometer (V201151): n = 8060, df = 8059
+mean = 49.23747   sd = 34.49672   se = 0.38425
+critical values, alpha = .05: two-sided 1.9603   one-sided 1.6450
+T for H0: mu = 49: 0.61801   (slides: 0.618)
+p-value, H1: mu > 49:  0.26829   (slides: 0.268; shaded area 26.8%)
+p-value, H1: mu != 49: 0.53659   (slides: 0.537; each tail 26.8%)
+90% CI: [48.6054, 49.8696]
+95% CI: [48.4842, 49.9907]
+99% CI: [48.2475, 50.2275]
+T for H0: mu = 48.4: 2.1795   p-value 0.029323
+
+Decisions (two-sided). A null value is rejected at level alpha exactly when
+it lies outside the 100(1 - alpha)% interval:
+  mu0 = 48.4 p = 0.02932   alpha = .10: reject         alpha = .05: reject         alpha = .01: fail to reject
+  mu0 = 49   p = 0.53659   alpha = .10: fail to reject alpha = .05: fail to reject alpha = .01: fail to reject
+
+> t.test(x = jbFTS, mu = 49)
+
+	One Sample t-test
+
+data:  jbFTS
+t = 0.61801, df = 8059, p-value = 0.5366
+alternative hypothesis: true mean is not equal to 49
+95 percent confidence interval:
+ 48.48425 49.99069
+sample estimates:
+mean of x 
+ 49.23747 
+
+> t.test(x = jbFTS, mu = 48.4)
+
+	One Sample t-test
+
+data:  jbFTS
+t = 2.1795, df = 8059, p-value = 0.02932
+alternative hypothesis: true mean is not equal to 48.4
+95 percent confidence interval:
+ 48.48425 49.99069
+sample estimates:
+mean of x 
+ 49.23747 
+

@@ -1,0 +1,71 @@
+## 1. Spread of the residuals by county size (thirds of total votes)
+median total votes:
+smallest third   middle third  largest third 
+          6162          42386         164774 
+residual SD, all 67 counties (levels model):
+smallest third   middle third  largest third 
+            24             54            581 
+residual SD, 66 counties without Palm Beach (refit):
+smallest third   middle third  largest third 
+            25             60            191 
+Buchanan share of total votes: median county 0.40%, statewide 0.29%
+
+## 2. Three large counties drive the fit in levels
+     county total_votes buchanan leverage_h cooks_d
+       DADE      625449      560      0.265    1.99
+    BROWARD      575143      795      0.221    0.58
+ PALM BEACH      433186     3411      0.118    3.79
+share of all votes cast in the three: 27.4%
+average leverage (k+1)/n = 0.030 ; largest leverage among the other 64 counties = 0.098
+slope (Buchanan votes per 1,000 votes cast): all 2.32 ; without Palm Beach 1.52 ; without Miami-Dade and Broward 3.67 ; without all three 2.26
+
+## 3. Without Palm Beach (66 counties)
+> bptest(mod_pb)                      # Koenker's studentized version (bptest default)
+
+	studentized Breusch-Pagan test
+
+data:  mod_pb
+BP = 32.874, df = 1, p-value = 9.831e-09
+
+> bptest(mod_pb, studentize = FALSE)  # original Breusch-Pagan
+
+	Breusch-Pagan test
+
+data:  mod_pb
+BP = 95.062, df = 1, p-value < 2.2e-16
+
+coefficients:
+ (Intercept) TotalVotes00 
+85.491793707  0.001524324 
+standard errors:
+          (Intercept) TotalVotes00
+classical       17.88    0.0001189
+HC0             18.08    0.0002925
+HC1             18.36    0.0002970
+HC3             23.42    0.0004003
+ratio to classical (slope):
+classical       HC0       HC1       HC3 
+     1.00      2.46      2.50      3.37 
+
+## 4. All 67 counties: HC3 next to HC0 and HC1
+          (Intercept) TotalVotes00
+classical       49.14    0.0003104
+HC0             40.61    0.0008705
+HC1             41.23    0.0008838
+HC3             50.29    0.0010520
+ratio to classical (slope):
+classical       HC0       HC1       HC3 
+     1.00      2.80      2.85      3.39 
+HC3 / HC0 (slope): all 67 counties 1.21 ; without Palm Beach 1.37
+
+## Slide table: slope and its SEs in Buchanan votes per 1,000 votes cast
+          all 67 without Palm Beach
+slope       2.32               1.52
+classical   0.31               0.12
+HC0         0.87               0.29
+HC1         0.88               0.30
+HC3         1.05               0.40
+
+HC3 weight 1/(1 - h_ii)^2 for the three counties (all 67):
+      DADE    BROWARD PALM BEACH 
+      1.85       1.65       1.29 

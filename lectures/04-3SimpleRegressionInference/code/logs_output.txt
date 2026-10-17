@@ -1,0 +1,17 @@
+# fig_logs.R output (Lecture 4-3, logs section); carData::UN, 193 countries and territories
+n = 193; mean IM = 30.74; median IM = 19.64
+level      intercept 41.3780  slope -0.865579  (SE 0.104140)  R2 0.266
+log-level  intercept 3.4794  slope -0.045946  (SE 0.003072)  R2 0.539
+log-log    intercept 3.8431  slope -0.616797  (SE 0.024654)  R2 0.766
+log-level: 100*b = -4.59%; exact 100*(exp(b)-1) = -4.49%
+level fit crosses zero at GDP per capita = 47.8039 thousand US$ (47804 US$)
+countries with GDP per capita above that (fitted IM < 0): 8 of 193
+  Luxembourg: GDP 105.1 thousand, IM 2.29, fitted -49.59
+  Norway: GDP 84.6 thousand, IM 2.94, fitted -31.84
+  Qatar: GDP 72.4 thousand, IM 8.20, fitted -21.29
+  Switzerland: GDP 68.9 thousand, IM 3.51, fitted -18.24
+  Australia: GDP 57.1 thousand, IM 4.46, fitted -8.06
+  Denmark: GDP 55.8 thousand, IM 3.91, fitted -6.95
+  Macao: GDP 50.0 thousand, IM 4.13, fitted -1.89
+  Sweden: GDP 48.9 thousand, IM 2.54, fitted -0.95
+lowest fitted value (at the richest, Luxembourg): -49.59

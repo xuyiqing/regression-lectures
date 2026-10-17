@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+
+\title{\Large Lecture 4-3: Inference and Interpretation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Explain inference with the OLS slope and how to interpret it: tests, confidence intervals, large-sample inference, and log models.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Inference with OLS
+\begin{itemize}
+\item OLS assumption VI (normal errors)
+\item Hypothesis testing and confidence intervals
+\item Large sample properties
+\end{itemize}
+\item Interpreting OLS coefficients
+\begin{itemize}
+\item Descriptive, predictive, causal uses
+\item Best linear predictor
+\item Predictive differences
+\item Practical interpretations
+\item Substantive vs. statistical significance
+\item Incorporating nonlinearities with log transformations
+\item Common model forms (level-level, log-level, etc.)
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep8em
+\item (\emph{t-statistic for the slope})  
+Under Assumptions I--VI (normal, homoskedastic errors), show
+\[
+T=\frac{\hat\beta_1-\beta_1}{\widehat{SE}(\hat\beta_1)}\sim t_{n-2},\quad 
+\widehat{SE}(\hat\beta_1)=\sqrt{\frac{\hat\sigma_u^2}{\sum (x_i-\bar x)^2}},\quad
+\hat\sigma_u^2=\frac{1}{n-2}\sum \hat{u}_i^2.
+\]
+
+\item (\emph{Consistency of OLS})  
+If $\cov(X,u)=0$ and $\var(X)>0$, show $\hat\beta_1 \overset{p}{\to} \beta_1$.
+
+\item (\emph{Asymptotic normality and CI for $\beta_1$})  
+Under Assumptions I–V, prove that
+\[
+\frac{\hat{\beta}_1-\beta_1}{\widehat{SE}(\hat{\beta}_1)}\ \xrightarrow{d}\ N(0,1),
+\qquad
+\widehat{SE}(\hat{\beta}_1)=\frac{\hat{\sigma}_u}{\sqrt{\sum_{i=1}^n (x_i-\bar{x})^2}},
+\quad
+\hat{\sigma}_u^2=\frac{1}{n}\sum_{i=1}^n \hat{u}_i^2,
+\]
+and derive the large–sample $100(1-\alpha)\%$ confidence interval for $\beta_1$.
+
+\clearpage
+
+\item (\emph{Log–level model with a binary regressor})  
+Consider $\log(Y)=\beta_0+\beta_1D + u$ with $D\in\{0,1\}$, assuming $D \perp u$.  
+\begin{enumerate}
+    \item  Derive the exact percent change in $E[Y\mid D]$ when $D$ moves from $0$ to $1$.  
+    \item  Explain why the rule “$100\cdot\beta_1\%$” is generally invalid here, and relate the sign and magnitude of the approximation error to $\beta_1$.  
+    \item  For $\beta_1=0.30$, compute the exact percent change and the approximation error in percentage points.  
+    \item  Find the value of $\beta_1>0$ above which the absolute approximation error exceeds $1$ percentage point.
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,48 @@
+Executive corruption on electoral democracy, V-Dem v16, 2024, N = 179 
+
+-- linear
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)   86.412      3.229  26.763        0
+polyarchy    -82.596      5.859 -14.098        0
+R2 0.529
+
+-- the R output on the slide:
+> summary(lm(execorr100 ~ polyarchy + I(polyarchy^2), data = d))
+
+Call:
+lm(formula = execorr100 ~ polyarchy + I(polyarchy^2), data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-54.973  -9.414   2.149  13.340  37.712 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      60.765      5.425  11.200  < 2e-16 ***
+polyarchy        65.118     26.670   2.442   0.0156 *  
+I(polyarchy^2) -151.461     26.780  -5.656 6.17e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 18.92 on 176 degrees of freedom
+Multiple R-squared:  0.6014,	Adjusted R-squared:  0.5969 
+F-statistic: 132.8 on 2 and 176 DF,  p-value: < 2.2e-16
+
+turning point -b1/(2 b2) = 0.215 ; fitted value there 67.8
+slope b1 + 2 b2 x at x = 0.1: 34.8 ; 0.5: -86.3 ; 0.9: -207.5
+R2: linear 0.529, quadratic 0.601, cubic 0.604
+cubic term t = 1.04 (p = 0.30)
+
+Binned means (deciles of polyarchy):
+           bin mean_polyarchy mean_corruption  n
+ [0.015,0.154]          0.111            64.9 19
+ (0.154,0.196]          0.173            67.5 17
+ (0.196,0.273]          0.235            68.1 18
+ (0.273,0.365]          0.312            71.5 18
+ (0.365,0.496]          0.443            54.7 19
+ (0.496,0.603]          0.541            52.9 16
+ (0.603,0.684]          0.637            40.5 18
+ (0.684,0.775]          0.729            25.3 18
+  (0.775,0.84]          0.812            14.3 18
+  (0.84,0.917]          0.869             4.2 18
+Countries with polyarchy below the turning point: 42 

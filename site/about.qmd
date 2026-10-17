@@ -1,0 +1,22 @@
+---
+title: "About"
+---
+
+POLI 450A is the first course in the political science PhD methods sequence at Stanford
+University. The course was originally designed by Jens Hainmueller and is maintained and updated
+by [Yiqing Xu](https://yiqingxu.org), Department of Political Science, Stanford University. This
+version is from Fall 2026.
+
+## How the materials were checked
+
+Before a lecture entered the repository, it went through a release review. The numbers on the
+slides were rerun from the code, the citations were checked against their sources, and
+independent readers went through each deck line by line, with the fixes applied.
+
+## Data
+
+The examples use public data: U.S. election returns and Census data, the American National
+Election Studies, the Cooperative Election Study, V-Dem and World Bank data, the Brexit vote, and
+replication data from published studies.
+[SOURCES.md](https://github.com/xuyiqing/regression-lectures/blob/main/SOURCES.md) lists every
+data file, where it comes from, and its terms.

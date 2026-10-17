@@ -1,0 +1,21 @@
+/*-- scss:defaults --*/
+// Colors of yiqingxu.org: sky blue #0089ff for links and accents, dark ink for text and headings;
+// the top bar is a darker shade of the same blue (#004a8c, white text at contrast 8.9).
+$primary: #0089ff;
+$body-color: #232b34;
+$headings-color: #001527;
+$link-color: #0089ff;
+$navbar-bg: #004a8c;
+$navbar-fg: #ffffff;
+$navbar-hl: #ffffff;
+$font-size-root: 17px;
+
+/*-- scss:rules --*/
+table { font-size: 0.95rem; }
+.content table td a { word-break: normal; overflow-wrap: normal; }
+.content table th:nth-child(n+2), .content table td:nth-child(n+2) { width: 1%; white-space: nowrap; }
+@media (max-width: 576px) {
+  .content table { font-size: 0.85rem; }
+  .content table th, .content table td { padding: 0.3rem 0.2rem; }
+}
+.lead-note { color: #5a5f6a; }

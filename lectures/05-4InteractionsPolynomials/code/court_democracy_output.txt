@@ -1,0 +1,68 @@
+Lecture 5-4 v2: dummy x continuous. V-Dem v16, 2024, N = 179 | democracies (polyarchy > 0.5): 86 | autocracies: 93 
+
+Group means:
+  democracy courtind execorr100
+1         0     1.28      65.49
+2         1     2.91      25.65
+Range of court independence: autocracies 0.024 3.586 | democracies 0.532 3.868 
+Quantiles of court independence (5, 25, 50, 75, 95%):
+  autocracies 0.09 0.5 1.13 1.96 2.72 
+  democracies 1.87 2.6 2.98 3.32 3.7 
+Democracies with court independence < 1.25: 1 | autocracies with court independence > 2.8: 3 
+          country courtind execorr100 democracy
+          Armenia    1.253       34.7         1
+          Bolivia    0.532       73.4         1
+           Guyana    2.767       67.1         0
+          Morocco    3.586       60.3         0
+  North Macedonia    1.289       71.9         1
+   Palestine/Gaza    3.247       52.3         0
+ Papua New Guinea    3.282       89.1         0
+          Romania    1.254       23.5         1
+         Tanzania    2.769       20.6         0
+
+-- additive: execorr100 ~ courtind + democracy (N 179)
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  79.4743     3.3278 23.8816        0
+courtind    -10.8905     1.9894 -5.4743        0
+democracy   -22.1242     4.4646 -4.9555        0
+
+-- interaction: execorr100 ~ courtind * democracy
+                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)         75.3364     3.6945 20.3916   0.0000
+courtind            -7.6684     2.3652 -3.2422   0.0014
+democracy            2.7041    11.0900  0.2438   0.8076
+courtind:democracy -10.3306     4.2351 -2.4393   0.0157
+R2 = 0.5444, residual df 175
+autocracies: yhat = 75.3364 + (-7.6684) court
+democracies: yhat = 78.0405 + (-17.9991) court   [b0 + b2, b1 + b3]
+
+Marginal effect of court independence (pooled interaction model, classical SEs):
+  autocracies: -7.668 (SE 2.365, t -3.24)
+  democracies: -17.999 (SE 3.513, t -5.12)
+Separate regressions in each group (the leader's check):
+  democracy = 0: slope -7.668 (SE 2.415), n 93
+  democracy = 1: slope -17.999 (SE 3.431), n 86
+Interaction b3 -10.331 (SE 4.235, t -2.44)
+
+Marginal effect of democracy = b2 + b3 * court:
+  zero at court = 0.262 (democracies start at 0.532)
+  drawn over the common range 0.532 to 3.586 (lowest democracy, highest autocracy)
+  court 0.532: ME -2.79, 95% CI [-20.69, 15.10]
+  court 1.000: ME -7.63, 95% CI [-22.22, 6.97]
+  court 1.250: ME -10.21, 95% CI [-23.19, 2.77]
+  court 1.500: ME -12.79, 95% CI [-24.30, -1.28]
+  court 2.000: ME -17.96, 95% CI [-27.28, -8.64]
+  court 2.500: ME -23.12, 95% CI [-31.85, -14.40]
+  court 2.800: ME -26.22, 95% CI [-35.52, -16.92]
+  court 3.000: ME -28.29, 95% CI [-38.31, -18.27]
+  court 3.586: ME -34.34, 95% CI [-47.50, -21.18]
+  95% CI excludes zero for court >= 1.420 (grid of 0.001 on 0-4)
+
+-- no democracy main effect: execorr100 ~ courtind + courtind:democracy
+                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)         75.6365     3.4741 21.7713    0e+00
+courtind            -7.8264     2.2686 -3.4498    7e-04
+courtind:democracy  -9.3829     1.6770 -5.5951    0e+00
+autocracies: 75.64 + (-7.83) court; democracies: 75.64 + (-17.21) court
+
+5-1 sample (N 168): court -6.953, dem 4.175, court:dem -10.861 (t -2.47); democracies' slope -17.813

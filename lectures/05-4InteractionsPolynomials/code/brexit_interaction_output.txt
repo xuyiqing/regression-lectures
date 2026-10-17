@@ -1,0 +1,74 @@
+Brexit, 380 counting areas of Great Britain. Leave % ~ no qualifications 2001 (%) x EU-accession migrant growth 2001-11 (pp)
+
+Distributions:
+  noqual:    0%   10%   50%   90%  100% 
+12.56 26.74 35.46 44.18 52.61 
+  growth:    0%   10%   25%   50%   75%   90%   95%   99%  100% 
+ 0.10  0.40  0.63  1.12  1.92  3.20  4.38  8.00 12.06 
+  growth: mean 1.59, sd 1.57, skewness 2.83; areas with growth >= 3: 49, >= 6: 11
+  cor(noqual, growth) = -0.054
+  noqual among areas with growth >= 4: 20.1 47.5 
+  top 5 by growth:
+           area        region    growth   noqual leave
+         Boston East Midlands 12.058977 47.46760 75.56
+         Newham        London  9.618641 39.58465 47.16
+ Waltham Forest        London  9.430160 34.56530 40.90
+   Peterborough          East  8.678017 37.61013 60.89
+       Haringey        London  7.815452 28.05409 24.43
+
+Bivariate (classical SEs):
+  leave ~ noqual: intercept 14.57, slope 1.089 (t 19.7), R2 0.507
+  leave ~ growth: intercept 54.16, slope -0.642 (t -1.89), R2 0.009
+
+Interaction model, HC1 SEs:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)    24.1382     2.7591  8.7487        0
+noqual          0.8476     0.0737 11.5058        0
+growth         -5.3105     1.0968 -4.8420        0
+noqual:growth   0.1331     0.0275  4.8337        0
+R2 0.532; classical SE of interaction 0.0316 (t 4.21)
+
+Slope of no qualifications at several levels of migrant growth (b1 + b3 g, HC1 SE):
+  growth  0.00: slope 0.848 (SE 0.074); line: leave = 24.14 + 0.848 noqual
+  growth  1.00: slope 0.981 (SE 0.057); line: leave = 18.83 + 0.981 noqual
+  growth  3.00: slope 1.247 (SE 0.059); line: leave = 8.21 + 1.247 noqual
+  growth  6.00: slope 1.646 (SE 0.123); line: leave = -7.72 + 1.646 noqual
+  growth  1.12: slope 0.997 (SE 0.056); line: leave = 18.17 + 0.997 noqual
+  growth  3.20: slope 1.274 (SE 0.062); line: leave = 7.14 + 1.274 noqual
+
+Slope of migrant growth at no qualifications 0 (b2), and at observed values (b2 + b3 q):
+  noqual  0.0: -5.31
+  noqual 12.6: -3.63
+  noqual 26.7: -1.76
+  noqual 35.5: -0.58
+  noqual 44.2: 0.57
+  noqual 52.6: 1.69
+  zero at noqual = 39.9
+
+Standardized (z-scores, as Becker et al. Table 6), HC1:
+                      Estimate Std. Error t value Pr(>|t|)
+(Intercept)             53.218      0.366 145.291    0.000
+zs(noqual)               7.216      0.354  20.363    0.000
+zs(growth)              -0.934      0.381  -2.453    0.015
+zs(noqual):zs(growth)    1.425      0.295   4.834    0.000
+
+Lower-order term dropped (HC1):
+  leave ~ noqual + noqual:growth
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)    14.6147     1.9769  7.3926   0.0000
+noqual          1.0954     0.0559 19.5884   0.0000
+noqual:growth  -0.0050     0.0076 -0.6512   0.5153
+  leave ~ growth + noqual:growth
+              Estimate Std. Error  t value Pr(>|t|)
+(Intercept)    55.0716     0.6649  82.8279        0
+growth        -14.5739     1.3137 -11.0942        0
+growth:noqual   0.3811     0.0385   9.9103        0
+
+Leverage and influence (raw-unit model):
+  max leverage 0.361 (Boston); max Cook's D 0.077 (Haringey)
+  drop top 1% of growth (4 areas): interaction 0.1427 (HC1 t 3.88)
+Line ranges (noqual) by growth window:
+   growth 0-0.5 pp: 70 areas, noqual 22.5-49.6
+  growth 0.5-1.5 pp: 179 areas, noqual 12.6-51.7
+  growth 2-4 pp: 68 areas, noqual 20.3-52.6
+  growth 4-8 pp: 17 areas, noqual 20.1-47.0 

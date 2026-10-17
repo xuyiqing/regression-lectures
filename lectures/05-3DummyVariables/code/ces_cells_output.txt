@@ -1,0 +1,137 @@
+CES 2024, respondents who reported voting Trump or Harris: 42028 
+white = non-Hispanic white; college = 4-year degree or more; weights = commonpostweight
+
+Group sizes and Trump shares:
+ white college     n mean_unweighted mean_weighted
+     0       0  5983          0.3024        0.3703
+     1       0 19047          0.5495        0.6393
+     0       1  4178          0.2767        0.3172
+     1       1 12820          0.3954        0.4989
+
+College gap (weighted): white -0.1403, non-white -0.0531; difference in differences -0.0873
+Race gap (weighted): no degree 0.2690, degree 0.1817
+
+==== additive ====
+> summary(lm(trump ~ white + college, data = ces, weights = commonpostweight))
+
+Call:
+lm(formula = trump ~ white + college, data = ces, weights = commonpostweight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3449 -0.3893 -0.1123  0.3343  2.6925 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.389210   0.004480   86.87   <2e-16 ***
+white        0.239831   0.005130   46.75   <2e-16 ***
+college     -0.115424   0.004912  -23.50   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4842 on 42025 degrees of freedom
+Multiple R-squared:  0.05695,	Adjusted R-squared:  0.05691 
+F-statistic:  1269 on 2 and 42025 DF,  p-value: < 2.2e-16
+
+
+==== interaction (hand-made product) ====
+> summary(lm(trump ~ white + college + white_x_college, data = ces, weights = commonpostweight))
+
+Call:
+lm(formula = trump ~ white + college + white_x_college, data = ces, 
+    weights = commonpostweight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3831 -0.3865 -0.1170  0.3281  2.5313 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      0.370313   0.005058  73.213  < 2e-16 ***
+white            0.268964   0.006280  42.827  < 2e-16 ***
+college         -0.053066   0.009188  -5.775 7.73e-09 ***
+white_x_college -0.087263   0.010869  -8.028 1.01e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4838 on 42024 degrees of freedom
+Multiple R-squared:  0.0584,	Adjusted R-squared:  0.05833 
+F-statistic: 868.7 on 3 and 42024 DF,  p-value: < 2.2e-16
+
+
+==== interaction with : and * ====
+> summary(lm(trump ~ white + college + white:college, data = ces, weights = commonpostweight))
+
+Call:
+lm(formula = trump ~ white + college + white:college, data = ces, 
+    weights = commonpostweight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3831 -0.3865 -0.1170  0.3281  2.5313 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    0.370313   0.005058  73.213  < 2e-16 ***
+white          0.268964   0.006280  42.827  < 2e-16 ***
+college       -0.053066   0.009188  -5.775 7.73e-09 ***
+white:college -0.087263   0.010869  -8.028 1.01e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4838 on 42024 degrees of freedom
+Multiple R-squared:  0.0584,	Adjusted R-squared:  0.05833 
+F-statistic: 868.7 on 3 and 42024 DF,  p-value: < 2.2e-16
+
+
+> summary(lm(trump ~ white * college, data = ces, weights = commonpostweight))
+
+Call:
+lm(formula = trump ~ white * college, data = ces, weights = commonpostweight)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3831 -0.3865 -0.1170  0.3281  2.5313 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    0.370313   0.005058  73.213  < 2e-16 ***
+white          0.268964   0.006280  42.827  < 2e-16 ***
+college       -0.053066   0.009188  -5.775 7.73e-09 ***
+white:college -0.087263   0.010869  -8.028 1.01e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4838 on 42024 degrees of freedom
+Multiple R-squared:  0.0584,	Adjusted R-squared:  0.05833 
+F-statistic: 868.7 on 3 and 42024 DF,  p-value: < 2.2e-16
+
+
+Robust (HC1) SE: interaction 0.0202, t -4.32 (classical weighted SE 0.0109, t -8.03; ratio 1.86)
+Robust (HC2) SE: interaction 0.0202, t -4.32 (classical weighted SE 0.0109, t -8.03; ratio 1.86)
+Unweighted interaction -0.1285, classical t -11.43, HC2 t -11.99
+
+Four-group dummies (baseline: non-white, no degree):
+(Intercept)   g_w_nocol    g_nw_col     g_w_col 
+     0.3703      0.2690     -0.0531      0.1286 
+Max |fitted(four-group) - fitted(interaction)|: 3.7e-13 
+Interaction-model fitted values by group (= weighted group means):
+ white college    fit
+     0       0 0.3703
+     1       0 0.6393
+     0       1 0.3172
+     1       1 0.4989
+
+Predicted means with 95% confidence intervals (weighted lm, HC2 SEs):
+additive
+  white college    fit    lwr    upr
+1     0       0 0.3892 0.3694 0.4091
+2     1       0 0.6290 0.6157 0.6424
+3     0       1 0.2738 0.2539 0.2936
+4     1       1 0.5136 0.5013 0.5259
+interaction
+  white college    fit    lwr    upr
+1     0       0 0.3703 0.3465 0.3941
+2     1       0 0.6393 0.6250 0.6535
+3     0       1 0.3172 0.2920 0.3424
+4     1       1 0.4989 0.4862 0.5117

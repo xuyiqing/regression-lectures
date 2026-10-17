@@ -1,0 +1,39 @@
+---
+title: "POLI 450A: Political Methodology I (Regression)"
+subtitle: "Yiqing Xu, Stanford University"
+---
+
+Lecture slides, worksheets, R code and data for the first course in Stanford's political science
+PhD methods sequence. The course covers point and interval estimation, hypothesis testing, simple
+and multiple regression, and robust and clustered standard errors. The R scripts in the
+[repository](https://github.com/xuyiqing/regression-lectures) draw the figures and print the
+numbers on the slides from public data.
+
+| Lecture | Slides | Worksheet |
+|------------|---|---|
+| 1&ensp;[Introduction](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/01Intro) | [PDF](pdf/lec1_handout.pdf) | [PDF](pdf/worksheet_lec1.pdf) |
+| 2-1&ensp;[Point estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-1PointEstimation) | [PDF](pdf/lec2_1_handout.pdf) | [PDF](pdf/worksheet_lec2-1.pdf) |
+| 2-2&ensp;[Interval estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-2IntervalEstimation) | [PDF](pdf/lec2_2_handout.pdf) | [PDF](pdf/worksheet_lec2-2.pdf) |
+| 2-3&ensp;[Hypothesis testing](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-3HypothesisTesting) | [PDF](pdf/lec2_3_handout.pdf) | [PDF](pdf/worksheet_lec2-3.pdf) |
+| 2-4&ensp;[Bootstrap and clusters](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-4MoreInference) | [PDF](pdf/lec2_4_handout.pdf) | [PDF](pdf/worksheet_lec2-4.pdf) |
+| 3&ensp;[What is regression?](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/03WhatIsRegression) | [PDF](pdf/lec3_handout.pdf) | [PDF](pdf/worksheet_lec3.pdf) |
+| 4-1&ensp;[Simple regression: mechanics of OLS](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-1SimpleRegressionMechanics) | [PDF](pdf/lec4_1_handout.pdf) | [PDF](pdf/worksheet_lec4-1.pdf) |
+| 4-2&ensp;[Simple regression: statistical properties](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-2SimpleRegressionProperties) | [PDF](pdf/lec4_2_handout.pdf) | [PDF](pdf/worksheet_lec4-2.pdf) |
+| 4-3&ensp;[Simple regression: inference and interpretation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-3SimpleRegressionInference) | [PDF](pdf/lec4_3_handout.pdf) | [PDF](pdf/worksheet_lec4-3.pdf) |
+| 5-1&ensp;[Regression with two regressors](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-1TwoRegressors) | [PDF](pdf/lec5_1_handout.pdf) | [PDF](pdf/worksheet_lec5-1.pdf) |
+| 5-2&ensp;[Omitted variables and multicollinearity](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-2OmittedVarMulticollinearity) | [PDF](pdf/lec5_2_handout.pdf) | [PDF](pdf/worksheet_lec5-2.pdf) |
+| 5-3&ensp;[Dummy variables](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-3DummyVariables) | [PDF](pdf/lec5_3_handout.pdf) | [PDF](pdf/worksheet_lec5-3.pdf) |
+| 5-4&ensp;[Interaction terms and polynomials](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-4InteractionsPolynomials) | [PDF](pdf/lec5_4_handout.pdf) | [PDF](pdf/worksheet_lec5-4.pdf) |
+| 6-1&ensp;[Multiple regression in matrix form](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-1MultipleRegressionMechanics) | [PDF](pdf/lec6_1_handout.pdf) | [PDF](pdf/worksheet_lec6-1.pdf) |
+| 6-2&ensp;[Testing in multiple regression](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-2MultipleRegressionTesting) | [PDF](pdf/lec6_2_handout.pdf) | [PDF](pdf/worksheet_lec6-2.pdf) |
+| 6-3&ensp;[Heteroskedasticity, clustering and serial correlation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-3MoreInference) | [PDF](pdf/lec6_3_handout.pdf) | [PDF](pdf/worksheet_lec6-3.pdf) |
+
+The slides have one page per slide. To present with the step-by-step
+reveals, build that version from the LaTeX source. The worksheets are the in-class exercises. Each
+lecture title opens the lecture's folder on GitHub: the LaTeX source, the figures, the R scripts
+that draw them, and the data.
+
+## Prerequisites
+
+Linear algebra and calculus at the level of a political science math camp, and some
+undergraduate probability, statistics and statistical computing. The course uses R.

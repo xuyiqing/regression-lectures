@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 2-1: Point Estimation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Introduce point estimation and key properties of estimators.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item What is point estimation?
+\begin{itemize}
+\item Estimands, estimators, estimates
+\item Statistical inference
+\item The role of sampling
+\end{itemize}
+\item Properties of estimators
+\begin{itemize}
+\item Sampling distributions
+\item Unbiasedness
+\item Efficiency
+\item Mean squared error
+\end{itemize}
+\item Evaluating estimators
+\begin{itemize}
+\item Analytic derivations
+\item Simulation methods
+\end{itemize}
+\item Asymptotic properties
+\begin{itemize}
+\item Consistency
+\item Convergence in probability
+\item Law of large numbers
+\end{itemize}
+\item Asymptotic normality
+\begin{itemize}
+\item Central limit theorem
+\item Approximate distributions
+\item Simulation checks
+\end{itemize}
+\item Analogy principle
+\begin{itemize}
+\item Estimating population characteristics with sample counterparts
+\end{itemize}
+\end{itemize}
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep1em
+\item Which of $\hat\mu_{1}, \hat\mu_{2}, \hat\mu_{3}, \hat\mu_{4}$ are unbiased? Show your work.
+\vspace{20em}
+
+\item Derive the variances of $\hat\mu_{1}, \hat\mu_{2}, \hat\mu_{3}, \hat\mu_{4}$. Show your work. What do you conclude?
+\vspace{20em}
+\clearpage 
+
+\item Prove: $MSE(\hat{\theta}) = Var(\hat{\theta}) + \text{Bias}(\hat{\theta})^2.$
+\vspace{25em}
+
+
+\item Derive $MSE(\hat\mu_{1}), MSE(\hat\mu_{2}), MSE(\hat\mu_{3}), MSE(\hat\mu_{4})$
+\vspace{20em}
+
+
+\end{enumerate}
+
+% \clearpage
+
+% \section*{T/F}
+
+% \begin{enumerate}\itemsep3em
+% \item An estimand is a feature of the population distribution (e.g., $\mu$), whereas an estimator is a function of the data.
+% \item If $Y_1,\dots,Y_n$ are i.i.d. with $E[Y_i]=\mu$, then $\overline{Y}_n$ is an unbiased estimator of $\mu$.
+% \item The estimator that always returns the constant $4$ has zero variance and is therefore potentially a good estimator for the population mean $\mu$.
+% \item Among $\widehat{\mu}_1=Y_1$ and $\widehat{\mu}_3=\overline{Y}_n$, both are unbiased, but $\overline{Y}_n$ is more efficient for $n>1$.
+% \item $\widetilde{Y}_n=\frac{1}{n+5}\sum_{i=1}^n Y_i$ is biased for $\mu$ but can still be consistent for $\mu$.
+% \item Unbiasedness implies consistency for any estimator.
+% \item An estimator can be unbiased in every finite sample but still inconsistent in large samples.
+% \item By the Weak Law of Large Numbers, $\overline{X}_n \xrightarrow{p} \mu$ for i.i.d. data with finite mean $\mu$, regardless of the population’s shape.
+% \item The Central Limit Theorem states that $\sqrt{n}(\overline{X}_n-\mu)\xrightarrow{d}\mathcal{N}(0,\sigma^2)$ for i.i.d. data with finite variance.
+% \item If an estimator is asymptotically normal, then for sufficiently large $n$ (e.g., $n = 1,000$), its sampling distribution is exactly normal.
+% \end{enumerate}
+
+
+\end{document}

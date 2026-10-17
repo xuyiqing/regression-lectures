@@ -1,0 +1,46 @@
+ovb_real.R --- Lecture 5-2 v2, OVB on real data
+
+== (A) Executive corruption on high court independence (V-Dem v16, 2024), N = 168 (the Lecture 5-1 sample) ==
+short  execorr100 ~ courtind              : b(courtind)  = -17.6636793048
+long   execorr100 ~ courtind + democracy  : b(courtind)  = -10.6301061540
+                                            b(democracy) = -21.5101206337
+aux    democracy ~ courtind               : delta        = 0.3269890146
+bias = b(democracy) * delta = -7.0335731508
+long + bias = -17.6636793048 ; short - (long + bias) = 0.000e+00  IDENTITY HOLDS (< 1e-10)
+share of the short slope that is bias: 39.8%
+
+As typed on the slide:
+  short -17.6637 | long -10.6301 | b(democracy) -21.5101 | delta 0.326989
+  -10.6301 + (-21.5101)(0.326989) = -10.6301 + (-7.0336) = -17.6637
+  delta = 0.327: one more point of court independence goes with 32.7 percentage points more democracies
+
+Group means (the sign of delta):
+ democracy courtind execorr100
+         0     1.31      64.42
+         1     2.91      25.92
+countries: democracies 85 | autocracies 83 
+
+
+== (B) Schaffner, MacWilliams & Nteta (2018), CCES 2016, white Trump/Clinton voters, weighted OLS ==
+N = 1648  (college graduates: 668 | no degree: 980 )
+model                        b(college)        N      paper
+college alone                   -0.1778     1648     -0.178   diff +0.0002
++ hostile sexism                -0.0903     1648     -0.090   diff -0.0003
++ racism denial                 -0.0443     1648     -0.044   diff -0.0003
++ racism denial + sexism        -0.0314     1648     -0.031   diff -0.0004
+max |ours - paper| = 0.0004
+slide table (3 decimals, rounded once from full precision): -0.178 -0.090 -0.044 -0.031 
+
+OVB identity, omitted variable = racism denial (same N, weighted):
+short b(college) = -0.177820 | long b(college) = -0.044340 | long b(racism) = 1.434026 | delta = -0.093081
+bias = -0.133480 ; long + bias = -0.177820 ; short - (long + bias) = 0.000e+00  IDENTITY HOLDS (< 1e-10)
+share of the college gap accounted for by racism denial: 75.1%
+both attitudes: gap -0.1778 -> -0.0314, i.e. 17.7% of the gap remains
+
+As typed on the slide:
+  -0.1778 = -0.0443 + (1.434)(-0.0931) = -0.0443 + (-0.1335)
+
+Weighted means by college (the sign of delta):
+ college   n racism_denial trump
+       0 980         0.423 0.621
+       1 668         0.330 0.444

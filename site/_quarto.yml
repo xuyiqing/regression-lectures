@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: ../docs
+  resources:
+    - .nojekyll
+
+website:
+  title: "POLI 450A: Regression"
+  site-url: https://xuyiqing.github.io/regression-lectures/
+  repo-url: https://github.com/xuyiqing/regression-lectures
+  navbar:
+    left:
+      - href: index.qmd
+        text: Lectures
+      - href: teaching.qmd
+        text: Teaching with the slides
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/xuyiqing/regression-lectures
+        aria-label: GitHub repository
+  page-footer:
+    left: "Yiqing Xu, Stanford University"
+    right: "Slides CC BY-NC 4.0 · Code MIT"
+
+format:
+  html:
+    theme: [cosmo, theme.scss]
+    toc: false
+    page-layout: article

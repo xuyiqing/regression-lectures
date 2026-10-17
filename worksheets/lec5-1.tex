@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newcommand{\solution}{\bigskip\textbf{\textit{Solution:}}\xspace}
+\DeclareMathOperator*\plim{plim}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 5-1: Regression with Two Regressors}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Introduce mechanics of multiple regression with two regressors.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Motivation for multiple regression
+\begin{itemize}
+\item Richer description and prediction
+\item Control for confounders
+\item Model nonlinearity and interactions
+\item Parameters, estimators, estimates
+\end{itemize}
+\item Two cases
+\begin{itemize}
+\item Binary + continuous
+\item Continuous + continuous
+\end{itemize}
+\item Mechanics of multiple regression
+\begin{itemize}
+\item Derivation and Properties of OLS
+\item Analysis of Variance
+\item Partialling out interpretation
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+\begin{enumerate}\itemsep3em
+
+\item (\emph{Interpreting a Binary Covariate in a Two–Regressor Model})  
+Suppose
+\[
+\widehat{y}=\hat\beta_0+\hat\beta_1 x_1+\hat\beta_2 x_2,\qquad
+(\hat\beta_0,\hat\beta_1,\hat\beta_2)=(78.3,\,-10.6,\,-21.5),
+\]
+where $y$ is executive corruption (0--100), $x_1$ is high court independence (0--4), and $x_2\in\{0,1\}$ indicates democracy.
+\begin{enumerate}
+    \item For a fixed level of court independence $x_1$, compute the predicted difference $\widehat{y}(x_2=1)-\widehat{y}(x_2=0)$ and interpret.  
+    \item For a fixed regime type, compute the predicted change when $x_1$ increases by one unit.  
+    \item Verify that the slope on court independence is the same in both groups and explain why.
+\end{enumerate}
+
+\item (\emph{Regression Plane and Counterfactual Prediction})  
+With two continuous covariates, suppose
+\[
+\widehat{y}=\hat\beta_0+\hat\beta_1 x_1+\hat\beta_2 x_2,\qquad
+(\hat\beta_0,\hat\beta_1,\hat\beta_2)=(166.4,\,-13.95,\,-22.0),
+\]
+where $y$ is executive corruption (0--100), $x_1$ is high court independence (0--4), and $x_2$ is $\log_{10}$ GDP per capita.
+(a) Show that for any two units $A$ and $B$,
+\[
+\widehat{y}_A-\widehat{y}_B=\hat\beta_1(x_{1A}-x_{1B})+\hat\beta_2(x_{2A}-x_{2B}).
+\]
+(b) Using $(x_1,x_2)=(2.96,\,4.48)$ for Chile and $(0.21,\,4.38)$ for China, compute the predicted levels and their difference.  
+(c) Explain the ``partial effect'' meaning of $\hat\beta_1$ and $\hat\beta_2$.
+
+\item (\emph{Properties of the fitted values and residuals}) Show that
+\begin{enumerate}
+  \item $\sum_{i=1}^n \hat{u}_i=0 \Rightarrow \bar{y}=\hat{\bar{y}}$.
+\item The point ($\bar{y}, \bar{x},\bar{z}$) is always on the regression plane.
+\item $Cov(x,\hat{u})=Cov(z,\hat{u})=0 \Rightarrow Cov(\hat{y},\hat{u})=0$.
+\end{enumerate}
+
+
+\item (\emph{ANOVA Decomposition, $R^2$, and Adjusted $R^2$})  
+Let $\hat y_i$ be fitted values from OLS with intercept and two regressors, and $\hat u_i=y_i-\hat y_i$. Prove that
+\[
+\sum_{i=1}^n(y_i-\bar y)^2=\sum_{i=1}^n(\hat y_i-\bar y)^2+\sum_{i=1}^n\hat u_i^2\quad(\text{SST}=\text{SSE}+\text{SSR}).
+\]
+Then explain why $R^2=\text{SSE}/\text{SST}$ is weakly increasing when a regressor is added.
+
+
+\end{enumerate}
+
+
+\end{document}

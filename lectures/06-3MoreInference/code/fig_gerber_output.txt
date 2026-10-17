@@ -1,0 +1,35 @@
+> mod1 <- lm(voted~Tr_Hawthorne+Tr_CivicDuty+Tr_Neighbors+Tr_Self,data=dta)
+> coeftest(mod1) # homoskedastic
+
+t test of coefficients:
+
+               Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)   0.3076541  0.0052062 59.0935 < 2.2e-16 ***
+Tr_Hawthorne  0.0237709  0.0128791  1.8457   0.06496 .  
+Tr_CivicDuty -0.0044725  0.0127744 -0.3501   0.72626    
+Tr_Neighbors  0.0718986  0.0129031  5.5722 2.561e-08 ***
+Tr_Self       0.0502013  0.0127711  3.9308 8.505e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> coeftest(mod1, vcov = vcovCL(mod1, cluster = ~ hh_id)) # clustered
+
+t test of coefficients:
+
+               Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)   0.3076541  0.0063711 48.2894 < 2.2e-16 ***
+Tr_Hawthorne  0.0237709  0.0157746  1.5069  0.131857    
+Tr_CivicDuty -0.0044725  0.0154991 -0.2886  0.772917    
+Tr_Neighbors  0.0718986  0.0164533  4.3699 1.252e-05 ***
+Tr_Self       0.0502013  0.0162195  3.0951  0.001971 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+N = 14392 voters, M = 7599 households
+within-household error correlation rho = 0.5030  (slide: 0.50)
+full sample: N = 344,084 voters, M = 180,002 households, rho = 0.5276  (slide: 0.53)
+clustered / homoskedastic SE:
+ (Intercept) Tr_Hawthorne Tr_CivicDuty Tr_Neighbors      Tr_Self 
+       1.224        1.225        1.213        1.275        1.270 
+clustered SEs are 21% to 28% larger

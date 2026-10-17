@@ -1,0 +1,32 @@
+fig_multicollinearity_vdem.R --- Lecture 5-2 v2, multicollinearity on real data
+Data: V-Dem v16, 2024, N = 179 
+
+r(polyarchy, libdem) = 0.9800 ; R_j^2 = 0.9603 ; VIF = 1/(1 - R_j^2) = 25.21 ; sqrt(VIF) = 5.02
+
+-- execorr100 ~ polyarchy 
+            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)  86.4122     3.2287  26.7634        0
+polyarchy   -82.5957     5.8587 -14.0980        0
+R2 = 0.5289   resid SE = 20.506
+
+-- execorr100 ~ libdem 
+            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)  79.6763     2.3871  33.3783        0
+libdem      -89.1819     5.2254 -17.0671        0
+R2 = 0.6220   resid SE = 18.369
+
+-- execorr100 ~ polyarchy + libdem 
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept)   63.9563     3.6956 17.3063        0
+polyarchy    130.5434    24.5240  5.3231        0
+libdem      -216.5578    24.4182 -8.8687        0
+R2 = 0.6744   resid SE = 17.096
+
+SE inflation, together / alone: polyarchy 24.52 / 5.86 = x4.19 ; libdem 24.42 / 5.23 = x4.67
+t values together: polyarchy 5.32, libdem -8.87 (both still |t| > 2)
+
+As typed on the slide (coef, SE in parentheses):
+  alone:    polyarchy -82.6 (5.9) | libdem -89.2 (5.2)
+  together: polyarchy +130.5 (24.5) | libdem -216.6 (24.4)
+  R2: 0.53 | 0.62 | 0.67
+  range: polyarchy 0.015-0.917 ; libdem 0.009-0.885

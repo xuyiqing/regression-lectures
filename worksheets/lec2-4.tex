@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\usepackage{amsmath, amssymb, xspace}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newcommand{\solution}{\bigskip\textbf{\textit{Solution:}}\xspace}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 2-4: Bootstrap Procedures \& Clustering}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Discuss bootstrap methods and inference with clustered data.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Motivation
+\begin{itemize}
+\item Uncertainty for general statistics
+\item Limits of analytic sampling distributions
+\item Mean vs. median inference challenges
+\end{itemize}
+\item Bootstrap
+\begin{itemize}
+\item Resampling principle
+\item Empirical distribution approximates population
+\item Nonparametric bootstrap
+\item Parametric bootstrap
+\end{itemize}
+\item Clusters
+\begin{itemize}
+\item Clustered sampling structure
+\item Within-cluster dependence issues
+\item Variance decomposition: between vs. within
+\item Intra-cluster correlation (ICC)
+\item Estimating ICC via ANOVA mean squares
+\item Adjusted standard errors and intervals
+\item Cluster (block) bootstrap procedure
+\item Performance comparisons across $\rho$
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep1em
+\item Suppose the sample consists of $G$ independent clusters, each of size $m$ (so $n=mG$). Consider the one–way random–effects model
+\[
+X_{gi}=\mu+u_g+\varepsilon_{gi},\qquad u_g\stackrel{iid}{\sim}(0,\sigma_B^2),\quad \varepsilon_{gi}\stackrel{iid}{\sim}(0,\sigma_W^2),
+\]
+with $u_g\perp \varepsilon_{gi}$. Let $\sigma^2=\sigma_B^2+\sigma_W^2$ and the \emph{intra–cluster correlation} $\rho=\dfrac{\sigma_B^2}{\sigma_B^2+\sigma_W^2}$.
+
+Show that
+\[
+\Var(\overline{X}) = \frac{\sigma^2+(m-1)\sigma_B^2}{mG}
+= \frac{\sigma^2}{mG}\Bigl(1+(m-1)\rho\Bigr).
+\]
+\clearpage
+
+\item Under the same setup with equal cluster sizes, define the cluster means 
+\[
+\overline{X}_g=\frac{1}{m}\sum_{i=1}^m X_{gi},\qquad 
+\overline{X}=\frac{1}{G}\sum_{g=1}^G\overline{X}_g.
+\]
+Let
+\[
+\text{MSW}=\frac{1}{G(m-1)}\sum_{g=1}^G\sum_{i=1}^m (X_{gi}-\overline{X}_g)^2,\qquad
+\text{MSB}=\frac{m}{G-1}\sum_{g=1}^G(\overline{X}_g-\overline{X})^2.
+\]
+Given that $\E[\text{MSW}]=\sigma_W^2$ and $\E[\text{MSB}]=\sigma_W^2+m\sigma_B^2$ (proofs not required),
+
+\begin{enumerate}
+\item[(a)] Propose consistent estimators for $\sigma_W^2$, $\sigma_B^2$, and the intraclass correlation coefficient (ICC) $\rho=\sigma_B^2/(\sigma_B^2+\sigma_W^2)$.
+\item[(b)] Using your results from (a), derive an estimator $\widehat{\Var}(\overline{X})$ for the sampling variance of the sample mean $\overline{X}$.
+\item[(c)] Show that your estimators $\widehat{\rho}$ and $\widehat{\Var}(\overline{X})$ are consistent as $G\to\infty$ with fixed $m$ (for $\widehat{\Var}(\overline{X})$, which goes to zero, show that $\widehat{\Var}(\overline{X})/\Var(\overline{X})\xrightarrow{p}1$).
+\item[(d)] Construct a $100(1-\alpha)\%$ cluster–adjusted confidence interval for $\mu$.
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

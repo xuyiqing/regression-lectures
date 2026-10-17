@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+
+\title{\Large Lecture 4-1: Mechanics of OLS}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Explain how ordinary least squares fits a line to data: the least-squares principle, the estimators, and the decomposition of variance.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Mechanics of OLS
+\begin{itemize}
+\item Principle of least squares
+\item Deriving estimators
+\item Variance decomposition (ANOVA)
+\item $R^2$ and model fit
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+\begin{enumerate}\itemsep8em
+\item (\emph{OLS as sample mean})  
+Show that the sample mean $\bar{Y}$ is the OLS estimator of $\mu$ in $Y_i=\mu+u_i$.
+
+\item (\emph{OLS slope as covariance-variance ratio})  
+Prove that $\displaystyle \hat{\beta}_1=\frac{\widehat{\mathrm{Cov}}(X,Y)}{\widehat{\mathrm{Var}}(X)}$.
+
+\item (\emph{Geometric orthogonality})  
+Show that the OLS residual vector $\hat{u}$ is orthogonal to the regressor vector $x$.
+
+\item (\emph{ANOVA decomposition})  
+Show that $SST=SSE+SSR$, where $SST=\sum(y_i-\bar y)^2$, $SSE=\sum(\hat y_i-\bar y)^2$, and $SSR=\sum(y_i-\hat y_i)^2$.
+
+\end{enumerate}
+
+
+
+\end{document}

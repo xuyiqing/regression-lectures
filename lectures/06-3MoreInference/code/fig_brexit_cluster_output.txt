@@ -1,0 +1,18 @@
+Respondents: 16331 ; NUTS-3 regions (clusters): 167 ; NUTS-1 regions: 11
+Respondents per NUTS-3 region: mean 98, median 83, min 9, max 297
+Share intending Leave: 0.489
+NUTS-1 regions: UKC UKD UKE UKF UKG UKH UKI UKJ UKK UKL UKM 
+
+> m1 <- lm(leave ~ import_shock + age + gender, data = bes)
+> m2 <- lm(leave ~ import_shock + age + gender + nuts1, data = bes)
+> coeftest(m1); coeftest(m1, vcov = vcovCL(m1, cluster = ~ nuts3))   # and the same for m2
+
+                            b se_classical t_classical se_cluster t_cluster
+without NUTS-1 dummies 0.2787       0.0287      9.7166     0.0666    4.1833
+with NUTS-1 dummies    0.1536       0.0323      4.7579     0.0391    3.9283
+                        ratio    rho
+without NUTS-1 dummies 2.3227 0.0321
+with NUTS-1 dummies    1.2112 0.0099
+
+clustered / classical SE:  2.32 (without), 1.21 (with NUTS-1 dummies)
+Moulton factor sqrt(1 + (nbar - 1) rho) with nbar = 98: 2.03 (without), 1.40 (with)

@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "POLI 450A is the first course in the political science PhD methods sequence at Stanford University. The course was originally designed by Jens Hainmueller and is maintained and updated by Yiqing Xu, Department of Political Science, Stanford University. This version is from Fall 2026."
+  },
+  {
+    "objectID": "about.html#how-the-materials-were-checked",
+    "href": "about.html#how-the-materials-were-checked",
+    "title": "About",
+    "section": "How the materials were checked",
+    "text": "How the materials were checked\nBefore a lecture entered the repository, it went through a release review. The numbers on the slides were rerun from the code, the citations were checked against their sources, and independent readers went through each deck line by line, with the fixes applied."
+  },
+  {
+    "objectID": "about.html#data",
+    "href": "about.html#data",
+    "title": "About",
+    "section": "Data",
+    "text": "Data\nThe examples use public data: U.S. election returns and Census data, the American National Election Studies, the Cooperative Election Study, V-Dem and World Bank data, the Brexit vote, and replication data from published studies. SOURCES.md lists every data file, where it comes from, and its terms."
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching with the slides",
+    "section": "",
+    "text": "You are welcome to teach with these slides, in whole or in part, and to adapt them for your own course."
+  },
+  {
+    "objectID": "teaching.html#license",
+    "href": "teaching.html#license",
+    "title": "Teaching with the slides",
+    "section": "License",
+    "text": "License\n\nThe slides, their LaTeX sources, the worksheets, and the original figures are licensed under CC BY-NC 4.0. You may copy, adapt and teach with them, with credit, but not for commercial purposes.\nThe R code is licensed under the MIT License.\nThe data files keep their own terms, listed with their sources in SOURCES.md."
+  },
+  {
+    "objectID": "teaching.html#materials-for-instructors",
+    "href": "teaching.html#materials-for-instructors",
+    "title": "Teaching with the slides",
+    "section": "Materials for instructors",
+    "text": "Materials for instructors\nProblem sets with solutions, worksheet solutions, and past exams are available to instructors on request. Please email yiqingxu@stanford.edu from your institutional address, name the course you teach, and do not post the solutions publicly."
+  },
+  {
+    "objectID": "teaching.html#building-and-adapting-the-slides",
+    "href": "teaching.html#building-and-adapting-the-slides",
+    "title": "Teaching with the slides",
+    "section": "Building and adapting the slides",
+    "text": "Building and adapting the slides\nEach lecture’s folder in the repository holds the LaTeX Beamer source, the figures, the R scripts that draw them, and the data the scripts read. All lectures share one template, lectures/course_preamble.tex and lectures/course_theme.tex, and every R script uses the shared figure style in lectures/course_figures.R. You need TeX Live 2023 or later and R 4.x. The README has the build commands."
+  },
+  {
+    "objectID": "teaching.html#corrections",
+    "href": "teaching.html#corrections",
+    "title": "Teaching with the slides",
+    "section": "Corrections",
+    "text": "Corrections\nComments and corrections are welcome as issues on GitHub."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "POLI 450A: Political Methodology I (Regression)",
+    "section": "",
+    "text": "Lecture slides, worksheets, R code and data for the first course in Stanford’s political science PhD methods sequence. The course covers point and interval estimation, hypothesis testing, simple and multiple regression, and robust and clustered standard errors. The R scripts in the repository draw the figures and print the numbers on the slides from public data.\nThe slides have one page per slide. To present with the step-by-step reveals, build that version from the LaTeX source. The worksheets are the in-class exercises. Each lecture title opens the lecture’s folder on GitHub: the LaTeX source, the figures, the R scripts that draw them, and the data."
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "POLI 450A: Political Methodology I (Regression)",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nLinear algebra and calculus at the level of a political science math camp, and some undergraduate probability, statistics and statistical computing. The course uses R."
+  }
+]

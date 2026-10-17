@@ -1,0 +1,166 @@
+output_chile_tests.R run 2026-10-11 | R 4.6.1 | car 3.1.5 
+
+education
+  P  PS   S 
+671 343 689 
+
+== LPM check: vote1 ~ fem + educ + age ==
+range of fitted values: 0.237 0.750 
+            conventional     HC1     HC3 ratio_HC1 ratio_HC3
+(Intercept)      0.05257 0.05293 0.05302   1.00679   1.00858
+fem              0.02362 0.02369 0.02372   1.00285   1.00405
+educ             0.01645 0.01643 0.01646   0.99836   1.00013
+age              0.00082 0.00083 0.00083   1.00510   1.00698
+largest robust/conventional ratio: 1.0086 
+
+== Education dummies: vote1 ~ fem + age + S + PS ==
+
+Call:
+lm(formula = vote1 ~ fem + age + S + PS, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7535 -0.4645 -0.2665  0.4773  0.7463 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.4005593  0.0436242   9.182  < 2e-16 ***
+fem          0.1280018  0.0236250   5.418 6.89e-08 ***
+age          0.0032133  0.0008349   3.849 0.000123 ***
+S           -0.1283286  0.0275935  -4.651 3.56e-06 ***
+PS          -0.2047191  0.0333376  -6.141 1.02e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4845 on 1698 degrees of freedom
+Multiple R-squared:  0.06353,	Adjusted R-squared:  0.06132 
+F-statistic:  28.8 on 4 and 1698 DF,  p-value: < 2.2e-16
+
+              (Intercept)           fem           age             S
+(Intercept)  1.903067e-03 -3.393292e-04 -3.121865e-05 -6.786308e-04
+fem         -3.393292e-04  5.581411e-04  1.019330e-06  4.685980e-05
+age         -3.121865e-05  1.019330e-06  6.969858e-07  6.908035e-06
+S           -6.786308e-04  4.685980e-05  6.908035e-06  7.613989e-04
+PS          -6.961468e-04  7.344137e-05  6.987371e-06  4.232502e-04
+                       PS
+(Intercept) -6.961468e-04
+fem          7.344137e-05
+age          6.987371e-06
+S            4.232502e-04
+PS           1.111396e-03
+              S           PS
+S  0.0007613989 0.0004232502
+PS 0.0004232502 0.0011113963
+
+-- as printed on the slide --
+[1] 0.0496386
+      PS 
+1.046326 
+[1] 0.06447474
+
+beta_PS - 2 beta_S = 0.0519 
+V[PS,PS] = 0.001111  V[S,S] = 0.000761  Cov[S,PS] = 0.000423 
+SE (with covariance)    = 0.0496 
+SE (covariance dropped) = 0.0645 
+t = 1.046   t^2 = 1.0948   p = 0.2956 
+cor(b_S, b_PS) = 0.460 
+
+-- restricted (1-2-3 coding) vs unrestricted (dummies), by anova() --
+Analysis of Variance Table
+
+Model 1: vote1 ~ fem + educ + age
+Model 2: vote1 ~ fem + age + S + PS
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1   1699 398.83                           
+2   1698 398.57  1   0.25698 1.0948 0.2956
+
+-- linearHypothesis(fit.dum, R, r) --
+
+Linear hypothesis test:
+- 2 S  + PS = 0
+
+Model 1: restricted model
+Model 2: vote1 ~ fem + age + S + PS
+
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1   1699 398.83                           
+2   1698 398.57  1   0.25698 1.0948 0.2956
+Wald W by hand = 1.0948  (q = 1, so W = F = t^2)
+
+== Equality: H0: beta_S = beta_PS ==
+
+Call:
+lm(formula = vote1 ~ fem + age + Xstar, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7546 -0.4562 -0.3037  0.4816  0.6963 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.399255   0.043681   9.140  < 2e-16 ***
+fem          0.129980   0.023643   5.498 4.43e-08 ***
+age          0.003219   0.000836   3.851 0.000122 ***
+Xstar       -0.153498   0.025530  -6.012 2.23e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4852 on 1699 degrees of freedom
+Multiple R-squared:  0.06039,	Adjusted R-squared:  0.05873 
+F-statistic:  36.4 on 3 and 1699 DF,  p-value: < 2.2e-16
+
+SSR.UR2 = 398.57  SSR.R2 = 399.91  DFdenom = 1698 
+[1] 5.685995
+[1] 0.01721005
+t for beta_PS - beta_S = -2.385   t^2 = 5.6860 
+
+Linear hypothesis test:
+S - PS = 0
+
+Model 1: restricted model
+Model 2: vote1 ~ fem + age + S + PS
+
+  Res.Df    RSS Df Sum of Sq     F  Pr(>F)  
+1   1699 399.91                             
+2   1698 398.57  1    1.3347 5.686 0.01721 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+== t vs F: vote1 ~ fem + educ + age + I(age^2) ==
+
+Call:
+lm(formula = vote1 ~ fem + educ + age + I(age^2), data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7311 -0.4590 -0.2451  0.4632  0.7741 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.438e-01  9.811e-02   4.523 6.50e-06 ***
+fem          1.274e-01  2.370e-02   5.375 8.74e-08 ***
+educ        -1.057e-01  1.648e-02  -6.412 1.86e-10 ***
+age          6.105e-03  4.814e-03   1.268    0.205    
+I(age^2)    -3.301e-05  5.699e-05  -0.579    0.563    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4846 on 1698 degrees of freedom
+Multiple R-squared:  0.06311,	Adjusted R-squared:  0.0609 
+F-statistic: 28.59 on 4 and 1698 DF,  p-value: < 2.2e-16
+
+Analysis of Variance Table
+
+Model 1: vote1 ~ fem + educ
+Model 2: vote1 ~ fem + educ + age + I(age^2)
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1   1700 402.73                                  
+2   1698 398.75  2    3.9807 8.4754 0.0002175 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+cor(age, age^2) = 0.986 
+cor(b_age, b_age2) = -0.985 
+age range: 18 70 
+                 2.5 %       97.5 %
+age      -0.0033380639 1.554746e-02
+I(age^2) -0.0001447821 7.876618e-05

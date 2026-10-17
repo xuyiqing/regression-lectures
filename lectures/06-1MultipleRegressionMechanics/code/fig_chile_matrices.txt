@@ -1,0 +1,48 @@
+> fit <- lm(vote1 ~ fem + educ + age, data = d)
+> X <- model.matrix(fit)
+> dim(X)
+[1] 1703    4
+> head(X, 8)
+  (Intercept) fem educ age
+1           1   0    1  65
+2           1   0    3  29
+3           1   1    1  38
+4           1   1    1  49
+5           1   1    2  23
+6           1   1    1  28
+7           1   0    3  26
+8           1   1    2  24
+
+> summary(fit)
+
+Call:
+lm(formula = vote1 ~ fem + educ + age, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7501 -0.4661 -0.2502  0.4692  0.7632 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.4917751  0.0525717   9.354  < 2e-16 ***
+fem          0.1284292  0.0236221   5.437 6.21e-08 ***
+educ        -0.1051514  0.0164543  -6.391 2.13e-10 ***
+age          0.0033573  0.0008235   4.077 4.77e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4845 on 1699 degrees of freedom
+Multiple R-squared:  0.06292,	Adjusted R-squared:  0.06127 
+F-statistic: 38.03 on 3 and 1699 DF,  p-value: < 2.2e-16
+
+> V <- vcov(fit)
+> V
+              (Intercept)           fem          educ           age
+(Intercept)  2.763788e-03 -3.717198e-04 -6.543766e-04 -3.324904e-05
+fem         -3.717198e-04  5.580053e-04  3.781282e-05  9.631845e-07
+educ        -6.543766e-04  3.781282e-05  2.707446e-04  3.860967e-06
+age         -3.324904e-05  9.631845e-07  3.860967e-06  6.780985e-07
+
+> sqrt(diag(V))
+ (Intercept)          fem         educ          age 
+0.0525717389 0.0236221360 0.0164543200 0.0008234674 

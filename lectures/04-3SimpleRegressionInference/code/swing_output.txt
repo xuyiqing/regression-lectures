@@ -1,0 +1,39 @@
+# fig_swing.R output: a null that matters (Lecture 4-3)
+# Y = trump24, X = trump20: Trump's % of the two-party vote (MEDSL state totals); 50 states, DC excluded
+
+> lm.swing <- lm(trump24 ~ trump20, data = states)
+> summary(lm.swing)
+
+Call:
+lm(formula = trump24 ~ trump20, data = states)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.2402 -0.9252 -0.1434  0.6705  2.7293 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.47307    0.81741   5.472 1.59e-06 ***
+trump20      0.95578    0.01564  61.115  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.164 on 48 degrees of freedom
+Multiple R-squared:  0.9873,	Adjusted R-squared:  0.987 
+F-statistic:  3735 on 1 and 48 DF,  p-value: < 2.2e-16
+
+
+# ---- numbers on the slides
+n = 50; residual df = 48
+b0 = 4.4731 (SE 0.8174); b1 = 0.9558 (SE 0.0156); R2 = 0.9873
+R's t value for H0: b1 = 0: 61.11
+T for H0: b1 = 1: (0.9558 - 1) / 0.0156 = -2.8277; df 48; two-sided p = 0.0068
+critical value qt(0.975, 48) = 2.0106; |T| > critical value: TRUE
+95% CI for b1: [0.9243, 0.9872] (excludes 1: TRUE)
+b1 - 1 = -0.0442: a state 10 points more Republican in 2020 has a fitted swing 0.44 points smaller
+fitted swing at a 2020 share of 35%: 2.93; at 65%: 1.60
+swing ~ trump20: slope -0.0442 (SE 0.0156, t -2.8277), R2 0.1428
+swing (points): mean 2.21, SD 1.24, min 0.41 (UT), max 5.37 (NY); states with swing > 0: 50 of 50
+three smallest swings: UT 0.41, WA 0.46, OK 0.53
+three largest swings: NY 5.37, NJ 5.06, FL 4.92
+R2 of the uniform-swing line (trump24 = trump20 + 2.21): 0.9852

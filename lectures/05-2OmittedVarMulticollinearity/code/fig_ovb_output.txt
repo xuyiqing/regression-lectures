@@ -1,0 +1,12 @@
+fig_ovb.R --- numbers behind figs/ovb_sim.pdf (slide 'Omitted Variable Bias: Simple Case')
+n = 50, samples = 10000, beta = (0, 1, 2), sd(u) = 2, seed = 4502
+
+delta_tilde              0.5
+mean_b1_hat            1.008
+mean_b1_tilde          2.006
+predicted_mean_tilde       2
+simulated_bias         1.006
+predicted_bias             1
+sd_b1_hat              0.323
+sd_b1_tilde            0.2871
+max_identity_gap       8.882e-16

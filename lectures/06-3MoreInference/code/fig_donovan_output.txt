@@ -1,0 +1,73 @@
+Months used: 416 from 1981-01 to 2015-08 
+Months by administration:
+
+    Clinton       Obama Reagan-Bush     W. Bush 
+         96          80         144          96 
+
+## Slide: R output, levels
+> mod1 <- lm(ind ~ bus5yr + clinton + gwb + obama, data = dta)
+> coeftest(mod1)
+
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)  27.615771   3.319727  8.3187 1.323e-15 ***
+bus5yr        0.324423   0.036757  8.8262 < 2.2e-16 ***
+clinton      -8.299574   1.597577 -5.1951 3.228e-07 ***
+gwb         -14.148390   1.465549 -9.6540 < 2.2e-16 ***
+obama       -11.392846   1.531328 -7.4398 5.943e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R2 = 0.315
+
+## Slide: Durbin-Watson
+> dwtest(mod1)
+
+	Durbin-Watson test
+
+data:  mod1
+DW = 0.32152, p-value < 2.2e-16
+alternative hypothesis: true autocorrelation is greater than 0
+
+rho-hat (first-order autocorrelation of the residuals) = 0.839 ; 2(1 - rho-hat) = 0.322
+lag-1 autocorrelation of the series: ind 0.899, bus5yr 0.897
+
+## Slide: HAC (Newey-West)
+> coeftest(mod1, vcov = NeweyWest) # HAC errors
+
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)  27.615771   8.791195  3.1413  0.001804 ** 
+bus5yr        0.324423   0.078904  4.1116 4.747e-05 ***
+clinton      -8.299574   2.927949 -2.8346  0.004815 ** 
+gwb         -14.148390   6.244890 -2.2656  0.023996 *  
+obama       -11.392846   4.647416 -2.4514  0.014644 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+slope SE: OLS 0.0368, Newey-West 0.0789, ratio 2.15
+Newey-West without prewhitening (prewhite = FALSE): slope SE 0.0754 (ratio 2.05)
+HAC / homoskedastic SE, all coefficients:
+(Intercept)      bus5yr     clinton         gwb       obama 
+       2.65        2.15        1.83        4.26        3.03 
+
+## Slide: first differences
+> mod_fd <- lm(d_ind ~ d_bus + d_clinton + d_gwb + d_obama, data = fd)
+> coeftest(mod_fd)
+
+t test of coefficients:
+
+             Estimate Std. Error t value  Pr(>|t|)    
+(Intercept) -0.130212   0.277004 -0.4701   0.63855    
+d_bus        0.077375   0.036214  2.1366   0.03322 *  
+d_clinton    7.694463   5.633536  1.3658   0.17274    
+d_gwb        6.669925   7.972011  0.8367   0.40327    
+d_obama     42.568012   9.773859  4.3553 1.681e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+slope: levels 0.3244, first differences 0.0774 (ratio 0.24), FD t = 2.14
+FD Durbin-Watson = 2.532
+FD Newey-West (not prewhitened (prewhitening fails: singular)): slope SE 0.0414, t = 1.87

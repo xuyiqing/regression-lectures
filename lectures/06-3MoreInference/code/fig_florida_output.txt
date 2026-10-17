@@ -1,0 +1,55 @@
+## Slide 'Buchanan Votes and Total Votes' (R code)
+> mod1 <- lm(buchanan00~TotalVotes00,data=dta)
+> summary(mod1)
+
+Call:
+lm(formula = buchanan00 ~ TotalVotes00, data = dta)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-947.05  -41.74  -19.47   20.20 2350.54 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  5.423e+01  4.914e+01   1.104    0.274    
+TotalVotes00 2.323e-03  3.104e-04   7.483 2.42e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 332.7 on 65 degrees of freedom
+Multiple R-squared:  0.4628,	Adjusted R-squared:  0.4545 
+F-statistic:    56 on 1 and 65 DF,  p-value: 2.417e-10
+
+## Check of slide 'Example: Buchanan Votes in Florida' (Breusch-Pagan)
+## bptest(..., studentize = FALSE) is half the explained sum of squares from
+## regressing u^2 / mean(u^2) on the regressors (Breusch and Pagan 1979).
+               BP df            p
+mod1 250.06707242  1 2.510830e-56
+mod2   0.01112758  1 9.159891e-01
+## Footnote on the BP slide: lmtest::bptest default (Koenker studentized)
+
+	studentized Breusch-Pagan test
+
+data:  mod1
+BP = 12.59, df = 1, p-value = 0.0003878
+
+
+	studentized Breusch-Pagan test
+
+data:  mod2
+BP = 0.0095507, df = 1, p-value = 0.9221
+
+
+## Check of slide 'Regular & Robust Standard Errors in Florida Example'
+# homoskedasticity
+               Estimate Std. Error t value   Pr(>|t|)
+(Intercept)  54.2310000 4.9141e+01  1.1036 2.7385e-01
+TotalVotes00  0.0023228 3.1041e-04  7.4831 2.4174e-10
+# HC0 (classic White)
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)  54.2310000 4.0612e+01  1.3353  0.18642
+TotalVotes00  0.0023228 8.7047e-04  2.6685  0.00961
+# HC1
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)  54.2310000 4.1232e+01  1.3153 0.193040
+TotalVotes00  0.0023228 8.8376e-04  2.6284 0.010695

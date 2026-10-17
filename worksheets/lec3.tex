@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 3: What Is Regression?}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Introduce regression as estimating $E[Y|X]$; compare nonparametric and parametric approaches.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item What is regression?
+\begin{itemize}
+\item Conditioning on predictors
+\item Modeling conditional mean $E[Y|X]$
+\item Prediction versus causal uses
+\item Estimator: $\widehat{E}[Y|X]$
+\end{itemize}
+\item Nonparametric regression: discrete $X$
+\begin{itemize}
+\item Group means by education levels
+\item Estimate $E[Y|X=x]$ within categories
+\end{itemize}
+\item Nonparametric regression: continuous $X$
+\begin{itemize}
+\item Kernel regression idea
+\item Uniform kernel local averages
+\item Bandwidth controls smoothing
+\item Weighted kernels (Epanechnikov \& Gaussian)
+\item Bias–variance tradeoff
+\end{itemize}
+\item Linear regression
+\begin{itemize}
+\item Parametric form $E[Y|X]=\beta_0+\beta_1 X$
+\item Interpret intercept and slope
+\item Justifications and limitations
+\end{itemize}
+\item Local(ly) linear regressions
+\begin{itemize}
+\item LOWESS/LOESS local linear smoothing
+\item Bandwidth and weights in practice
+\item GAM as flexible alternative
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+%\section*{Worksheet}
+
+
+% \begin{enumerate}\itemsep1em
+% \item Which of $\hat\mu_{1}, \hat\mu_{2}, \hat\mu_{3}, \hat\mu_{4}$ are unbiased? Show your work.
+% \vspace{20em}
+
+% \item Derive the variances of $\hat\mu_{1}, \hat\mu_{2}, \hat\mu_{3}, \hat\mu_{4}$. Show your work.
+% \vspace{20em}
+% \clearpage 
+
+% \item Prove: $MSE(\hat{\theta}) = Var(\hat{\theta}) + \text{Bias}(\hat{\theta})^2.$
+% \vspace{25em}
+
+
+% \item Derive $MSE(\hat\mu_{1}), MSE(\hat\mu_{2}), MSE(\hat\mu_{3}), MSE(\hat\mu_{4})$
+% \vspace{20em}
+
+
+% \end{enumerate}
+
+
+\end{document}

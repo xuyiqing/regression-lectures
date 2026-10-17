@@ -1,0 +1,441 @@
+\documentclass[xcolor=svgnames,9pt,english,aspectratio=169,t]{beamer}
+%\documentclass[xcolor=svgnames,9pt,english,handout,aspectratio=169,t]{beamer}
+\newcommand{\handout}{0}
+
+\input{../course_preamble.tex}   % theme, layout, packages, notation
+\input{../course_theme.tex}      % colors and slide furniture
+
+\graphicspath{{./figs/}}
+
+\title[Hypothesis Testing]{450A Political Methodology I}
+\subtitle{Lecture 2: Univariate Statistical Inference \\ 3. Hypothesis Testing}
+\author{Stanford University}
+\date{}
+
+\begin{document}
+\begin{frame}[plain,c]
+  \titlepage
+  \addtocounter{framenumber}{-1}
+\end{frame}
+
+
+\section{What is Hypothesis Testing?}
+
+\frame{
+\frametitle{Hypothesis Testing: The Trial Analogy}
+\small
+Often, our primary goal is to test a \alert{hypothesis} about the value of a
+parameter. \\ \medskip
+The statistical \alert{decision theory} underlies such hypothesis testing. \\
+\pause
+
+{\bf The trial analogy:} \\ \medskip
+Suppose we must decide whether to convict or acquit a defendant based on evidence presented at a trial. There are four possible outcomes:
+  \begin{center}
+   \begin{tabular}[h]{ll | ll}
+    & & \multicolumn{2}{c}{\it Defendant} \\
+       & & Guilty & Innocent  \\
+    \hline
+ {\it Decision} & Convict & \onslide<3->{Correct} & \onslide<4->{Type I Error} \\
+     & Acquit & \onslide<5->{Type II Error} & \onslide<3->{Correct} \\
+    \hline
+    \end{tabular}
+  \end{center} \pause
+We could make two types of errors:
+\pause
+\begin{itemize}
+ \item Convict an innocent defendant (\alert{type-I error}) \pause
+ \item Acquit a guilty defendant (\alert{type-II error}) \pause
+\end{itemize}
+Our goal is to limit the probability of making these types of errors. \\ \medskip \pause
+However, for a fixed test and sample size, making rejection harder lowers the type-I error probability but raises the type-II error probability. We therefore need to balance them.
+}
+
+\frame{
+\frametitle{Two Types of Errors in Hypothesis Testing}
+\small
+  \begin{center}
+   \begin{tabular}{ll | p{2cm}p{2cm}}
+    & & \multicolumn{2}{c}{\it Defendant} \\
+       & & Guilty & Innocent  \\
+    \hline
+ {\it Decision} & Convict & \alt<1-3>{Correct}{$1-\beta$} & \alt<1>{Type-I error}{$\alpha$} \\
+     & Acquit & \alt<1-2>{Type-II error}{$\beta$} & \alt<1-3>{Correct}{$1-\alpha$} \\
+    \hline
+    \end{tabular}
+  \end{center}
+Now, suppose that we have a statistical model for the probability of convicting
+and acquitting, conditional on whether the defendant is actually guilty or innocent. \\
+\medskip
+\pause
+Then, our decision-making rule can be characterized by two probabilities:
+\begin{itemize}
+ \item $\alpha \ = \ \Pr(\text{type-I error}) \ = \ \Pr(\text{convict} \mid \text{innocent})$ \pause
+ \item $\beta \ = \ \Pr(\text{type-II error}) \ = \ \Pr(\text{acquit} \mid \text{guilty})$
+\end{itemize}
+\pause
+The probability of making a correct decision is therefore $1-\alpha$ (if innocent) and  $1-\beta$ (if guilty). \\
+\pause
+\bigskip
+\alert{Hypothesis testing} follows an analogous logic, where we want to decide whether to
+\alert{reject} ($=$ convict) or \alert{fail to reject} ($=$ acquit) a \alert{null hypothesis}
+($=$ defendant is innocent) using sample data.
+}
+
+
+\frame[t]{
+\frametitle{Steps of Hypothesis Testing}
+\small
+  \begin{center}
+   \begin{tabular}{ll | p{2cm}p{2cm}}
+    & & \multicolumn{2}{c}{\it Null Hypothesis ($H_0$)} \\
+       & & False & True  \\
+    \hline
+ {\it Decision} & Reject & $1-\beta$ & $\alpha$ \\
+     & Fail to Reject & $\beta$ & $1-\alpha$ \\
+    \hline
+    \end{tabular}
+  \end{center}
+
+\begin{enumerate}
+\addtolength{\itemsep}{.5\baselineskip}
+\item Specify a \alert{null hypothesis} $H_0$ (e.g. the defendant $=$ innocent)
+\pause
+\item Pick a value of $\alpha = \Pr(\text{reject } H_0 \mid H_0)$
+(e.g. $0.05$). This is the maximum probability of making \pause a type-I error
+we decide to tolerate, and called the \alert{significance level} of the test.
+\pause
+\item Choose a \alert{test statistic} $T$, which is a function of sample data
+and related to $H_0$ (e.g. the count of testimonies against the defendant)
+\pause
+\item Assuming $H_0$ is true, derive the \alert{null distribution} of $T$
+(e.g. standard normal)
+\end{enumerate}
+}
+
+\frame[t]{
+\frametitle{Steps of Hypothesis Testing}
+\small
+  \begin{center}
+   \begin{tabular}{ll | p{2cm}p{2cm}}
+    & & \multicolumn{2}{c}{\it Null Hypothesis ($H_0$)} \\
+       & & False & True  \\
+    \hline
+ {\it Decision} & Reject & $1-\beta$ & $\alpha$ \\
+     & Fail to Reject & $\beta$ & $1-\alpha$ \\
+    \hline
+    \end{tabular}
+  \end{center}
+
+\begin{enumerate}
+\addtocounter{enumi}{4}
+\item Using the \alert{critical values} from a statistical table,
+evaluate how unusual the observed value of $T$ is under the null hypothesis:
+\addtolength{\itemsep}{.5\baselineskip}
+\begin{itemize}
+\addtolength{\itemsep}{.5\baselineskip}
+ \item If the probability of drawing a $T$ at least as extreme as the observed $T$
+ is less than $\alpha$, we reject $H_0$. \\
+ (e.g. there are so many testimonies against the defendant that they would be very unlikely if she were innocent, so reject the hypothesis that she was innocent.)
+ \item Otherwise, we fail to reject $H_0$. \\
+ (e.g. there is not enough evidence against the defendant, so give her the benefit of the doubt.)
+\end{itemize}
+\end{enumerate}
+}
+
+
+\section{Hypothesis Testing with a Single Random Variable}
+
+
+\subsection{One-Sample t-Test}
+
+\frame{
+\frametitle{Biden FTS Example: Test about Population Mean}
+
+Let $\mu_{jb}$ be the expected value of Joe Biden FTS in the population. \\ \smallskip
+Suppose that we want to test whether $\mu_{jb} = 49$. \\ \bigskip \pause
+
+Step 1: Specify a \alert{null hypothesis} and an \alert{alternative hypothesis}. \\ \smallskip
+Two possibilities:
+\begin{enumerate}
+\item $H_0: \mu_{jb} = 49$ and  $H_1: \mu_{jb} \ne 49$ (two sided alternative)\medskip
+\item $H_0: \mu_{jb} = 49$ and  $H_1: \mu_{jb} > 49$ (one sided alternative)
+\end{enumerate}
+\bigskip \pause
+
+Step 2: Fix the \alert{significance level} of the test at $\alpha=0.05$
+
+\onslide<1->\slidesource{American National Election Studies. 2021. ANES 2020 Time Series Study Full Release [dataset and documentation]. February 10, 2022 version. \href{https://electionstudies.org/data-center/2020-time-series-study/}{electionstudies.org/data-center/2020-time-series-study}. Pre-election wave; $n = 8{,}060$ valid ratings. FTS = feeling thermometer score (0--100) for Joe Biden, the 2020 Democratic presidential candidate. Unweighted: respondents treated as an i.i.d.\ sample, ignoring the survey weights and sampling design.}
+}
+
+
+
+\frame{
+\frametitle{One-Sample $t$-Statistic}
+
+Step 3: As the \alert{test statistic}, we use the \alert{one-sample $t$-statistic} or $t$-score, i.e.
+the standardized sample mean:
+$$
+T = \frac{\overline{X} - \mu_0}{S/\sqrt{n}}
+$$
+where $\overline{X}$ and $S$ are the sample mean and sample standard deviation ($\overline{X}_n$ and $S_n$ in Lecture 2.2), and $\mu_0$ is the ``null'' value of the parameter $\mu_{jb}$. In our case $\mu_0=49$.\\
+\pause\bigskip
+
+Being a function of the sample data, the $t$-statistic has a sampling distribution under the null hypothesis. This distribution is called the \alert{null distribution}. \\ \smallskip
+We use this distribution to find the probability of a value of $T$ at least as extreme as the observed value $t$.
+
+}
+
+
+
+
+
+
+\frame{
+\frametitle{The Null Distribution for the $t$-Statistic}
+Step 4: Now let's derive the \alert{null distribution} of the $t$-statistic. \\ \smallskip
+Setting the null value of $\mu_{jb}$ at $49$, what is the sampling distribution of $T$:
+\begin{enumerate}
+  \item If $X_1, ...,  X_n \stackrel{i.i.d.}{\sim} N(\mu_{jb},\sigma^2)$? \pause
+  $\rightarrow \ T \ \sim \ t_{n-1}$ \pause \medskip
+  \item If $X_1, ..., X_n$ is i.i.d. with mean $\mu_{jb}$ and variance $\sigma^2$, but not normal? \pause \\
+  $\rightarrow \ T \ \stackrel{approx.}{\sim} N(0, 1)$ if $n$ is large enough (by CLT). \\
+  \quad Commonly we use $t_{n-1}$, for the reasons discussed previously. \pause
+\end{enumerate}
+\vspace{-.5\baselineskip}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.40\textheight]{ttest_null}
+\end{figure}
+}
+
+\frame{
+\frametitle{The Null Distribution and Critical Values}
+Step 5: Finally, obtain the \alert{critical value} $c$ under the null distribution. \\ \smallskip \pause
+The critical value differs depending on the alternative hypothesis:
+\begin{itemize}
+  \item For a \alert{two-sided test} (i.e. $H_1: \mu_{jb} \ne 49$), $c = t_{\alpha/2}(n-1)$, \\
+  the $100(1-\alpha/2)$ percentile of the $t_{n-1}$ distribution. \\ \smallskip
+  That is, find $c$ such that $P(|T|>c\,|\,H_0)=\alpha$.
+  \pause\medskip
+  \item For a \alert{one-sided test} (i.e. $H_1: \mu_{jb} > 49$), $c = t_{\alpha}(n-1)$, \\
+  the $100(1-\alpha)$ percentile of the $t_{n-1}$ distribution. \\ \smallskip
+  That is, find $c$ such that $P(T>c\,|\,H_0)=\alpha$.
+\end{itemize}
+\begin{center}
+\includegraphics[width=.40\textwidth]{ttest_crit_twosided} \quad
+\includegraphics[width=.40\textwidth]{ttest_crit_onesided}
+\end{center}
+}
+
+
+\frame{
+\frametitle{Testing $H_0$ for the Mean of Biden's FT}
+
+With $n=8{,}060$ and $\alpha=.05$, the critical value is $c=1.96$ for a two sided test \\ and $c=1.65$ for a one sided test. \\ \smallskip
+Plugging in the sample mean and standard deviation, we obtain $T=0.618$.
+\vspace{-1em}\begin{center}
+\includegraphics[width=.45\textwidth]{ttest_rej_twosided} \quad
+\includegraphics[width=.45\textwidth]{ttest_rej_onesided}
+\end{center}\vspace{-1em}
+\pause
+Would you reject or fail to reject $H_0$ against the two-sided hypothesis? \pause 
+$\rightarrow$ Fail to reject.
+\\ 
+\pause
+Would you reject or fail to reject $H_0$ against the one-sided hypothesis? \pause $\rightarrow$ Fail to reject.
+}
+
+
+%%%%%%%%%%%%%%%%
+\subsection{$p$-values and Confidence Intervals}
+
+\frame{
+\frametitle{The $p$-value}
+\small
+The \alert{$p$-value} is the probability of obtaining a test statistic at least as extreme as the one that was actually observed, assuming that the null hypothesis is true.\\
+\medskip
+\pause
+The alternative hypothesis defines what values of the statistic we consider ``extreme'':
+\begin{itemize}
+\item For a one-sided test with $H_1: \mu_{jb} > 49$:
+$$ \text{\alert{p-value}} \ = \ \Pr(T \ge 0.618  \mid \mu_{jb} = 49) \ = \ 0.268 $$
+Interpretation: If $H_0$ were true, we would see a value at least as \alert{large} as $0.618$ in about 27\%
+of samples.
+\pause
+\item For a two-sided test with $H_1: \mu_{jb} \ne 49$:
+$$\text{\alert{p-value}}  =  \Pr(T \ge 0.618 \text{ or } T \leq - 0.618 \mid \mu_{jb} = 49)
+ =  2\cdot \Pr(T \ge 0.618 \big | \mu_{jb} = 49) \ = \ 0.537$$
+Interpretation: If $H_0$ were true, we would see a value at least as \alert{far from zero} as $0.618$ in about 54\% of samples.
+\item More generally, $p$-value is the lowest significance level $\alpha$ for which we can reject $H_0$. \\
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{The $p$-values for Biden's FT Test}
+\vspace{-.75\baselineskip}
+\begin{center}
+\includegraphics[height=.43\textheight]{ttest_p_onesided} \\
+\includegraphics[height=.43\textheight]{ttest_p_twosided}
+\end{center}
+}
+
+\begin{frame}
+\frametitle{Inverting a Hypothesis Test}
+As you may have guessed, there is a strong correspondence between a hypothesis test
+and a confidence interval. \\ \medskip \pause
+
+(\emph{Test–CI equivalence by inversion})  For the two-sided level-$\alpha$ $t$ test of $H_0:\mu=\mu_0$ (for a generic population mean $\mu$), prove that $H_0$ is rejected if and only if $\mu_0$ is not contained in the $100(1-\alpha)\%$ $t$-confidence interval
+\[
+\left[\;\overline{X}-t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\;,\;\overline{X}+t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\;\right].
+\]
+
+\textbf{Proof (Worksheet Q1)}
+
+% The \alert{acceptance region} of the two-sided $\alpha$-level test:
+% $$ - t_{\alpha/2}(n-1) \ \leq \  \frac{\overline{X} - \mu_0}{S/\sqrt{n}} \ \leq \ t_{\alpha/2}(n-1) $$ \pause
+% Rearrange the terms to obtain:
+% $$ \overline{X} - t_{\alpha/2}(n-1)S/\sqrt{n} \ \leq \ \mu_0 \ \leq \ \overline{X} + t_{\alpha/2}(n-1)S/\sqrt{n} $$ \pause
+% The resulting interval, $[\overline{X} - t_{\alpha/2}(n-1)S/\sqrt{n}, \ \overline{X} + t_{\alpha/2}(n-1)S/\sqrt{n}]$, is simply the $100(1-\alpha)$\% confidence interval for $\mu$!
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Inverting a Hypothesis Test}
+\small
+Essentially, hypothesis tests and confidence intervals ask the same question, but from a different perspective:
+\begin{itemize}
+\item The test fixes $\mu = \mu_0$ and asks what values of $\overline{X}$ are consistent with that fixed value (and reject $\mu_0$ with which the observed $\overline{X}$ is not consistent)
+\item The confidence interval fixes the data and collects every value of $\mu$ that the test would fail to reject
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Using Confidence Intervals for Hypothesis Testing}
+Therefore, we can conduct a hypothesis test by simply looking at the corresponding
+confidence interval. \\ \medskip
+To conduct a two-sided $\alpha$-level test:
+{\small
+\begin{enumerate}
+\item Construct a $100(1-\alpha)$\% confidence interval, using the usual procedure
+\item If the null value of $\mu$ is outside of the confidence interval, reject $H_0$.
+\item If the null value of $\mu$ is inside of the confidence interval, fail to reject $H_0$.
+\end{enumerate}
+}
+\vspace{-.75\baselineskip}
+\begin{center}
+\includegraphics[height=.46\textheight]{ttest_ci_biden}
+\end{center}
+\vspace{-.75\baselineskip}
+At $\alpha = .10$ and $.05$, we reject $\mu_0 = 48.4$ but not $\mu_0 = 49$. At $\alpha = .01$, we reject neither.
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\frametitle{One Sample T-Test in \texttt{R}}
+Testing $H_0: \mu_{jb} = 49$ against $H_1: \mu_{jb} \neq 49$:
+\medskip
+
+\begin{Verbatim}[frame=single, label=R Code, commandchars=\\\{\}]
+> t.test(x = jbFTS, mu = 49)
+
+        One Sample t-test
+
+data:  jbFTS
+t = 0.61801, df = 8059, p-value = 0.5366
+alternative hypothesis: true mean is not equal to 49
+95 percent confidence interval:
+ 48.48425 49.99069
+sample estimates:
+mean of x
+ 49.23747
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+
+\frametitle{One Sample T-Test in \texttt{R}}
+Testing $H_0: \mu_{jb} = 48.4$ against $H_1: \mu_{jb} \neq 48.4$:
+\medskip
+
+\begin{Verbatim}[frame=single, label=R Code, commandchars=\\\{\}]
+> t.test(x = jbFTS, mu = 48.4)
+
+        One Sample t-test
+
+data:  jbFTS
+t = 2.1795, df = 8059, p-value = 0.02932
+alternative hypothesis: true mean is not equal to 48.4
+95 percent confidence interval:
+ 48.48425 49.99069
+sample estimates:
+mean of x
+ 49.23747
+\end{Verbatim}
+\end{frame}
+
+
+\frame{
+\frametitle{Invariance to Unit Changes}
+
+Let $Y_i=a+bX_i$ with $b\neq0$. Consider testing $H_0:\mu=\mu_0$ using the $t$ statistic based on ${X_i}$, and testing $H_0':\mu_Y=a+b\mu_0$ using the $t$ statistic based on ${Y_i}$. Show that both two-sided tests yield the same rejection decision.\bigskip
+
+\textbf{Proof (Worksheet Q2)}
+
+}
+
+
+
+\subsection{Practical versus Statistical Significance}
+
+\frame{
+\frametitle{Practical versus Statistical Significance}
+\small
+Under $H_0$ (and normal data):
+$$\frac{\overline{X} - \mu_0}{S/\sqrt{n}} \sim t_{n-1}$$
+\begin{itemize}
+\item What are the possible reasons for rejecting the null? \pause \smallskip
+\begin{enumerate}
+\addtolength{\itemsep}{.25\baselineskip}
+  \item Maybe $\overline{X} - \mu_0$ is large (big difference between sample mean and mean assumed by $H_0$)
+  \item Maybe $n$ is large (you have a lot of data so you have a lot of precision)
+  \item Maybe $S$ is small (the data vary little around their mean, as they do when $\sigma$ is small)
+  \item Maybe $H_0$ is true and we drew an unusual sample (this happens with probability $\alpha$)
+\end{enumerate}
+\pause
+\item We need to be careful to distinguish:
+ \begin{itemize}
+\addtolength{\itemsep}{.25\baselineskip}
+   \item \alert{practical significance} (e.g. a big effect)
+   \item \alert{statistical significance} (i.e. we reject the null)
+ \end{itemize}
+\item In large samples even tiny nonzero differences are likely to be statistically significant, though they may not matter substantively. Always discuss both!
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Power Depends on Effect Size, Variance, and $n$}
+
+The \alert{power} of a test is $1-\beta = \Pr(\text{reject } H_0 \mid H_0 \text{ false})$. It depends on the true value of $\mu$.\medskip
+
+Assume $X_1,\dots,X_n \stackrel{i.i.d.}{\sim} N(\mu,\sigma^2)$ with known $\sigma$, and test $H_0:\mu=\mu_0$ vs.\ two-sided $H_1$ using the $z$ statistic $Z=\dfrac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$, rejecting for $|Z|>z_{\alpha/2}$. Derive the power function at $\mu=\mu_0+\delta$ and show: (i) for any fixed $\delta\neq0$, power $\to1$ as $n\to\infty$; (ii) for fixed $n$, power increases in $|\delta|$ and decreases in $\sigma$.\bigskip
+
+\textbf{Worksheet Q3 (optional)}
+
+}
+
+%\begin{frame}
+%  \frametitle{Required readings}
+%Due Wednesday next week:
+%\begin{itemize}
+%\item Wooldrige: Chapter 2\\\bigskip
+%\item Acock: Ch 5 + 6 (if you lack Stata background)
+%\end{itemize}
+%
+%\end{frame}
+
+\end{document}

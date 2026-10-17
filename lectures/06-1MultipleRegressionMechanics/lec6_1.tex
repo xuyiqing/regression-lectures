@@ -1,0 +1,2432 @@
+\documentclass[xcolor=svgnames,9pt,english,aspectratio=169,t]{beamer}
+%\documentclass[xcolor=svgnames,9pt,english,handout,aspectratio=169,t]{beamer}
+\newcommand{\handout}{0}
+
+\input{../course_preamble.tex}   % theme, layout, packages, notation
+\input{../course_theme.tex}      % colors and slide furniture
+
+\graphicspath{{./figs/}}
+
+\title[Multiple Regression Mechanics]{450A Political Methodology I}
+\subtitle{Lecture 6: Multiple Regression \\ 1. Mechanics}
+\author{Stanford University}
+\date{}
+
+% This lecture uses sections only; no subsection roadmap frames.
+\AtBeginSubsection[]{}
+
+\begin{document}
+\begin{frame}[plain,c]
+  \titlepage
+  \addtocounter{framenumber}{-1}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%
+
+\section{Preparation}
+
+
+% \frame{
+% \frametitle{Matrix Algebra}
+
+
+% Why do we study matrix algebra?
+
+% \begin{itemize}
+
+% \item We will use matrix algebra to derive the linear regression model \pause
+% \item Matrices are an intuitive way to think about data. The data set is an array of numbers where: \pause
+% \begin{itemize}
+%   \item every row represents the measurements of multiple characteristics for a single unit (e.g. age and gender for person $i$)
+%   \item every column represents the measurements for a single characteristic across units (e.g. age for person $i=1,...,n$)
+% \end{itemize}\pause
+% \item Matrices allow us to solve linear systems of equations \pause
+% \item Notation is more compact and concise so many articles use it \pause
+% \item Very useful for advanced methods and statistical computing
+% \end{itemize}
+
+% }
+
+% \section{Matrix Algebra Review}
+
+% \subsection{Matrices and Vectors}
+
+% \frame{
+% \frametitle{Definition of Matrices and Vectors}
+
+% A \alert{matrix} is simply an arrangement of numbers in rectangular form. Generally, a
+%  \( (j \times k) \) matrix \( \mathbf{A} \) can be written as follows:
+
+%   \[ \mathbf{A} = \left[
+% \begin{array}{cccc}
+% 	 a_{1,1} & a_{1,2} & \cdots & a_{1,k}  \\
+% 	 a_{2,1} & a_{2,2} & \cdots & a_{2,k}  \\
+% 	 \vdots & \vdots & \ddots & \vdots  \\
+% 	 a_{j,1} & a_{j,2} & \cdots & a_{j,k}
+% \end{array}
+% \right] \]
+
+% \begin{itemize}
+% \item Note that the \alert{elements} are double sub-scripted, with the row number first, and the column number second
+% \item The\alert{ dimensionality} (or \alert{order}) of this matrix is \alert{$j \times k$},  where $j$ is the number of rows and $k$ is the number of columns.
+% %\item The dimensionality of the matrix is also called the \alert{order} of a matrix. In general terms, the \( \mathbf{A} \) above is of order $(j, k)$.
+% \item When reading the text, and doing your assignments, you should always keep track of the dimensionality.
+% \end{itemize}
+% }
+
+% \frame{
+%  \frametitle{A Few Examples}
+% The matrix
+% \[ \mathbf{W} = \left[
+% \begin{array}{cc}
+% 	1  & 3  \\
+% 	 2 & -6
+% \end{array}
+% \right] \]
+% is $2 \times 2$. This is also called a \alert{square matrix}, because the row dimension
+% equals the column dimension $(j = k)$.\\\bigskip There are also\alert{ rectangular matrices}
+% $(j \neq k)$, such as:
+% \pause
+% \[ \boldsymbol{G} = \left[
+% \begin{array}{cc}
+% 	 1 & 4  \\
+% 	 1 & 3  \\
+% 	 1 & -2  \\
+% 	 0 & 3
+% \end{array}
+% \right] \]
+% which is $4 \times 2$.
+% \vspace{.5cm}
+% \pause
+% Matrices are often written with bold, CAPITAL letters.\\ Roman ($\boldsymbol{X} $) is typically data, and Greek ($\boldsymbol{\beta} $) is, as before, parameters.
+
+%  }
+
+% \frame{
+% \frametitle{Vectors}
+% Vectors are special matrices that have either \alert{one row} or \alert{one column}.\\
+% \vspace{.4cm}
+
+%  \alert{Row vectors} are $1 \times k$. For example:
+% \[ \boldsymbol{\alpha}=\left[
+% \begin{array}{ccccc}
+% 	\alpha_{1}  & \alpha_{2} & \alpha_{3} & \cdots & \alpha_{k}
+% \end{array}
+% \right] \] \\A $j \times k$ matrix is a collection of $j$ $1 \times k$  row vectors.\\\bigskip
+
+% \pause
+% \alert{Column vectors} are $k \times 1$. For example,
+
+% \[ \mathbf{y} = \left[
+% \begin{array}{c}
+% 	y_{1}   \\
+% 	y_{2}  \\
+% 	\vdots   \\
+% 	y_{k}
+% \end{array}
+% \right] \]\\
+% A $k \times j$ matrix is a collection of $j$ $k \times 1$  column vectors.\\\bigskip
+% Vectors are usually bold, lowercase letters ($\mathbf{y}$). Unless otherwise specified, we assume that vectors are column vectors.
+% }
+
+% %	\frame{
+% %	\frametitle{Matrix Addition and Subtraction}
+% %	
+% %	Now that we have defined matrices, vectors, and scalars (which are just single numbers), we can start to consider
+% %	the operations we can perform on them.\\\bigskip Given a matrix of numbers, one can
+% %	extend regular scalar algebra in a straight forward way.\\\bigskip
+% %	Scalar addition is simply: $m + n = 2 + 5 = 7$\\\bigskip
+% %	
+% %	Addition is similarly defined for matrices: If matrices or vectors are of the same order, then they can be added. One
+% %	performs the addition \alert{element by element}.
+% %	
+% %	}
+
+% \subsection{Matrix Operations: Addition and Subtraction}
+
+% \frame{
+% \frametitle{Matrix Addition and Subtraction}
+
+% If matrices or vectors are of the same \alert{order}, then they can be added. One
+% performs the addition \alert{element by element}.\\\bigskip
+
+% Thus, for a pair of  $(2 \times 2)$ matrices, addition proceeds as follows for the
+% problem $\mathbf{A} + \mathbf{B} = \mathbf{C}$:
+
+% \begin{small}
+% \[
+% \left[
+%   \begin{array}{cc}
+%     a_{1,1} & a_{1,2} \\
+%     a_{2,1} & a_{2,2} \\
+%   \end{array}
+% \right] + \left[
+%   \begin{array}{cc}
+%     b_{1,1} & b_{1,2} \\
+%     b_{2,1} & b_{2,2} \\
+%   \end{array}
+% \right]= \left[
+%   \begin{array}{cc}
+%     a_{1,1} + b_{1,1} & a_{1,2} + b_{1,2} \\
+%     a_{2,1} + b_{2,1} & a_{2,2} + b_{2,2} \\
+%   \end{array}
+% \right] = \left[
+%   \begin{array}{cc}
+%     c_{1,1} & c_{1,2} \\
+%     c_{2,1} & c_{2,2} \\
+%   \end{array}
+% \right]
+% \]
+% \end{small}
+
+% Subtraction similarly follows.\\\bigskip
+
+% Matrix addition and subtraction is only defined for matrices that share the same dimensionality. If they do, they are said to be \alert{conformable}
+% for addition. If not, they are \alert{nonconformable} for addition.
+
+% }
+
+% \frame{
+% \frametitle{Matrix Addition and Subtraction}
+
+% Subtraction Example:
+% \[
+% \left[
+% \begin{array}{ccc}
+%     1 & 4 & -2  \\
+%     5 & -3 & 3
+% \end{array}
+% \right]
+% -
+% \left[
+% \begin{array}{ccc}
+%     -3 & 2 & 8  \\
+%     2 & 2 & -3
+% \end{array}
+% \right]
+% = \pause
+% \left[
+% \begin{array}{ccc}
+%     4 & 2 & -10  \\
+%     3 & -5 & 6
+% \end{array}
+% \right]
+% \]
+% \pause
+% Is matrix addition is\alert{ commutative}?  \[
+% \mathbf{A} + \mathbf{B} = \mathbf{B}+ \mathbf{A}\]
+% \bigskip \pause Yes it is.
+% \pause
+% Is matrix addition is \alert{associative}? \[
+% \mathbf{A} + (\mathbf{B} + \mathbf{C} )=(\mathbf{A} + \mathbf{B}) + \mathbf{C} \]
+% \bigskip \pause Yes it is.
+
+% }
+
+% \subsection{Matrix Operations: Transposition}
+
+
+% \frame{
+% \frametitle{Transposition}
+
+% \alert{Transposition} of a matrix exchanges the order subscripts for each element. Thus, an order $(j \times k)$ matrix becomes an $(k \times j)$ matrix.\\\bigskip
+
+% The transpose operation is typically denoted by placing a $'$ or $\top$ after a matrix.\\\bigskip
+
+
+% Here is an example:
+% \[\mathbf{Q}=\left[
+%   \begin{array}{cc}
+%     q_{1,1} & \textcolor{green}{q_{1,2}} \\
+%     q_{2,1} & q_{2,2} \\
+%     q_{3,1} & q_{3,2} \\
+%   \end{array}
+% \right]
+% \,\, \mathbf{Q'} = \left[
+%   \begin{array}{ccc}
+%     q_{1,1} & q_{2,1} & q_{3,1} \\
+%     \textcolor{green}{q_{1,2}} & q_{2,2} & q_{3,2} \\
+%   \end{array}
+% \right]\]
+
+% Note that the subscripts in the transpose remain the same, they are just
+% exchanged so $q_{1,2}$ is now in the second row, first column $(2,1)$.
+
+% }
+
+% \frame{
+% \frametitle{Transposition}
+
+% What happens when we transpose $\mathbf{\omega}$, a $k \times 1$ column vector?
+
+% \[
+% \boldsymbol{\omega} = \left[
+% \begin{array}{r}
+%     1  \\
+%     3  \\
+%     2  \\
+%     -5
+% \end{array}
+% \right]\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+% \boldsymbol{\omega}' = \pause \left[
+% \begin{array}{cccc}
+%     1 & 3 & 2 & -5
+% \end{array}
+% \right]   \]
+% it turns into a  ($1 \times k$) row vector. We can switch between row and column vectors with the transpose operation.\\
+% \bigskip
+
+% For any matrix $\mathbf{Q}$ what is $(\mathbf{Q'})'$? \pause It's $\mathbf{Q}$. In words, the transpose of the transpose is the original matrix.\\\bigskip \pause
+
+% It can be shown that for any two matrices of the same order, the transpose of the
+% sum is equal to the sum of the transposes. Symbolically: $(\mathbf{A} + \mathbf{ B})' = \mathbf{A}' + \mathbf{B}'$
+
+% }
+
+% \frame{
+% \frametitle{Transposition}
+
+% A matrix $\mathbf{A}$ with dimensionality $(j \times j)$ is said to be \alert{symmetric} iff  $\mathbf{A}' =  \mathbf{A}$.\\\bigskip Can you come up with an example (e.g.  $3 \times 3$)?\\\pause
+
+
+% \[ \boldsymbol{\omega} = \left[
+%   \begin{array}{ccc}
+%     1 & .2 & -.5 \\
+%     .2 & 1 & .4 \\
+%     -.5 & .4 & 1 \\
+%   \end{array}
+% \right] \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+% \boldsymbol{\omega}' =  \left[
+%   \begin{array}{ccc}
+%     1 & .2 & -.5 \\
+%     .2 & 1 & .4 \\
+%     -.5 & .4 & 1 \\
+%   \end{array}
+% \right]\]\bigskip
+
+% Notice: All symmetric matrices are square, but not all square matrices are symmetric.
+
+% }
+
+% \subsection{Matrix Operations: Multiplication}
+
+
+% \frame{
+% \frametitle{Matrices and Multiplication}
+
+% There are two types of multiplication for matrices:
+% \begin{itemize}
+% \item \alert{Scalar multiplication}: A scalar  multiplied with a matrix
+% \item \alert{Matrix multiplication}: A matrix multiplied with a matrix
+% \end{itemize}\bigskip
+% \pause
+% \alert{Scalar multiplication} is straightforward: A scalar times a matrix equals the scalar times each element of the matrix. Thus,
+
+% \begin{small}
+% \[ \mathbf{A}=\alpha \left[
+%   \begin{array}{cc}
+%     a_{1,1} & a_{1,2} \\
+%     a_{2,1} & a_{2,2} \\
+%   \end{array}
+% \right] = \left[
+%   \begin{array}{cc}
+%   \alpha\,  a_{1,1} & \alpha\, a_{1,2} \\
+%    \alpha\, a_{2,1} & \alpha\,a_{2,2} \\
+%   \end{array}
+% \right] \]
+% \end{small}\pause\bigskip
+% So,
+% \begin{small}
+% \[ \mathbf{A}=\frac{1}{2} \left[
+%   \begin{array}{cc}
+%     4 & 8 \\
+%     6 & 2 \\
+%   \end{array}
+% \right] = \pause\left[
+%   \begin{array}{cc}
+%   2 & 4 \\
+%   3 & 1 \\
+%   \end{array}
+% \right] \]
+% \end{small}
+
+% }
+
+%  \frame{
+% \frametitle{Matrix Multiplication}
+% \small
+% \alert{Matrix multiplication} is more involved: Given an ($m \times n$) matrix $\mathbf{A}$ and an ($n \times r$) matrix $\mathbf{B}$, we can define the product $\mathbf{AB} = \mathbf{C}$ as the  ($m \times r$) matrix whose entries are defined by:
+
+% \[
+% \sum_{k=1}^n \, a_{i,k} \, b_{k,j} \ = \ c_{i,j}
+% \]
+% where $i=1,...,m$ and $j=1,...,r$.\\\bigskip
+% \vspace{-.5cm}
+% \[ \mathbf{A} = \left[
+% \begin{array}{rrr}
+%     -2 & 1 & 3  \\
+%     4 & 1 & 6
+% \end{array}
+% \right]\ \ \ \mathbf{B} = \left[
+% \begin{array}{rr}
+%     3 & -2  \\
+%     2 & 4  \\
+%     1 & -3
+% \end{array}
+% \right] \]
+% \begin{eqnarray*}
+%     \mathbf{C} & = \pause & \left[
+% \begin{array}{rr}
+%     -2 \cdot 3 + 1 \cdot 2 + 3 \cdot 1 & -2 \cdot -2 + 1 \cdot 4 +
+%     3 \cdot -3   \\
+%     4 \cdot 3 + 1 \cdot 2 + 6 \cdot 1 & 4 \cdot -2 + 1 \cdot 4 + 6
+%     \cdot -3
+% \end{array}
+% \right]   \\
+%      & = & \left[
+% \begin{array}{rr}
+%     -1 & -1  \\
+%     20 & -22
+% \end{array}
+% \right]
+% \end{eqnarray*}
+
+% %Notice:
+% %\begin{itemize}
+% %\item For matrices to  be \alert{conformable for multiplication}, the number of columns of $\mb{A}$, $n$, must match the number of rows of $\mb{B}$ , $n$.\\
+% %\item The resulting matrix  $\mathbf{C}$ has dimensionality $(m \times r)$
+% %\item This is easier to see in an example...
+% %\end{itemize}
+% $\mathbf{A}$ is $(2 \times 3)$ and $\mathbf{B}$ is $(3 \times 2)$, so $\mathbf{C}$ is $(2 \times 2)$.
+% }
+
+
+% \frame{
+% \frametitle{Examples: Matrix Multiplication}
+% \small
+% \[ \mathbf{A} = \left[
+% \begin{array}{rrr}
+%     -2 & 1 & 3  \\
+%     4 & 1 & 6
+% \end{array}
+% \right]\ \ \ \mathbf{B} = \left[
+% \begin{array}{rr}
+%     3 & -2  \\
+%     2 & 4  \\
+%     1 & -3
+% \end{array}
+% \right] \]
+% \begin{eqnarray*}
+%     \mathbf{C} & =  & \left[
+% \begin{array}{rr}
+%     -2 \cdot 3 + 1 \cdot 2 + 3 \cdot 1 & -2 \cdot -2 + 1 \cdot 4 +
+%     3 \cdot -3   \\
+%     4 \cdot 3 + 1 \cdot 2 + 6 \cdot 1 & 4 \cdot -2 + 1 \cdot 4 + 6
+%     \cdot -3
+% \end{array}
+% \right]   \\
+%      & = & \left[
+% \begin{array}{rr}
+%     -1 & -1  \\
+%     20 & -22
+% \end{array}
+% \right]
+% \end{eqnarray*}
+
+% %Notice:
+% \begin{itemize}
+% \item For two matrices $\mb{A}$ ($m \times n$) and $\mb{B}$ ($n \times r$) to be \alert{conformable for multiplication}, $\mb{AB}$, the number of columns of $\mb{A}$, $n$, must match the number of rows of $\mb{B}$, $n$.
+% \item The resulting matrix  $\mathbf{C}$ has dimensionality $(m \times r)$
+% \item To describe the product $\mathbf{AB}$, we say that $\mathbf{B}$ is pre-multiplied by $\mathbf{A}$
+% \end{itemize}
+
+
+% }
+
+% \frame{
+% Can we also compute $\mb{BA}$?
+
+% \[ \mathbf{A} = \left[
+% \begin{array}{rrr}
+%     -2 & 1 & 3  \\
+%     4 & 1 & 6
+% \end{array}
+% \right]\ \ \ \mathbf{B} = \left[
+% \begin{array}{rr}
+%     3 & -2  \\
+%     2 & 4  \\
+%     1 & -3
+% \end{array}
+% \right] \]
+%  \pause Yes, since $\mathbf{B}$ is $(3 \times 2)$ and $\mathbf{A}$ is $(2 \times 3)$ the matrices are conformable for this product as well. What is  $\mb{BA}$?
+% \[ \mathbf{BA} = \pause \left[
+% \begin{array}{rrr}
+%     -14 & 1 & -3  \\
+%     12 & 6 & 30  \\
+%     -14 & -2 & -15
+% \end{array}
+% \right] \]
+% However, notice that $\mb{BA}$ this is not the same as:
+% \begin{eqnarray*}
+%     \mathbf{AB} & = & \left[
+% \begin{array}{rr}
+%     -1 & -1  \\
+%     20 & -22
+% \end{array}
+% \right]
+% \end{eqnarray*}
+% Hence, matrix multiplication is \alert{not commutative} $\mb{AB}\neq \mb{BA}$\\\bigskip
+
+% }
+
+% \frame{
+
+% In general, even when $\mb{A}$ and $\mb{B}$ are conformable for multiplication as $\mb{AB}$, they may not be conformable for multiplication as $\mb{BA}$. \\\bigskip
+
+% For example, suppose  $\mb{A}$ is a $(2 \times 3)$ matrix and $\mb{B}$ is an $(3 \times 1)$ matrix,
+% \[ \mathbf{A} = \left[
+% \begin{array}{rrr}
+%     -2 & 1 & 3  \\
+%     4 & 1 & 6
+% \end{array}
+% \right]\,\,\,\,\,\,\, \mathbf{B} = \left[
+%   \begin{array}{c}
+%     3 \\
+%     1 \\
+%     2 \\
+%   \end{array}
+% \right]\]
+% what is $\mb{AB}$? \pause
+% \[ \mathbf{AB} = \left[
+% \begin{array}{c}
+%     1   \\
+%     25
+% \end{array}
+% \right] \]
+% which is $(2 \times 1)$.\\\bigskip What is  $\mb{BA}$? \pause Not defined since the matrices are not conformable for multiplication in this order.
+
+% }
+
+%  \frame{
+% \frametitle{Matrix Multiplication Properties}
+
+% \begin{itemize}
+%   \item Matrix multiplication is \alert{associative}:\\
+%   $(\mb{AB} ) \mb{C}=\mb{A}(\mb{BC})$  \bigskip
+%   \item Matrix multiplication is \alert{distributive}:\\
+%   $\mb{A} (\mb{B}+\mb{C}) =  \mb{A}\mb{B} +  \mb{A}\mb{C}$\bigskip
+%   \item It can be shown that:\\
+%   $(\mb{AB})' = \mb{B}'\mb{A}'$
+%   \end{itemize}
+% }
+
+
+% \frame{
+% \frametitle{Matrix Multiplication and Vectors}
+
+% Since vectors are just special cases of matrices we can use the same formula for vector multiplication. For example let us
+% define the  $(n \times 1)$  column vector $\mb{\hat{u}}$ of regression residuals. What is\\
+% \[
+% \mb{\hat{u}}'\mb{\hat{u}} = \pause \left[
+%   \begin{array}{cccc}
+%     \widehat{u}_1 & \widehat{u}_2 & \cdots & \widehat{u}_n \\
+%   \end{array}
+% \right] \left[
+%   \begin{array}{c}
+%     \widehat{u}_1 \\
+%     \widehat{u}_2 \\
+%     \vdots \\
+%     \widehat{u}_n \\
+%   \end{array}
+% \right]
+% \] \pause
+% \[ \mb{\hat{u}}'\mb{\hat{u}} =   \widehat{u}_1  \widehat{u}_1 +   \widehat{u}_2   \widehat{u}_2 + \cdots +   \widehat{u}_n   \widehat{u}_n=\pause\sum_{i=1}^n   \widehat{u}_i^2 \]
+% the result of this multiplication is a scalar, the SSR.\\\bigskip
+
+%  \pause Matrix multiplication of two vector $\mb{\hat{u}}'\mb{\hat{v}}$ is called the \alert{inner product} or \alert{dot product} of $\mb{\hat{u}}$ and $\mb{\hat{v}}$. In general: $\mb{\hat{u}}'\mb{\hat{v}}=\sum_{i=1}^n u_i\, v_i$  \\\bigskip
+
+% %What are the dimension of the \alert{outer product} $\mb{\hat{u}}\mb{\hat{u}'}$  ? \pause A $(n \times n)$ matrix.
+
+% }
+
+
+% %\frame{
+% %\frametitle{Matrix Multiplication and Vectors}
+% %
+% %The \alert{inner product} of two vectors $\mb{u}'\mb{v}$ has geometric definition in Euclidean space. In such a space, a vector is a geometrical object that possesses both a magnitude and a direction. The magnitude of the vector is denoted by ||\mb{u}} and the inner product is defined by  $\mb{u}' \mb{v}=$
+% %
+% %
+% % a  called   $\mb{\hat{u}}$ and $\mb{\hat{v}}$. In general: $\mb{\hat{u}}'\mb{\hat{v}}=\sum_{i=1}^n u_i\, v_i$  \\\bigskip
+% %
+% %}
+
+% \frame{
+% \frametitle{Matrix Multiplication and Vectors}
+
+% Now consider the matrix $\mathbf{Y}$ which we can define as:
+% \[ \mathbf{Y} =
+% \left[
+%   \begin{array}{ccc}
+%     y_{1,1} &  y_{1,2} &  y_{1,3} \\
+%     y_{2,1} &  y_{2,2} &  y_{2,3} \\
+%   \end{array}
+% \right]=\left[
+%                \begin{array}{c}
+%                  \mathbf{y_1}' \\
+%                  \mathbf{y_2}' \\
+%                \end{array}
+%              \right]  \]
+% with row vectors $\mathbf{y_1}' = \left[
+%                                          \begin{array}{ccc}
+%                                             y_{1,1} &  y_{1,2} &  y_{1,3} \\
+%                                          \end{array}
+%                                        \right]\,\, \mathbf{y_2}' = \left[
+%                                          \begin{array}{ccc}
+%                                              y_{2,1} &  y_{2,2} &  y_{2,3} \\
+%                                          \end{array}
+%                                        \right]$\\\bigskip \pause
+% Similarly, we can define
+% \[ \mathbf{X} =
+% \left[
+%   \begin{array}{cc}
+%     x_{1,1} & x_{1,2} \\
+%     x_{2,1} & x_{2,2} \\
+%     x_{3,1} & x_{3,2} \\
+%   \end{array}
+% \right] = \left[
+%             \begin{array}{cc}
+%              \mathbf{x_1}  & \mathbf{x_2} \\
+%             \end{array}
+%           \right]\]
+% where $\mathbf{x_1}$ and $\mathbf{x_2}$ represent the columns of $\mathbf{X}$.
+% }
+
+% \frame{
+% \frametitle{Matrix Multiplication and Vectors}
+% Given
+% \[ \mathbf{Y} =
+% \left[
+%   \begin{array}{ccc}
+%     y_{1,1} &  y_{1,2} &  y_{1,3} \\
+%     y_{2,1} &  y_{2,2} &  y_{2,3} \\
+%   \end{array}
+% \right]=\left[
+%                \begin{array}{c}
+%                  \mathbf{y_1}' \\
+%                  \mathbf{y_2}' \\
+%                \end{array}
+%              \right]
+% \]
+% \[
+%   \mathbf{X} =
+% \left[
+%   \begin{array}{cc}
+%     x_{1,1} & x_{1,2} \\
+%     x_{2,1} & x_{2,2} \\
+%     x_{3,1} & x_{3,2} \\
+%   \end{array}
+% \right] = \left[
+%             \begin{array}{cc}
+%              \mathbf{x_1}  & \mathbf{x_2} \\
+%             \end{array}
+%           \right]\]
+
+% the product of the matrices, then, can be expressed in terms of four inner products.
+
+% \[ \mathbf{YX} = \mathbf{C} = \left[
+%                                    \begin{array}{cc}
+%                                      \mathbf{y_1}'\mathbf{x_1} & \mathbf{y_1}'\mathbf{x_2} \\
+%                                      \mathbf{y_2}'\mathbf{x_1} & \mathbf{y_2}'\mathbf{x_2} \\
+%                                    \end{array}
+%                                  \right] \]
+% %This is the same as the summation definition of multiplication.
+
+% }
+
+% \frame{
+% \frametitle{Special Vector and Matrix Multiplications}
+
+% A special vector is $\mb{1}$ which is just a $(n \times 1)$ column vector of ones. This is useful because given another $(n \times 1)$  column vector of data $\mb{x}$ we can compute the inner product:\\
+% \[
+% \mb{1}'\mb{x} = \pause (1\cdot x_1 + 1\cdot x_2 + ... +  1\cdot x_n) = \sum_{i=1}^n x_i \]
+% And also:\[
+% \frac{1}{n}\mb{1}'\mb{x}=\frac{1}{n}\sum_{i=1}^n x_i = \bar{x}
+% \]
+% \pause
+% That is, we can compute the sum of all the elements of vector $\mb{x}$ by pre-multiplying
+% it by $\mb{1}'$.
+
+% }
+
+
+
+
+% \frame{
+% \frametitle{Special Vector and Matrix Multiplications}
+% \small
+% Two vectors $\mb{x}$ and $\mb{y}$ are said to be \alert{orthogonal} (i.e. they are perpendicular) if
+% and only if their inner product is equal to zero:
+% $$
+% \mb{x}'\mb{y} = \mb{y}'\mb{x} = \sum_{i=1}^n x_{i} y_i = 0
+% $$
+% \pause
+% If $\mb{x}$ and $\mb{y}$ are orthogonal we write $\mb{x} \perp
+% \mb{y}$. For example, if
+%  \[ \mathbf{y} = \left[
+% \begin{array}{c}
+% 	y_{1}   \\
+% 	y_{2}
+% \end{array}
+% \right] = \left[
+% \begin{array}{c}
+% 	1   \\
+% 	1
+% \end{array}
+% \right] \]
+% \[ \mathbf{x} = \left[
+% \begin{array}{c}
+% 	x_{1}   \\
+% 	x_{2}
+% \end{array}
+% \right] = \left[
+% \begin{array}{c}
+% 	-1  \\
+% 	1
+% \end{array}
+% \right] \]  The inner product is:
+% $$
+% \mb{x}'\mb{y} = \pause (1\cdot 1) + (-1\cdot 1) = 0
+% $$
+
+% \pause
+
+% Note: Orthogonality implies that the the vectors are linearly independent, but linear independence does not imply orthogonality.
+
+% %is distinct from, though closely related to, independence.
+% %Two vectors can be orthogonal but not independent, and vice versa.
+% }
+
+
+
+
+% \subsection{Identity Matrix}
+
+% \frame{
+% \frametitle{Special Vector and Matrix Multiplications}
+
+% When performing scalar algebra, we know that $x \cdot 1 = x$, which is known as the identity relationship. There is a similar relationship in matrix algebra:\[ \mb{A}\mb{I} = \mb{A}\] where $\mb{I}$ is called the \alert{identity matrix}.\\\bigskip
+
+% $\mb{I}$ is a \alert{diagonal}, \alert{square} matrix with ones on the main
+% diagonal, and zeros on the off diagonal.\\\bigskip
+
+% For example, the order three identity matrix is:
+
+% \[\mb{I}=\left[
+%   \begin{array}{ccc}
+%     1 & 0 & 0 \\
+%     0 & 1 & 0 \\
+%     0 & 0 & 1 \\
+%   \end{array}
+% \right]\]
+
+
+% }
+
+
+% \frame{
+% \frametitle{Special Vector and Matrix Multiplications}
+
+% Notice that $\mb{I}$ is oftentimes subscripted to denote its dimensionality
+% (e.g. $\mb{I}_3$). Here is an
+% example of the use of an identity matrix:
+
+% \[ \left[
+%      \begin{array}{ccc}
+%        7 & 2 & 3 \\
+%        0 & 1 & 1 \\
+%        2 & -2 & 99 \\
+%      \end{array}
+%    \right]
+% \left[
+%   \begin{array}{ccc}
+%     1 & 0 & 0 \\
+%     0 & 1 & 0 \\
+%     0 & 0 & 1 \\
+%   \end{array}
+% \right]= \left[
+%      \begin{array}{ccc}
+%        7 & 2 & 3 \\
+%        0 & 1 & 1 \\
+%        2 & -2 & 99 \\
+%      \end{array}
+%    \right]\]
+% \pause
+% One of the nice properties of the identity matrix is that it is \alert{commutative},
+% \alert{associative}, and \alert{distributive} with respect to multiplication. That is,
+% \[ \mb{A}\mb{I}\mb{B}=\mb{I}\mb{A}\mb{B}=\mb{A}\mb{B}\mb{I}=\mb{A}\mb{B}
+% \]
+
+% }
+
+%\section{Regression in Matrix Form}
+
+\subsection{Matrix Representation of Regression}
+
+\frame{
+\frametitle{Simple regression in Vector Form}
+
+If we define the following column vectors:
+\begin{itemize}
+\item $\mathbf{1}$ denotes a vector with $n$ ones
+\item $\mathbf{y}$ denotes an $n$ element data vector for $y$
+\item $\mathbf{x}$ denotes an $n$ element data vector for $x$
+%\item $\mathbf{\epsilon}$ denotes an $n$ element vector of errors
+%\item $\mathbf{y^{*}}$ denotes an $n$ element data vector of the mean-deviations for $y$
+%\item $\mathbf{x^{*}}$ denotes an $n$ element data vector of the mean-deviations for $x$
+\item $\hat{\mathbf{u}}$ denotes an $n$ element vector of residuals
+\item $\hat{\mathbf{y}}$ denotes an $n$ element vector of fitted values
+\end{itemize}
+\vspace{.5cm}
+%Then we can write the simple regression model
+%\[ \mb{y} = \beta_0\mb{1} + \beta_1\mb{x} + \mb{\epsilon}  \]
+Then we can write the fitted regression line for the data in the following manner.
+\[ \mb{y} = \hat{\beta}_0\mb{1} + \hat{\beta}_1\mb{x} + \hat{\mb{u}}  \]
+and ...
+\[ \hat{\mb{y}} = \hat{\beta}_0\mb{1} + \hat{\beta}_1\mb{x}   \]
+}
+
+\frame{
+\frametitle{Example: Simple Regression with Three Observations}
+
+\[ \mathbf{y} = \left[
+\begin{array}{c}
+	y_{1}   \\
+	y_{2}  \\
+	y_3
+\end{array}
+\right] = \left[
+\begin{array}{c}
+	1   \\
+	2  \\
+	3
+\end{array}
+\right]
+\, ; \, \mathbf{1} = \left[
+\begin{array}{c}
+	1   \\
+	1 \\
+	1
+\end{array}
+\right] \, ; \, \mathbf{x} = \left[
+\begin{array}{c}
+	x_{1}   \\
+	x_{2} \\
+	x_3
+\end{array}
+\right] = \left[
+\begin{array}{c}
+	1   \\
+	3  \\
+	2
+\end{array}
+\right] \]
+\bigskip
+\[
+ \mb{y} = \hat{\beta}_0\mb{1} + \hat{\beta}_1\mb{x} +\hat{\mb{u}}
+\]\bigskip
+\[
+  \left[
+\begin{array}{c}
+	1   \\
+	2  \\
+	3
+\end{array}
+\right]  =  \hat{\beta}_0 \left[
+\begin{array}{c}
+	1   \\
+	1 \\
+	1
+\end{array}
+\right] + \hat{\beta}_1 \left[
+\begin{array}{c}
+	1   \\
+	3  \\
+	2
+\end{array}
+\right] +  \left[
+\begin{array}{c}
+	\hat{u}_1  \\
+	\hat{u}_2  \\
+	\hat{u}_3
+\end{array}
+\right]
+\]
+
+}
+
+\frame{
+\frametitle{Multiple Regression in Matrix Form}
+\small
+\begin{small}
+Let $\mb{X}$ be our $n \times (k + 1)$ data matrix for $k$ predictors (plus the constant),
+\[ \mathbf{X} = \left[
+\begin{array}{ccccc}
+    1 & x_{11} &  x_{12} & \dots & x_{1k}  \\
+    1 & x_{21} & x_{22}  & \dots & x_{2k} \\
+   \vdots & \vdots & \vdots & \vdots & \vdots \\
+   1 & x_{n1} & x_{n2}  & \dots & x_{nk}
+\end{array}
+\right] \]
+\pause
+Let $\hat{\boldsymbol{\beta}}$ be the vector $(k + 1) \times 1$ of least squares estimates (intercept and $k$ slopes): $\hat{\boldsymbol{\beta}} = \left[
+\begin{array}{c}
+    \hat{\beta}_0 \\
+    \hat{\beta}_1 \\
+    \vdots \\
+    \hat{\beta}_k
+    \end{array}
+\right]$\\
+\pause
+Then $\mb{X}\hat{\boldsymbol{\beta}}$ is the $n \times 1$ vector of fitted values:
+\[
+\hat{\mb{y}} = \left[
+\begin{array}{c}
+    \hat{y}_1 \\
+    \hat{y}_2 \\
+    \vdots \\
+    \hat{y}_n
+    \end{array}
+\right]  = \pause \mb{X}\hat{\boldsymbol{\beta}} = \pause
+\left[
+\begin{array}{c}
+    1\hat{\beta}_0  + x_{11}\hat{\beta}_1 +  x_{12}\hat{\beta}_2 + \dots + x_{1k} \hat{\beta}_k \\
+    1\hat{\beta}_0 + x_{21}\hat{\beta}_1 + x_{22}\hat{\beta}_2  + \dots + x_{2k}\hat{\beta}_k \\
+   \vdots  \\
+   1\hat{\beta}_0 + x_{n1}\hat{\beta}_1 + x_{n2}\hat{\beta}_2  + \dots + x_{nk}\hat{\beta}_k
+\end{array}
+\right]
+\]
+\end{small}
+}
+
+\begin{frame}[fragile]
+\frametitle{Explanatory Data Matrix}
+The $n \times (k + 1)$ matrix $\mb{X}$ is often called the \alert{design matrix}. Example:
+
+% Output of code/fig_chile_matrices.R (saved in code/fig_chile_matrices.txt).
+\begin{Verbatim}[fontsize=\footnotesize, frame=single, label=R Code]
+> fit <- lm(vote1 ~ fem + educ + age, data = d)
+> X <- model.matrix(fit)
+> dim(X)
+[1] 1703    4
+> head(X, 8)
+  (Intercept) fem educ age
+1           1   0    1  65
+2           1   0    3  29
+3           1   1    1  38
+4           1   1    1  49
+5           1   1    2  23
+6           1   1    1  28
+7           1   0    3  26
+8           1   1    2  24
+\end{Verbatim}
+In R, the design matrix can be extracted from a fitted {\tt lm} object
+by the {\tt model.matrix} function.
+\slidesource{national survey by FLACSO/Chile, April--May 1988, before the plebiscite (\texttt{carData::Chile}); we keep the 1,703 of 2,700 respondents who intended to vote Yes or No and answered every question. \texttt{vote1} $=1$ if the respondent intends to vote Yes (for Pinochet), $0$ if No; \texttt{fem} $=1$ if female; \texttt{educ}: 1 = primary, 2 = secondary, 3 = post-secondary.\par}
+\end{frame}
+
+\subsection{Solving Linear Systems using Matrices}
+
+\frame{
+\frametitle{Solving Systems of Equations Using Matrices}
+
+Matrices are very useful to solve linear systems of equations, such as the first order conditions for our least squares estimates.\\\bigskip
+
+Here is an example with three equations and three unknowns:
+
+\begin{eqnarray*}
+    x + 2y + z & = & 3  \\
+    3x - y - 3z & = & -1  \\
+    2x + 3y + z & = & 4
+\end{eqnarray*}
+
+How would one go about solving this? \pause There are various techniques, including
+substitution, and multiplying equations by constants and adding them to get
+single variables to cancel.
+
+}
+
+\frame{
+\frametitle{Solving Systems of Equations Using Matrices}
+\small
+An easier way is to use matrix algebra. Note that the system of equations
+\begin{eqnarray*}
+    x + 2y + z & = & 3  \\
+    3x - y - 3z & = & -1  \\
+    2x + 3y + z & = & 4
+\end{eqnarray*}
+can be written as follows:
+\[
+\left[
+\begin{array}{rrr}
+    1 & 2 & 1  \\
+    3 & -1 & -3  \\
+    2 & 3 & 1
+\end{array}
+\right]
+\left[
+\begin{array}{r}
+    x  \\
+    y  \\
+    z
+\end{array}
+\right]
+=
+\left[
+\begin{array}{r}
+    3  \\
+    -1 \\
+    4
+\end{array}
+\right] \iff
+\mathbf{Au = b}
+\]
+
+How do we solve this for $\mb{u}=\left[
+\begin{array}{r}
+    x  \\
+    y  \\
+    z
+\end{array}
+\right]$?  Let's look at the scalar case first.
+
+}
+
+
+
+
+\frame{
+\frametitle{Solving Equations with Inverses (scalar case)}
+\small
+Let's go back to the scalar world of 8th grade algebra. How would you solve the following for $u$?
+$$
+a u = b
+$$
+\pause We multiply both sides of by the reciprocal $1/a$ (the \alert{inverse of $a$}) and get:
+\begin{align*}
+\frac{1}{a} a\, u = \frac{1}{a} b \\
+u = \frac{b}{a}
+\end{align*}
+
+(Note that this technique only works if $a \ne 0$.  If $a=0$, then there are either an infinite number of solutions for $u$ (when $b=0$), or no solutions for $u$ (when $b \ne 0$).)\\\bigskip
+\pause
+So to solve our multiple equation problem in the matrix case we need a matrix equivalent of the inverse. This equivalent is the \alert{inverse matrix}. The inverse of $\mb{A}$ is written as $\mb{A^{-1}}$.
+
+}
+
+\frame{
+\frametitle{Inverse of a Matrix}
+\small
+The \alert{inverse} $\mb{A}^{-1}$ of $\mb{A}$ has the property that $\mb{A}^{-1}\mb{A} =
+\mb{A}\mb{A}^{-1} = \mb{I}$ where $\mb{I}$ is the identity matrix.
+
+\begin{itemize}
+  \item The inverse $\mb{A}^{-1}$ exists only if $\mb{A}$ is invertible or \alert{nonsingular} (more on this soon)
+%  \begin{itemize}
+%    \item All invertible matrices are square, but not all square matrices are invertible.
+%    \item $\mb{A}$ is invertible iff it is \alert{nonsingular}. We can check singularity of $\mb{A}$ in a number of ways (e.g. computing the column rank).
+%  \end{itemize}
+  \item The inverse is unique if it exists and then the linear system has a unique solution.
+  \item There are various methods for finding/computing the inverse of a matrix
+\end{itemize}
+
+The \alert{inverse matrix} allows us to solve linear systems of equations.
+
+\begin{align*}
+\uncover<2->{\mathbf{Au = b}\\}
+\uncover<3->{\mathbf{A^{-1}Au = A^{-1}b}\\}
+\uncover<4->{\mathbf{Iu = A^{-1}b}\\}
+\uncover<5->{\mathbf{u = A^{-1}b}}
+\end{align*}
+
+}
+
+
+\frame{
+\small
+Given $\mb{A}$ we find that $\mb{A^{-1}}$ is:
+\[\mb{A}=
+\left[
+\begin{array}{rrr}
+    1 & 2 & 1  \\
+    3 & -1 & -3  \\
+    2 & 3 & 1
+\end{array}
+\right]\,;\, \mb{A^{-1}}=
+\left[
+\begin{array}{rrr}
+    8 & 1 & -5  \\
+    -9 & -1 & 6  \\
+    11 & 1 & -7
+\end{array}
+\right]\]
+We can now solve our system of equations:\pause
+\[
+\mb{u}=\mb{A^{-1}b}=
+\left[
+\begin{array}{rrr}
+    8 & 1 & -5  \\
+    -9 & -1 & 6  \\
+    11 & 1 & -7
+\end{array}
+\right]\left[
+\begin{array}{r}
+    3  \\
+    -1 \\
+    4
+\end{array}
+\right]=\left[
+\begin{array}{r}
+    3  \\
+    -2 \\
+    4
+\end{array}
+\right]\]\pause
+So the solution vector is $\alert{x=3}$, $\alert{y=-2}$, and $\alert{z=4}$. Verifying:
+\begin{eqnarray*}
+    x + 2y + z  &= \alert{3} + 2\cdot \alert{-2} + \alert{4} & =  3 \\
+    3x - y - 3z  &= 3\cdot \alert{3} - \alert{-2} - 3\cdot \alert{4}& =  -1\\
+    2x + 3y + z &=  2\cdot \alert{3} + 3 \cdot \alert{-2} + \alert{4} & =  4
+\end{eqnarray*}
+Computationally, this method is very convenient. We ``just'' compute the inverse, and perform a single matrix multiplication.
+}
+
+\frame{
+\frametitle{Singularity of a Matrix}
+
+\small
+
+If the inverse of $\mb{A}$ exists, then the linear system has a unique solution. If it exists, we say that $\mb{A}$ is \alert{nonsingular} or \alert{invertible} (these statements are equivalent).\\\bigskip
+
+$\mb{A}$ must be square to be invertible, but not all square matrices are invertible. More precisely, a square matrix $\mb{A}$ is invertible iff its column vectors (or equivalently its row vectors) are \alert{linearly independent}.\\\bigskip
+
+The column \alert{rank} of a matrix $\mb{A}$ is the largest number of linearly independent columns of $\mb{A}$. If the rank of $\mb{A}$ equals the number of columns of $\mb{A}$, then we say that $\mb{A}$ has \alert{full column rank}. This implies that all its column vectors are linearly independent.\\\bigskip
+
+%The column rank of a matrix A is the maximal number of linearly independent columns of A. Likewise, the row rank is the maximal number of linearly independent rows of A.
+% Since the column rank and the row rank are always equal, they are simply called the rank of A.
+
+If a column of $\mb{A}$ is a linear combination of the other columns, there are either \alert{no solutions} to the system of equations or infinitely \alert{many solutions} to the system of equations. With no solution, the system is called \alert{inconsistent}; with infinitely many, the equations do not pin down a single solution.
+
+}
+
+%\frame{
+%\frametitle{Geometric Example in 2D}
+%\begin{figure}[ht] \centering
+%        \scalebox{.4}{\includegraphics{pres1.pdf}}
+%\end{figure}
+%
+%\[
+%A =\left[
+%\begin{array}{rr}
+%    1 & -1\\
+%    3 &  1
+%\end{array}
+%\right] \, \quad \,
+%A =\left[
+%\begin{array}{rr}
+%    4 & 3\\
+%    1 & -2 \\
+%    3 & 5
+%\end{array}
+%\right] \, \quad \,
+%A =\left[
+%\begin{array}{rr}
+%    3 & 2\\
+%    3 & 2
+%\end{array}
+%\right]
+%\]
+%}
+
+\frame{
+\frametitle{Geometric Example in 2D}
+\centering
+% Drawn in TikZ (2026); replaces three cropped 2015 screenshots (now in _old/figs/eq1-3.pdf).
+\begin{tikzpicture}[x=0.64cm, y=0.5cm, font=\footnotesize, >=Stealth]
+  % three identical panels: axes and titles
+  \foreach \k/\ttl in {0/{One solution}, 1/{No solution}, 2/{Infinitely many solutions}} {
+    \begin{scope}[xshift=\k*5.15cm]
+      \draw[->, gray!80] (-0.6,0) -- (5.4,0) node[right, text=CourseInk] {$x$};
+      \draw[->, gray!80] (0,-2.8) -- (0,5.0) node[above, text=CourseInk] {$y$};
+      \foreach \t in {1,2,3,4}
+        % inner sep=1pt: the labels sit close to the axis, clear of the red line in panel 1
+        \draw[gray!80] (\t,0.12) -- (\t,-0.12) node[below, inner sep=1pt, font=\scriptsize, text=CourseInk] {$\t$};
+      \foreach \t in {-2,2,4}
+        \draw[gray!80] (0.12,\t) -- (-0.12,\t) node[left, font=\scriptsize, text=CourseInk] {$\t$};
+      \node[font=\small\bfseries, text=Cardinal] at (2.4,6.2) {\ttl};
+    \end{scope}
+  }
+  % panel 1: x + y = 4 and 2x - 3y = 6 cross once, at (3.6, 0.4)
+  \begin{scope}
+    \draw[CourseBlue, very thick] (-0.5,4.5) -- (5.2,-1.2);
+    % the red line starts at its y-intercept (0,-2), so it stays clear of the tick label -2
+    \draw[Cardinal, very thick] (0,-2) -- (5.2,1.4667);
+    \node[CourseBlue, anchor=south west] at (0.55,3.45) {$x + y = 4$};
+    \node[Cardinal, anchor=north west] at (0.9,-1.75) {$2x - 3y = 6$};
+    \fill[CourseInk] (3.6,0.4) circle (2.2pt);
+    \draw[->, CourseInk, thin] (3.6,2.55) -- (3.6,0.75);
+    \node[CourseInk, anchor=south] at (3.6,2.5) {$(3.6,\ 0.4)$};
+  \end{scope}
+  % panel 2: x + y = 4 and x + y = 2 are parallel
+  \begin{scope}[xshift=5.15cm]
+    \draw[CourseBlue, very thick] (-0.5,4.5) -- (5.2,-1.2);
+    \draw[Cardinal, very thick] (-0.5,2.5) -- (4.7,-2.7);
+    \node[CourseBlue, anchor=south west] at (2.2,1.9) {$x + y = 4$};
+    \node[Cardinal, anchor=north west] at (0.2,-1.0) {$x + y = 2$};
+  \end{scope}
+  % panel 3: x + y = 4 and 2x + 2y = 8 are the same line
+  \begin{scope}[xshift=10.3cm]
+    % same width as the other lines; the red dashes alternate with the blue line underneath
+    \draw[CourseBlue, very thick] (-0.5,4.5) -- (5.2,-1.2);
+    \draw[Cardinal, very thick, dash pattern=on 4pt off 3pt] (-0.5,4.5) -- (5.2,-1.2);
+    \node[CourseBlue, anchor=south west] at (2.2,1.9) {$x + y = 4$};
+    \node[Cardinal, anchor=south west] at (2.2,2.95) {$2x + 2y = 8$};
+  \end{scope}
+  % the same systems written as A u = b (panel centers are 8.047 x-units apart)
+  \node at (2.4,-4.45)
+    {$\mb{A}=\left[\begin{array}{rr} 1 & 1\\ 2 & -3\end{array}\right],\ \mb{b}=\left[\begin{array}{r} 4\\ 6\end{array}\right]$};
+  \node at (10.447,-4.45)
+    {$\mb{A}=\left[\begin{array}{rr} 1 & 1\\ 1 & 1\end{array}\right],\ \mb{b}=\left[\begin{array}{r} 4\\ 2\end{array}\right]$};
+  \node at (18.494,-4.45)
+    {$\mb{A}=\left[\begin{array}{rr} 1 & 1\\ 2 & 2\end{array}\right],\ \mb{b}=\left[\begin{array}{r} 4\\ 8\end{array}\right]$};
+  \node at (2.4,-6.2) {$\mb{A}$ invertible};
+  \node at (10.447,-6.2) {$\mb{A}$ singular};
+  \node at (18.494,-6.2) {$\mb{A}$ singular};
+\end{tikzpicture}
+}
+
+
+
+
+
+%\frame{
+%\frametitle{Geometric Example in 2D}
+%\begin{figure}[ht] \centering
+%        \scalebox{.6}{\includegraphics{g1.pdf}}
+%\end{figure}
+%
+%}
+
+%\frame{
+%\frametitle{Geometric Example in 3D}
+%\begin{figure}[ht] \centering
+%        \scalebox{.45}{\includegraphics{g2.pdf}}
+%\end{figure}
+%
+%}
+
+\frame{
+\frametitle{Why do we care about invertibility?}
+\begin{small}
+We have seen that OLS regression is defined by a system of linear equations
+
+\[
+\hat{\mb{y}} = \left[
+\begin{array}{c}
+    \hat{y}_1 \\
+    \hat{y}_2 \\
+    \vdots \\
+    \hat{y}_n
+    \end{array}
+\right]  = \mb{X}\hat{\boldsymbol{\beta}} =
+\left[
+\begin{array}{c}
+    1\hat{\beta}_0  + x_{11}\hat{\beta}_1 +  x_{12}\hat{\beta}_2 + \dots + x_{1k} \hat{\beta}_k \\
+    1\hat{\beta}_0 + x_{21}\hat{\beta}_1 + x_{22}\hat{\beta}_2  + \dots + x_{2k}\hat{\beta}_k \\
+   \vdots  \\
+   1\hat{\beta}_0 + x_{n1}\hat{\beta}_1 + x_{n2}\hat{\beta}_2  + \dots + x_{nk}\hat{\beta}_k
+\end{array}
+\right]
+\]
+with our data matrix\[ \mathbf{X} = \left[
+\begin{array}{ccccc}
+    1 & x_{11} &  x_{12} & \dots & x_{1k}  \\
+    1 & x_{21} & x_{22}  & \dots & x_{2k} \\
+   \vdots & \vdots & \vdots & \vdots & \vdots \\
+   1 & x_{n1} & x_{n2}  & \dots & x_{nk}
+\end{array}
+\right] \]
+\pause
+We have also learned that $\hat{\boldsymbol{\beta}}$ is obtained by solving \alert{normal equations},
+a linear system of equations. \\
+\pause
+It turns out that to solve for $\hat{\boldsymbol{\beta}}$, we need to invert $\mb{X'X}$, a $(k + 1) \times (k + 1) $ matrix.
+\end{small}
+
+}
+
+\frame{
+\frametitle{Some Non-invertible Explanatory Data Matrices}
+
+\small
+$\mb{X'X}$ is invertible iff $\mb{X}$ is full column rank (see Blackwell, ch.~7.4), so the collection of predictors need to be linearly independent (no perfect collinearity).\\\bigskip Some example of $\mb{X}$ that are not full column rank:
+\begin{small}
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 2 &  -2   \\
+    1 & 3 &  -3   \\
+    1 & 4 &  -4   \\
+    1 & 5 &  -5
+\end{array}
+\right] \]
+%\[ \mathbf{X} = \left[
+%\begin{array}{cccc}
+%    1 & 27 &  12 & 0     \\
+%    1 & 46 & 16  & 1   \\
+%   1 & 33 & 12  & 1
+%\end{array}
+%\right] \]\pause
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 54 &  54{,}000      \\
+    1 & 37 &  37{,}000   \\
+   1 & 89 &  89{,}000   \\
+   1& 72 & 72{,}000
+\end{array}
+\right] \]
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 0 &  1      \\
+    1 & 1 &  0   \\
+   1 & 1 &  0   \\
+   1& 0 & 1
+\end{array}
+\right] \]
+\end{small}
+}
+
+\section{The OLS Estimator in Matrix Algebra}
+
+\subsection{Vector Derivatives}
+\frame{
+\frametitle{The Linear Model in Matrix Form}
+
+Let's consider the OLS estimator. The general multiple regression model can be written as,
+
+$$
+\mb{y} = \X \b  + \mb{u}
+$$
+
+where:
+\begin{itemize}
+  \item $\y$ is the $n \times 1$ vector of responses
+  \item $\X$ is the $n \times (k+1)$ design matrix of predictor variables plus constant
+  \item $\b$ is the $(k+1) \times 1$ vector of regression coefficients (intercept and slopes)
+  \item $\mb{u}$ is the $n \times 1$ vector of errors.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Sum of Squared Residuals}
+\scriptsize
+Recall that we derive the OLS estimator by minimizing the sum of squared residuals (SSR) with respect to $\b$.
+
+\medskip
+\pause
+
+Let's define the $n \times 1$ vector of residuals for a hypothetical value of $\b$, $\tilde\b$,
+as $\tilde{\mb{u}}=\y - \X \tilde{\b}$.
+
+\medskip
+\pause
+
+Then we can write SSR as,
+\begin{align*}
+\uncover<2->{S(\tilde{\b}, \X, \y)
+   &= \tilde{\mb{u}}'\tilde{\mb{u}} \l(= \textstyle \sum_{i=1}^n \tilde{u}_i^2 \r)\\}
+\uncover<3->{   &=  (\y - \X \tilde{\b})'(\y - \X \tilde{\b}) \\}
+\uncover<4->{   &=  (\y' - (\X \tilde{\b})')(\y - \X \tilde{\b}) \\}
+\uncover<5->{   &=  (\y' - \tilde{\b}'\X')(\y - \X \tilde{\b}) \\}
+\uncover<6->{   &= \y'\y - \tilde{\b}'\X'\y - \y'\X\tilde{\b} + \tilde{\b}'\XX  \tilde{\b} \\}
+\uncover<7->{   &= \y'\y - (\X \tilde{\b})' \y - \y'\X\tilde{\b} + \tilde{\b}'\XX  \tilde{\b} \\}
+\uncover<8->{   &= \y'\y - \y' (\X \tilde{\b}) - \y'\X\tilde{\b} + \tilde{\b}'\XX  \tilde{\b} \\}
+\uncover<9->{   &= \y'\y - 2 \y'\X\tilde{\b} + \tilde{\b}'\XX \tilde{\b}\, %\,\,(\mbox{using}\,\, (\mb{AB})' = \mb{B}'\mb{A}')
+}
+\end{align*}
+
+%Recall:  $(\mb{A-B})' = \mb{A}'-\mb{B}'$ and $(\mb{AB})' = \mb{B}'\mb{A}'$)\\
+
+\uncover<10->{ Once we have defined the OLS estimator of $\b$, how do we find the vectors of estimates $\tilde{\b}$ that minimizes the SSR?\\\bigskip}
+
+\uncover<11->{We compute the vector of partial derivatives and solve the resulting system of equations with an inverse matrix.}
+
+}
+
+
+\frame{
+\frametitle{Gradient}
+\small
+
+%A few matrix derivative rules are needed to derive the OLS estimator.\\\medskip
+
+Let $v = v(\mb{u})$ be a \alert{scalar-valued function} $\mathbb{R}^n \rightarrow \mathbb{R}$ where
+$\mb{u}$ is a $(n \times 1)$ column vector.
+For example: $v(\mb{u}) = \mb{c}'\mb{u}$ where $\mb{c} = \left[
+                                                              \begin{array}{c}
+                                                                0 \\
+                                                                1 \\
+                                                                3 \\
+                                                              \end{array}
+                                                            \right]$ and $\mb{u} = \left[
+                                                                                     \begin{array}{c}
+                                                                                       u_1 \\
+                                                                                       u_2 \\
+                                                                                       u_3 \\
+                                                                                     \end{array}
+                                                                                   \right]$ \\ \smallskip
+\begin{definition}[gradient]
+We can define the column \alert{vector of partial derivatives}
+
+$$
+\frac{\partial v(\mb{u})}{\partial \mb{u}} =
+\left[
+\begin{array}{c}
+    \partial v/\partial u_1 \\
+    \partial v/\partial u_2 \\
+    \vdots \\
+    \partial v/\partial u_{n}
+\end{array}
+\right]
+$$
+
+This vector of partial derivatives is called the \alert{gradient}.
+\end{definition}
+}
+
+\frame{
+\frametitle{Vector Derivative Rule I (linear functions)}
+\small
+\vspace{-.25\baselineskip}
+\begin{theorem}[differentiation of linear functions]
+Given a linear function $v(\mb{u}) = \mb{c}'\mb{u}$ of an ($n \times 1$) vector $\mb{u}$, the derivative of $v(\mb{u})$ w.r.t. $\mb{u}$ is given by $$\frac{\partial v} { \partial \mb{u}} = \mb{c}$$
+This also works when $\mb{c}$ is a matrix and therefore $v$ is a vector-valued function.
+\end{theorem}
+\pause
+\medskip
+
+For example, let $v(\mb{u}) = \mb{c}'\mb{u}$ where $\mb{c} = \left[
+                                                              \begin{array}{c}
+                                                                0 \\
+                                                                1 \\
+                                                                3 \\
+                                                              \end{array}
+                                                            \right]$ and $\mb{u} = \left[
+                                                                                     \begin{array}{c}
+                                                                                       u_1 \\
+                                                                                       u_2 \\
+                                                                                       u_3 \\
+                                                                                     \end{array}
+                                                                                   \right]$
+, then
+$$
+v = \mb{c}'\mb{u} = 0\cdot u_1 + 1 \cdot u_2 + 3 \cdot u_3
+$$
+and
+\vspace{-.5\baselineskip}
+$$
+\frac{\partial v}{ \partial \mb{u}} =
+\left[
+\begin{array}{c}
+    \partial v/\partial u_1 \\
+    \partial v/\partial u_2 \\
+    \partial v/\partial u_3
+\end{array}
+\right]
+= \pause
+\left[
+\begin{array}{r}
+    0 \\
+    1 \\
+    3
+\end{array}
+\right]
+= \mb{c}
+$$
+Hence,
+\vspace{-.5\baselineskip}
+$$
+\frac{\partial v} { \partial \mb{u}} = \mb{c}
+$$
+}
+
+%\frame{
+%\frametitle{Vector Derivatives: Example I}
+%\small
+%If $v(\mb{u}) = \mb{c}'\mb{u}$ then $\frac{\partial v} { \partial \mb{u}} = \mb{c}$\\\bigskip
+%We care about this, since for the OLS estimator we need the derivative of $v(\mb{u}) = \mb{c'}\mb{u}$ where\\\medskip
+%\begin{itemize}
+%  \item  $\mb{c}' = - 2 \mb{y'X}$ is of dimensionality \pause $(1 \times k+1)$. Recall $\mb{y}$ is $(n \times 1)$ and $\mb{X}$ is $(n \times k+1)$\pause \medskip
+%  \item $\mb{u}=\tilde{\boldsymbol{\beta}}$ is our column vector with $k+1$ regression coefficients
+%  \end{itemize}\bigskip
+
+%So
+%$$
+%v = (- 2 \mb{y'X})\tilde{\boldsymbol{\beta}}
+%$$
+%and
+%$$
+%\frac{\partial v }{\partial \tilde{\boldsymbol{\beta}}} = \pause (- 2 \mb{y'X})' = \pause - 2 \mb{X'y}
+%$$
+
+%}
+
+\frame{
+\frametitle{Vector Derivative Rule II (quadratic form)}
+\small
+\begin{theorem}[quadratic form]
+ Given a $(n \times n)$ symmetric matrix $\mb{A}$ and a scalar-valued function $v(\mb{u}) = \mb{u}'\mb{A}\mb{u}$ of $(n \times 1)$ vector $\mb{u}$, we have
+$$
+\frac{\partial v }{ \partial \mb{u}} = \mb{A}'\mb{u} + \mb{A}\mb{u} =
+2\mb{A}\mb{u} \,\, \,%\mbox{Note: this vector is} (1 \times n)
+$$
+\end{theorem}
+\bigskip\pause
+For example, let
+$
+\mb{A} =
+\left[
+\begin{array}{cc}
+  3 & 1\\
+  1 & 5
+\end{array}
+\right] \ \mbox{and} \ \mb{u} = \left[
+                                        \begin{array}{c}
+                                          u_1 \\
+                                          u_2 \\
+                                        \end{array}
+                                      \right]$. Then $v(\mb{u}) = \mb{u}'\mb{A}\mb{u}$ is equal to \pause
+\begin{align*}
+%v &= \mb{u}'\mb{A}\mb{u}\\
+v  &=  [3 \cdot u_1 + u_2, \, \, u_1 + 5 \cdot u_2]
+\left[
+\begin{array}{c}
+   u_1\\
+   u_2
+\end{array}
+\right]\\
+  &= 3 u_1^2 + 2 u_1 u_2 + 5 u_2 ^2
+\end{align*}
+and
+$$
+\frac{\partial v}{ \partial \mb{u}} = \pause
+\left[
+\begin{array}{c}
+    \partial v/\partial u_1 \\
+    \partial v/\partial u_2 \\
+\end{array}
+\right]
+= \pause
+\left[
+\begin{array}{c}
+   6 u_1 + 2 u_2 \\
+   2 u_1 + 10 u_2
+\end{array}
+\right]
+=
+2 \cdot \left[
+\begin{array}{c}
+   3 u_1 + 1 u_2 \\
+   1 u_1 + 5 u_2
+\end{array}
+\right]
+=
+2 \mb{A} \mb{u}
+$$
+
+}
+
+%\frame{
+%\frametitle{Vector Derivatives: Example II}
+%\small
+%Recall that when $v = \mb{u}'\mb{A}\mb{u}$ and $\mb{A}$ is symmetric, then
+%$$
+%\partial v / \partial \mb{u} = \mb{A}'\mb{u} + \mb{A}\mb{u} =
+%2\mb{A}\mb{u}
+%$$
+%We care about this, since we need such a partial derivative for the OLS estimator.\\\bigskip
+
+%Let $\mb{A} = \mb{X'X}$ be the $(k+1) \times (k+1)$ matrix that can be calculated from the matrix of explanatory variables, and let $\mb{u} = \tilde{\boldsymbol{\beta}}$, the $(k + 1 \times 1)$ vector of possible values for the intercept and slope parameters.\\\bigskip
+
+%Then $v(\mb{u} ) = \tilde{\boldsymbol{\beta}}'\mb{X'X} \tilde{\boldsymbol{\beta}}$, and
+%$$
+%\frac{\partial v} { \partial \tilde{\boldsymbol{\beta}}} = \mb{A}'\mb{u} + \mb{A}\mb{u} =
+%2\mb{A}\mb{u} = 2 \mb{X'X} \tilde{\boldsymbol{\beta}}
+%$$
+%%\scriptsize{
+%%Technical aside: $\mb{X'X}$ is positive semi-definite (psd) and symmetric. A symmetric $(n \times n)$ %matrix $\mb{A}$ is psd if $\mb{u}'\mb{A}\mb{u}\geq 0$ for all $(n \times 1)$ vectors $\mb{u}$}
+%%Keep this in mind.
+
+%}
+
+\frame{
+\frametitle{Hessian}
+
+Suppose $v$ is a scalar-valued function $v = f(\mb{u})$ of a
+ $(k+1) \times 1$ column vector $\mb{u}=\left[
+                  \begin{array}{cccc}
+                    u_1 & u_2 & \cdots &  u_{k+1} \\
+                  \end{array}
+                \right]'$
+
+\begin{definition}[Hessian]
+The $(k+1) \times (k+1)$ matrix of second-order partial derivatives of $v = f(\mb{u})$ is called the \alert{Hessian matrix} and denoted
+$$
+\frac{\partial^2 v}{\partial \mb{u} \partial \mb{u}'}=
+\left[
+  \begin{array}{ccc}
+   \frac{\partial^2 v}{\partial u_1\partial u_1}  & \cdots & \frac{\partial^2 v}{\partial u_1\partial u_{k+1}} \\
+    \vdots & \ddots & \vdots \\
+   \frac{\partial^2 v}{\partial u_{k+1}\partial u_1} & \cdots & \frac{\partial^2 v}{\partial u_{k+1}\partial u_{k+1}} \\
+  \end{array}
+\right]
+$$
+\end{definition}
+Note: The Hessian is symmetric.
+%We need the Hessian matrix because it will lead to the \alert{variance-covariance matrix}.
+
+\medskip
+\pause
+We will use the above rules and definitions to derive the OLS estimator next.
+
+%$$
+%\frac{\partial S(\tilde{\b}, \X, \y)}{\partial \tilde{\b}} =
+%-2\X'\y + 2 \XX \tilde{\b}
+%$$
+%
+%\begin{align*}
+%\frac{\partial^2 S(\tilde{\b}, \X, \y)}{\partial \tilde{\b} \partial \tilde{\b}'} &=
+% 2 \XX \tilde{\b}
+%\end{align*}
+
+}
+
+
+\subsection{Derivation of OLS Estimator}
+
+
+\frame{
+\frametitle{Derivatives with respect to $\tilde{\b}$}
+
+%More formally,
+
+%$$
+%\hat{\b}(\X, \y) = \underset{\tilde{\b}}{\arg \min} \
+%S(\tilde{\b},\X, \y)
+%$$
+
+%This is a fairly straightforward optimization problem. So, to find the
+%LS estimate for given values of $X$ and $\y$ we can use calculus.
+
+%First, find the gradient of $S(\tilde{\b}, \X, \y)$ with respect to
+%$\tilde{\b}$:
+\small
+\begin{align*}
+S(\tilde{\b}, \X, \y)
+   &=  (\y - \X \tilde{\b})'(\y - \X \tilde{\b}) \\
+   &= \y'\y - 2 \y'\X\tilde{\b} + \tilde{\b}'\XX \tilde{\b}
+\end{align*}
+$$
+\frac{\partial S(\tilde{\b}, \X, \y)}{\partial \tilde{\b}} = \pause -2\X'\y + 2 \XX \tilde{\b}
+$$
+\begin{itemize}
+\item The first term does not contain $\tilde{\b}$
+\item The second term is an example of rule I from the derivative section
+\item The third term is an example of rule II from the derivative section
+\end{itemize}
+\pause
+And while we are at it the Hessian is:
+$$
+\frac{\partial^2 S(\tilde{\b}, \X, \y)}{\partial \tilde{\b} \partial \tilde{\b}'}=2\XX
+$$
+
+
+}
+
+\frame{
+\frametitle{Solving for $\hat{\b}$}
+
+$$
+\frac{\partial S(\tilde{\b}, \X, \y)}{\partial \tilde{\b}} =
+-2\X'\y + 2 \XX \tilde{\b}
+$$
+
+
+Setting the vector of partial derivatives equal to zero and substituting $\hat{\b}$ for $\tilde{\b}$ , we can solve for the OLS estimator.
+\vspace{-.5\baselineskip}
+\begin{align*}
+\uncover<2->{\mb{0} &= -2\X'\y + 2 \XX \hat{\b} \\}
+\uncover<3->{-2 \XX \hat{\b} &= -2\X'\y \\}
+\uncover<4->{\XX \hat{\b} &= \X'\y \\}
+\uncover<5->{\XXinv \XX \hat{\b} &= \XXinv \X'\y \\}
+\uncover<6->{\mb{I} \hat{\b} &= \XXinv \X'\y \\}
+\uncover<7->{\hat{\b} &= \XXinv \X'\y }
+\end{align*}
+\uncover<8->{This needs $\XX$ to be invertible, which holds when $\X$ has full column rank. Then the Hessian $2\XX$ is positive definite, so this solution minimizes the SSR.}
+
+}
+
+
+
+\frame{
+\frametitle{Numerical Example}
+
+\textbf{Worksheet Q1}\medskip
+
+With $n=3$, regress $y$ on an intercept and $x$ where
+\[
+\y=\begin{bmatrix}1\\2\\3\end{bmatrix},\quad 
+\X=\begin{bmatrix}1&1\\1&3\\1&2\end{bmatrix}.
+\]
+\begin{enumerate}
+    \item Compute $\hat{\boldsymbol{\beta}}$, fitted values $\hat\y$, residuals $\hat\u$.
+    \item Verify the normal equations $\X'\hat\u=\mb{0}$.
+    \item Compute $SSR=\hat\u'\hat\u$ and $\hat\sigma^2=SSR/(n-(k+1))$.
+\end{enumerate}
+
+}
+
+\subsection{OLS Assumptions in Matrix Notation}
+
+\frame{
+\frametitle{Regression Assumptions in Matrix Notation}
+
+\begin{itemize}
+\uncover<2->{  \item \alert{I.~Linearity:} The population relationship between $\X$ and $\y$ is correctly specified and linear in parameter, $\y = \X \b +\mb{u}$\smallskip  }
+\uncover<3->{  \item \alert{II.~Random Sampling}: The observed data represent a random
+sample from the population described by the model.\smallskip}
+\uncover<4->{  \item \alert{III.~No Perfect Collinearity}: $\X$ is a $n \times (k+1)$ matrix with rank $k+1$ (full column rank).\smallskip}
+\uncover<5->{  \item \alert{IV.~Zero Conditional Mean}: $E[\mb{u}|\X]=\mb{0}$, which implies $E[\mb{u}]=\mb{0}$ and that each $u_i$ is uncorrelated with every element of $\X$.\smallskip}
+\uncover<6->{  \item \alert{V.~Homoskedasticity}: $V[\mb{u|\X}]=\sig \mb{I}_{n}$ the conditional variance of the error term is constant for any value of $\X$.\smallskip}
+\uncover<7->{  \item \alert{VI.~Normality}: $\mb{u}|\X \sim \mathcal{N}(\mb{0},\sig \mb{I}_{n})$ which implies that $\y|\X \sim \mathcal{N}(\X\b,\sig\mb{I}_n)$.}
+\end{itemize}
+}
+
+
+
+\subsection{Properties of OLS Estimator}
+
+\frame{
+\frametitle{Expectation of a Random Vector}
+The concept of expectation naturally extends to vectors of random variables:
+
+\begin{definition}[expected value of random vector]
+For a $(n \times 1)$ random vector $\mb{u}$, the expected value of $\mb{u}$, denoted $E[\mb{u}]$, is the vector of expected values:
+\[
+E[\mb{u}] = \left[ \begin{array}{cccc}
+E[u_1] & E[u_2] & \dots & E[u_n]
+ \end{array} \right]'
+\]
+\end{definition}
+\pause
+\medskip
+For non-random $\mb{A}$ and $\mb{B}$, the expectation operator works as in the scalar case:
+$$ E[\mb{A}\mb{u} + \mb{B}] \ = \ \mb{A}E[\mb{u}] + \mb{B} $$
+If $\mb{A}$ and $\mb{B}$ are functions of $\X$, the same holds conditional on $\X$: $E[\mb{A}\mb{u} + \mb{B} \mid \X] = \mb{A}E[\mb{u} \mid \X] + \mb{B}$.
+
+
+}
+
+\frame{
+\frametitle{Unbiasedness of $\hat{\b}$}
+
+Is $E[\hat{\b}]=\b$?
+\begin{align*}
+\uncover<2->{\hat{\b} &= \XXinv \X'\y\, \mbox{ (linearity and no collinearity)} \\}
+\uncover<3->{\hat{\b} &= \XXinv \X'(\X \b + \mb{u}) \\}
+\uncover<4->{\hat{\b} &= \XXinv \XX \b + \XXinv \X' \mb{u}  \\}
+\uncover<5->{\hat{\b} &= \mb{I}\b + \XXinv \X' \mb{u}\\}
+\uncover<6->{\hat{\b}    &= \b + \XXinv \X'\mb{u}\,\, \\}
+\uncover<7->{E[\hat{\b}|\X] &=  E[\b|\X] + E[\XXinv \X'\mb{u}|\X]\\ }
+\uncover<8->{E[\hat{\b}|\X] &=  \b + \XXinv \X'E[\mb{u}|\X]\\ }
+\uncover<9->{E[\hat{\b}|\X] &=  \b  \mbox{ (zero conditional mean)} }
+\end{align*}
+\uncover<10->{So, yes: by the law of iterated expectations, $E[\hat{\b}] = E\big[E[\hat{\b}|\X]\big] = \b$.}
+}
+
+\frame{
+\frametitle{Variance-Covariance Matrix of Random Vectors}
+
+Let's unpack the \alert{homoskedasticity} assumption $V[\mb{u|\X}]=\sig \mb{I}_{n}$.
+
+\begin{definition}[variance-covariance matrix]
+For a $(n \times 1)$ random vector $\mb{u}=\left[ \begin{array}{cccc}
+u_1 & u_2 & \dots & u_n \\
+ \end{array} \right]'$, its \alert{variance-covariance matrix}, denoted $V[\mb{u}]$ or also $\Sigma_{\mb{u}}$, is defined as:
+\[
+V[\mb{u}] = \Sigma_{\mb{u}} = \left[ \begin{array}{cccc}
+\sigma^2_1 & \sigma_{12} & \dots & \sigma_{1n} \\
+\sigma_{21} & \sigma^2_{2} & \dots & \sigma_{2n} \\
+ \vdots & & \dots & \\
+\sigma_{n1} & \sigma_{n2} & \dots & \sigma^2_{n}
+ \end{array} \right]
+\]
+where $\sigma^2_j=V[u_j]$ and $\sigma_{ij}=Cov[u_i,u_j]$.
+\end{definition}
+Notice that this matrix is always symmetric.
+
+%$$
+%Var(\u) = E[\u\u'] =  \sig \mb{I}= \left[ \begin{array}{ccccc} \sigma^2 & 0 & 0 & \dots & 0 \\
+%0 & \sigma^2 & 0 & \dots & 0 \\
+% & & & \vdots & \\
+% 0 & 0 & 0 & \dots & \sigma^2 \end{array} \right]
+%$$
+
+}
+
+\frame{
+\frametitle{Homoskedasticity in Matrix Notation}
+
+If $V[u_i]=\sig$ for all $i=1,...,n$ and the units are independent then $V[\mb{u}] = \sig \mb{I}_n$. \\
+\pause
+More visually:
+
+$$
+V[\mb{u}] =  \sig \mb{I}_n=
+\left[
+\begin{array}{ccccc}
+\sigma^2 & 0 & 0 & \dots & 0 \\
+ 0 & \sigma^2 & 0 & \dots & 0 \\
+ & & & \vdots & \\
+ 0 & 0 & 0 & \dots & \sigma^2
+ \end{array}
+\right]
+$$
+\medskip
+\pause
+So homoskedasticity $V[\mb{u|\X}]=\sig \mb{I}_{n}$ implies that:
+\begin{enumerate}
+  \item $V[u_i|\X]=\sig$ for all $i$ (the variance of the errors $u_i$ does not depend on $\X$ and is constant across observations)
+  \item $Cov[u_i,u_j|\X]=0$ for all $i \neq j$ (the errors are uncorrelated across observations). This holds under our random sampling assumption.
+\end{enumerate}
+
+}
+
+%\frame{
+%\frametitle{Estimation of the Error Variance}
+%\small
+%Given our vector of regression error terms $\mb{u}$, what is $E[\mb{u}\mb{u}']$?
+%\[
+%E[\mb{u}\mb{u}']=\pause\left[
+%\begin{array}{ccccc}
+%E[u_1^2]  & E[u_1 u_2] &  & \dots & E[u_1 u_n] \\
+%E[u_2 u_1]  & E[u_2^2] &  & \dots & E[u_2 u_n] \\
+%\vdots & \vdots & & \ddots & \vdots\\
+%E[u_n u_1]  & E[u_n u_2] &  & \dots & E[u_n^2]
+% \end{array}
+%\right] = \pause \left[
+%\begin{array}{ccccc}
+%\sig  & 0 &  & \dots & 0 \\
+%0  & \sig &  & \dots & 0 \\
+%\vdots & \vdots & & \ddots & \vdots\\
+%0  & 0 &  & \dots & \sig
+% \end{array}
+%\right]
+%\]
+%Recall $E[u_i]=0$ for all $i$. So $V[u_i]=E[u_i^2]-(E[u_i])^2=E[u_i^2]$ and by independence $E[u_i u_j]=E[u_i] \cdot E[u_j]=0$
+
+%%$Cov[u_i,u_j] = E[u_i u_j] - E[u_i] \cdot E[u_j]$.% In general form, the variance-covariance matrix can be written as: $\Sigma_{u}=E[(\mb{u}-E[\mb{u}])(\mb{u}-E[\mb{u}])']$
+
+%$$
+%Var(\u) = E[\u\u'] =  \sig \mb{I}= \left[ \begin{array}{ccccc} \sigma^2 & 0 & 0 & \dots & 0 \\
+%0 & \sigma^2 & 0 & \dots & 0 \\
+% & & & \vdots & \\
+% 0 & 0 & 0 & \dots & \sigma^2 \end{array} \right]
+%$$
+
+%}
+
+\frame{
+\frametitle{Variance of Linear Function of Random Vector}
+\small
+\begin{definition}[Variance of Linear Transformation of Random Vector]
+Recall that for a linear transformation of a random variable $X$ we have $V[aX+b]=a^2V[X]$ with constants $a$ and $b$.\\\bigskip
+
+There is an analogous rule for linear functions of random vectors. Let $v(\mb{u})=\mb{A}\mb{u}+\mb{B}$ be a linear transformation of a random vector $\mb{u}$ with non-random vectors or matrices $\mb{A}$ and $\mb{B}$. Then the variance of the transformation is given by:
+\[
+V[v(\mb{u})]=V[\mb{A}\mb{u}+\mb{B}]=\mb{A} V[\mb{u}]\mb{A}'=\mb{A} \Sigma_{\mb{u}}\mb{A}'
+\]
+If $\mb{A}$ and $\mb{B}$ are functions of $\X$, the same holds conditional on $\X$: $V[\mb{A}\mb{u}+\mb{B} \mid \X]=\mb{A} V[\mb{u} \mid \X]\mb{A}'$.
+\end{definition}
+%$$
+%Var(\u) = E[\u\u'] =  \sig \mb{I}= \left[ \begin{array}{ccccc} \sigma^2 & 0 & 0 & \dots & 0 \\
+%0 & \sigma^2 & 0 & \dots & 0 \\
+% & & & \vdots & \\
+% 0 & 0 & 0 & \dots & \sigma^2 \end{array} \right]
+%$$
+
+}
+
+\frame{
+\frametitle{Conditional Variance of $\hat{\b}$}
+
+\textbf{Worksheet Q2}\medskip
+
+Under homoskedasticity and independent sampling, $V[\u|\X]=\sigma^2\I_n$.  
+\begin{enumerate}\itemsep1em
+    \item Prove that $V[\hat{\boldsymbol{\beta}}|\X]=\sigma^2\XXinv$.  
+    \item For any fixed $(k\!+\!1)\times 1$ vector $\a$, \emph{derive} $V[\a'\hat{\boldsymbol{\beta}}|\X]$ and the plug-in standard error.  
+    \item Return to the data in Worksheet Q1 and report the estimated variance–covariance matrix $\widehat{V}[\hat{\boldsymbol{\beta}}]=\hat\sigma^2\XXinv$.
+\end{enumerate}\bigskip
+
+\textbf{Hint:} To estimate $V[\hat{\b}|\X]$, we replace $\sigma^2$ with its unbiased estimator
+$\hat\sigma^2$, which is now written using matrix notation as:
+$$ \hat\sigma^2 \ = \ \frac{SSR}{n-(k+1)} \ = \ \frac{\hat{\mb{u}}'\hat{\mb{u}}}{n-(k+1)} $$
+}
+
+% \frame{
+% \frametitle{Conditional Variance of $\hat{\b}$}
+% \small
+% $\hat{\b}      = \b + \XXinv \X' \mb{u}$ and $E[ \hat{\b}|\X] = \b + E[ \XXinv \X' \mb{u}|\X] = \b$
+% so the OLS estimator is a linear function of the errors. Thus:
+% \begin{small}
+% \begin{eqnarray*}
+% \uncover<2->{ V[\hat{\b}|\X] &=& V[\b|\X] + V[\XXinv \X' \mb{u}|\X] \\  }
+% \uncover<3->{                    &=& V[ \XXinv \X'  \mb{u}|\X]  \\  }
+% \uncover<4->{                    &=&  \XXinv \X'  \alert{V[\mb{u}|\X]}  (\XXinv \X')' \,\,
+% \mbox{ ($\X$ is nonrandom given $\X$})   \\ }
+% \uncover<5->{                    &=&  \XXinv \X'  \alert{V[\mb{u}|\X]}  \X \XXinv   \\ }
+% \uncover<6->{                    &=&  \XXinv \X'  \alert{\sig \mb{I}}  \X \XXinv \mbox{ (by homoskedasticity})\\  }
+% \uncover<7->{                    &=&  \alert{\sig \mb{I}} \XXinv \X'    \X \XXinv \\  }
+% \uncover<8->{                    &=& \sig  \XXinv \\  }
+% \end{eqnarray*}
+
+% \vspace{-\baselineskip}
+% \uncover<9->{
+% This gives the $(k+1) \times (k+1)$ \alert{variance-covariance matrix} of $\hat{\b}$.
+% }
+%\end{small}
+
+% $V[\hat{\boldsymbol{\beta}}|\X]=\sigma^2\XXinv$ gives the $(k+1) \times (k+1)$ \alert{variance-covariance matrix} of $\hat{\b}$.
+
+% To estimate $V[\hat{\b}|\X]$, we replace $\sigma^2$ with its unbiased estimator
+% $\hat\sigma^2$, which is now written using matrix notation as:
+% $$ \hat\sigma^2 \ = \ \frac{SSR}{n-(k+1)} \ = \ \frac{\hat{\mb{u}}'\hat{\mb{u}}}{n-(k+1)} $$
+% }
+
+%
+%
+%\frame{
+%\frametitle{Conditional Variance of $\hat{\b}$}
+%\small
+%$\hat{\b}      = \b + \XXinv \X' \mb{u}$ and $E[ \hat{\b}|\X] = \b + E[ \XXinv \X' \mb{u}|\X] = \b$
+%so the LS estimator is a linear function of the errors. Thus:
+%\begin{small}
+%\begin{align*}
+%\uncover<2->{ V[\hat{\b}|\X] &= V[\b|\X] + V[\XXinv \X' \mb{u}|\X] \\  }
+%\uncover<3->{                    &= V[ \XXinv \X'  \mb{u}|\X] \,\, (\mbox{ recall } V[X]=E[X^2] - (E[X])^2)   \\  }
+%\uncover<4->{                    &= E[\XXinv \X'  \mb{u} \mb{u}' \X \XXinv|\X ]-\left(E[\XXinv \X'  \mb{u}|\X]E[\XXinv \X'  \mb{u}|\X]' \right) \\  }
+%\uncover<5->{                    &=  \XXinv \X'  \alert{E[\mb{u} \mb{u}'|X]}  \X \XXinv-\mb{0} } \\
+%\uncover<7->{                    &=  \XXinv \X'  \alert{V[\mb{u}|\X]}  \X \XXinv   \\ }
+%\uncover<8->{                    &=  \XXinv \X'  \alert{\sig \mb{I}}  \X \XXinv (\mbox{by homoskedasticity})\\  }
+%\uncover<9->{                    &= \sig  \XXinv \\  }
+%\end{align*}
+%
+%\uncover<10->{The estimate of this, $\widehat{\sigma}^2  \XXinv$, is our $(k+1 \times k+1)$ \alert{variance-covariance matrix}.}
+%\end{small}
+%}
+
+
+
+
+
+\frame{
+\frametitle{Variance-covariance matrix of $\hat{\b}$}
+The \alert{variance-covariance matrix} of the OLS estimators is given by:
+$$
+V[\hat{\b}|\X]= \sigma^2  \XXinv =
+$$
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|ccccc}
+           &    $\widehat{\beta}_0$ &    $\widehat{\beta}_1$ &    $\widehat{\beta}_2$ &  $\cdots$   &    $\widehat{\beta}_k$ \\
+\hline
+   $\widehat{\beta}_0$ & $V[\widehat{\beta}_0]$ & $\Cov[\widehat{\beta}_0,\widehat{\beta}_1]$ &
+   $\Cov[\widehat{\beta}_0,\widehat{\beta}_2]$ & $\cdots$ &  $\Cov[\widehat{\beta}_0,\widehat{\beta}_k]$   \\
+
+   $\widehat{\beta}_1$ & $\Cov[\widehat{\beta}_0,\widehat{\beta}_1]$ & $V[\widehat{\beta}_1]$ &
+    $\Cov[\widehat{\beta}_1,\widehat{\beta}_2]$ &  $\cdots$    &  $\Cov[\widehat{\beta}_1,\widehat{\beta}_k]$ \\
+
+   $\widehat{\beta}_2$ & $\Cov[\widehat{\beta}_0,\widehat{\beta}_2]$ & $\Cov[\widehat{\beta}_1,\widehat{\beta}_2]$ & $V[\widehat{\beta}_2]$ &   $\cdots$  &   $\Cov[\widehat{\beta}_2,\widehat{\beta}_k]$  \\
+    $\vdots$    &  $\vdots$  & $\vdots$    &  $\vdots$    &    $\ddots$        &    $\vdots$        \\
+   $\widehat{\beta}_k$ & $\Cov[\widehat{\beta}_0,\widehat{\beta}_k]$ & $\Cov[\widehat{\beta}_k,\widehat{\beta}_1]$ & $\Cov[\widehat{\beta}_k,\widehat{\beta}_2]$ &     $\cdots$       & $V[\widehat{\beta}_k]$ \\
+\end{tabular}
+\end{center}
+\end{table}
+}
+
+\begin{frame}[fragile]
+\frametitle{Variance-covariance matrix of $\hat{\b}$}
+
+\spacingset{0.8}
+% Output of code/fig_chile_matrices.R (saved in code/fig_chile_matrices.txt).
+\begin{Verbatim}[fontsize=\footnotesize, frame=single, label=R Code, commandchars=\\\{\}]
+> fit <- lm(vote1 ~ fem + educ + age, data = d)
+> summary(fit)
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.4917751  \alert{0.0525717}   9.354  < 2e-16 ***
+fem          0.1284292  \alert{0.0236221}   5.437 6.21e-08 ***
+educ        -0.1051514  \alert{0.0164543}  -6.391 2.13e-10 ***
+age          0.0033573  \alert{0.0008235}   4.077 4.77e-05 ***
+---
+\end{Verbatim}
+
+\footnotesize
+We can pull out the variance-covariance matrix $\hat\sigma^2 (\X'\X)^{-1}$ in \texttt{R} from the \texttt{lm()} object:
+\begin{Verbatim}[fontsize=\footnotesize, frame=single, label=R Code, commandchars=\\\{\}]
+> V <- vcov(fit)
+> V
+              (Intercept)           fem          educ           age
+(Intercept)  2.763788e-03 -3.717198e-04 -6.543766e-04 -3.324904e-05
+fem         -3.717198e-04  5.580053e-04  3.781282e-05  9.631845e-07
+educ        -6.543766e-04  3.781282e-05  2.707446e-04  3.860967e-06
+age         -3.324904e-05  9.631845e-07  3.860967e-06  6.780985e-07
+
+> sqrt(diag(V))
+ (Intercept)          fem         educ          age
+\alert{0.0525717389 0.0236221360 0.0164543200 0.0008234674}
+\end{Verbatim}
+These are the conventional SEs. They assume homoskedasticity (Assumption V), which a 0/1 outcome makes doubtful. Here robust SEs (Lecture 6.3) are almost the same: 0.0237 instead of 0.0236 for \texttt{fem}.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Consistency and Asymptotic Normality}
+\textbf{Worksheet Q3}\medskip
+
+Suppose 
+\begin{itemize}
+\item the true model is $y_i = \mb{x}_i\boldsymbol{\beta} + u_i$, where $\mb{x}_i$ is row $i$ of $\X$ (a $1 \times (k+1)$ row vector);
+\item with $\E[u_i|\mb{x}_i]=0$ and $\E[u_i^2]<\infty$;
+\item the sample $\{(y_i,\mb{x}_i)\}_{i=1}^n$ is i.i.d.; 
+\item $\E[\mb{x}_i'\mb{x}_i]$ is finite and nonsingular.  
+\end{itemize}\medskip
+ 
+\begin{enumerate}\itemsep1em
+    \item Show that $\hat{\boldsymbol{\beta}}$ is a consistent estimator of $\boldsymbol{\beta}$.
+    \item Assume further that $E[u_i^2|\mb{x}_i]=\sigma^2<\infty$, derive the asymptotic distribution of $\hat{\boldsymbol{\beta}}$.
+\end{enumerate}
+
+
+\end{frame}
+
+
+% \begin{frame}
+% \frametitle{Consistency of $\hat{\b}$}
+% \small
+% To show consistency, we rewrite the OLS estimator in terms of sample means so that we can
+% apply LLN.\\
+% \medskip
+% \pause
+% First, note that a matrix cross product can be written as a sum of vector products:
+% $$ \XX \ = \ \sum_{i=1}^n \mb{x}_i'\mb{x}_i \quad \text{and} \quad
+%    \X'\y \ = \ \sum_{i=1}^n \mb{x}_i'y_i $$
+% where $\mb{x}_i$ is the $1 \times (k+1)$ \alert{row} vector of predictor values for unit $i$.\\
+% \pause
+% \medskip
+% Now we can rewrite the OLS estimator as,
+% \begin{align*}
+% \hat{\b} &= \left( \sum\nolimits_{i=1}^n \mb{x}_i'\mb{x}_i   \right)^{-1} \left( \sum\nolimits_{i=1}^n \mb{x}_i' y_i \right) \\
+%  &= \left( \sum\nolimits_{i=1}^n \mb{x}_i'\mb{x}_i   \right)^{-1} \left( \sum\nolimits_{i=1}^n \mb{x}_i'(\mb{x}_i\b + u_i) \right) \\
+%  &= \b +  \left( \sum\nolimits_{i=1}^n \mb{x}_i'\mb{x}_i   \right)^{-1} \left( \sum\nolimits_{i=1}^n \mb{x}_i' u_i \right) \\
+%  &= \b +  \left(\frac{1}{n} \sum\nolimits_{i=1}^n \mb{x}_i'\mb{x}_i   \right)^{-1} \left(\frac{1}{n} \sum\nolimits_{i=1}^n \mb{x}_i' u_i \right)
+% \end{align*}
+% \end{frame}
+
+% \begin{frame}
+% \frametitle{Consistency of $\hat{\b}$}
+% \small
+% Now let's apply the LLN to the sample means:
+% \begin{eqnarray*}
+% & & \left(\frac{1}{n} \sum_{i=1}^n \mb{x}_i'\mb{x}_i   \right) \ \stackrel{p}{\longrightarrow} \ E[\mb{x}_i'\mb{x}_i], \ \text{a $(k+1)\times(k+1)$ nonsingular matrix.} \\
+% & & \left(\frac{1}{n} \sum_{i=1}^n \mb{x}_i' u_i \right) \ \stackrel{p}{\longrightarrow} \ E[\mb{x}_i' u_i] \ = \ 0, \ \text{by the zero cond. mean assumption.}
+% \end{eqnarray*}
+% \pause
+
+% Therefore, we have
+% \begin{eqnarray*}
+% \plim ( \hat{\b})  & = & \b + \left(E[\mb{x}_i'\mb{x}_i]\right)^{-1} \cdot 0 \\
+%   & = & \b.
+% \end{eqnarray*}
+
+% \pause
+% \medskip
+% We can also show the asymptotic normality of $\hat{\b}$ using a similar argument but
+% with the CLT (see Wooldrigde Theorem 11.2 for details).
+
+% \end{frame}
+
+
+
+\frame{
+\frametitle{Properties of the OLS Estimator: Summary}
+\small
+\begin{Theorem}
+ Under Assumptions I--VI, the $(k+1) \times 1$ vector of OLS estimators $\hat{\b}$, conditional on $\X$,  follows a \alert{multivariate normal distribution} with mean $\b$ and variance-covariance matrix $\sig  \XXinv$:
+$$
+\hat{\b}|\X \sim \mathcal{N}\left(\b,\sig \XXinv \right)
+$$
+\vspace{-\baselineskip}
+\begin{itemize}
+\addtolength{\itemsep}{-.25\baselineskip}
+  \item Each element of $\hat{\b}$ (i.e.\ $\hat{\beta}_0,\dots,\hat{\beta}_k$) is normally distributed, and $\hat{\b}$ is an unbiased estimator of $\b$ as $E[\hat{\b}]=\b$
+ \item Variances and covariances are given by $V[\hat{\b}|\X]=\sig  \XXinv$
+  \item An unbiased estimator for the error variance $\sig$ is given by $$\widehat{\sigma}^2=\frac{\hat{\mb{u}}'\hat{\mb{u}}}{n-(k+1)}$$
+\vspace{-\baselineskip}
+  \item With a large sample, $\hat{\b}$ approximately follows the same distribution
+    under Assumptions I--V only, i.e., without assuming the normality of $\mb{u}$.
+ % \item $\hat{\b}$ is also the best linear unbiased estimator
+\end{itemize}
+\end{Theorem}
+}
+
+
+
+%\frame{
+%\frametitle{Unconditional Variance of $\hat{\b}$ }
+%
+%The preceding variance analysis was done conditional on the observed data. We can obtain the unconditional variance by averaging over $\X$ (the conditional distribution).\\\bigskip
+%
+%Recall the variance decomposition. For any RVs $Z$ and $X$ we have:$$
+%V[Z]=V[E[Z|W]]+E[V[Z|W]]
+%$$
+%So the unconditional variance is obtained by:
+%\begin{small}
+%\begin{align*}
+%\uncover<2->{ V[\hat{\b}] &= E_{X}[V[\hat{\b}|\X]]+V_{X}[E[\hat{\b}|X]]\\  }
+%\uncover<3->{  &= E_{X}[V[\hat{\b}|\X]]+V_{X}[\b]\\  }
+%\uncover<4->{                    &= E_{X}[V[\hat{\b}|\X]]   \\  }
+%\uncover<5->{                    &= E_{X}[ \sig  \XXinv  ] \\  }
+%\uncover<6->{                    &= \sig E_{X}[   \XXinv  ]}
+%\end{align*}
+%\uncover<6->{For fixed $\X$ or asymptotically this is the same as the conditional variance.}
+%\end{small}
+%}
+
+\section{Frisch–Waugh–Lovell Theorem}
+
+\subsection{Projection and Annihilator Matrices}
+
+
+\frame{
+\frametitle{Review: Regression in Matrix Algebra}
+\textbf{Worksheet Q4}\medskip\small
+
+Assume the classical linear regression model satisfying Assumptions I–V:
+\[
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{u},
+\]
+where $\mathbf{X}$ is an $n \times (k+1)$ matrix of full column rank, and $\mathbf{y}$ is an $n \times 1$ vector of responses.  
+
+\begin{enumerate}
+\item What does ${\bf (X'X)^{-1}X'y}$ represent in the context of OLS estimation?  
+
+\item What is the interpretation of ${\bf X(X'X)^{-1}X'y}$?  
+
+\item What does ${\bf y} - {\bf X(X'X)^{-1}X'y}$ represent?  
+
+\item What does $[{\bf y} - {\bf X(X'X)^{-1}X'y}]'[{\bf y} - {\bf X(X'X)^{-1}X'y}]$ compute?  
+
+\item What does $[{\bf y} - {\bf X(X'X)^{-1}X'y}]'[{\bf y} - {\bf X(X'X)^{-1}X'y}]/(n-(k+1))$ estimate?  
+
+\item What is the interpretation of 
+\[
+{\bf (X'X)^{-1}}\,\frac{[{\bf y} - {\bf X(X'X)^{-1}X'y}]'[{\bf y} - {\bf X(X'X)^{-1}X'y}]}{(n-(k+1))}\,?
+\]  
+\end{enumerate}
+}
+
+
+
+\frame{
+\frametitle{Projection Matrix and Annihilator Matrix}
+\small
+\vspace{-\baselineskip}
+\begin{eqnarray*}
+\hat{\u} & = & \y - \hat{\y} =  \y - \X \hat{\b} \\
+ & = & \y - \alert{\X \XXinv \X'} \y \equiv \y - \alert{\mb{P}}\y \\ \pause
+ & = & \blue{(\mb{I} - \mb{P})}\y  \equiv  \blue{\mb{M}}\y
+\end{eqnarray*}
+\pause
+$\mb{P}$ is called the \alert{projection matrix}:
+\begin{itemize}
+\item The above shows $\hat{\y} = \mb{P}\y$, i.e, premultiplying a vector
+by $\mb{P}$ turns the vector into its linear fit with respect to $\X$.
+\item $\mb{P}$ is therefore also known as the \alert{hat matrix} 
+\end{itemize}
+\pause
+$\mb{M}$ is called the \alert{annihilator matrix} (because $\mb{MX=0}$) and more intuitively the ``residual maker'' matrix:
+\begin{itemize}
+\item The above shows $\hat{\u} = \mb{M}\y$, i.e., pre-multiplying a vector
+by $\mb{M}$ turns the vector into the residual from its regression on $\X$.
+\item $\mb{M}$ is therefore a ``residual creator'' matrix
+\end{itemize}
+\pause
+$\mb{P}$ and $\mb{M}$ are both symmetric and \alert{idempotent} (i.e.
+$\mb{P}\mb{P}=\mb{P}$ and $\mb{M}\mb{M}=\mb{M}$).
+}
+
+\begin{frame}
+\frametitle{The Geometry of Least Squares}
+% New slide (2026), drawn in TikZ. Paid for by merging the two FWL slides below.
+\begin{columns}[c]
+\begin{column}{0.55\textwidth}
+\centering
+\begin{tikzpicture}[x=0.8cm, y=0.8cm, >=Stealth, font=\footnotesize]
+  % the column space of X: a plane, drawn in perspective
+  \fill[CourseMist] (0,0) -- (6.6,0) -- (8.2,2.6) -- (1.6,2.6) -- cycle;
+  \draw[gray!60] (0,0) -- (6.6,0) -- (8.2,2.6) -- (1.6,2.6) -- cycle;
+  \node[gray, anchor=south east, font=\scriptsize] at (6.1,0.05) {column space of $\X$};
+  % the two columns of X (n = 3: an intercept and one regressor)
+  \draw[->, gray, thick] (1.1,0.55) -- (2.6,0.3) node[below, text=CourseInk] {$\mb{1}$};
+  \draw[->, gray, thick] (1.1,0.55) -- (1.55,2.0) node[left, text=CourseInk] {$\x$};
+  % y, and a fit X beta-tilde that is not the closest point
+  \draw[->, CourseInk, very thick] (1.1,0.55) -- (4.2,5.0) node[pos=0.5, above left] {$\y$};
+  \draw[gray, dashed] (6.9,1.0) -- (4.2,5.0);
+  \fill[gray] (6.9,1.0) circle (1.8pt) node[below right, text=CourseInk] {$\X\tilde{\b}$};
+  % the OLS fit and the residual
+  \uncover<2->{
+    \draw[->, Cardinal, very thick] (1.1,0.55) -- (4.2,1.35)
+      node[pos=0.62, below right, text=Cardinal] {$\hat{\y} = \P\y$};
+    \draw[->, CourseBlue, very thick] (4.2,1.35) -- (4.2,5.0)
+      node[pos=0.3, left, text=CourseBlue] {$\hat{\u} = \M\y$};
+    % right-angle mark at y-hat: 0.5 units toward the origin, then 0.5 up
+    % (large enough that the arrowhead of y-hat does not cover its corner)
+    \draw[CourseInk, thin] (3.716,1.225) -- (3.716,1.725) -- (4.2,1.85);
+    \fill[Cardinal] (4.2,1.35) circle (1.8pt);
+  }
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.43\textwidth}
+\small
+With $n = 3$ observations, $\y$, $\mb{1}$ and $\x$ are vectors in 3-D space.
+\begin{itemize}
+\item Every fit $\X\tilde{\b}$ lies in the plane spanned by the columns of $\X$: the \alert{column space} of $\X$.
+\item<2-> OLS picks the point of the plane closest to $\y$: $\hat{\y} = \X\hat{\b} = \P\y$.
+\item<2-> The shortest path from $\y$ to the plane meets it at a right angle. So $\hat{\u} = \M\y$ is orthogonal to every column of $\X$: $\X'\hat{\u} = \mb{0}$.
+\item<2-> $\y = \P\y + \M\y$: $\P$ keeps the part of $\y$ in the plane; $\M$ keeps the part perpendicular to it.
+\end{itemize}
+\end{column}
+\end{columns}
+\slidesource{Adapted from Blackwell, \emph{A User's Guide to Statistical Inference and Regression}, ch.~7}
+\end{frame}
+
+
+
+
+\frame{
+\frametitle{Projection Matrix and Annihilator Matrix}
+\textbf{Worksheet Q5}\medskip\small
+
+Assume the classical linear regression model satisfying Assumptions I–V: $\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{u}$, where $\mathbf{X}$ is an $n \times (k+1)$ matrix of full column rank, and $\mathbf{y}$ is an $n \times 1$ vector of responses.  Define: 
+\[
+\mathbf{Q}=\X'\X,\qquad \mathbf{A}=\mathbf{Q}^{-1}\X',\qquad \P=\X\mathbf{A},\qquad \M=\I-\P.
+\]
+\vspace{-2em}\begin{enumerate}
+\item Express the residuals from regressing $\y$ on $\X$ as a function of $\M$.  
+
+\item Show that $\P$ is symmetric and idempotent. 
+
+\item Show that $\M$ is idempotent (verify $\M'\M=\M$ and $\M^2=\M$).  
+
+\item Show that $\mathbf{A}\P=\mathbf{A}$, $\mathbf{A}\M=\mathbf{0}$, $\M\P=\mathbf{0}$, and $\P\M=\mathbf{0}.$
+
+\item Show that $\P\X=\X$, $\M\X=\mathbf{0}$.
+
+\item Show that $\P\,\widehat{\y}=\widehat{\y}$, $\P\,\widehat{\mathbf{u}}=\mathbf{0}.$  
+
+\item Show that $\M\,\widehat{\y}=\mathbf{0}$, $\M\,\widehat{\mathbf{u}}=\widehat{\mathbf{u}}$.  
+
+\item Show that $\X'\widehat{\y}=\X'\y$.  
+
+\item Show that $\widehat{\mathbf{u}}'\widehat{\mathbf{u}}=\y'\M\y=\y'\y-\widehat{\y}'\widehat{\y}$.  
+\end{enumerate}
+}
+
+
+
+\subsection{Frisch–Waugh–Lovell Theorem}
+
+\frame{
+\frametitle{Frisch–Waugh–Lovell Theorem}
+% 2026: old slides 41 and 42 merged into this one (both originals are in
+% ../_backup/06-1MultipleRegressionMechanics_removed-2026-09-17.tex).
+\vspace{-\baselineskip}
+\begin{itemize}
+\item In multiple regression
+\[
+\y = \X_1\b_1 + \X_2\b_2 + \u,
+\]
+we often want to interpret the coefficient $\b_2$ as the effect of $\X_2$ \emph{controlling for} $\X_1$.
+\item The FWL theorem shows that we can obtain $\hat{\b}_2$ in two equivalent ways:
+\begin{enumerate}
+\item Regress $\y$ directly on both $\X_1$ and $\X_2$ (full regression), or
+\item First remove from $\y$ and $\X_2$ the parts explained by $\X_1$ (``partial out'' $\X_1$), then regress the residuals of $\y$ on those of $\X_2$.
+\end{enumerate}
+\item The theorem provides a clean geometric interpretation using projection and residual-maker matrices.
+\end{itemize}
+\pause
+\begin{block}{Frisch–Waugh–Lovell Theorem}
+The coefficient $\hat{\b}_2$ from regressing $\y$ on $(\X_1,\X_2)$ equals that from regressing the residualized $\y$ on residualized $\X_2$:
+\[
+\hat{\b}_2 = (\X_2'\M_1\X_2)^{-1}\X_2'\M_1\y, \qquad \M_1 = \I - \X_1(\X_1'\X_1)^{-1}\X_1'
+\]
+The two regressions also leave the same residuals.
+\end{block}
+}
+
+
+% \frame{
+% \frametitle{Setup}
+% Consider the linear model:
+% \[
+% \y = \X_1 \a + \X_2 \b + \u
+% \]
+% \vspace{-\baselineskip}
+% \begin{itemize}
+% \item $\X_1$ and $\X_2$ are full-column-rank matrices.
+% \item Goal: estimate $\b$ net of $\X_1$ (partialling out $\X_1$).
+% \item OLS normal equations (FOCs):
+% \[
+% \X_1'(\y-\X_1\hat{\a}-\X_2\hat{\b})=0, \quad
+% \X_2'(\y-\X_1\hat{\a}-\X_2\hat{\b})=0.
+% \]
+% \end{itemize}
+% }
+
+% \frame{
+% \frametitle{Step 1: Eliminate $\hat{\a}$ Using Normal Equations}
+% \small
+% From the first equation:
+% \[
+% \hat{\a} = (\X_1'\X_1)^{-1}\X_1'(\y-\X_2\hat{\b})
+% \]
+% Substitute into the second:
+% \[
+% \X_2'[\I - \X_1(\X_1'\X_1)^{-1}\X_1'](\y-\X_2\hat{\b})=0
+% \]
+% \pause
+% Define the residual-maker matrix for $\X_1$:
+% \[
+% \M_1 = \I - \X_1(\X_1'\X_1)^{-1}\X_1'
+% \]
+% Then
+% \[
+% \X_2'\M_1\y = \X_2'\M_1\X_2\hat{\b}.
+% \]
+% }
+
+% \frame{
+% \frametitle{Step 2: The Partial Regression Formula}
+% Solve for $\hat{\b}$:
+% \[
+% \hat{\b} = (\X_2'\M_1\X_2)^{-1}\X_2'\M_1\y
+% \]
+% \pause
+% Interpretation:
+% \begin{itemize}
+% \item $\M_1\y$ are residuals from regressing $\y$ on $\X_1$.
+% \item $\M_1\X_2$ are residuals from regressing each column of $\X_2$ on $\X_1$.
+% \item Hence, $\hat{\b}$ equals the coefficient from regressing $\M_1\y$ on $\M_1\X_2$.
+% \end{itemize}
+% \[
+% \hat{\b} = \big((\M_1\X_2)'(\M_1\X_2)\big)^{-1}(\M_1\X_2)'(\M_1\y)
+% \]
+% }
+
+% \frame{
+% \frametitle{Step 3a: Residuals and the Residual-Maker Matrix}
+% \small
+
+% We begin with the full regression model:
+% \[
+% \y = \X_1\boldsymbol{\alpha} + \X_2\boldsymbol{\beta} + \u.
+% \]
+
+% The OLS residuals are:
+% \[
+% \hat{\u} = \y - \X_1\hat{\boldsymbol{\alpha}} - \X_2\hat{\boldsymbol{\beta}}.
+% \]
+
+% \pause
+% Let $\M_1 = \I - \P_{X_1}$ be the \textit{residual-maker matrix} for $\X_1$.
+
+% By construction, $\M_1$ removes any linear dependence on $\X_1$, it is also symmetric and idempotent:
+% \[
+% \M_1\X_1 = \mathbf{0},\qquad  \M_1' = \M_1, \qquad \M_1^2 = \M_1.
+% \]
+% \pause
+% Now, pre-multiply the full regression by $\M_1$:
+% \[
+% \M_1\y = \M_1\X_1\boldsymbol{\alpha} + \M_1\X_2\boldsymbol{\beta} + \M_1\u.
+% \]
+
+% Because $\M_1\X_1 = 0$, this simplifies to:
+% \[
+% \M_1\y = \M_1\X_2\boldsymbol{\beta} + \M_1\u.
+% \]
+
+% This suggests that once the variation in $\y$ and $\X_2$ explained by $\X_1$ is removed, 
+% the remaining regression involves only $\M_1\y$ and $\M_1\X_2$.
+% }
+
+% \frame{
+% \frametitle{Step 3b: Projection Equivalence and Decomposition}
+% \small
+
+% Using the above relationship, we can re-express the OLS residuals step by step:
+% \[
+% \begin{aligned}
+% \hat{\u}
+% &= \y - \X_1\hat{\boldsymbol{\alpha}} - \X_2\hat{\boldsymbol{\beta}} \\[3pt]
+% &= (\I - \P_{X_1})\y - (\I - \P_{X_1})\X_2\hat{\boldsymbol{\beta}} \\[3pt]
+% &= \M_1(\y - \X_2\hat{\boldsymbol{\beta}}).
+% \end{aligned}
+% \]
+
+% \pause
+% Therefore, $\hat{\u}$ equals the residuals from regressing the \textit{residualized outcome} $\M_1\y$ 
+% on the \textit{residualized regressor} $\M_1\X_2$.
+
+% \pause
+% This implies the equivalence:
+% \[
+% \text{Residuals from } (\y \sim \X_1, \X_2) 
+% \;=\;
+% \text{Residuals from } (\M_1\y \sim \M_1\X_2).
+% \]
+
+% \pause
+% Moreover, the fitted values from the full regression decompose orthogonally:
+% \[
+% \P_X\y = \P_{X_1}\y + \P_{\M_1 X_2}\y,
+% \]
+% where:
+% \[
+% \P_{X_1}\y \text{ captures the variation in } \y \text{ explained by } \X_1, 
+% \]
+% \[
+% \P_{\M_1 X_2}\y \text{ captures the additional variation explained by } \X_2 \text{ after removing } \X_1.
+% \]
+
+% \medskip
+% This geometric decomposition is the essence of the Frisch–Waugh–Lovell theorem.
+% }
+
+
+
+
+\end{document}

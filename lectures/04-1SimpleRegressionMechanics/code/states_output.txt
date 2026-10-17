@@ -1,0 +1,63 @@
+# fig_states.R output: the running example of Lecture 4 (4-1, 4-2, 4-3)
+# Y = trump: Trump's % of the two-party vote, 2024 (MEDSL state totals)
+# X = ba: % of adults 25+ with a bachelor's degree or higher (ACS 2019-23 5-year)
+# 50 states; DC excluded
+
+> lm.out <- lm(trump ~ ba, data = states)
+> summary(lm.out)
+
+Call:
+lm(formula = trump ~ ba, data = states)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.0560  -4.9467  -0.6189   4.2927  14.1364 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 102.8376     5.9818  17.192  < 2e-16 ***
+ba           -1.4537     0.1738  -8.366  6.2e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.589 on 48 degrees of freedom
+Multiple R-squared:  0.5932,	Adjusted R-squared:  0.5847 
+F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
+
+
+> confint(lm.out)
+                2.5 %     97.5 %
+(Intercept) 90.810450 114.864702
+ba          -1.803061  -1.104313
+
+> vcov(lm.out)
+            (Intercept)          ba
+(Intercept)   35.781402 -1.02671948
+ba            -1.026719  0.03019361
+
+# ---- numbers used on the slides (4-1: fit, residuals, SSR surface, ANOVA, R^2)
+n = 50; residual df = 48
+b0 = 102.8376 (SE 5.9818, t 17.192); b1 = -1.4537 (SE 0.1738, t -8.366)
+b1 per 5 points of X = -7.27; per 10 points = -14.54
+mean(trump) = 53.4056; mean(ba) = 34.0045; min/max ba = 23.29 / 46.62; min/max trump = 33.61 / 73.48
+sd(trump) = 10.2244; sd(ba) = 5.4170; cor(trump, ba) = -0.7702; cor^2 = 0.5932
+Sxx = sum((x - xbar)^2) = 1437.8682; Sxy = -2090.2107; Sxy/Sxx = -1.4537
+cov(ba, trump) = -42.6574; var(ba) = 29.3442; ratio = -1.4537
+SST = 5122.41; SSE = 3038.51; SSR = 2083.89; SSE/SST = 0.5932; 1 - SSR/SST = 0.5932
+R2 = 0.5932; adj R2 = 0.5847; residual SE (sigma-hat) = 6.5890; sigma-hat^2 = SSR/(n-2) = 43.4144
+F = 69.99 on 1 and 48 df
+Wyoming: X = 29.92, Y = 73.48, fitted = 59.34, residual = 14.14; Y - Ybar = 20.07; fitted - Ybar = 5.94
+largest residuals (pp): WY +14.1, HI -13.1, ND +12.8, NM -12.0, UT +11.9, NV -11.4
+
+# ---- for 4-2 (variance of the estimators) and 4-3 (tests and intervals)
+SE(b1) by hand = sqrt(sigma2 / Sxx) = sqrt(43.4144 / 1437.8682) = 0.1738
+SE(b0) by hand = sqrt(sigma2 * (1/n + xbar^2/Sxx)) = 5.9818
+t critical value qt(0.975, 48) = 2.0106; one-sided qt(0.95, 48) = 1.6772
+t for H0: b1 = 0: -1.4537 / 0.1738 = -8.37; two-sided p = 6.2e-11
+95% CI by hand: -1.4537 +/- 2.0106 * 0.1738 = [-1.8031, -1.1043]
+RESET (powers 2:3 of fitted): F = 0.961, p = 0.390
+Breusch-Pagan (studentized): BP = 0.102, p = 0.749
+max Cook's D = 0.085 (Nevada); next: Wyoming 0.078, Colorado 0.061, New Mexico 0.053
+
+# ---- reference only: with DC (N = 51)
+b0 = 104.4023, b1 = -1.5011 (SE 0.1364), R2 = 0.7119

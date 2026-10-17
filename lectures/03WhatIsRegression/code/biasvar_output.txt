@@ -1,0 +1,8 @@
+X: 32 evenly spaced values from 0.26 to 0.76; S = 2000 simulated data sets
+k4 cuts: 0.3809677 0.51 0.6390323  counts: 8 8 8 8 
+k8 cuts: 0.3164516 0.3809677 0.4454839 0.51 0.5745161 0.6390323 0.7035484  counts: 4 4 4 4 4 4 4 4 
+               k4    k8
+bias2       0.091 0.023
+var         0.123 0.249
+bias2_exact 0.091 0.022
+var_exact   0.125 0.250

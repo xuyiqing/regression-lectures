@@ -1,0 +1,15 @@
+fig_multicollinearity.R --- numbers for the slide 'Multicollinearity: Simulation Example'
+n = 50, samples per column = 10000, beta = (1, 1, 1), sd(u) = 1, seed = 4502
+SE_sim = standard deviation of beta1_hat across samples; ratio_sim = SE_sim / SE_sim at R2 = 0
+
+ R2_target R2_sample mean_b1 SE_sim SE_formula ratio_sim sqrt_VIF var_ratio VIF
+      0.00 1.529e-32   1.003 0.1436     0.1429     1.000    1.000     1.000   1
+      0.50 5.000e-01   1.005 0.2042     0.2020     1.423    1.414     2.024   2
+      0.75 7.500e-01   1.006 0.2880     0.2857     2.006    2.000     4.024   4
+      0.90 9.000e-01   1.009 0.4538     0.4518     3.161    3.162     9.992  10
+      0.99 9.900e-01   1.022 1.4290     1.4286     9.953   10.000    99.064 100
+
+As typed on the slide:
+SE    : 0.144  0.204  0.288  0.454  1.429
+Ratio : 1.00  1.42  2.01  3.16  9.95
+sqrtVIF: 1.00  1.41  2.00  3.16  10.00

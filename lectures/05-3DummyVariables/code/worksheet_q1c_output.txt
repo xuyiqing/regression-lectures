@@ -1,0 +1,25 @@
+Worksheet 5-3 Q1(c): H0 E[Y|Wales] = E[Y|Scotland], i.e. beta_Wales - beta_Scot = 0
+Model: lm(Leave ~ Region), London baseline, n = 380 
+
+beta_Wales 14.2562 (SE 2.1705); beta_Scot 0.0454 (SE 1.9564)
+Var(b_Wales) 4.7109; Var(b_Scot) 3.8276; Cov(b_Wales, b_Scot) 1.8844
+sigma-hat^2 / n_London = 1.8844 (equals the covariance: both slopes subtract the London mean)
+Estimate beta_Wales - beta_Scot = 14.2109
+SE 2.1840 (without the covariance term 2.9221)
+t 6.507 on 369 df; two-sided p 2.5e-10; t_{369} 5% critical value 1.966
+Check: group means Wales 53.3477, Scotland 39.1369, difference 14.2109
+Check: sigma-hat * sqrt(1/n_W + 1/n_S) = 2.1840
+
+> car::linearHypothesis(fit, "RegionWales = RegionScotland")
+
+Linear hypothesis test:
+- RegionScotland  + RegionWales = 0
+
+Model 1: restricted model
+Model 2: Leave ~ Region
+
+  Res.Df   RSS Df Sum of Sq      F    Pr(>F)    
+1    370 25579                                  
+2    369 22946  1    2632.8 42.339 2.504e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

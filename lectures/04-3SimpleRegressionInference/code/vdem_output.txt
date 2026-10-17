@@ -1,0 +1,20 @@
+# vdem_reporting.R output: V-Dem polyarchy (v16) and WDI GDP per capita (PPP, 2021 int'l $), year 2024
+
+polyarchy percentiles (N = 179): 10% 0.154; 25% 0.237; 50% 0.496; 75% 0.729; 90% 0.840
+  nearest the 10th: Burkina Faso 0.154, South Sudan 0.154, Nicaragua 0.151, Hong Kong 0.158
+  nearest the 50th: Indonesia 0.496, Mexico 0.496, Mauritius 0.495, Mongolia 0.498
+  nearest the 90th: Austria 0.840, Canada 0.841, Iceland 0.842, United States of America 0.843
+
+> lm(polyarchy ~ log(gdppc))   N = 168 (countries with WDI GDP for 2024)
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)  -0.4890    0.14527  -3.366 9.475e-04
+log(gdppc)    0.1031    0.01501   6.869 1.236e-10
+R2 = 0.221
+
+GDP per capita percentiles (N = 168): 25% $6075; 75% $40565
+  nearest the 25th: Republic of the Congo $6,153 (polyarchy 0.255); Kenya $5,842 (polyarchy 0.557); Mauritania $6,483 (polyarchy 0.337); Honduras $6,591 (polyarchy 0.538)
+  nearest the 75th: Romania $40,504 (polyarchy 0.628); Hungary $40,747 (polyarchy 0.444); Slovakia $40,302 (polyarchy 0.746); Estonia $41,186 (polyarchy 0.893)
+slide pair: Republic of the Congo $6,153; Romania $40,504
+ratio 75th / 25th GDP = 6.68; log difference = 1.8987
+change in fitted polyarchy, 25th -> 75th GDP percentile: 0.1031 x 1.8987 = 0.1958
+a country at the 25th percentile of polyarchy (0.237) + 0.196 = 0.433, the 45.8th percentile (share of the 179 countries at or below)

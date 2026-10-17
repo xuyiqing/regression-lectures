@@ -1,0 +1,27 @@
+n = 380 
+
+
+Call:
+lm(formula = Leave ~ Scotland * NoQual, data = D)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-28.654  -2.904   1.309   4.119  11.945 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     21.32652    1.53389  13.904  < 2e-16 ***
+Scotland         1.66270    7.22182   0.230  0.81804    
+NoQual           1.47473    0.06667  22.119  < 2e-16 ***
+Scotland:NoQual -0.87536    0.26714  -3.277  0.00115 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.273 on 376 degrees of freedom
+Multiple R-squared:  0.6401,	Adjusted R-squared:  0.6372 
+F-statistic: 222.9 on 3 and 376 DF,  p-value: < 2.2e-16
+
+
+slope of NoQual: England & Wales 1.475 ; Scotland 0.599 
+separate fit, Scotland = 0 : intercept 21.33 slope 1.475 
+separate fit, Scotland = 1 : intercept 22.99 slope 0.599 

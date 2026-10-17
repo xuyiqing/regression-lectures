@@ -1,0 +1,186 @@
+Brexit, 380 counting areas of Great Britain (Electoral Commission 2016; 2011 Census)
+Areas: England 326  Wales 22  Scotland 32 
+
+==== 1. Leave ~ Scotland ====
+> summary(lm(Leave ~ Scotland, data = D))
+
+Call:
+lm(formula = Leave ~ Scotland, data = D)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-33.048  -3.941   0.857   6.019  21.132 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  54.4285     0.5104 106.647   <2e-16 ***
+Scotland    -15.2916     1.7587  -8.695   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 9.521 on 378 degrees of freedom
+Multiple R-squared:  0.1667,	Adjusted R-squared:  0.1645 
+F-statistic:  75.6 on 1 and 378 DF,  p-value: < 2.2e-16
+
+
+> summary(leave.ew)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  21.38   50.35   55.28   54.43   60.87   75.56 
+
+> summary(leave.sc)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  25.56   36.68   39.83   39.14   43.15   49.87 
+
+Means: E&W 54.43 (n 348, sd 9.79), Scotland 39.14 (n 32, sd 5.66); difference -15.29
+t.test(Leave ~ Scotland, var.equal = TRUE): t = 8.69, df = 378 (lm t on Scotland = -8.69)
+Welch t-test (unequal variances): t = 13.53, df = 50.0
+HC1 robust SE on Scotland 1.119, t -13.66
+Highest Leave share in Scotland: Moray 49.87 ; E&W areas below it: 85 of 348 
+
+==== 2. Leave ~ Scotland + NoQual (parallel lines) ====
+> summary(lm(Leave ~ Scotland + NoQual, data = D))
+
+Call:
+lm(formula = Leave ~ Scotland + NoQual, data = D)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-28.811  -2.753   1.171   4.267  12.163 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  22.55043    1.50680   14.97   <2e-16 ***
+Scotland    -21.67527    1.20997  -17.91   <2e-16 ***
+NoQual        1.42020    0.06539   21.72   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.354 on 377 degrees of freedom
+Multiple R-squared:  0.6298,	Adjusted R-squared:  0.6279 
+F-statistic: 320.7 on 2 and 377 DF,  p-value: < 2.2e-16
+
+
+Mean NoQual: E&W 22.45, Scotland 26.94; range 6.7-36.0
+
+Separate lines:
+  England & Wales: intercept 21.33, slope 1.475 (SE 0.068), n 348
+  Scotland:        intercept 22.99, slope 0.599 (SE 0.211), n 32
+Difference in slopes (Scotland:NoQual in Leave ~ Scotland * NoQual): -0.8754, SE 0.267, t -3.28; HC1 t -3.40
+
+==== 3. Leave by region (11 regions of Great Britain) ====
+                   Region  n  mean
+                   London 33 39.09
+                 Scotland 32 39.14
+               South East 67 52.17
+                    Wales 22 53.35
+               South West 37 53.68
+               North West 39 55.92
+                     East 47 56.96
+ Yorkshire and The Humber 21 58.65
+               North East 12 59.48
+            East Midlands 40 59.57
+            West Midlands 30 60.31
+
+> summary(lm(Leave ~ SouthEast + SouthWest + East + EastMidlands + WestMidlands + Yorkshire + NorthEast + NorthWest + Wales + Scotland, data = D))
+
+Call:
+lm(formula = Leave ~ SouthEast + SouthWest + East + EastMidlands + 
+    WestMidlands + Yorkshire + NorthEast + NorthWest + Wales + 
+    Scotland, data = D)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.8121  -4.7970   0.4456   5.1493  30.5685 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  39.09152    1.37272  28.477  < 2e-16 ***
+SouthEast    13.07848    1.67704   7.799 6.48e-14 ***
+SouthWest    14.59281    1.88812   7.729 1.04e-13 ***
+East         17.87061    1.79093   9.978  < 2e-16 ***
+EastMidlands 20.48298    1.85444  11.045  < 2e-16 ***
+WestMidlands 21.22315    1.98926  10.669  < 2e-16 ***
+Yorkshire    19.55848    2.20125   8.885  < 2e-16 ***
+NorthEast    20.38765    2.65826   7.670 1.55e-13 ***
+NorthWest    16.82361    1.86516   9.020  < 2e-16 ***
+Wales        14.25621    2.17046   6.568 1.73e-10 ***
+Scotland      0.04536    1.95643   0.023    0.982    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.886 on 369 degrees of freedom
+Multiple R-squared:  0.4419,	Adjusted R-squared:  0.4268 
+F-statistic: 29.22 on 10 and 369 DF,  p-value: < 2.2e-16
+
+
+> levels(D$Region)
+ [1] "East"                     "East Midlands"           
+ [3] "London"                   "North East"              
+ [5] "North West"               "Scotland"                
+ [7] "South East"               "South West"              
+ [9] "Wales"                    "West Midlands"           
+[11] "Yorkshire and The Humber"
+
+> summary(lm(Leave ~ Region, data = D))
+
+Call:
+lm(formula = Leave ~ Region, data = D)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.8121  -4.7970   0.4456   5.1493  30.5685 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                      56.962      1.150  49.522  < 2e-16 ***
+RegionEast Midlands               2.612      1.696   1.540  0.12442    
+RegionLondon                    -17.871      1.791  -9.978  < 2e-16 ***
+RegionNorth East                  2.517      2.550   0.987  0.32435    
+RegionNorth West                 -1.047      1.708  -0.613  0.54027    
+RegionScotland                  -17.825      1.807  -9.863  < 2e-16 ***
+RegionSouth East                 -4.792      1.500  -3.194  0.00152 ** 
+RegionSouth West                 -3.278      1.733  -1.891  0.05937 .  
+RegionWales                      -3.614      2.037  -1.774  0.07683 .  
+RegionWest Midlands               3.353      1.843   1.819  0.06968 .  
+RegionYorkshire and The Humber    1.688      2.070   0.815  0.41533    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.886 on 369 degrees of freedom
+Multiple R-squared:  0.4419,	Adjusted R-squared:  0.4268 
+F-statistic: 29.22 on 10 and 369 DF,  p-value: < 2.2e-16
+
+
+> D$Region <- relevel(D$Region, ref = "London")
+> summary(lm(Leave ~ Region, data = D))
+
+Call:
+lm(formula = Leave ~ Region, data = D)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.8121  -4.7970   0.4456   5.1493  30.5685 
+
+Coefficients:
+                               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                    39.09152    1.37272  28.477  < 2e-16 ***
+RegionEast                     17.87061    1.79093   9.978  < 2e-16 ***
+RegionEast Midlands            20.48298    1.85444  11.045  < 2e-16 ***
+RegionNorth East               20.38765    2.65826   7.670 1.55e-13 ***
+RegionNorth West               16.82361    1.86516   9.020  < 2e-16 ***
+RegionScotland                  0.04536    1.95643   0.023    0.982    
+RegionSouth East               13.07848    1.67704   7.799 6.48e-14 ***
+RegionSouth West               14.59281    1.88812   7.729 1.04e-13 ***
+RegionWales                    14.25621    2.17046   6.568 1.73e-10 ***
+RegionWest Midlands            21.22315    1.98926  10.669  < 2e-16 ***
+RegionYorkshire and The Humber 19.55848    2.20125   8.885  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.886 on 369 degrees of freedom
+Multiple R-squared:  0.4419,	Adjusted R-squared:  0.4268 
+F-statistic: 29.22 on 10 and 369 DF,  p-value: < 2.2e-16
+
+
+==== 4. London and Scotland only (65 areas): Leave ~ Scotland ====
+n 65; Scotland 0.045 (t 0.018); R2 0.000005; adjusted R2 -0.0159

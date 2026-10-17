@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+
+\title{\Large Lecture 2-3: Hypothesis Testing}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Understand how to conduct hypothesis testing, interpret $p$-values, and their link to confidence intervals.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item What is hypothesis testing?
+\begin{itemize}
+\item Trial analogy
+\item Type I and II errors
+\item Significance level $\alpha$
+\item Power and $1-\beta$
+\end{itemize}
+\item Steps of hypothesis testing
+\begin{itemize}
+\item State $H_0$ and $H_1$
+\item Choose $\alpha$
+\item Select test statistic
+\item Derive null distribution
+\item Use critical values
+\item Decision rule
+\end{itemize}
+\item Hypothesis testing with a single variable
+\begin{itemize}
+\item One-sample $t$-test setup
+\item Standardized mean statistic
+\item Null distribution: $t$ or normal
+\item One- vs two-sided tests
+\item Critical values and rejection regions
+\end{itemize}
+\item $p$-values and confidence intervals
+\begin{itemize}
+\item Definition of $p$-value
+\item Direction depends on alternative
+\item Invert tests to intervals
+\item Test via confidence interval inclusion
+\end{itemize}
+\item Practical vs statistical significance
+\begin{itemize}
+\item Effect size vs precision
+\item Large $n$ inflates significance
+\item Report substantive importance
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+\begin{enumerate}\itemsep1.2em
+
+% \item (\emph{Size control from critical values})
+% Consider the two–sided one–sample $t$ test of $H_0:\mu=\mu_0$ that rejects when $\lvert T\rvert>c$, where $T=\dfrac{\overline{X}-\mu_0}{S/\sqrt{n}}$ and, under the normal model, $T\sim t_{n-1}$ when $H_0$ holds. Show that choosing $c=t_{1-\alpha/2}(n-1)$ yields a level–$\alpha$ test, i.e.\ $\Pr(\text{reject }H_0\mid H_0)=\alpha$.
+
+% {\red Under $H_0$ and normality, $T\sim t_{n-1}$ and the $t$ distribution is symmetric. Hence
+
+% $$
+% \Pr(\text{reject }H_0\mid H_0)=\Pr(|T|>c)=2\,\Pr(T>c).
+% $$
+
+% Setting $c=t_{1-\alpha/2}(n-1)$ gives $\Pr(T>c)=\alpha/2$, so $\Pr(|T|>c)=2(\alpha/2)=\alpha$.}
+
+% \item (\emph{$p$–value formula for a two–sided $t$ test})
+% Show that for an observed $t$ statistic $t_{\text{obs}}$, the two–sided $p$–value is
+
+% $$
+% p \;=\; 2\Big(1-F_{t_{n-1}}\big(|t_{\text{obs}}|\big)\Big),
+% $$
+
+% where $F_{t_{n-1}}$ is the CDF of $t_{n-1}$.
+
+% {\red By definition, the two–sided $p$–value is the null probability of obtaining a value at least as extreme as $t_{\text{obs}}$ in both tails:
+
+% $$
+% p \;=\; \Pr\big(|T|\ge |t_{\text{obs}}|\mid H_0\big)
+% = \Pr\big(T\le -|t_{\text{obs}}|\big)+\Pr\big(T\ge |t_{\text{obs}}|\big).
+% $$
+
+% Symmetry of $t_{n-1}$ implies $\Pr(T\le -a)=\Pr(T\ge a)=1-F_{t_{n-1}}(a)$ for $a\ge0$, yielding
+
+% $$
+% p \;=\; 2\big(1-F_{t_{n-1}}(|t_{\text{obs}}|)\big).
+% $$}
+
+\item (\emph{Test–CI equivalence by inversion})  
+For the two–sided level–$\alpha$ $t$ test of $H_0:\mu=\mu_0$, prove that $H_0$ is rejected if and only if $\mu_0$ is not contained in the $100(1-\alpha)\%$ $t$–confidence interval
+\[
+\left[\;\overline{X}-t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\;,\;\overline{X}+t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\;\right].
+\]
+\vspace{16em}
+
+\item (\emph{Invariance to unit changes})
+Let $Y_i=a+bX_i$ with $b\neq0$. Consider testing $H_0:\mu=\mu_0$ using the $t$ statistic based on ${X_i}$, and testing $H_0':\mu_Y=a+b\mu_0$ using the $t$ statistic based on ${Y_i}$. Show that both two–sided tests yield the same rejection decision.
+
+\clearpage
+
+
+\item (\emph{Power depends on effect size, variance, and $n$})
+Assume known $\sigma$ and test $H_0:\mu=\mu_0$ vs.\ two–sided $H_1$ using the $z$ statistic $Z=\dfrac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}$, rejecting for $|Z|>z_{\alpha/2}$. Derive the power function at $\mu=\mu_0+\delta$ and show: (i) for any fixed $\delta\neq0$, power $\to1$ as $n\to\infty$; (ii) for fixed $n$, power increases in $|\delta|$ and decreases in $\sigma$. (optional)
+
+\end{enumerate}
+
+
+\end{document}

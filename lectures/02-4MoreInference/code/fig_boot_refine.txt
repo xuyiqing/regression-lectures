@@ -1,0 +1,26 @@
+Lecture 2-1 sample of 20 incomes; 10,000 resamples, set.seed(2404)
+population: mean 72.00, median 66.10, Gini 0.273
+
+MEDIAN  65.25, mean of replications 66.22
+  percentile [43.5, 97.4]; reversed [33.1, 87.0]
+MEAN  72.76, SE 9.04; t* quantiles -2.29, 1.98 (t19: +/- 2.09)
+  percentile [55.7, 90.4]; reversed [55.1, 89.8]; bootstrap-t [54.8, 93.4]; t [53.8, 91.7]
+GINI  sample 0.308, mean of replications 0.295 (bootstrap bias -0.013)
+  percentile [0.220, 0.366]; reversed [0.250, 0.396]
+  true sampling distribution of the Gini, n = 20 (20,000 samples): mean 0.260 (bias -0.014), SD 0.041
+  true t-ratio, n = 20 (50,000 samples): 2.5% -2.51, 97.5% 1.81; corr(mean, S) = 0.54
+
+COVERAGE (4,000 fresh samples per cell, 10,000 for the mean; 1,000 resamples each)
+  Gini n =  10: percentile 0.701 (below 0.299, above 0.000); reversed 0.833 (below 0.117, above 0.049)
+  Gini n =  20: percentile 0.831 (below 0.169, above 0.001); reversed 0.896 (below 0.073, above 0.030)
+  Gini n =  50: percentile 0.892 (below 0.102, above 0.005); reversed 0.917 (below 0.059, above 0.025)
+  Gini n = 100: percentile 0.922 (below 0.070, above 0.009); reversed 0.929 (below 0.046, above 0.024)
+  median n = 20: percentile 0.932, reversed 0.812
+  correlation 0.8, normal data, n = 20: percentile 0.920, reversed 0.846
+  mean n =  10: percentile 0.892, reversed 0.886, bootstrap-t 0.948, t 0.940
+  mean n =  20: percentile 0.918, reversed 0.913, bootstrap-t 0.947, t 0.941
+  mean n =  50: percentile 0.938, reversed 0.934, bootstrap-t 0.949, t 0.945
+  mean n = 20, pct  : whole CI below the mean 0.057, above 0.025
+  mean n = 20, rev  : whole CI below the mean 0.068, above 0.019
+  mean n = 20, boott: whole CI below the mean 0.032, above 0.021
+  mean n = 20, t    : whole CI below the mean 0.047, above 0.013

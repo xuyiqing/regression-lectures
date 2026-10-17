@@ -1,0 +1,33 @@
+# states_se.R output (Lecture 4-2): the Lecture 4 running example, 50 states, DC excluded
+
+> lm.out <- lm(trump ~ ba, data = states)
+> summary(lm.out)
+
+Call:
+lm(formula = trump ~ ba, data = states)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.0560  -4.9467  -0.6189   4.2927  14.1364 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 102.8376     5.9818  17.192  < 2e-16 ***
+ba           -1.4537     0.1738  -8.366  6.2e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.589 on 48 degrees of freedom
+Multiple R-squared:  0.5932,	Adjusted R-squared:  0.5847 
+F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
+
+
+# ---- standard errors by hand (the formulas on the previous slide)
+n = 50; sum of squared residuals = 2083.89; sigma-hat^2 = 2083.89 / 48 = 43.4144; sigma-hat = 6.5890
+mean(ba) = 34.0045; Sxx = sum((x - xbar)^2) = 1437.8682
+SE(b1) = sqrt(43.4144 / 1437.8682) = 0.1738 (R: 0.1738)
+SE(b0) = sqrt(43.4144 * (1/50 + 34.0045^2 / 1437.8682)) = 5.9818 (R: 5.9818)
+rounded for the slide: sigma-hat^2 = 43.4; Sxx = 1437.9; SE(b1) = 0.174; SE(b0) = 5.98
+
+# ---- Assumption V check (Breusch-Pagan, studentized; taught in Lecture 6-3)
+BP = 0.102, df = 1, p = 0.749

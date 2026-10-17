@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newcommand{\solution}{\bigskip\textbf{\textit{Solution:}}\xspace}
+\DeclareMathOperator*\plim{plim}
+\DeclareMathOperator{\cor}{Cor}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\cN}{\mathcal{N}}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\usepackage{setspace}
+
+\title{\Large Lecture 5-4: Interaction Terms and Polynomials}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Explore interaction terms with continuous variables, their common pitfalls, and polynomial regressions.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Interaction terms
+\begin{itemize}
+\item Why use interaction terms
+\item One dummy variable and one continuous variable
+\item Two continuous variables
+\item Common pitfalls
+\begin{itemize}
+\item Omitted lower order terms
+\item Misinterpreting coefficients
+\item Ignoring covariance in standard errors
+\item Excessive extrapolation
+\item False linearity assumption
+\end{itemize}
+\end{itemize}
+\item Polynomials
+\begin{itemize}
+\item Polynomial regression as interactions
+\item Marginal effects and interpretations
+\item Higher order polynomials
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+\onehalfspacing
+
+\section*{Worksheet}
+
+
+\begin{enumerate}
+
+\item Let $X_{court}$ be high court independence (0--4) and $Z_{dem}\in\{0,1\}$ indicate democracy. Estimate
+\[
+Y=\beta_0+\beta_1 X_{court}+\beta_2 Z_{dem}+\beta_3(X_{court}\cdot Z_{dem})+u.
+\]
+\begin{enumerate}
+\item Derive the conditional marginal effect of court independence at regime type $Z=z$ and the conditional marginal effect of democracy at court independence $X=x$.  
+\item Using the delta method, give $\mathrm{Var}\!\big(\widehat{\text{ME}}_{court}(z)\big)$ and $\mathrm{Var}\!\big(\widehat{\text{ME}}_{dem}(x)\big)$, where $\widehat{\text{ME}}_{court}(z)=\hat\beta_1+\hat\beta_3 z$ and $\widehat{\text{ME}}_{dem}(x)=\hat\beta_2+\hat\beta_3 x$.  
+\item Explain why omitting the covariance term biases the standard errors.  
+\end{enumerate}
+\clearpage
+
+\item Consider $Y=\beta_0+\beta_1 X+\beta_2 X^2+u$ (a special case of continuous interactions). 
+\begin{enumerate}
+\item Derive the marginal effect of $X$ and the location of the turning point. State how the sign of $\beta_2$ determines shape.  
+\item Using the delta method, derive the standard error of the estimated turning point $\hat\tau=-\hat\beta_1/(2\hat\beta_2)$. (Hint: the delta method linearizes, $\hat\tau-\tau\approx \frac{\partial\tau}{\partial\beta_1}(\hat\beta_1-\beta_1)+\frac{\partial\tau}{\partial\beta_2}(\hat\beta_2-\beta_2)$; then use the variance of a sum.)  
+\item Give the variance of the marginal effect at $X=x$.  
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

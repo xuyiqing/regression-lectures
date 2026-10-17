@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+\newcommand{\var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{Cov}}
+\newcommand{\E}{\operatorname{\mathbb{E}}}
+\newcommand{\solution}{\bigskip\textbf{\textit{Solution:}}\xspace}
+\DeclareMathOperator*\plim{plim}
+\DeclareMathOperator{\cor}{Cor}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\cN}{\mathcal{N}}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+\usepackage{setspace}
+
+\title{\Large Lecture 5-3: Dummy Variables}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Explore dummy variables: two categories, multiple categories, and two dummy variables with their interaction, which, with an intercept, give each of four groups its own mean.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Dummy variables
+\begin{itemize}
+\item Why use dummy variables
+\item Two categories
+\item Multiple categories
+\item Two dummy variables and their interaction
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+\onehalfspacing
+
+\section*{Worksheet}
+
+
+\begin{enumerate}
+
+\item Suppose $X_i$ is the region of counting area $i$: London, 8 other English regions, Wales, or Scotland. Estimate
+\[
+Y_i=\beta_0+\beta_1 D_{SE,i}+\beta_2 D_{SW,i}+\cdots+\beta_9 D_{Wales,i}+\beta_{10} D_{Scot,i}+u_i,
+\]
+with London omitted.
+\begin{enumerate}
+    \item Interpret $\beta_0$
+    \item Interpret each $\beta_j$, $j\in\{1,\ldots,10\}$.
+    \item Derive the estimand and an OLS $t$–test for $H_0:\,E[Y|\text{Wales}]=E[Y|\text{Scotland}]$. Express the test as a linear restriction $R\boldsymbol{\beta}=\mathbf{0}$ and give the variance formula used for its standard error.
+\end{enumerate}
+\clearpage
+
+\item Let $X_{White}$ indicate a white (non-Hispanic) voter and $X_{Col}$ a voter with a 4-year college degree. Estimate
+\[
+Y=\beta_0+\beta_1 X_{White}+\beta_2 X_{Col}+\beta_3(X_{White}\cdot X_{Col})+u.
+\]
+\begin{enumerate}
+    \item Compute $E[Y|X_{White}=w,X_{Col}=c]$ for $(w,c)\in\{0,1\}\times \{0,1\}$.
+    \item Show that $\beta_3$ equals the difference–in–differences:
+    \[
+    \beta_3=\big(E[Y|1,1]-E[Y|1,0]\big)-\big(E[Y|0,1]-E[Y|0,0]\big).
+    \]
+    \item Give a test for ``no interaction'' and interpret it.
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}

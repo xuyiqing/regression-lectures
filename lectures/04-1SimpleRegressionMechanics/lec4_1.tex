@@ -1,0 +1,535 @@
+\documentclass[xcolor=svgnames,9pt,english,aspectratio=169,t]{beamer}
+%\documentclass[xcolor=svgnames,9pt,english,handout,aspectratio=169,t]{beamer}
+\newcommand{\handout}{0}
+
+\input{../course_preamble.tex}   % theme, layout, packages, notation
+\input{../course_theme.tex}      % colors and slide furniture
+
+\graphicspath{{./figs/}}
+
+\title[Simple Regression]{450A Political Methodology I}
+\subtitle{Lecture 4: Simple Regression \\ 1. Mechanics of Ordinary Least Squares}
+\author{Stanford University}
+\date{}
+
+\begin{document}
+\begin{frame}[plain,c]
+  \titlepage
+  \addtocounter{framenumber}{-1}
+\end{frame}
+
+
+\section{Mechanics of Ordinary Least Squares}
+
+\subsection{Principle of Least Squares}
+
+\frame{
+\frametitle{Example: College Degrees and the 2024 Vote in the States}
+How do we fit the regression line $\hat{Y} = \hat\beta_0 + \hat\beta_1 X$ to the data?
+\vspace{-.15cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.67\textheight]{states_scatter.pdf}
+\end{figure}
+\slidesource{MIT Election Data and Science Lab, 2024 presidential returns by state; Census Bureau, American Community Survey 2019--23. DC excluded.}
+
+}
+
+\frame{
+\frametitle{Ordinary Least Squares (OLS) Fit}
+How do we fit the regression line $\hat{Y} = \hat\beta_0 + \hat\beta_1 X$ to the data?
+\vspace{-.15cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.67\textheight]{states_fit.pdf}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{How OLS Fits a Regression Line to Data}
+Answer: We will \alert{minimize the sum of squared residuals}
+\vspace{-.15cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.67\textheight]{states_residuals.pdf}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{Ordinary Least Squares (OLS)}
+
+%Intuitively, we want to "minimize" the residuals. However, any line through the point of averages
+\begin{itemize}
+\item Let $\{\tilde{\beta}_0, \tilde{\beta}_1\}$ be possible values
+  for $\{\beta_0, \beta_1\}$
+\pause
+\bigskip
+\item \emph{Ordinary Least Squares (OLS) regression} picks the
+  following:
+
+    $$
+    \{\hat{\beta}_0, \hat{\beta}_1\} \ = \ \underset{\tilde{\beta}_0, \tilde{\beta}_1}{\textrm{argmin}}
+    \sum_{i=1}^n (y_i - \tilde{\beta}_0 - x_i \tilde{\beta}_1)^2
+    $$
+
+\pause
+\bigskip
+   Why least squares (i.e. why minimize the sum of squared differences)?
+\pause
+\bigskip
+\begin{itemize}
+  \item Easy to derive and analytically investigate
+  \smallskip
+  \item Optimal under some assumptions (Lecture 4-2)
+\end{itemize}
+\end{itemize}
+
+}
+
+
+\subsection{Deriving OLS Estimators}
+
+\frame{
+\frametitle{Univariate Least Squares Estimator}
+\begin{itemize}
+\item Let's understand how to \alert{calculate least squares} analytically
+\item Consider the simplest case: minimizing the sum of squares for a
+  single variable $Y$
+
+  \pause
+  \bigskip
+
+\item $n$ sample observations: $y_1,y_2, y_3,...,y_n$.
+\item What is a single number $\tilde{\mu}$ that summarizes all $y$'s?
+\item Find $\tilde{\mu}$ that minimizes the \alert{sum of squared residuals}
+  (SSR)
+  $$
+  S(\tilde{\mu}) = \sum_{i=1}^n (y_i - \tilde{\mu}
+  )^2.
+  $$
+\end{itemize}
+}
+
+\frame{
+  \frametitle{Univariate Least Squares Estimator}
+\textbf{Worksheet Q1}
+(\emph{OLS as sample mean}) \\
+
+Show that the sample mean $\bar{Y}$ is the OLS estimator of $\mu$ in $Y_i=\mu+u_i$.\\\bigskip \pause
+
+
+How do we solve this?
+  \begin{enumerate}
+  \item Calculate the derivative of $S$ with respect to $\tilde{\mu}$
+  \item Set the derivative equal to 0
+  \item Solve for $\tilde{\mu}$ and replace $\tilde{\mu}$ with the solution
+  \end{enumerate}
+}
+
+\frame{
+\frametitle{The Objective Function for SSR}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.81\textheight]{ssr_mu.pdf}
+\end{figure}
+}
+
+
+\frame{
+\frametitle{The Slope of the Tangent Line for SSR}
+\begin{center}
+        \only<1|handout:0>{\includegraphics[height=0.81\textheight]{ssr_mu_tangent1.pdf}}%
+        \only<2|handout:0>{\includegraphics[height=0.81\textheight]{ssr_mu_tangent2.pdf}}%
+        \only<3|handout:1>{\includegraphics[height=0.81\textheight]{ssr_mu_tangent3.pdf}}
+\end{center}
+}
+
+
+% \frame{
+% \begin{footnotesize}
+% \begin{enumerate}
+% \item Calculating the derivative:
+% \begin{align*}
+% S(\tilde{\mu})
+%   &= \sum_{i=1}^n (y_i -
+%   \tilde{\mu})^2\\
+%   &= \sum_{i=1}^n (y_i^2 - 2 y_i \tilde{\mu} + \tilde{\mu}^2)
+% \end{align*}
+%  $$
+% \frac{\partial S(\tilde{\mu})}{\partial
+%   \tilde{\mu}} = \sum_{i=1}^n (-2 y_i + 2 \tilde{\mu})
+% $$
+
+% \item Setting it to zero:
+% $$
+% 0 = \sum_{i=1}^n (-2 y_i + 2 \tilde{\mu})
+% $$
+% \item And solve:
+% $$
+% \widehat{\mu} \ \equiv \ \tilde{\mu} \ = \ \pause \frac{1}{n}\sum_{i=1}^n  y_i
+% $$
+% \end{enumerate}
+% Therefore, the sample average is the least squares estimator.
+% \end{footnotesize}
+% }
+
+
+\frame{
+\frametitle{Deriving the Linear Least Squares Estimator}
+\begin{itemize}
+\item Now we look at two variables, $Y$ and $X$
+\item $n$ pairs of sample observations: $\{y_1, x_1\}$, $\{y_2, x_2\}$, ..., $\{y_n, x_n\}$
+\item Let $\{\tilde{\beta}_0, \tilde{\beta}_1\}$ be possible values for $\{\beta_0, \beta_1\}$
+\item Define the least squares objective function:
+$$
+S(\tilde{\beta}_0, \tilde{\beta}_1) = \sum_{i=1}^n (y_i -
+\tilde{\beta}_0 - x_i \tilde{\beta}_1)^2.
+$$
+
+\item How do we derive the LS estimators for $\beta_0$ and $\beta_1$? \pause
+\begin{enumerate}
+  \item  Take partial derivatives of $S$ with respect to
+    $\tilde{\beta}_0$ and $\tilde{\beta}_1$.
+  \item Set each of the partial derivatives to 0
+  \item Solve for $\{\tilde{\beta}_0, \tilde{\beta}_1\}$ and replace them with the solutions
+\end{enumerate}
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{The Objective Function for OLS}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.81\textheight]{states_ssr_surface.pdf}
+\end{figure}
+
+}
+
+
+\frame{
+\frametitle{The Objective Function for OLS: $S(\tilde{\beta}_0, \tilde{\beta}_1)$}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.81\textheight]{states_ssr_contour.pdf}
+\end{figure}
+
+}
+
+
+\frame{
+\frametitle{The Objective Function for OLS}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.81\textheight]{states_ssr_contour_min.pdf}
+\end{figure}
+
+}
+
+
+\frame{
+
+\begin{align*}
+S(\tilde{\beta}_0, \tilde{\beta}_1)
+  &= \sum_{i=1}^n (y_i -
+  \tilde{\beta}_0 - x_i \tilde{\beta}_1)^2\\
+  &= \sum_{i=1}^n (y_i^2 - 2 y_i \tilde{\beta}_0 - 2 y_i
+  \tilde{\beta}_1 x_i + \tilde{\beta}_0^2 + 2 \tilde{\beta}_0
+  \tilde{\beta}_1 x_i + \tilde{\beta}_1^2 x_i^2)
+\end{align*}
+
+
+
+$$
+\frac{\partial S(\tilde{\beta}_0, \tilde{\beta}_1)}{\partial
+  \tilde{\beta}_0} = \pause \sum_{i=1}^n (-2 y_i + 2 \tilde{\beta}_0 + 2
+\tilde{\beta}_1 x_i)
+$$
+\pause
+and
+$$
+\frac{\partial S(\tilde{\beta}_0, \tilde{\beta}_1)}{\partial
+  \tilde{\beta}_1} = \pause \sum_{i=1}^n (-2 y_i x_i + 2 \tilde{\beta}_0 x_i
++ 2 \tilde{\beta}_1 x_i^2)
+$$
+
+}
+
+\frame{
+The \alert{first order conditions} are
+$$
+0 =  \sum_{i=1}^n (-2 y_i + 2 \tilde{\beta}_0 + 2
+\tilde{\beta}_1 x_i)
+$$
+and
+$$
+0 = \sum_{i=1}^n (-2 y_i x_i + 2 \tilde{\beta}_0 x_i
++ 2 \tilde{\beta}_1 x_i^2)
+$$\pause
+rearranging for $\tilde{\beta}_0$ and $\tilde{\beta}_1$ yields:
+$$
+\hat{\beta}_0 n = \left(\sum_{i=1}^n y_i\right) - \hat{\beta}_1
+\left(\sum_{i=1}^n x_i\right)
+$$
+$$
+\hat{\beta}_1 \sum_{i=1}^n x_i^2 = \left(\sum_{i=1}^n x_i y_i\right) -
+\hat{\beta}_0 \left(\sum_{i=1}^n x_i\right)
+$$
+
+}
+
+
+\frame{
+
+and solving
+
+$$
+\hat{\beta}_0 n = \left(\sum_{i=1}^n y_i\right) - \hat{\beta}_1
+\left(\sum_{i=1}^n x_i\right)
+$$
+$$
+\hat{\beta}_1 \sum_{i=1}^n x_i^2 = \left(\sum_{i=1}^n x_i y_i\right) -
+\hat{\beta}_0 \left(\sum_{i=1}^n x_i\right)
+$$\medskip
+
+\pause
+yields the \alert{OLS estimators}:
+$$
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+$$
+$$
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i -
+  \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}
+$$
+%and one more useful fact:
+%$$
+%\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})y_i}{\sum_{i=1}^n(x_i - \bar{x})^2} - \frac{\sum_{i=1}^n (x_i - \bar{x})
+%  \bar{y}}{\sum_{i=1}^n(x_i - \bar{x})^2} =  \frac{\sum_{i=1}^n (x_i - \bar{x})y_i}{\sum_{i=1}^n(x_i - \bar{x})^2}
+%$$
+%\onslide<2>
+%They also imply the following two useful relationships:
+%$$
+%\sum_{i=1}^n x_i \hat{u}_i = 0
+%$$
+%$$
+%\sum_{i=1}^n \hat{y}_i \hat{u}_i = 0
+%$$
+
+}
+
+\begin{frame}[fragile]
+\frametitle{College Degrees and the 2024 Trump Vote, 50 States}
+{\spacingset{0.8}
+\footnotesize
+\begin{Verbatim}[frame=single, label=R Code, commandchars=\\\{\}]
+> lm.out <- lm(trump ~ ba, data = states)
+> summary(lm.out)
+
+~~~~ output omitted ~~~~
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) \textcolor{red}{102.8376}     5.9818  17.192  < 2e-16 ***
+ba           \textcolor{red}{-1.4537}     0.1738  -8.366  6.2e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.589 on 48 degrees of freedom
+Multiple R-squared:  0.5932,	Adjusted R-squared:  0.5847
+F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
+\end{Verbatim}
+}
+\end{frame}
+
+\frame{
+\frametitle{OLS Estimators and Covariance}
+\textbf{Worksheet Q2} (\emph{OLS slope as covariance-variance ratio}) \\ \bigskip
+
+Prove that $\displaystyle \hat{\beta}_1=\frac{\widehat{\mathrm{Cov}}(X,Y)}{\widehat{\mathrm{Var}}(X)} =    \frac{\text{Sample \alert{Covariance} between $X$ and $Y$}}
+         {\text{Sample \alert{Variance} of $X$}}$.
+}
+
+\frame{
+\frametitle{OLS Estimators and Covariance}
+The slope coefficient is the derivative of the \alert{fitted regression line} with respect to $X$:
+$$
+\hat Y=\hat\beta_0+\hat\beta_1 X
+$$
+$$
+\frac{\partial \hat Y}{\partial X}=\hat\beta_1
+$$
+\pause
+
+$\hat\beta_1 \ = \ $how much the fitted value $\hat Y$ differs between two units whose $X$ differs by one unit
+\bigskip
+
+In the example, $\hat\beta_1 = -1.45$. A state where the share of adults with a bachelor's degree is 1 point higher has a fitted Trump share 1.45 points lower. The slope compares states. It does not say what a degree does to anyone's vote.
+}
+
+\frame{
+\frametitle{Geometric Orthogonality}
+\textbf{Worksheet Q3}  \\ \bigskip
+
+Show that the OLS residual vector $\hat{u}$ is orthogonal to the regressor vector $x$.\bigskip \pause
+
+What does it mean?  
+}
+
+
+% \frame{
+% \small
+% The equations
+
+% $$
+% \hat{\beta}_0 n = \left(\sum_{i=1}^n y_i\right) - \hat{\beta}_1
+% \left(\sum_{i=1}^n x_i\right)
+% $$
+% $$
+% \hat{\beta}_1 \sum_{i=1}^n x_1^2 = \left(\sum_{i=1}^n x_i y_i\right) -
+% \hat{\beta}_0 \left(\sum_{i=1}^n x_i\right)
+% $$\medskip
+% also imply the following three relationships:
+% \pause
+% $$
+% \sum_{i=1}^n \hat{u}_i = 0
+% $$
+% \pause
+% $$
+% \sum_{i=1}^n x_i \hat{u}_i = 0
+% $$
+% \pause
+% $$
+% \sum_{i=1}^n \hat{y}_i \hat{u}_i = 0 \ \mbox{ and } \ \bar{\hat{y}} = \bar{y}
+% $$
+
+% }
+
+
+
+\subsection{Analysis of Variance for Regression}
+
+\frame{
+\frametitle{Ordinary Least Squares (OLS) Fit: $\hat{\beta}_0 \, \hat{\beta}_1 \,$}
+\vspace{-.3cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.82\textheight]{states_fit.pdf}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{Pick a $Y_i$ and the Average Outcome $\bar{Y}$}
+\vspace{-.3cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.82\textheight]{states_decomp1.pdf}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{Decompose into Residual $\hat{u}_i$ and Predicted Part}
+\vspace{-.3cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.82\textheight]{states_decomp2.pdf}
+\end{figure}
+
+}
+
+\frame{
+\frametitle{Decompose into Residual $\hat{u}_i$ and Predicted Part}
+\vspace{-.3cm}
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.82\textheight]{states_decomp3.pdf}
+\end{figure}
+
+}
+
+\begin{frame}{Analysis of Variance for Regression}
+\begin{itemize}\itemsep2em
+  \item $\sum_{i=1}^n (y_i - \bar{y})^2 = \text{SST} = (n-1)\,\widehat{\mathrm{Var}}(y)$\hspace{1em} 
+  \alert{(Total Sum of Squares)}
+
+  \item $\sum_{i=1}^n (\hat{y}_i - \bar{y})^2 = \text{SSE} = (n-1)\,\widehat{\mathrm{Var}}(\hat{y})$\hspace{1em}  
+  \alert{(Explained / Model Sum of Squares)}
+
+  \item $\sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n \hat{u}_i^2 = \text{SSR} = (n-1)\,\widehat{\mathrm{Var}}(\hat{u})$\hspace{1em}  
+  \alert{(Residual Sum of Squares)}
+
+  \item \textbf{Worksheet Q4}  Show: $SST = SSE + SSR$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Visual Illustration of Sums of Squares}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{states_sumsq.pdf}
+\end{figure}
+\end{frame}
+
+
+\frame{
+\frametitle{Coefficient of Determination $R^2$}
+\small
+Given $SST = SSE + SSR$ we can divide each side by the $SST$:
+
+$$
+\frac{SST}{SST} = \frac{SSE}{SST} + \frac{SSR}{SST}
+$$
+%$$
+%1 = \frac{SSE}{SST} + \frac{SSR}{SST}
+%$$
+\pause
+$$
+\Longleftrightarrow \ \frac{SSE}{SST} \ = \ 1 - \frac{SSR}{SST} \ \equiv  \ R^2
+$$
+\pause
+Interpretation:
+
+\quad Share of the total variation in $Y$ (i.e. SST) that is explained by $X$
+
+\pause
+\bigskip
+Properties:
+
+$$
+0 \leq R^2 \leq 1 %  \mbox { and also } R^2=(R)^2
+$$
+\begin{itemize}
+  \item If $R^2 = 1$, all points are on a straight line (perfect fit)
+  \item If $R^2 = 0$, the sample correlation between $Y$ and $X$ is zero and the fitted line is flat ($X$ may still be related to $Y$ in a nonlinear way)
+\end{itemize}
+
+}
+
+\begin{frame}[fragile]
+\frametitle{College Degrees and the 2024 Trump Vote, 50 States}
+{\spacingset{0.8}
+\footnotesize
+\begin{Verbatim}[frame=single, label=R Code, commandchars=\\\{\}]
+> lm.out <- lm(trump ~ ba, data = states)
+> summary(lm.out)
+
+~~~~ output omitted ~~~~
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) \textcolor{red}{102.8376}     5.9818  17.192  < 2e-16 ***
+ba           \textcolor{red}{-1.4537}     0.1738  -8.366  6.2e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.589 on 48 degrees of freedom
+Multiple R-squared:  \textcolor{red}{0.5932},	Adjusted R-squared:  0.5847
+F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
+\end{Verbatim}
+}
+\end{frame}
+
+
+\frame{
+\frametitle{$R^2$ in context}
+Does $R^2$ tell you how well a line describes the data? \pause No! The same $R^2$ fits very different data:
+\begin{figure}[ht] \centering
+        \includegraphics[height=0.65\textheight]{anscombe_quartet.pdf}
+\end{figure}
+\slidesource{Anscombe (1973), ``Graphs in Statistical Analysis,'' \emph{The American Statistician} 27(1); R data set \texttt{anscombe}}
+
+}
+
+\end{document}

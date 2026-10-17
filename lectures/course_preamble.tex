@@ -1,0 +1,272 @@
+% =====================================================================
+% POLI 450A (2026) --- shared TEMPLATE layer.
+%
+% Input from each lecture near the top of its file, BEFORE
+% ../course_theme.tex (metropolis must be selected before the course
+% palette overrides it):
+%
+%   \documentclass[xcolor=svgnames,9pt,english,aspectratio=169]{beamer}
+%   \newcommand{\handout}{0}
+%   \input{../course_preamble.tex}
+%   \input{../course_theme.tex}
+%   \graphicspath{{./}{./figs/}}
+%   \title[Short title]{450A Political Methodology I}
+%   \subtitle{Lecture N: ...}
+%
+% Modeled on the 2026 Northwestern workshop template
+% (Teaching/PanelData/_latex/2026/202608_Northwestern/workshop_preamble.tex).
+%
+% SCOPE: theme, beamer layout, packages, the roadmap hooks, and --- unlike
+% the Northwestern decks --- the notation macros. The 450A lectures
+% grew from one common ancestor, so their macro blocks agree wherever they
+% overlap; merging them is safe. Three points where they had drifted are
+% resolved here, and each is flagged inline below.
+% =====================================================================
+
+\usetheme{metropolis}
+\metroset{sectionpage=none, subsectionpage=none, numbering=none}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamersize{text margin left=5mm, text margin right=5mm}
+\setbeamertemplate{itemize/enumerate body begin}{\leftmargini=1.5em\relax}
+\setbeamertemplate{itemize/enumerate subbody begin}{\leftmarginii=1.5em\relax}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\leftmarginiii=1.5em\relax}
+
+% ----------------------------------------------------------- top alignment
+% Every deck passes the t class option, so beamer applies the frame key
+% below to every frame (explicit [plain,c] frames — title page, roadmaps —
+% stay centered). Beamer's stock t key puts a rigid .2cm pad above the
+% content; frames sized to this template's full-height ceilings then run
+% Overfull \vbox by up to that pad. Same key as beamerbaseframe.sty, with
+% one change: the pad may shrink to zero when the frame is full.
+\makeatletter
+\define@key{beamerframe}{t}[true]{% top
+  \beamer@frametopskip=.2cm plus .5\paperheight minus .2cm\relax%
+  \beamer@framebottomskip=0pt plus 1fill\relax%
+  \beamer@frametopskipautobreak=\beamer@frametopskip\relax%
+  \beamer@framebottomskipautobreak=\beamer@framebottomskip\relax%
+}
+
+% ------------------------------------------------- slide-top check (2026-10-11)
+% A slide whose content is too tall for the frame is squeezed: the pad above
+% shrinks and its content starts higher than on other slides, so a figure
+% "wobbles" when the class steps from one slide to the next (Lecture 4-1,
+% slides 1-2, 2026-10-11). The marker below records where each slide's
+% content starts (a whatsit: it adds no space and moves nothing).
+% `python3 ../check_slides.py lec<N>` then lists every slide that starts
+% higher than the deck's normal position. That list must be empty.
+% Recorded per slide: page, frame number, content-top y (sp), the room left
+% below the title bar, and P for a plain frame (title page, roadmaps).
+\providecommand\slidetop[5]{}
+\AtBeginDocument{\immediate\write\@auxout{\string\providecommand\string\slidetop[5]{}}}
+\def\beamer@markframetop{%
+  \pdfsavepos
+  \edef\beamer@marktmp{\noexpand\write\noexpand\@auxout{\string\slidetop
+    {\noexpand\thepage}{\noexpand\insertframenumber}{\noexpand\the\noexpand\pdflastypos}%
+    {\number\beamer@frametextheight}{\ifbeamer@plainframe P\else N\fi}}}%
+  \beamer@marktmp}
+\RequirePackage{etoolbox}
+\patchcmd{\endbeamer@frameslide}
+  {\vskip\beamer@frametopskip}
+  {\vskip\beamer@frametopskip\beamer@markframetop}
+  {}{\PackageWarning{course_preamble}{slide-top marker not installed}}
+\makeatother
+
+% ---------------------------------------------------------------- packages
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,decorations.pathreplacing}
+
+% --------------------------------------------------------- figure fitting
+% Default bounding box for every \includegraphics that does not override it.
+% With keepaspectratio the image is scaled to fit *inside* width x height, so
+% a figure can never run past the side margins or off the bottom of a slide.
+% Options given at the call site override these on a per-key basis: e.g.
+% [width=.6\linewidth] narrows the box but keeps the height ceiling.
+% \figmaxheight is set at \begin{document}: beamer only computes the final
+% \textheight once the head/foot templates are known. 0.80 is just under what a
+% frame with a title and one line of text can hold (measured: 0.834\textheight);
+% a frame that needs more room for text can lower it locally.
+\newlength{\figmaxheight}
+\AtBeginDocument{\setlength{\figmaxheight}{0.80\textheight}}
+\setkeys{Gin}{width=\linewidth,height=\figmaxheight,keepaspectratio}
+
+% -------------------------------------------------------- roadmap frames
+% Identical in all lectures. A lecture that does not want the
+% subsection roadmap clears it after the \input with \AtBeginSubsection[]{}.
+% hideothersubsections is load-bearing, not cosmetic: lecture 4 had 13
+% subsections before it was split into 4-1, 4-2 and 4-3 (2026-10-09), and a
+% full contents list ran off the top and bottom of the slide. Hiding the other sections' subsections caps the list at 10 lines.
+\subject{Talks}
+% No back-to-back roadmaps (Yiqing, 2026-10-11): when a subsection starts right
+% after its section's roadmap, with no content slide in between, its own
+% roadmap would repeat the one just shown (5-1's handout showed "Two Cases"
+% twice), so it is skipped. The section roadmap records the frame count; the
+% subsection roadmap appears only if a content slide has come since.
+\makeatletter
+\def\course@secframe{-1}
+\AtBeginSection[]
+{
+  \begin{frame}[plain,c]
+    \frametitle{}
+    \tableofcontents[currentsection,hideothersubsections]
+    \addtocounter{framenumber}{-1}
+  \end{frame}
+  \xdef\course@secframe{\the\c@framenumber}
+}
+\AtBeginSubsection[]
+{
+  \ifnum\c@framenumber=\course@secframe\relax\else
+  \begin{frame}[plain,c]
+    \frametitle{}
+    \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \addtocounter{framenumber}{-1}
+  \end{frame}
+  \fi
+}
+\makeatother
+
+% ------------------------------------------------------ theorem environments
+\newtheorem{assumption}{Assumption}
+\newtheorem{iass}{Identification Assumption}
+\newtheorem{ires}{Identification Result}
+\newtheorem{estm}{Estimand}
+\newtheorem{esti}{Estimator}
+\newtheorem{question}{Question}
+\newtheorem{answer}{Answer}
+\newtheorem{proposition}{Proposition}
+
+% =====================================================================
+% Notation
+% =====================================================================
+\definecolor{dgreen}{rgb}{0,.6,0.8}
+
+\renewcommand\r{\right}
+\renewcommand\l{\left}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+
+% MERGE NOTE 1. Lecture 2-4 set \epsilon to \varepsilon; the other twelve
+% left it at the upright default. Adopting \varepsilon course-wide so the
+% error term looks the same in every lecture.
+\renewcommand{\epsilon}{\varepsilon}
+
+% MERGE NOTE 2. Lecture 2-4 wrote its vectors as \bm (bold italic); the other
+% twelve use \mathbf (bold upright). \mathbf wins --- it is the convention in
+% eleven of the thirteen decks and in the course's matrix lectures. Only
+% \iid, \E, \cN and \Var from that block are actually used in 2-4's body.
+\renewcommand{\u}{\ensuremath{\mb{u}}}
+\renewcommand{\v}{\ensuremath{\mb{v}}}
+\newcommand{\U}{\ensuremath{\mb{U}}}
+\newcommand{\M}{\ensuremath{\mb{M}}}
+\newcommand{\X}{\ensuremath{\mb{X}}}
+\newcommand{\x}{\ensuremath{\mb{x}}}
+\newcommand{\y}{\ensuremath{\mb{y}}}
+\newcommand{\Z}{\ensuremath{\mb{Z}}}
+\newcommand{\C}{\ensuremath{\mb{C}}}
+\newcommand{\D}{\ensuremath{\mb{D}}}
+\newcommand{\I}{\ensuremath{\mb{I}}}
+\newcommand{\W}{\ensuremath{\mb{W}}}
+\renewcommand{\a}{\ensuremath{\mb{a}}}
+\renewcommand{\P}{\ensuremath{\mb{P}}}
+\newcommand{\one}{\ensuremath{\mb{1}}}
+\newcommand{\zero}{\ensuremath{\mb{0}}}
+
+\renewcommand{\b}{\ensuremath{\bs{\beta}}}
+\newcommand{\be}{\ensuremath{\bs{\beta}}}
+\newcommand{\e}{\ensuremath{\bs{\epsilon}}}
+\newcommand{\eps}{\ensuremath{\bs{\epsilon}}}
+\newcommand{\eeta}{\ensuremath{\bs{\eta}}}
+\newcommand{\bhat}{\ensuremath{\hat{\bs{\beta}}}}
+\newcommand{\ehat}{\ensuremath{\hat{\e}}}
+\newcommand{\Sig}{\ensuremath{\bs{\Sigma}}}
+\newcommand{\SigInv}{\ensuremath{\bs{\Sigma^{-1}}}}
+
+\newcommand{\XX}{\ensuremath{\X'\X}}
+\newcommand{\XXinv}{\ensuremath{\left(\XX\right)^{-1}}}
+\newcommand{\hatmat}{\ensuremath{\X \XXinv \X'}}
+\newcommand{\hatsig}{\ensuremath{\hat{\sigma}^2}}
+\newcommand{\sig}{\ensuremath{\sigma^2}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cLL}{\mathcal{LL}}
+\newcommand{\cll}{\ell}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cP}{\mathcal{P}}
+
+% MERGE NOTE 3. \var / \Var and \cov / \Cov were spelled with \text in some
+% lectures and \mbox in others. Same output; \text kept.
+\newcommand{\var}{\text{Var}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\cor}{\text{Cor}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\avepop}{\frac{1}{n}\sum_{i=1}^n}
+
+\DeclareMathOperator*\plim{plim}
+\DeclareMathOperator\rank{rank}
+\DeclareMathOperator*\argmax{argmax}
+\DeclareMathOperator*\argmin{argmin}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\diag}{\mathop{\mathrm{diag}}}
+
+\newcommand\ud{\mathrm{d}}
+\newcommand\dist{\buildrel\rm d\over\sim}
+\newcommand\ind{\stackrel{\rm indep.}{\sim}}
+\newcommand\iid{\stackrel{\rm i.i.d.}{\sim}}
+\newcommand\logit{{\rm logit}}
+
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+% ------------------------------------------------------------- text helpers
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\noi}{\noindent}
+\newcommand{\red}{\textcolor{Cardinal}}
+\newcommand{\blue}{\textcolor{CourseBlue}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand\spacingset[1]{\renewcommand{\baselinestretch}{#1}\small\normalsize}
+
+\hyphenation{tyamamot}
+
+
+% ------------------------------------------------ figure-position check (2026-10-11)
+% Records where every \includegraphics lands and its size (a whatsit; it moves
+% nothing). check_slides.py flags two consecutive slides that show a figure of
+% the same size in different places: the class sees it jump (Lecture 3, slides
+% 18 to 19: one frame had \vspace{.3cm} above the figure, the next did not),
+% and two consecutive slides that show the same file at different sizes or
+% places (Lecture 6-3, slides 10 to 11, the ballot image). The file name is the
+% seventh field.
+\makeatletter
+\providecommand\figpos[7]{}
+\AtBeginDocument{\immediate\write\@auxout{\string\providecommand\string\figpos[7]{}}}
+\newbox\course@figbox
+\let\course@origGinclude\Ginclude@graphics
+\def\Ginclude@graphics#1{%
+  \setbox\course@figbox\hbox{\course@origGinclude{#1}}%
+  \pdfsavepos
+  \edef\course@figtmp{\noexpand\write\noexpand\@auxout{\string\figpos
+    {\noexpand\thepage}{\noexpand\insertframenumber}%
+    {\noexpand\the\noexpand\pdflastxpos}{\noexpand\the\noexpand\pdflastypos}%
+    {\number\wd\course@figbox}{\number\ht\course@figbox}{\detokenize{#1}}}}%
+  \course@figtmp
+  \box\course@figbox}
+\makeatother

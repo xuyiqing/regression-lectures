@@ -1,0 +1,2 @@
+univariate sample: n = 25, mean = 47.60, S(mean) = 9068.9
+tangent slopes: at 20: -1380.2; at 35: -630.2; at mean: -0.0

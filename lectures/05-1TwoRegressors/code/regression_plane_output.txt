@@ -1,0 +1,35 @@
+Lecture 5-1 v2: regression plane. V-Dem v16 + WDI, 2024, N = 168 
+
+-- execorr100 ~ courtind + log10 GDP pc
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 166.3525    12.6263 13.1751        0
+courtind    -13.9524     1.4692 -9.4967        0
+lgdp        -22.0284     3.1977 -6.8889        0
+R2 = 0.5652
+rounded: yhat = 166.4 + (-13.95) courtind + (-22.0) log10 GDP
+range courtind 0.024-3.868 | range log10 GDP 3.02-5.13 ($1,048-$134,549)
+cor(courtind, log10 GDP) = 0.367
+
+Worksheet Q2: Chile and China (inputs rounded as on the slide)
+ country execorr100 courtind democracy   gdppc    lgdp fitted_exact
+   Chile        4.4    2.964         1 30267.6 4.48098      26.2889
+   China       53.4    0.206         0 23841.5 4.37733      67.0527
+rounded coefficients (166.4, -13.95, -22.0)
+Chile: 166.4 + (-13.95)(2.96) + (-22.0)(4.48) = 26.5480
+China: 166.4 + (-13.95)(0.21) + (-22.0)(4.38) = 67.1105
+difference Chile - China = -40.5625 = (-13.95)(2.75) + (-22.0)(0.10) = -38.3625 + -2.2000
+
+Floor near 0: the ten least corrupt countries, with plane fit and residual
+                  country execorr100 courtind democracy  gdppc   fit    res
+                  Denmark        0.3     3.72         1  71035  7.59  -7.29
+                   Sweden        0.4     3.75         1  62558  8.33  -7.93
+               Luxembourg        0.7     3.28         1 128475  8.09  -7.39
+              Switzerland        1.0     3.42         1  85448 10.00  -9.00
+                   Norway        1.1     3.63         1  94804  6.02  -4.92
+ United States of America        1.3     3.15         1  75698 14.94 -13.64
+              Netherlands        1.5     3.28         1  70494 13.81 -12.31
+                  Finland        1.6     3.62         1  55901 11.23  -9.63
+                  Ireland        1.7     3.58         1 118833  4.67  -2.97
+              New Zealand        1.7     3.82         1  48325  9.83  -8.13
+plane: fitted values below 0: 0 | min fitted 4.67
+democracies in the top GDP quartile: N = 32, median execorr100 5.2, share below 5: 0.47, mean residual -9.23

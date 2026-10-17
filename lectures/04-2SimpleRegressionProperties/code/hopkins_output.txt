@@ -1,0 +1,63 @@
+# fig_hopkins.R output (Lecture 4-2): Hopkins, Sides & Citrin (2019), Morning Consult March 2017
+# arms A (control, info = 0) and C (information, info = 1), non-Hispanic respondents
+
+> lm.guess <- lm(guess ~ info, data = hsc)
+> summary(lm.guess)
+
+Call:
+lm(formula = guess ~ info, data = hsc)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-32.494 -13.100  -7.494  13.900  73.900 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  32.4943     0.5258  61.796   <2e-16 ***
+info         -6.3941     0.7484  -8.544   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 23.09 on 3806 degrees of freedom
+Multiple R-squared:  0.01882,	Adjusted R-squared:  0.01856 
+F-statistic:    73 on 1 and 3806 DF,  p-value: < 2.2e-16
+
+
+> lm.index <- lm(index ~ info, data = hsc)
+> summary(lm.index)
+
+Call:
+lm(formula = index ~ info, data = hsc)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.5899 -2.5124  0.4101  2.4101  4.4876 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.51235    0.07091 120.051   <2e-16 ***
+info         0.07758    0.10108   0.767    0.443    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.781 on 3026 degrees of freedom
+  (780 observations deleted due to missingness)
+Multiple R-squared:  0.0001946,	Adjusted R-squared:  -0.0001358 
+F-statistic: 0.5891 on 1 and 3026 DF,  p-value: 0.4428
+
+
+# ---- group summaries (lo/hi = mean -/+ 1.96 SE of the group mean; drawn in figs/hopkins_means.pdf)
+guess of % foreign-born:
+     info    n  mean median    sd    lo    hi
+[1,]    0 1928 32.49     25 23.68 31.44 33.55
+[2,]    1 1880 26.10     13 22.46 25.08 27.12
+attitude index (3-13, higher = more restrictive):
+     info    n  mean median    sd    lo    hi
+[1,]    0 1538 8.512      9 2.779 8.373 8.651
+[2,]    1 1490 8.590      9 2.782 8.449 8.731
+
+# ---- numbers on the slides
+guess: control mean 32.5, information mean 26.1; difference -6.39 (SE 0.75, t -8.54); N = 3,808
+guess: intercept 32.4943 = control mean 32.4943; intercept + slope = 26.1002 = information mean 26.1002
+guess: median 25 (control) -> 13 (information); share answering exactly 13: 41.9% (information), 1.8% (control)
+index: control mean 8.51, information mean 8.59; difference +0.08 (SE 0.10, t 0.77); N = 3,028

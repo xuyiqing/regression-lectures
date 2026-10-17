@@ -1,0 +1,18 @@
+Gerber, Green & Larimer (2008), code/data/gerber_reduced.dta
+n = 14,392 voters, G = 7,599 households, average size m = n/G = 1.894
+household sizes: 1:2054  2:4538  3:786  4:203  5:16  6:2
+mean turnout = 0.3232
+MSB = 0.3175 (df 7598), MSW = 0.1083 (df 6793)
+rho-hat = 0.505
+conventional:     SE = 0.00390, 95% CI [0.3155, 0.3308], width 0.0153
+cluster-adjusted: SE = 0.00470, 95% CI [0.3140, 0.3324], width 0.0184
+SE ratio conventional / cluster-adjusted = 0.830 (conventional is 17% too small)
+SE ratio cluster-adjusted / conventional = 1.205
+--- values as typeset on the slide ---
+n = 14,392; G = 7,599; m = 1.89; turnout = 0.3232; rho-hat = 0.50
+Conventional (i.i.d.) & 0.00390 & [0.3155, 0.3308]
+Cluster-adjusted & 0.00470 & [0.3140, 0.3324]
+understates the standard error by 17%
+--- not on the slide ---
+2015 slide (hh_id as a number, between df = 1): rho-hat = 0.954, SE = 0.00531
+cluster-robust sandwich SE (actual household sizes, G/(G-1) factor) = 0.00482

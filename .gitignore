@@ -1,0 +1,15 @@
+build/
+*.synctex.gz
+.DS_Store
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.toc
+*.out
+*.vrb
+# version with the reveals, built in each lecture folder; only handouts are released
+lectures/*/lec*.pdf
+!lectures/_handouts/*.pdf

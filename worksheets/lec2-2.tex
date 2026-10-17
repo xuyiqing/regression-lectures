@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{POLISCI 450A}
+  \fancyhead[R]{Fall 2026}
+  %\fancyfoot[C]{\thepage}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}   % move title up
+
+\usepackage{xcolor}
+\newcommand{\red}{\color{red}}
+
+\title{\Large Lecture 2-2: Interval Estimation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-6em}
+
+\noindent \textbf{Goal:} Obtain confidence intervals using normal or $t$ approximations.\medskip
+
+\begin{itemize}\setlength{\itemsep}{1em}
+\item Interval estimation
+\begin{itemize}
+\item Point vs. interval estimates
+\item Interpreting confidence intervals
+\item Coverage rate
+\end{itemize}
+\item Normal mean with known variance
+\begin{itemize}
+\item Standardization with known $\sigma$
+\item $z$-based confidence intervals
+\item Choosing confidence levels
+\end{itemize}
+\item Normal mean with unknown variance
+\begin{itemize}
+\item Estimating $\sigma^2$ via sample variance
+\item Student's $t$ distribution
+\item $t$-based confidence intervals
+\end{itemize}
+\item Mean with unknown distribution
+\begin{itemize}
+\item Central limit theorem justification
+\item Asymptotic normal intervals
+\item Prefer $t$ for small samples
+\end{itemize}
+\item Practical guidance
+\begin{itemize}
+\item When to use $z$ vs. $t$
+\item Conservative choices by sample size
+\end{itemize}
+\end{itemize}
+
+
+% End outline
+\clearpage
+
+
+\section*{Worksheet}
+
+
+
+\begin{enumerate}\itemsep1.2em
+
+\item (Two variance estimators) Define
+$S_{0n}^2=\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X}_n)^2$ and
+$S_{1n}^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X}_n)^2$. Show:
+\begin{itemize}
+    \item[i)] $E[S_{0n}^2]=\frac{n-1}{n}\sigma^2$ and $E[S_{1n}^2]=\sigma^2$.
+    \item[ii)] Both estimators are consistent. (Hint: write $S_{0n}^2=\frac{1}{n}\sum_{i=1}^n(X_i-\mu)^2-(\overline{X}_n-\mu)^2$ and apply the WLLN to each term.)
+\end{itemize}
+\vspace{18em}
+
+
+\item ($t$ statistic) With unknown $\sigma^2$ and $X_i\sim N(\mu,\sigma^2)$, prove
+$T_n=\frac{\overline{X}_n-\mu}{S_{1n}/\sqrt{n}} \sim t_{n-1}.$
+(Hint: If $Z \sim N(0,1)$ and $U \sim \chi^2_\nu$ are independent, then
+$T = \frac{Z}{\sqrt{U/\nu}} \sim t_\nu$, which defines the $t$-distribution. Under normality, $\sqrt{n}(\overline{X}_n-\mu)/\sigma \sim N(0,1)$ and $(n-1)S_{1n}^2/\sigma^2\sim \chi^2_{n-1}$, and the two are independent.)
+\vspace{20em}
+
+
+\item (CI for linear function of $\mu$) Suppose we have an i.i.d. random sample of size $n$, $X_1,...,X_n$, from $X \stackrel{iid}{\sim} N(\mu,\sigma^2)$. For constants $a,b$ with $b\neq0$, derive a $100(1-\alpha)\%$ CI for $a+b\mu$ under (i) known $\sigma^2$, (ii) unknown $\sigma^2$.
+
+\end{enumerate}
+
+
+
+
+
+
+\end{document}

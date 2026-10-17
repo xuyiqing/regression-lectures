@@ -1,0 +1,27 @@
+> fit <- lm(execorr100 ~ courtind + democracy, data = d)
+> summary(fit)
+
+Call:
+lm(formula = execorr100 ~ courtind + democracy, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-52.662 -16.714   1.861  13.911  50.129 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   78.324      3.593  21.799  < 2e-16 ***
+courtind     -10.630      2.113  -5.031 1.27e-06 ***
+democracy    -21.510      4.672  -4.604 8.22e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 20.92 on 165 degrees of freedom
+Multiple R-squared:  0.5039,	Adjusted R-squared:  0.4978 
+F-statistic: 83.78 on 2 and 165 DF,  p-value: < 2.2e-16
+
+> DF <- nrow(d) - length(coef(fit))  # = DF of the regression
+> DF
+[1] 165
+> sqrt(sum(residuals(fit)^2) / DF)  # = residual standard error
+[1] 20.91745

@@ -1,0 +1,194 @@
+"country","region","ppgdp","infantMortality"
+"Afghanistan","Asia",499,124.535
+"Albania","Europe",3677.2,16.561
+"Algeria","Africa",4473,21.458
+"Angola","Africa",4321.9,96.191
+"Argentina","Latin Amer",9162.1,12.337
+"Armenia","Asia",3030.7,24.272
+"Aruba","Caribbean",22851.5,14.687
+"Australia","Oceania",57118.9,4.455
+"Austria","Europe",45158.8,3.713
+"Azerbaijan","Asia",5637.6,37.566
+"Bahamas","Caribbean",22461.6,14.135
+"Bahrain","Asia",18184.1,6.663
+"Bangladesh","Asia",670.4,41.786
+"Barbados","Caribbean",14497.3,12.284
+"Belarus","Europe",5702,6.494
+"Belgium","Europe",43814.8,3.739
+"Belize","Latin Amer",4495.8,16.2
+"Benin","Africa",741.1,76.674
+"Bhutan","Asia",2047.2,37.995
+"Bolivia","Latin Amer",1977.9,40.684
+"Bosnia and Herzegovina","Europe",4477.7,12.695
+"Botswana","Africa",7402.9,35.117
+"Brazil","Latin Amer",10715.6,19.016
+"Brunei Darussalam","Asia",32647.6,4.529
+"Bulgaria","Europe",6365.1,9.149
+"Burkina Faso","Africa",519.7,70.958
+"Burundi","Africa",176.6,94.083
+"Cambodia","Asia",797.2,52.835
+"Cameroon","Africa",1206.6,84.915
+"Canada","North America",46360.9,4.926
+"Cape Verde","Africa",3244,18.458
+"Central African Republic","Africa",450.8,95.781
+"Chad","Africa",727.4,123.94
+"Chile","Latin Amer",11887.7,6.792
+"China","Asia",4354,19.637
+"Colombia","Latin Amer",6222.8,16.671
+"Comoros","Africa",736.6,62.83
+"Congo","Africa",2665.1,66.738
+"Cook Islands","Oceania",12212.1,11.5517876766323
+"Costa Rica","Latin Amer",7703.8,9.172
+"Cote dIvoire","Africa",1154.1,68.845
+"Croatia","Europe",13819.5,5.571
+"Cuba","Caribbean",5704.4,4.959
+"Cyprus","Asia",28364.3,4.434
+"Czech Republic","Europe",18838.8,2.997
+"Democratic Republic of the Congo","Africa",200.6,109.477
+"Denmark","Europe",55830.2,3.914
+"Djibouti","Africa",1282.6,74.95
+"Dominican Republic","Caribbean",5195.4,21.589
+"Timor Leste","Asia",706.1,56.499
+"Ecuador","Latin Amer",4072.6,19.07
+"Egypt","Africa",2653.7,22.029
+"El Salvador","Latin Amer",3425.6,19.007
+"Equatorial Guinea","Africa",16852.4,93.315
+"Eritrea","Africa",429.1,47.508
+"Estonia","Europe",14135.4,4.382
+"Ethiopia","Africa",324.6,62.902
+"Fiji","Oceania",3545.7,17.216
+"Finland","Europe",44501.7,2.783
+"France","Europe",39545.9,3.345
+"French Polynesia","Oceania",24669,7.159
+"Gabon","Africa",12468.8,43.77
+"Gambia","Africa",579.1,66.374
+"Georgia","Asia",2680.3,25.585
+"Germany","Europe",39857.1,3.487
+"Ghana","Africa",1333.2,43.867
+"Greece","Europe",26503.8,4.488
+"Grenada","Caribbean",7429,13.042
+"Guatemala","Latin Amer",2882.3,26.269
+"Guinea","Africa",427.5,84.176
+"Guinea-Bissau","Africa",539.4,109.818
+"Guyana","Latin Amer",2996,36.83
+"Haiti","Caribbean",612.7,58.26
+"Honduras","Latin Amer",2026.2,23.515
+"Hong Kong","Asia",31823.7,2.026
+"Hungary","Europe",12884,5.304
+"Iceland","Europe",39278,2.057
+"India","Asia",1406.4,47.894
+"Indonesia","Asia",2949.3,24.929
+"Iran","Asia",5227.1,23.385
+"Iraq","Asia",888.5,33.293
+"Ireland","Europe",46220.3,3.859
+"Israel","Asia",29311.6,3.347
+"Italy","Europe",33877.1,3.417
+"Jamaica","Caribbean",4899,22.023
+"Japan","Asia",43140.9,2.549
+"Jordan","Asia",4445.3,19.14
+"Kazakhstan","Asia",9166.7,23.716
+"Kenya","Africa",801.8,58.142
+"Kiribati","Oceania",1468.2,52
+"Kuwait","Asia",45430.4,7.563
+"Kyrgyzstan","Asia",865.4,32.765
+"Laos","Asia",1047.6,36.809
+"Latvia","Europe",10663,6.7
+"Lebanon","Asia",9283.7,20.223
+"Lesotho","Africa",980.7,62.103
+"Liberia","Africa",218.6,76.853
+"Libya","Africa",11320.8,13.248
+"Lithuania","Europe",10975.5,5.941
+"Luxembourg","Europe",105095.4,2.289
+"Macao","Asia",49990.2,4.13
+"Madagascar","Africa",421.9,41.03
+"Malawi","Africa",357.4,86.06
+"Malaysia","Asia",8372.8,6.88
+"Maldives","Asia",4684.5,8.07
+"Mali","Africa",598.8,92.206
+"Malta","Europe",19599.2,5.405
+"Marshall Islands","Oceania",3069.4,21
+"Mauritania","Africa",1131.1,69.93
+"Mauritius","Africa",7488.3,12.112
+"Mexico","Latin Amer",9100.7,14.146
+"Micronesia","Oceania",2678.2,31.447
+"Moldova","Europe",1625.8,14.344
+"Mongolia","Asia",2246.7,30.705
+"Montenegro","Europe",6509.8,7.733
+"Morocco","Africa",2865,28.502
+"Mozambique","Africa",407.5,77.858
+"Myanmar","Asia",876.2,44.802
+"Namibia","Africa",5124.7,29.761
+"Nauru","Oceania",6190.1,45.8
+"Nepal","Asia",534.7,32.013
+"Neth Antilles","Caribbean",20321.1,12.281
+"Netherlands","Europe",46909.7,4.168
+"New Caledonia","Oceania",35319.5,4.68
+"New Zealand","Oceania",32372.1,4.757
+"Nicaragua","Latin Amer",1131.9,18.315
+"Niger","Africa",357.7,85.82
+"Nigeria","Africa",1239.8,87.561
+"North Korea","Asia",504,25.053
+"Norway","Europe",84588.7,2.94
+"Oman","Asia",20791,8.414
+"Pakistan","Asia",1003.2,65.724
+"Palau","Oceania",10821.8,20.0752823086575
+"Palestinian Territory","Asia",1819.5,19.503
+"Panama","Latin Amer",7614,16.168
+"Papua New Guinea","Oceania",1428.4,44.474
+"Paraguay","Latin Amer",2771.1,27.375
+"Peru","Latin Amer",5410.7,18.273
+"Philippines","Asia",2140.1,20.886
+"Poland","Europe",12263.2,5.546
+"Portugal","Europe",21437.6,4.175
+"Puerto Rico","Caribbean",26461,7.243
+"Qatar","Asia",72397.9,8.195
+"Republic of Korea","Asia",21052.2,3.647
+"Romania","Europe",7522.4,12.216
+"Russian Federation","Europe",10351.4,10.534
+"Rwanda","Africa",532.3,92.87
+"Saint Lucia","Caribbean",6677.1,12.26
+"Samoa","Oceania",3343.3,19.848
+"Sao Tome and Principe","Africa",1283.3,47.486
+"Saudi Arabia","Asia",15835.9,16.202
+"Senegal","Africa",1032.7,49.802
+"Serbia","Europe",5123.2,10.63
+"Sierra Leone","Africa",351.7,103.459
+"Singapore","Asia",43783.1,1.916
+"Slovakia","Europe",15976,5.676
+"Slovenia","Europe",23109.8,3.279
+"Solomon Islands","Oceania",1193.5,34.569
+"Somalia","Africa",114.8,100.017
+"South Africa","Africa",7254.8,45.892
+"Spain","Europe",30542.8,3.573
+"Sri Lanka","Asia",2375.3,11.213
+"St Vincent and Grenadines","Caribbean",6171.7,20.974
+"Sudan","Africa",1824.9,57.328
+"Suriname","Latin Amer",7018,19.775
+"Swaziland","Africa",3311.2,64.622
+"Sweden","Europe",48906.2,2.544
+"Switzerland","Europe",68880.2,3.513
+"Syria","Asia",2931.5,13.764
+"Tajikistan","Asia",816,50.947
+"Tanzania","Africa",516,53.658
+"TFYR Macedonia","Europe",4434.5,13.063
+"Thailand","Asia",4612.8,11.398
+"Togo","Africa",524.6,67.297
+"Tonga","Oceania",3543.1,20.591
+"Trinidad and Tobago","Caribbean",15205.1,24.458
+"Tunisia","Africa",4222.1,18.384
+"Turkey","Asia",10095.1,19.901
+"Turkmenistan","Asia",4587.5,48.797
+"Tuvalu","Oceania",3187.2,17.3228346456693
+"Uganda","Africa",509,72.265
+"Ukraine","Europe",3035,11.822
+"United Arab Emirates","Asia",39624.7,6.608
+"United Kingdom","Europe",36326.8,4.702
+"United States","North America",46545.9,6.46
+"Uruguay","Latin Amer",11952.4,11.754
+"Uzbekistan","Asia",1427.3,44.481
+"Vanuatu","Oceania",2963.5,24.135
+"Venezuela","Latin Amer",13502.7,15.278
+"Viet Nam","Asia",1182.7,18.263
+"Yemen","Asia",1437.2,44.412
+"Zambia","Africa",1237.8,80.956
+"Zimbabwe","Africa",573.1,47.284

@@ -1,0 +1,49 @@
+% =====================================================================
+% POLI 450A (2026) --- shared visual system.
+% Input from each lecture AFTER ../course_preamble.tex.
+%
+% Same shape as the 2026 Northwestern workshop theme
+% (Teaching/PanelData/_latex/2026/202608_Northwestern/workshop_theme.tex),
+% with the workshop's purple swapped for the course's cardinal. Kept
+% deliberately light so the lecture sources stay easy to edit.
+%
+% To retune the course to Stanford's official cardinal, change the one
+% Cardinal line below to HTML 8C1515.
+% =====================================================================
+\definecolor{Cardinal}{HTML}{A8003B}     % primary: titles, structure, alerts
+\definecolor{CourseInk}{HTML}{252A34}    % body text
+\definecolor{CourseBlue}{HTML}{2F6B9A}   % secondary accent
+\definecolor{CourseMist}{HTML}{F8F1F4}   % block backgrounds
+
+\setbeamercolor{normal text}{fg=CourseInk,bg=white}
+\setbeamercolor{structure}{fg=Cardinal}
+\setbeamercolor{alerted text}{fg=Cardinal}
+\setbeamercolor{frametitle}{fg=white,bg=Cardinal}
+\setbeamercolor{title}{fg=Cardinal}
+\setbeamercolor{subtitle}{fg=CourseInk}
+\setbeamercolor{block title}{fg=white,bg=Cardinal}
+\setbeamercolor{block body}{fg=CourseInk,bg=CourseMist}
+\setbeamercolor{section in toc}{fg=Cardinal}
+\setbeamercolor{subsection in toc}{fg=CourseInk}
+\setbeamercolor{itemize item}{fg=Cardinal}
+\setbeamercolor{itemize subitem}{fg=Cardinal}
+\setbeamercolor{enumerate item}{fg=Cardinal}
+
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{frametitle continuation}{}
+\setbeamertemplate{footline}{%
+  \leavevmode\hbox{%
+  \begin{beamercolorbox}[wd=.88\paperwidth,ht=2.6ex,dp=1.2ex,leftskip=1.2em]{author in head/foot}%
+  \usebeamerfont{author in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.12\paperwidth,ht=2.6ex,dp=1.2ex,center]{date in head/foot}%
+  \insertframenumber
+  \end{beamercolorbox}}}
+
+\newcommand{\slidesource}[1]{\vfill{\scriptsize\color{gray}Source: #1}}
+\newcommand{\keyquestion}[1]{\begin{block}{Question}#1\end{block}}

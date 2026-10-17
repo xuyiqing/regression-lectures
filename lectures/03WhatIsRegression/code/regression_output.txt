@@ -1,0 +1,67 @@
+> counties <- read.csv("county_pres.csv")
+> counties$rep24 <- 100 * counties$rep2p_2024   # Republican % of two-party vote
+> counties <- subset(counties, !is.na(rep24))    # counties with 2024 returns
+[not on the slide] 3105 counties in the file (no AK or CT rows: TRUE); 71 without a 2024 share: HI 1, IN 3, LA 64, NJ 3
+> nrow(counties)
+[1] 3034
+> head(counties[, c("county", "state", "rep24", "pct_ba", "log_density")])
+          county state   rep24  pct_ba log_density
+1 Autauga County    AL 73.3589 28.2827    4.602467
+2 Baldwin County    AL 79.3476 32.7976    5.016762
+3 Barbour County    AL 57.4150 11.4647    3.331267
+4    Bibb County    AL 82.3849 11.4682    3.571988
+5  Blount County    AL 90.7769 15.5790    4.521148
+6 Bullock County    AL 26.9589  8.9997    2.791669
+
+> lm.out <- lm(rep24 ~ pct_ba, data = counties)
+> summary(lm.out)
+
+Call:
+lm(formula = rep24 ~ pct_ba, data = counties)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-66.800  -6.879   1.956   8.586  40.102 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 89.00934    0.61309  145.18   <2e-16 ***
+pct_ba      -0.87431    0.02342  -37.33   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 13.12 on 3032 degrees of freedom
+Multiple R-squared:  0.3149,	Adjusted R-squared:  0.3147 
+F-statistic:  1393 on 1 and 3032 DF,  p-value: < 2.2e-16
+
+
+intercept 89.0; slope -0.874 per point of BA = -8.7 per 10 points; t = -37.3; R2 = 0.31
+lowest % BA:
+           county state pct_ba   pop
+    Loving County    TX 0.0000    54
+ Issaquena County    MS 4.4025  1095
+  McDowell County    WV 5.7485 18413
+% BA ranges from 0.0 to 79.7
+
+> set.seed(450)
+> cty200 <- counties[sample(nrow(counties), 200), ]   # a random sample of 200
+Call:
+loess(formula = rep24 ~ log_density, data = cty200)
+
+Number of Observations: 200 
+Equivalent Number of Parameters: 5.21 
+Residual Standard Error: 13.08 
+Trace of smoother matrix: 5.7  (exact)
+
+Control settings:
+  span     :  0.75 
+  degree   :  2 
+  family   :  gaussian
+  surface  :  interpolate	  cell = 0.2
+  normalize:  TRUE
+ parametric:  FALSE
+drop.square:  FALSE 
+
+largest gap between span 0.25 and span 0.75 (2nd-98th pct of log density): sample of 200 5.7 points; all 3,034 counties 2.2 points
+GAM on all 3034 counties: edf of s(log_density) = 5.90; deviance explained 0.334 (straight line R2 0.276)
+GAM average slope: -2.7 points per log unit on [0, 4.5]; -9.1 on [4.5, 8] (log density 4.5 = 90 people per sq. mile)

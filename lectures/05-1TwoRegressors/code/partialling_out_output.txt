@@ -1,0 +1,122 @@
+Lecture 5-1 v2: partialling out (FWL). V-Dem v16 + WDI, 2024, N = 168 
+
+-- execorr100 ~ courtind 
+            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)  82.3273     3.6923  22.2973        0
+courtind    -17.6637     1.5463 -11.4230        0
+R2 = 0.4401
+
+-- courtind ~ lgdp (auxiliary) 
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -1.2123     0.6604 -1.8359   0.0682
+lgdp          0.7981     0.1572  5.0782   0.0000
+R2 = 0.1345
+
+-- execorr100 ~ lgdp 
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 183.2676    15.4983 11.8250        0
+lgdp        -33.1638     3.6885 -8.9911        0
+R2 = 0.3275
+
+-- execorr100 ~ courtind + lgdp 
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 166.3525    12.6263 13.1751        0
+courtind    -13.9524     1.4692 -9.4967        0
+lgdp        -22.0284     3.1977 -6.8889        0
+R2 = 0.5652
+
+-- execorr100 ~ res_court_gdp 
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)    44.9417     1.9944 22.5341        0
+res_court_gdp -13.9524     1.9394 -7.1940        0
+R2 = 0.2377
+
+FWL: slope on residual -13.9523712191 | long slope -13.9523712191 | diff -1.78e-15
+intercept of the residual regression = mean(execorr100) = 44.9417
+cor(courtind, lgdp) = 0.367 | R2 of courtind on lgdp = 0.134
+residual range -2.33 to 1.95 | sd(courtind) 1.11, sd(residual) 1.03
+
+==== R output for the code slides ====
+
+> summary(lm(execorr100 ~ courtind, data = d))
+
+Call:
+lm(formula = execorr100 ~ courtind, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-47.164 -17.940   0.949  15.506  64.745 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   82.327      3.692   22.30   <2e-16 ***
+courtind     -17.664      1.546  -11.42   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 22.15 on 166 degrees of freedom
+Multiple R-squared:  0.4401,	Adjusted R-squared:  0.4367 
+F-statistic: 130.5 on 1 and 166 DF,  p-value: < 2.2e-16
+
+> fit <- lm(courtind ~ lgdp, data = d)
+> summary(fit)
+
+Call:
+lm(formula = courtind ~ lgdp, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3267 -0.6259  0.1371  0.8021  1.9460 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -1.2123     0.6604  -1.836   0.0682 .  
+lgdp          0.7981     0.1572   5.078 1.01e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.035 on 166 degrees of freedom
+Multiple R-squared:  0.1345,	Adjusted R-squared:  0.1292 
+F-statistic: 25.79 on 1 and 166 DF,  p-value: 1.015e-06
+
+> summary(lm(execorr100 ~ courtind + lgdp, data = d))
+
+Call:
+lm(formula = execorr100 ~ courtind + lgdp, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-57.094 -13.661  -1.649  13.119  48.562 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  166.352     12.626  13.175  < 2e-16 ***
+courtind     -13.952      1.469  -9.497  < 2e-16 ***
+lgdp         -22.028      3.198  -6.889 1.13e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 19.58 on 165 degrees of freedom
+Multiple R-squared:  0.5652,	Adjusted R-squared:  0.5599 
+F-statistic: 107.2 on 2 and 165 DF,  p-value: < 2.2e-16
+
+> summary(lm(execorr100 ~ res_court_gdp, data = d))
+
+Call:
+lm(formula = execorr100 ~ res_court_gdp, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-48.698 -24.548   2.129  22.844  66.413 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     44.942      1.994  22.534  < 2e-16 ***
+res_court_gdp  -13.952      1.939  -7.194 2.06e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 25.85 on 166 degrees of freedom
+Multiple R-squared:  0.2377,	Adjusted R-squared:  0.2331 
+F-statistic: 51.75 on 1 and 166 DF,  p-value: 2.056e-11
+
