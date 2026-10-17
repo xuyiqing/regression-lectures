@@ -179,12 +179,15 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script>
-// Every link in the page body opens in a new tab (Yiqing, 2026-10-17); the navbar's own pages do not.
+// Every link in the page body opens in a new tab (Yiqing, 2026-10-17), and so do the navbar's
+// links to other sites (YouTube, GitHub); the navbar's own pages open in the same tab.
+function newTab(a) { a.target = '_blank'; a.rel = 'noopener'; }
 document.querySelectorAll('main a[href]').forEach(function (a) {
   var h = a.getAttribute('href');
-  if (!h || h.charAt(0) === '#') return;
-  a.target = '_blank';
-  a.rel = 'noopener';
+  if (h && h.charAt(0) !== '#') newTab(a);
+});
+document.querySelectorAll('.navbar a[href]').forEach(function (a) {
+  if (a.host && a.host !== location.host) newTab(a);
 });
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
