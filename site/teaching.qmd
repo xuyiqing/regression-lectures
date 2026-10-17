@@ -7,13 +7,21 @@ course.
 
 ## License
 
-- The slides, their LaTeX sources, the worksheets, and the original figures are licensed under
+- The slides, their LaTeX sources, the worksheets, the original figures, and the videos are licensed under
   [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). You may copy, adapt and teach
   with them, with credit, but not for commercial purposes.
 - The R code is licensed under the
   [MIT License](https://github.com/xuyiqing/regression-lectures/blob/main/LICENSE-CODE).
 - The data files keep their own terms, listed with their sources in
   [SOURCES.md](https://github.com/xuyiqing/regression-lectures/blob/main/SOURCES.md).
+
+## Teaching with the videos
+
+In class, we play a video one part at a time and explain each concept, sometimes pausing mid-part to
+settle a conceptual question. We then turn to the slides for the details and work through worksheet
+questions with the students at the whiteboard. A silent page between two parts of a video names the
+slide where the next part starts, so that you can pause there and open the slides. The videos are
+in one [YouTube playlist](https://www.youtube.com/playlist?list=PLbHvZ-k41x9s).
 
 ## Materials for instructors
 

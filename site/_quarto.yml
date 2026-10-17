@@ -17,12 +17,15 @@ website:
       - href: about.qmd
         text: About
     right:
+      - icon: youtube
+        href: https://www.youtube.com/playlist?list=PLbHvZ-k41x9s
+        aria-label: YouTube playlist
       - icon: github
         href: https://github.com/xuyiqing/regression-lectures
         aria-label: GitHub repository
   page-footer:
     left: "Yiqing Xu, Stanford University"
-    right: "Slides CC BY-NC 4.0 · Code MIT"
+    right: "Slides and videos CC BY-NC 4.0 · Code MIT"
 
 format:
   html:
