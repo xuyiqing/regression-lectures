@@ -1,0 +1,9 @@
+<script>
+// Every link in the page body opens in a new tab (Yiqing, 2026-10-17); the navbar's own pages do not.
+document.querySelectorAll('main a[href]').forEach(function (a) {
+  var h = a.getAttribute('href');
+  if (!h || h.charAt(0) === '#') return;
+  a.target = '_blank';
+  a.rel = 'noopener';
+});
+</script>

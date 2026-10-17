@@ -162,6 +162,15 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+// Every link in the page body opens in a new tab (Yiqing, 2026-10-17); the navbar's own pages do not.
+document.querySelectorAll('main a[href]').forEach(function (a) {
+  var h = a.getAttribute('href');
+  if (!h || h.charAt(0) === '#') return;
+  a.target = '_blank';
+  a.rel = 'noopener';
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -249,6 +258,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

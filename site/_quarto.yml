@@ -30,5 +30,7 @@ website:
 format:
   html:
     theme: [cosmo, theme.scss]
+    link-external-newwindow: true
+    include-after-body: newtab.html
     toc: false
     page-layout: article
