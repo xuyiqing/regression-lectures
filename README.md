@@ -16,24 +16,24 @@ The scripts and data behind lecture 5-4's replication figures will be added late
 The course was originally designed by Jens Hainmueller and is maintained and updated by Yiqing Xu
 (Department of Political Science, Stanford University).
 
-| Lecture | Topic | Slides | Worksheet | Video |
+| Lecture | Topic | Slides | Video | Worksheet |
 |---|---|---|---|---|
-| 1 | Introduction | [`lec1_handout.pdf`](lectures/_handouts/lec1_handout.pdf) | [`lec1.pdf`](worksheets/lec1.pdf) | [5:29](https://www.youtube.com/watch?v=iF-UXSAJUKI&list=PLbHvZ-k41x9s) |
-| 2-1 | Point estimation | [`lec2_1_handout.pdf`](lectures/_handouts/lec2_1_handout.pdf) | [`lec2-1.pdf`](worksheets/lec2-1.pdf) | [5:34](https://www.youtube.com/watch?v=Swxf5lM_u24&list=PLbHvZ-k41x9s) |
-| 2-2 | Interval estimation | [`lec2_2_handout.pdf`](lectures/_handouts/lec2_2_handout.pdf) | [`lec2-2.pdf`](worksheets/lec2-2.pdf) | [5:29](https://www.youtube.com/watch?v=7T9ndJHs5_I&list=PLbHvZ-k41x9s) |
-| 2-3 | Hypothesis testing | [`lec2_3_handout.pdf`](lectures/_handouts/lec2_3_handout.pdf) | [`lec2-3.pdf`](worksheets/lec2-3.pdf) | [5:24](https://www.youtube.com/watch?v=WODM9NLojLQ&list=PLbHvZ-k41x9s) |
-| 2-4 | Bootstrap and clusters | [`lec2_4_handout.pdf`](lectures/_handouts/lec2_4_handout.pdf) | [`lec2-4.pdf`](worksheets/lec2-4.pdf) | [6:15](https://www.youtube.com/watch?v=hGvSrkmQy1I&list=PLbHvZ-k41x9s) |
-| 3 | What is regression? | [`lec3_handout.pdf`](lectures/_handouts/lec3_handout.pdf) | [`lec3.pdf`](worksheets/lec3.pdf) | [7:36](https://www.youtube.com/watch?v=wllni_KnmjQ&list=PLbHvZ-k41x9s) |
-| 4-1 | Simple regression: mechanics of OLS | [`lec4_1_handout.pdf`](lectures/_handouts/lec4_1_handout.pdf) | [`lec4-1.pdf`](worksheets/lec4-1.pdf) | [6:30](https://www.youtube.com/watch?v=7flAEtlI_Co&list=PLbHvZ-k41x9s) |
-| 4-2 | Simple regression: statistical properties | [`lec4_2_handout.pdf`](lectures/_handouts/lec4_2_handout.pdf) | [`lec4-2.pdf`](worksheets/lec4-2.pdf) | [7:34](https://www.youtube.com/watch?v=tieM_0nF3uE&list=PLbHvZ-k41x9s) |
-| 4-3 | Simple regression: inference and interpretation | [`lec4_3_handout.pdf`](lectures/_handouts/lec4_3_handout.pdf) | [`lec4-3.pdf`](worksheets/lec4-3.pdf) | [7:52](https://www.youtube.com/watch?v=aslK8sGa63Y&list=PLbHvZ-k41x9s) |
-| 5-1 | Regression with two regressors | [`lec5_1_handout.pdf`](lectures/_handouts/lec5_1_handout.pdf) | [`lec5-1.pdf`](worksheets/lec5-1.pdf) | [7:28](https://www.youtube.com/watch?v=8ATj0tzDJnI&list=PLbHvZ-k41x9s) |
-| 5-2 | Omitted variables and multicollinearity | [`lec5_2_handout.pdf`](lectures/_handouts/lec5_2_handout.pdf) | [`lec5-2.pdf`](worksheets/lec5-2.pdf) | [7:38](https://www.youtube.com/watch?v=4Sn7V8B4gXU&list=PLbHvZ-k41x9s) |
-| 5-3 | Dummy variables | [`lec5_3_handout.pdf`](lectures/_handouts/lec5_3_handout.pdf) | [`lec5-3.pdf`](worksheets/lec5-3.pdf) | [7:08](https://www.youtube.com/watch?v=5Gq1oJ76daU&list=PLbHvZ-k41x9s) |
-| 5-4 | Interaction terms and polynomials | [`lec5_4_handout.pdf`](lectures/_handouts/lec5_4_handout.pdf) | [`lec5-4.pdf`](worksheets/lec5-4.pdf) | [11:33](https://www.youtube.com/watch?v=6XabG7d0sTs&list=PLbHvZ-k41x9s) |
-| 6-1 | Multiple regression in matrix form | [`lec6_1_handout.pdf`](lectures/_handouts/lec6_1_handout.pdf) | [`lec6-1.pdf`](worksheets/lec6-1.pdf) | [5:20](https://www.youtube.com/watch?v=Joh2vmuyrUc&list=PLbHvZ-k41x9s) |
-| 6-2 | Testing in multiple regression | [`lec6_2_handout.pdf`](lectures/_handouts/lec6_2_handout.pdf) | [`lec6-2.pdf`](worksheets/lec6-2.pdf) | [7:32](https://www.youtube.com/watch?v=5bI7HBBLsMU&list=PLbHvZ-k41x9s) |
-| 6-3 | Heteroskedasticity, clustering and serial correlation | [`lec6_3_handout.pdf`](lectures/_handouts/lec6_3_handout.pdf) | [`lec6-3.pdf`](worksheets/lec6-3.pdf) | [8:37](https://www.youtube.com/watch?v=Jgi9q1KpqK4&list=PLbHvZ-k41x9s) |
+| 1 | Introduction | [`lec1_handout.pdf`](lectures/_handouts/lec1_handout.pdf) | [5:29](https://www.youtube.com/watch?v=iF-UXSAJUKI&list=PLbHvZ-k41x9s) | [`lec1.pdf`](worksheets/lec1.pdf) |
+| 2-1 | Point estimation | [`lec2_1_handout.pdf`](lectures/_handouts/lec2_1_handout.pdf) | [5:34](https://www.youtube.com/watch?v=Swxf5lM_u24&list=PLbHvZ-k41x9s) | [`lec2-1.pdf`](worksheets/lec2-1.pdf) |
+| 2-2 | Interval estimation | [`lec2_2_handout.pdf`](lectures/_handouts/lec2_2_handout.pdf) | [5:29](https://www.youtube.com/watch?v=7T9ndJHs5_I&list=PLbHvZ-k41x9s) | [`lec2-2.pdf`](worksheets/lec2-2.pdf) |
+| 2-3 | Hypothesis testing | [`lec2_3_handout.pdf`](lectures/_handouts/lec2_3_handout.pdf) | [5:24](https://www.youtube.com/watch?v=WODM9NLojLQ&list=PLbHvZ-k41x9s) | [`lec2-3.pdf`](worksheets/lec2-3.pdf) |
+| 2-4 | Bootstrap and clusters | [`lec2_4_handout.pdf`](lectures/_handouts/lec2_4_handout.pdf) | [6:15](https://www.youtube.com/watch?v=hGvSrkmQy1I&list=PLbHvZ-k41x9s) | [`lec2-4.pdf`](worksheets/lec2-4.pdf) |
+| 3 | What is regression? | [`lec3_handout.pdf`](lectures/_handouts/lec3_handout.pdf) | [7:36](https://www.youtube.com/watch?v=wllni_KnmjQ&list=PLbHvZ-k41x9s) | [`lec3.pdf`](worksheets/lec3.pdf) |
+| 4-1 | Simple regression: mechanics of OLS | [`lec4_1_handout.pdf`](lectures/_handouts/lec4_1_handout.pdf) | [6:30](https://www.youtube.com/watch?v=7flAEtlI_Co&list=PLbHvZ-k41x9s) | [`lec4-1.pdf`](worksheets/lec4-1.pdf) |
+| 4-2 | Simple regression: statistical properties | [`lec4_2_handout.pdf`](lectures/_handouts/lec4_2_handout.pdf) | [7:34](https://www.youtube.com/watch?v=tieM_0nF3uE&list=PLbHvZ-k41x9s) | [`lec4-2.pdf`](worksheets/lec4-2.pdf) |
+| 4-3 | Simple regression: inference and interpretation | [`lec4_3_handout.pdf`](lectures/_handouts/lec4_3_handout.pdf) | [7:52](https://www.youtube.com/watch?v=aslK8sGa63Y&list=PLbHvZ-k41x9s) | [`lec4-3.pdf`](worksheets/lec4-3.pdf) |
+| 5-1 | Regression with two regressors | [`lec5_1_handout.pdf`](lectures/_handouts/lec5_1_handout.pdf) | [7:28](https://www.youtube.com/watch?v=8ATj0tzDJnI&list=PLbHvZ-k41x9s) | [`lec5-1.pdf`](worksheets/lec5-1.pdf) |
+| 5-2 | Omitted variables and multicollinearity | [`lec5_2_handout.pdf`](lectures/_handouts/lec5_2_handout.pdf) | [7:38](https://www.youtube.com/watch?v=4Sn7V8B4gXU&list=PLbHvZ-k41x9s) | [`lec5-2.pdf`](worksheets/lec5-2.pdf) |
+| 5-3 | Dummy variables | [`lec5_3_handout.pdf`](lectures/_handouts/lec5_3_handout.pdf) | [7:08](https://www.youtube.com/watch?v=5Gq1oJ76daU&list=PLbHvZ-k41x9s) | [`lec5-3.pdf`](worksheets/lec5-3.pdf) |
+| 5-4 | Interaction terms and polynomials | [`lec5_4_handout.pdf`](lectures/_handouts/lec5_4_handout.pdf) | [11:33](https://www.youtube.com/watch?v=6XabG7d0sTs&list=PLbHvZ-k41x9s) | [`lec5-4.pdf`](worksheets/lec5-4.pdf) |
+| 6-1 | Multiple regression in matrix form | [`lec6_1_handout.pdf`](lectures/_handouts/lec6_1_handout.pdf) | [5:20](https://www.youtube.com/watch?v=Joh2vmuyrUc&list=PLbHvZ-k41x9s) | [`lec6-1.pdf`](worksheets/lec6-1.pdf) |
+| 6-2 | Testing in multiple regression | [`lec6_2_handout.pdf`](lectures/_handouts/lec6_2_handout.pdf) | [7:32](https://www.youtube.com/watch?v=5bI7HBBLsMU&list=PLbHvZ-k41x9s) | [`lec6-2.pdf`](worksheets/lec6-2.pdf) |
+| 6-3 | Heteroskedasticity, clustering and serial correlation | [`lec6_3_handout.pdf`](lectures/_handouts/lec6_3_handout.pdf) | [8:37](https://www.youtube.com/watch?v=Jgi9q1KpqK4&list=PLbHvZ-k41x9s) | [`lec6-3.pdf`](worksheets/lec6-3.pdf) |
 
 ## Layout
 

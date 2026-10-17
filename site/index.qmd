@@ -10,24 +10,24 @@ and multiple regression, and robust and clustered standard errors. The R scripts
 [repository](https://github.com/xuyiqing/regression-lectures) draw the figures and print the
 numbers on the slides from public data.
 
-| Lecture | Slides | Worksheet | Video |
+| Lecture | Slides | Video | Worksheet |
 |------------|---|---|---|
-| 1&ensp;[Introduction](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/01Intro) | [PDF](pdf/lec1_handout.pdf) | [PDF](pdf/worksheet_lec1.pdf) | [5:29](https://www.youtube.com/watch?v=iF-UXSAJUKI&list=PLbHvZ-k41x9s) |
-| 2-1&ensp;[Point estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-1PointEstimation) | [PDF](pdf/lec2_1_handout.pdf) | [PDF](pdf/worksheet_lec2-1.pdf) | [5:34](https://www.youtube.com/watch?v=Swxf5lM_u24&list=PLbHvZ-k41x9s) |
-| 2-2&ensp;[Interval estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-2IntervalEstimation) | [PDF](pdf/lec2_2_handout.pdf) | [PDF](pdf/worksheet_lec2-2.pdf) | [5:29](https://www.youtube.com/watch?v=7T9ndJHs5_I&list=PLbHvZ-k41x9s) |
-| 2-3&ensp;[Hypothesis testing](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-3HypothesisTesting) | [PDF](pdf/lec2_3_handout.pdf) | [PDF](pdf/worksheet_lec2-3.pdf) | [5:24](https://www.youtube.com/watch?v=WODM9NLojLQ&list=PLbHvZ-k41x9s) |
-| 2-4&ensp;[Bootstrap and clusters](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-4MoreInference) | [PDF](pdf/lec2_4_handout.pdf) | [PDF](pdf/worksheet_lec2-4.pdf) | [6:15](https://www.youtube.com/watch?v=hGvSrkmQy1I&list=PLbHvZ-k41x9s) |
-| 3&ensp;[What is regression?](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/03WhatIsRegression) | [PDF](pdf/lec3_handout.pdf) | [PDF](pdf/worksheet_lec3.pdf) | [7:36](https://www.youtube.com/watch?v=wllni_KnmjQ&list=PLbHvZ-k41x9s) |
-| 4-1&ensp;[Simple regression: mechanics of OLS](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-1SimpleRegressionMechanics) | [PDF](pdf/lec4_1_handout.pdf) | [PDF](pdf/worksheet_lec4-1.pdf) | [6:30](https://www.youtube.com/watch?v=7flAEtlI_Co&list=PLbHvZ-k41x9s) |
-| 4-2&ensp;[Simple regression: statistical properties](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-2SimpleRegressionProperties) | [PDF](pdf/lec4_2_handout.pdf) | [PDF](pdf/worksheet_lec4-2.pdf) | [7:34](https://www.youtube.com/watch?v=tieM_0nF3uE&list=PLbHvZ-k41x9s) |
-| 4-3&ensp;[Simple regression: inference and interpretation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-3SimpleRegressionInference) | [PDF](pdf/lec4_3_handout.pdf) | [PDF](pdf/worksheet_lec4-3.pdf) | [7:52](https://www.youtube.com/watch?v=aslK8sGa63Y&list=PLbHvZ-k41x9s) |
-| 5-1&ensp;[Regression with two regressors](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-1TwoRegressors) | [PDF](pdf/lec5_1_handout.pdf) | [PDF](pdf/worksheet_lec5-1.pdf) | [7:28](https://www.youtube.com/watch?v=8ATj0tzDJnI&list=PLbHvZ-k41x9s) |
-| 5-2&ensp;[Omitted variables and multicollinearity](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-2OmittedVarMulticollinearity) | [PDF](pdf/lec5_2_handout.pdf) | [PDF](pdf/worksheet_lec5-2.pdf) | [7:38](https://www.youtube.com/watch?v=4Sn7V8B4gXU&list=PLbHvZ-k41x9s) |
-| 5-3&ensp;[Dummy variables](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-3DummyVariables) | [PDF](pdf/lec5_3_handout.pdf) | [PDF](pdf/worksheet_lec5-3.pdf) | [7:08](https://www.youtube.com/watch?v=5Gq1oJ76daU&list=PLbHvZ-k41x9s) |
-| 5-4&ensp;[Interaction terms and polynomials](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-4InteractionsPolynomials) | [PDF](pdf/lec5_4_handout.pdf) | [PDF](pdf/worksheet_lec5-4.pdf) | [11:33](https://www.youtube.com/watch?v=6XabG7d0sTs&list=PLbHvZ-k41x9s) |
-| 6-1&ensp;[Multiple regression in matrix form](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-1MultipleRegressionMechanics) | [PDF](pdf/lec6_1_handout.pdf) | [PDF](pdf/worksheet_lec6-1.pdf) | [5:20](https://www.youtube.com/watch?v=Joh2vmuyrUc&list=PLbHvZ-k41x9s) |
-| 6-2&ensp;[Testing in multiple regression](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-2MultipleRegressionTesting) | [PDF](pdf/lec6_2_handout.pdf) | [PDF](pdf/worksheet_lec6-2.pdf) | [7:32](https://www.youtube.com/watch?v=5bI7HBBLsMU&list=PLbHvZ-k41x9s) |
-| 6-3&ensp;[Heteroskedasticity, clustering and serial correlation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-3MoreInference) | [PDF](pdf/lec6_3_handout.pdf) | [PDF](pdf/worksheet_lec6-3.pdf) | [8:37](https://www.youtube.com/watch?v=Jgi9q1KpqK4&list=PLbHvZ-k41x9s) |
+| 1&ensp;[Introduction](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/01Intro) | [PDF](pdf/lec1_handout.pdf) | [5:29](https://www.youtube.com/watch?v=iF-UXSAJUKI&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec1.pdf) |
+| 2-1&ensp;[Point estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-1PointEstimation) | [PDF](pdf/lec2_1_handout.pdf) | [5:34](https://www.youtube.com/watch?v=Swxf5lM_u24&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec2-1.pdf) |
+| 2-2&ensp;[Interval estimation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-2IntervalEstimation) | [PDF](pdf/lec2_2_handout.pdf) | [5:29](https://www.youtube.com/watch?v=7T9ndJHs5_I&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec2-2.pdf) |
+| 2-3&ensp;[Hypothesis testing](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-3HypothesisTesting) | [PDF](pdf/lec2_3_handout.pdf) | [5:24](https://www.youtube.com/watch?v=WODM9NLojLQ&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec2-3.pdf) |
+| 2-4&ensp;[Bootstrap and clusters](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/02-4MoreInference) | [PDF](pdf/lec2_4_handout.pdf) | [6:15](https://www.youtube.com/watch?v=hGvSrkmQy1I&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec2-4.pdf) |
+| 3&ensp;[What is regression?](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/03WhatIsRegression) | [PDF](pdf/lec3_handout.pdf) | [7:36](https://www.youtube.com/watch?v=wllni_KnmjQ&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec3.pdf) |
+| 4-1&ensp;[Simple regression: mechanics of OLS](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-1SimpleRegressionMechanics) | [PDF](pdf/lec4_1_handout.pdf) | [6:30](https://www.youtube.com/watch?v=7flAEtlI_Co&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec4-1.pdf) |
+| 4-2&ensp;[Simple regression: statistical properties](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-2SimpleRegressionProperties) | [PDF](pdf/lec4_2_handout.pdf) | [7:34](https://www.youtube.com/watch?v=tieM_0nF3uE&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec4-2.pdf) |
+| 4-3&ensp;[Simple regression: inference and interpretation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/04-3SimpleRegressionInference) | [PDF](pdf/lec4_3_handout.pdf) | [7:52](https://www.youtube.com/watch?v=aslK8sGa63Y&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec4-3.pdf) |
+| 5-1&ensp;[Regression with two regressors](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-1TwoRegressors) | [PDF](pdf/lec5_1_handout.pdf) | [7:28](https://www.youtube.com/watch?v=8ATj0tzDJnI&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec5-1.pdf) |
+| 5-2&ensp;[Omitted variables and multicollinearity](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-2OmittedVarMulticollinearity) | [PDF](pdf/lec5_2_handout.pdf) | [7:38](https://www.youtube.com/watch?v=4Sn7V8B4gXU&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec5-2.pdf) |
+| 5-3&ensp;[Dummy variables](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-3DummyVariables) | [PDF](pdf/lec5_3_handout.pdf) | [7:08](https://www.youtube.com/watch?v=5Gq1oJ76daU&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec5-3.pdf) |
+| 5-4&ensp;[Interaction terms and polynomials](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/05-4InteractionsPolynomials) | [PDF](pdf/lec5_4_handout.pdf) | [11:33](https://www.youtube.com/watch?v=6XabG7d0sTs&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec5-4.pdf) |
+| 6-1&ensp;[Multiple regression in matrix form](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-1MultipleRegressionMechanics) | [PDF](pdf/lec6_1_handout.pdf) | [5:20](https://www.youtube.com/watch?v=Joh2vmuyrUc&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec6-1.pdf) |
+| 6-2&ensp;[Testing in multiple regression](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-2MultipleRegressionTesting) | [PDF](pdf/lec6_2_handout.pdf) | [7:32](https://www.youtube.com/watch?v=5bI7HBBLsMU&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec6-2.pdf) |
+| 6-3&ensp;[Heteroskedasticity, clustering and serial correlation](https://github.com/xuyiqing/regression-lectures/tree/main/lectures/06-3MoreInference) | [PDF](pdf/lec6_3_handout.pdf) | [8:37](https://www.youtube.com/watch?v=Jgi9q1KpqK4&list=PLbHvZ-k41x9s) | [PDF](pdf/worksheet_lec6-3.pdf) |
 
 The slides have one page per slide. To present with the step-by-step
 reveals, build that version from the LaTeX source. The worksheets are the in-class exercises. Each
@@ -37,8 +37,16 @@ that draw them, and the data.
 Each lecture also has a video of five to twelve minutes, all in one
 [YouTube playlist](https://www.youtube.com/playlist?list=PLbHvZ-k41x9s). The videos are designed to be conceptual and intuitive. Each
 presents the main ideas, one or two real examples, and the numbers from the lecture's R code; the
-details of the mathematical derivations are covered in class. Students can watch a video before the
-lecture as a preview and again afterwards as a review.
+details of the mathematical derivations are covered in class.
+
+## Pedagogy
+
+The videos pin down the conceptual issues, so that class time can go to the worksheet questions,
+the mathematics, and deeper insights. In class, we watch each video in segments, one part at a
+time, so that each concept is tied directly to its mathematical derivation and to examples. Between
+segments, we pause to settle conceptual questions, turn to the slides for the derivations, and work
+through worksheet questions with the students at the whiteboard. Outside class, students can watch
+a video before the lecture as a preview and again afterwards as a review.
 
 ## Prerequisites
 
