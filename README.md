@@ -7,7 +7,8 @@ on the slides, and the public datasets they use. Short preview and review videos
 science, and other social sciences.
 Version: Fall 2026.
 
-Course website: <https://xuyiqing.github.io/regression-lectures/>
+Course website: <https://xuyiqing.github.io/regression-lectures/> · Syllabus:
+[`syllabus/PS450A_syllabus.pdf`](syllabus/PS450A_syllabus.pdf)
 
 Each lecture entered this repository after a release review: numbers rerun from the code, citations
 checked against their sources, and independent line-by-line accuracy reads, with the fixes applied.
@@ -49,7 +50,8 @@ reveals, for presenting, is not stored here; build it from the source (below).
 | `code/data/` | the data the scripts read |
 | `figs/` | every figure the slides include |
 
-The in-class worksheets sit in `worksheets/`: `lec<N>.tex` and its PDF, one per lecture (student
+The syllabus (topics, readings, course policies, including the policy on generative AI) is in
+`syllabus/`, as LaTeX source and PDF. The in-class worksheets sit in `worksheets/`: `lec<N>.tex` and its PDF, one per lecture (student
 versions; the solutions are not in this repository). The course website's source is in `site/`;
 `quarto render` there writes the pages to `docs/`, and `site/assemble.sh` adds the PDFs when the
 site is published.

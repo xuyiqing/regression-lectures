@@ -9,5 +9,6 @@ rm -rf "$out"
 mkdir -p "$out/pdf"
 cp -R docs/. "$out/"
 cp lectures/_handouts/*_handout.pdf "$out/pdf/"
+cp syllabus/PS450A_syllabus.pdf "$out/pdf/syllabus.pdf"
 for f in worksheets/lec*.pdf; do cp "$f" "$out/pdf/worksheet_$(basename "$f")"; done
 echo "assembled $(ls "$out/pdf" | wc -l | tr -d ' ') PDFs in $out"

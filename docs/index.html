@@ -96,6 +96,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./pdf/syllabus.pdf"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./teaching.html"> 
 <span class="menu-text">Teaching with the slides</span></a>
   </li>  
@@ -150,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Lecture slides, worksheets, short videos, R code and data for the first course in Stanford’s political science PhD methods sequence. The course also suits advanced undergraduates in economics, political science, and other social sciences. The course covers point and interval estimation, hypothesis testing, simple and multiple regression, and robust and clustered standard errors. The R scripts in the <a href="https://github.com/xuyiqing/regression-lectures">repository</a> draw the figures and print the numbers on the slides from public data.</p>
+<p>Lecture slides, worksheets, short videos, R code and data for the first course in Stanford’s political science PhD methods sequence. The course also suits advanced undergraduates in economics, political science, and other social sciences. The course covers point and interval estimation, hypothesis testing, simple and multiple regression, and robust and clustered standard errors. The R scripts in the <a href="https://github.com/xuyiqing/regression-lectures">repository</a> draw the figures and print the numbers on the slides from public data. The <a href="pdf/syllabus.pdf">syllabus</a> lists the topics, readings, and course policies, including the policy on generative AI.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -275,14 +279,14 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script>
 // Every link in the page body opens in a new tab (Yiqing, 2026-10-17), and so do the navbar's
-// links to other sites (YouTube, GitHub); the navbar's own pages open in the same tab.
+// links to other sites (YouTube, GitHub) and to PDFs (the syllabus); the navbar's own pages open in the same tab.
 function newTab(a) { a.target = '_blank'; a.rel = 'noopener'; }
 document.querySelectorAll('main a[href]').forEach(function (a) {
   var h = a.getAttribute('href');
   if (h && h.charAt(0) !== '#') newTab(a);
 });
 document.querySelectorAll('.navbar a[href]').forEach(function (a) {
-  if (a.host && a.host !== location.host) newTab(a);
+  if ((a.host && a.host !== location.host) || /\.pdf$/i.test(a.pathname)) newTab(a);
 });
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

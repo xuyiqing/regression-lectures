@@ -1,0 +1,35 @@
+\ProvidesFile{PoliticalScience.clo}
+        [1995/02/07 syllabus class option file for Political Science]
+
+%% NOTE: Works with vita.cls class provided and (C) Copyright 1995, 
+%% Andrej Brodnik, ABrodnik@UWaterloo.CA. All rights reserved.
+%%
+%% Modifications for Political Science By: Andrew D. Martin
+%% Email: admartin@artsci.wustl.edu
+%% Date: March 18, 1998
+%% Further modifications by Kevin Quinn 4/27/98 3:26PM
+
+%% Categories
+\newcategory{Required Books}
+\newcategory{Optional Books}
+\newcategory{Required Reading}
+\newcategory{Optional Reading}
+\newcategory{Background Reading}
+\newcategory{Assignment}
+
+
+%% Redefinitions
+\HeaderBusiness{\textbf{Time \& Room}}
+\HeaderHome{\textbf{Office}}
+
+%%%%
+%
+% Finally, we have also references which are so called ``plain
+% category''. Note that multiple references are separated by
+% the ``\and'' command.
+%
+% To define additional plain categories see file ``vita.cls'' for
+% details.
+%---
+
+

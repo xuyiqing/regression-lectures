@@ -1,12 +1,12 @@
 <script>
 // Every link in the page body opens in a new tab (Yiqing, 2026-10-17), and so do the navbar's
-// links to other sites (YouTube, GitHub); the navbar's own pages open in the same tab.
+// links to other sites (YouTube, GitHub) and to PDFs (the syllabus); the navbar's own pages open in the same tab.
 function newTab(a) { a.target = '_blank'; a.rel = 'noopener'; }
 document.querySelectorAll('main a[href]').forEach(function (a) {
   var h = a.getAttribute('href');
   if (h && h.charAt(0) !== '#') newTab(a);
 });
 document.querySelectorAll('.navbar a[href]').forEach(function (a) {
-  if (a.host && a.host !== location.host) newTab(a);
+  if ((a.host && a.host !== location.host) || /\.pdf$/i.test(a.pathname)) newTab(a);
 });
 </script>

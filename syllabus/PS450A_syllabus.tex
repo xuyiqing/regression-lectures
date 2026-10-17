@@ -1,0 +1,867 @@
+\documentclass[PS]{syllabus}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{makecell}
+\usepackage[dvipsnames,usenames]{color}
+\definecolor{CardinalRed}{cmyk}{0,1,0.65,0.34} % Stanford Cardinal Red
+
+\usepackage[pdftex, bookmarksopen=true, bookmarksnumbered=true,
+  pdfstartview=FitH, breaklinks=true, urlbordercolor={0 1 0},
+  citebordercolor={0 0 1}, colorlinks=true, 
+  citecolor=CardinalRed, linkcolor=CardinalRed, urlcolor=CardinalRed,
+  pdfauthor={}, pdftitle={Title}]{hyperref}
+
+
+\textheight 9in
+\textwidth 6.5in
+\topmargin -.5in
+\oddsidemargin 0in
+\evensidemargin 0in
+
+\newcommand{\red}{\textcolor{CardinalRed}}
+\newcommand{\percent}{\ensuremath{\%\;}}
+
+% Release switch (2026-10-17), as in lectures/01Intro/lec1.tex: the course copy says \releasefalse;
+% the public copy in the regression-lectures repo says \releasetrue, which drops the term's
+% logistics (rooms, times, dates, staff, Canvas).
+\newif\ifrelease
+\releasetrue
+\newcommand{\onsite}{\ifrelease\else\ (course website)\fi}
+
+\begin{document}
+\title{\bf POLI450A: Political Methodology I \\
+\Large{(Fall 2026)}}
+
+\ifrelease
+\name{Yiqing Xu, Stanford University}
+\else
+\name{Professor: Yiqing Xu\\
+      TA: Vladimir Novikov}
+\fi
+
+\begin{syllabus}
+\vspace{-0.5 in}
+
+\ifrelease\else
+\begin{center}
+Class:    Mon/Wed 9:30-11:10am; Encina West 219  \\
+Section:  Fri 9:30-11:20am; Encina West 219
+\end{center}
+
+\begin{center}
+% \textbf{Zoom Registration}
+% \url{https://stanford.zoom.us/meeting/register/tJArf-2hqDwvHdSHv6Dd-hrjyyg7hcmxUZYA}\\\medskip
+
+\begin{tabular}{lccc}
+& &  \\
+&  Instructor: Yiqing Xu & TA: Vladimir Novikov  \\
+Email: & \href{mailto:yiqingxu@stanford.edu}{yiqingxu@stanford.edu} & \href{mailto:vlanov@stanford.edu}{vlanov@stanford.edu}  \\
+Office: & Encina West 409 &  Encina West 316  \\
+Office Hours:  &  Wednesday 3:30-5:30PM & TBD  \\
+Appointment: & \href{https://yiqingxu.youcanbook.me}{yiqingxu.youcanbook.me} & Open   \\
+\end{tabular}\\
+\end{center}
+\fi
+% \vspace{-1em}\hspace{0em} *Please make appointment first.
+
+\section*{Overview and Goals}
+
+This is the first course in a four-course sequence on quantitative political methodology. Political methodology is a growing subfield of political science which deals with the development and application of statistical methods to problems in political science and public policy. The subsequent courses in the sequence are 450B, 450C, and 450D. By the end of the sequence, students will be capable of understanding and confidently applying a variety of statistical methods and research designs that are essential for political science and public policy research.\\
+
+This first course provides a graduate-level introduction to regression models, along with the basic principles of probability and statistics which are essential for understanding how regression works. Regression models are routinely used in political science, policy research, and other disciplines in social science. The principles learned in this course also provide a foundation for the general understanding of quantitative political methodology. If you ever want to collect quantitative data, analyze data, critically read an article which presents a data analysis, or think about the relationship between theory and the real world, then this course will be helpful for you.\\
+
+You can only learn statistics by doing statistics. In recognition of this fact, the homework for this course will be {\it extensive}. In addition to the lectures and weekly homework assignments, there will be required and optional readings to enhance your understanding of the materials. You will find it helpful to read these not only once, but multiple times (before, during, and after the corresponding homework).\\
+
+The class is open to interested PhD students from other departments, subject to permission of the instructor.
+
+\section*{Prerequisites}
+
+{\it Willingness to work hard on unfamiliar materials.}  Understanding of basic linear algebra, calculus, probability, and statistical computing equivalent to the contents covered in the department's math camp course. Students typically benefit more from the class if they have taken one (or more) undergraduate classes in quantitative methodology.
+
+\clearpage
+
+\section*{Course Requirements}
+
+Grades will be based on
+\begin{itemize}
+\item course participation (5\percent of final grade)
+\item homework assignments (35\percent of final grade)
+\item midterm exam (25\percent of final grade)
+\item final exam (35\percent of final grade)
+%\item participation and presentation (5\percent of final grade).
+\end{itemize}
+
+The weekly homework assignments will consist of analytical problems, computer simulations, and data analysis. They will usually be assigned on {\bf Wednesday} night and due the following {\bf Tuesday} by 11:59pm. No late homework will be accepted. All sufficiently attempted homework (i.e. a typed and well organized write-up with all problems attempted) will be graded on the scale of ($+$, $\checkmark$, $-$). You may re-write one assignment over the quarter and have it regraded. If you choose to submit a re-write, it is due before the Wednesday lecture one week after the assignment is returned. We highly encourage students to work together on the assignments, but you always need to write up and submit your own solutions. We also require that you write the names of your co-workers on your assignments.\\
+
+\ifrelease
+The midterm exam takes place in {\bf Week 6}. The final exam takes place in the {\bf Exam Week}. \\
+\else
+The midterm exam will take place during {\bf Week 6}  (Monday, Oct 26). The final exam will take place during the {\bf Exam Week} (Thursday, Dec 10, 8:30-11:30am). \\
+\fi
+
+The midterm and final exams will be closed book. You may bring one two-sided cheat sheet. You will not be allowed to collaborate with anybody on the midterm and final exams. This is to test if you have developed sufficient experience to work through problems on your own. No re-write is permitted on the exams.\\
+
+Finally, please note that \emph{no incompletes will be given in this course} and that anyone considering auditing the course must complete and submit all homework assignments.
+
+
+\paragraph*{Variable unit distinction.} Each homework assignment will consist of two parts. The first part, required of all students, focuses on foundational proofs and data analysis; students complete it without the assistance of AI, writing and running their own code. The second part is one harder problem, set deliberately beyond the lectures so that students learn something the course does not teach; students are encouraged to use AI as a tool in developing their solutions (see the Policy on Using GenAI). Students enrolled in fewer than five units are not required to complete the second part.
+
+\paragraph*{Submission.} Students upload one PDF with both parts, typed in \LaTeX, Quarto or R Markdown, together with their {\tt R} code (a script file, or code shown in the PDF). The second part ends with one paragraph on the student's AI use: how the AI helped, and where it was not enough on its own. Students must be able to explain everything they submit.
+
+
+
+\section*{Active Learning}
+
+In this course, we will use active learning to reinforce both conceptual and technical aspects of regression analysis. Each class will include a short worksheet, which consists of in-class exercises, where we will pause the lecture and allow time for you to work through problems directly. These worksheets are not graded, but they are designed to deepen understanding, provide opportunities for immediate practice, and bridge the gap between coding-oriented homework assignments and exams, which place greater emphasis on conceptual reasoning and proofs.
+
+\paragraph*{Laptops and phones.} Lectures are laptop-free and phone-free. Please keep both put away during class, so that you can follow the derivations on the whiteboard and work through the worksheets. Tablets used for taking notes, such as an iPad or a reMarkable, are fine. The rule applies to lectures only, not to the \ifrelease\else Friday \fi sections.
+
+\section*{Notes on Academic Integrity}
+Please respect and follow the rules described in Stanford's Honor Code, which is available at:
+\begin{center}
+\href{https://communitystandards.stanford.edu/student-conduct-process/honor-code-and-fundamental-standard}{https://communitystandards.stanford.edu/student-conduct-process/honor-code-and-fundamental-standard}
+\end{center}
+In particular, the following is a (partial) list of the acts we will consider academically dishonest:
+\begin{itemize}
+\item Obtaining or consulting course materials from previous years
+\item Sharing course materials with people outside of the class, such as problem sets and solutions, including by posting them on a public website or repository (uploading course materials to an AI tool for your own study is allowed; see the Policy on Using GenAI)
+\item Copying and pasting someone else's answers to problem sets electronically, even if you collaborated with the person in a legitimate way (as specified above)
+\end{itemize}
+
+\section*{Policy on Using GenAI}
+
+Generative AI tools such as ChatGPT, Claude Code, and Google Gemini can be valuable for learning, but they are most useful when students have first developed the ability to reason through fundamental problems on their own. In this course, the goal is therefore not to avoid AI altogether, but to use it selectively and in ways that strengthen rather than replace independent problem-solving skills.\\
+
+During class, students are expected to follow the lecture closely, with particular attention to the derivations and arguments developed on the whiteboard. The pace and structure of the course are designed to make active engagement with these derivations an important part of the learning process. Students may use AI as an occasional supplementary resource for clarification, but it should not distract from following the lecture or working through the material as it is presented.\\
+
+Homework assignments are designed to develop both independent problem-solving skills and the ability to use modern computational tools effectively. For foundational problems, including basic proofs, derivations, and data analysis, students are strongly encouraged to work without AI assistance. These problems are intended to build fluency with the core concepts and techniques that students will be expected to reproduce independently on examinations.\\
+
+The second part of each assignment is one harder problem, set deliberately beyond the lectures so that working on it teaches something the course itself does not: sequential testing, inference with a handful of clusters, measurement error, the numerical linear algebra inside {\tt lm()}. On these problems students are encouraged to use AI as a tool, and the ideal use is a tutor and a collaborator rather than an answer machine: ask it to propose approaches, ask why they work, test its output against known answers, and make the judgment calls it cannot make. Each assignment therefore ends with one paragraph on how the AI helped and where it was not enough on its own. When using AI, students remain responsible for understanding, checking, and being able to explain the work they submit; an AI-generated solution that a student cannot independently evaluate or explain is not a satisfactory solution.\\
+
+Students may upload the course's lecture slides, handouts, and problem sets to AI tools for their own study, for example to ask about a slide they did not follow. This use does not count as ``sharing course materials with people outside of the class'' under the Notes on Academic Integrity. It does not cover posting course materials or solutions where others can see them, or uploading the textbook chapters and readings \ifrelease provided in the course\else posted on Canvas\fi.\\
+
+Midterm and final examinations will be completed without the use of Generative AI. Students will therefore be assessed directly on their own understanding of the fundamental concepts, proofs, derivations, and methods developed in the course. This is one reason that independent practice on the foundational portions of the homework is especially important: students who rely on AI for skills they have not yet mastered are likely to be at a disadvantage on the exams.
+
+
+\section*{Sections}
+
+\ifrelease Sections will be held once a week\else Weekly sections will be held on Fridays, 9:30-11:20am, in Encina West 219\fi. The sessions will cover a review of the theoretical material and also provide help with computing issues. The teaching assistant will run the sessions and can give more details. Attendance is required.
+
+\section*{Course Website}
+
+\ifrelease
+The slides, worksheets, short videos, {\tt R} code, and data are on the course site:
+\begin{center}
+\url{https://xuyiqing.github.io/regression-lectures/}
+\end{center}
+\else
+We will use Canvas as the course website. Slides, problem sets, datasets, and readings will be posted there.
+\fi
+
+% \section*{Course Website}
+
+% %The course website is located at the following URL:
+% %\begin{center}
+% %\href{https://coursework.stanford.edu/portal/site/F14-POLISCI-350A-01}{https://coursework.stanford.edu/portal/site/F14-POLISCI-350A-01}
+% %\end{center}
+% %This site will provide homework assignments, datasets, and links to reading materials.
+
+
+% In this course, we will utilize an online discussion board called {\it Piazza} as the course website. We will use this site to ask questions and also to provide homework assignments, datasets, and links to reading materials.
+
+% Below is an official blurb from the Piazza team:
+% \begin{quote}
+% Piazza is a question-and-answer platform specifically designed to get you answers fast. They support LaTeX, code formatting, embedding of images, and attaching of files. The quicker you begin asking questions on Piazza (rather than via individual emails to a classmate or one of us), the quicker you'll benefit from the collective knowledge of your classmates and instructors. We encourage you to ask questions when you're struggling to understand a concept.
+% \end{quote}
+% In addition to sections and office hours, please use the Piazza Q \& A board when asking questions about lectures, problem sets, and other course materials. You can access the Piazza course page at:
+% \begin{center}
+% \href{https://piazza.com/class/mfmuvq95bum69f}{https://piazza.com/class/mfmuvq95bum69f}
+% \end{center}
+% Using Piazza will allow students to see other students' questions and learn from them. Both the TA and the instructor will regularly check the board and answer questions posted, although everyone else is also encouraged to contribute to the discussion. A student's respectful and constructive participation on the forum will count toward his/her class participation grade. {\it Do not email your questions directly to the instructors or TAs} (unless they are of a personal nature) --- we will not answer them!
+
+
+\section*{Notes on Computing}
+
+We teach this course in \href{http://www.r-project.org/}{{\tt R}}, an open-source statistical computing environment that is very widely used in statistics and political science. You are already familiar with {\tt R} from math camp.
+
+\section*{Books}
+
+\subsection*{Required Books}
+Required readings for each section of the course are listed below. Students are expected to complete these readings before the relevant materials are covered in the lectures.
+The following textbook is required and will be used throughout the course:
+\begin{itemize}	
+%\item Bertsekas, Dimitri and Tsitsiklis, John. \emph{Introduction to Probability}. 2nd edition.
+\item Wooldridge, Jeffrey. \emph{Introductory Econometrics}. New York: South-Western. 6th edition. (5th edition will also work for the course)
+\end{itemize}
+
+We will also scan or provide selected chapters from the following textbooks that are helpful. These chapters are \ifrelease provided to students\else posted on the course website\fi. Students who liked these chapters might want to read the entire books in parallel to the Wooldridge book. They cover similar material.
+\begin{itemize}	
+\item P. Aronow and Benjamin T. Miller. \emph{Foundations of Agnostic Statistics}. Cambridge University Press.
+\item Peng Ding, \emph{Linear Model and Extensions}. arXiv preprint arXiv:2401.00649.
+\item Matthew Blackwell. \emph{A User's Guide to Statistical Inference and Regression}. Free online:\newline \url{https://mattblackwell.github.io/gov2002-book/}
+\item R. Carter Hill, William E. Griffiths, and Guay C. Lim. \emph{Principles of Econometrics}. 4th edition.
+\item John Fox. \emph{Applied Regression Analysis and Generalized Linear Models}. 2nd edition.
+\end{itemize}
+
+
+To learn {\tt R} you are also required to work through the following book:
+\begin{itemize}
+%\item \href{http://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf}{Owen. \emph{The R Guide}. At: http://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf}
+%\item \href{http://cran.r-project.org/doc/manuals/R-intro.pdf}{Venables and Smith. \emph{An Introduction to R}. At: http://cran.r-project.org/doc/manuals/R-intro.pdf}
+%\item \href{http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}{Verzani. \emph{Simple R}. At: http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}
+\item Paul Teetor. 2011. \emph{R Cookbook}. O'Reilly Media.
+\end{itemize}
+
+
+ In addition you can also work through other free R books such as:
+\begin{itemize}
+\item \href{http://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf}{Owen. \emph{The R Guide}. At: http://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf}
+\item \href{http://cran.r-project.org/doc/manuals/R-intro.pdf}{Venables and Smith. \emph{An Introduction to R}. At: http://cran.r-project.org/doc/manuals/R-intro.pdf}
+\item \href{http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}{Verzani. \emph{Simple R}. At: http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}
+%\item \href{http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}{Verzani. \emph{Simple R}. At: http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf}
+\end{itemize}
+
+
+
+
+\subsection*{Optional Books}
+The following books are optional but may prove useful to students looking for additional coverage of some of the  course topics. \\
+
+\emph{Other good textbooks:}
+\begin{itemize}
+\item Freedman, David, Robert Pisani, and Roger Purves. \emph{Statistics}. 4th Edition. New York: Norton. (statistics basics)
+\item Gelman, Andrew and Jennifer Hill. \emph{Data Analysis Using Regression and Multilevel/Hierarchical Models}. Cambridge University Press. (regression modeling)
+\item Fox, John and Sanford Weisberg. \emph{An R Companion to Applied Regression}. 2nd ed. (R, with focus on regression modeling)
+\end{itemize}
+
+
+\emph{For math background:}
+\begin{itemize}
+%\item Gill, Jeff. \emph{Essential Mathematics for Political and Social Research}. 1st Edition. 2nd printing. New York: Cambridge University Press.
+\item Simon, Carl and Blume, Lawrence. \emph{Mathematics for Economists}. New York: Norton.
+\end{itemize}
+
+%\item Angrist, Joshua D. and J\"orn-Steffen Pischke. 2008. \emph{Mostly Harmless Econometrics:
+%An Empiricist's Companion}. Princeton University Press.
+
+%\item Hastie, Trevor; Robert Tibshirani; and Jerome Friedman. 2001. \emph{The Elements of Statistical Learning}. New York: Springer.
+
+\emph{For visualizing data (conceptual):}
+\begin{itemize}
+\item Cleveland, William S. \emph{Visualizing Data}. Summit, NJ: Hobart Press.
+\item Tufte, Edward. \emph{The Visual Display of Quantitative Information, 2nd Edition}. Cheshire, CT: Graphics Press.
+\end{itemize}
+
+\emph{For visualizing data (implementation in R):}
+\begin{itemize}
+\item Murrell, Paul. \emph{R Graphics}. Chapman \& Hall.
+\item Wickham, Hadley. \emph{ggplot2: Elegant Graphics for Data Analysis}. Springer.
+\item Sarkar, Deepayan. \emph{Lattice: Multivariate Data Visualization with R}. Springer.
+\end{itemize}
+
+%\item Agresti, Alan and Finlay, Barbara. 1997. \emph{Statistical Methods for the Social Sciences} Upper Saddle River, NJ: Prentice Hall.
+
+% \item Weisberg, Sanford. 2005. \emph{Applied Linear Regression}. 3rd Edition. Hoboken, NJ: John Wiley.
+
+%\item Kennedy, Peter. 2003. \emph{A Guide to Econometrics}. 5th Edition. Malden. Blackwell.
+%\item Wonnacott, Thomas H. and Ronald J. Wonnacott. 1990. \emph{Introductory Statistics}. 5th Edition. New York: Wiley.
+  %\item Pindyck, Robert S. and Daniel L. Rubinfeld. 1998. \emph{Econometric
+ % Models and Economic Forecasts}. 4th Edition. Boston: McGraw Hill.
+%  \item Dalgaard, Peter. 2002. \emph{Introductory Statistics with
+% R}. New York: Springer.
+%  \item Venables, W.N. and B.D. Ripley. 2002. \emph{Modern Applied
+%    Statistics with S-PLUS}. New York: Springer
+% \item Gonick, Larry and Smith, Woollcott. 1993. \emph{The Cartoon Guide to Statistics} New York: Harper.
+
+\clearpage
+
+\noindent{\bf \LARGE Course Schedule and Reading Assignments} \\
+\texttt{} \\
+\ifrelease\else
+First day of class: Sep 23 \\
+Midterm exam: Monday, Oct 26 \\
+Last lecture: Nov 18 \\
+No classes on Nov 23 and 25 (Thanksgiving recess) \\
+Review sessions led by the TA: Nov 30 and Dec 2 \\
+Final exam: Thursday, Dec 10, 8:30-11:30am
+\fi
+%Oct 12 Yom Kippur (class held, but students observing Yom Kippur are not expected to attend class) \\
+
+%\vspace{-0.3 in}
+%\section{Introduction}
+%
+%\begin{itemize}
+%  \item Overview and Course Requirements
+%%  \item Examples of Statistical Inference in Political Science
+%  \item Course Outline
+%\end{itemize}
+
+%\textit{Required Readings:}
+%\begin{itemize}
+%  \item Fox97, Chapter 1
+%  \item Fox02, Preface, Sections 1.1 and 1.3
+%  \item Cleveland, Preface, Chapter 1
+%  \item Achen, Chapter 1
+%\end{itemize}
+%
+%\textit{Optional Readings:}
+%\begin{itemize}
+%\item Agresti and Finlay, Chapters 1 and 2
+%  \item Freedman, et al., Chapters 1 and 2
+%  \item Barnett, Vic. 1999. \emph{Comparative Statistical Inference}. New York: Wiley.
+%  \item Achen, Christopher and Larry Bartels. 2004. ``Musical Chairs: Pocketbook Voting and the Limits of Democratic Accountability.'' Paper presented at the 2004 Annual Meeting of the American Political Science Association (available on course website).
+%\end{itemize}
+
+%\section{Elementary Probability Theory}
+%\begin{itemize}
+%  \item Why Do We Need Probability?
+%  \item Probability Axioms
+%  \item Marginal, Joint and Conditional Probability
+%  \item Law of Total Probability
+%  \item Bayes' Rule
+%  \item Independence
+%\end{itemize}
+%\textit{Required Readings:}
+%\begin{itemize}
+%  \item Bertsekas and Tsitsiklis, Chapter 1
+%  \item Wooldridge, Appendix A
+%\end{itemize}
+%
+%\textit{Required Readings:} \begin{itemize}
+% \item Gill, Chapters 7, 8
+%  \item Fox97 Appendix D.1-D.4%,  D.5-D.5.2
+%\end{itemize}
+%[I might include the elementary probability chapters from Jeff Gill's book as well]
+%\textit{Optional Readings:} \begin{itemize}
+%  \item Gonick and Smith, Chapters 2-5
+%  \item Wooldridge Appendix B
+%  \item Freedman et al., Chapters 13-15
+% \item Wonnacott \& Wonnacott, Sections 3.1-3.6, 4.1-4.5, 5.1-5.4, 6.1-6.3
+% \item Diaconis, Persi and Mosteller, Frederick. 1989. ``Methods for Studying Coincidences.'' \emph{JASA} 84: 853-861.
+%  \item Gelman, Andrew; Gary King; and John
+ %   Boscardin. 1998. ``Estimating the Probability of Events that Have
+ %   Never Ocurred: When is Your Vote Decisive?.'' \emph{JASA}. 93:
+ %   1-9. (available via JSTOR)
+%\end{itemize}
+
+%\section{Random Variables and Probability Distributions}
+%\begin{itemize}
+%  \item Discrete and Continuous Random Variables
+%  \item Measures of Location
+%  \item Measures of Dispersion
+%  \item Probability Distributions
+%\end{itemize}
+%\textit{Required Readings:}
+%\begin{itemize}
+%  \item Bertsekas and Tsitsiklis, Chapters 2.1--2.4 \& 3.1--3.3
+%  \item Wooldridge, Appendix B.1 \& B.3
+%\end{itemize}
+%
+%
+%\section{Multiple Random Variables}
+%\begin{itemize}
+%  \item Joint and Conditional Distributions
+%  \item Conditional Expectation
+%  \item Covariance and Independence
+%\end{itemize}
+%\textit{Required Readings:}
+%\begin{itemize}
+%  \item Bertsekas and Tsitsiklis, Chapters 2.5--2.8, 3.4--3.7, 4.2 \& 4.3
+%  \item Wooldridge, Appendix B.2 \& B.4--B.5
+%\end{itemize}
+
+
+\section{Univariate Statistical Inference}
+\subsection{Point Estimation}
+\begin{itemize}
+   \item Properties of Estimators
+   \item Sampling Distribution
+   \item Elementary Asymptotic Theory
+\end{itemize}
+\textit{Required Readings:}
+\begin{itemize}
+  \item Wooldridge, Appendix C1-C4
+  \item Unless you are well familiar with this material you need to review: Wooldridge, Appendix A \& B
+\end{itemize}
+
+\subsection{Interval Estimation}
+\begin{itemize}
+   \item Confidence Intervals
+\end{itemize}
+\textit{Required Readings:}
+\begin{itemize}
+  \item Wooldridge, Appendix C5
+\end{itemize}
+\subsection{Hypothesis Testing}
+\begin{itemize}
+   \item Logic of Statistical Testing
+   \item p-Values
+\end{itemize}
+\textit{Required Readings:}
+\begin{itemize}
+  \item Wooldridge, Appendix C6-C7
+\end{itemize}
+
+%\textit{Required Readings:} \begin{itemize}
+% \item Agresti and Finlay, Sections 4.3-5.3, 6.1 - 6.5
+% \item Wooldridge, Appendix C
+%  \item Fox97 Appendix D.5-D.5.2
+%  \item American National Election Studies website (http://www.electionstudies.org/)
+%\end{itemize}
+
+%\textit{Optional Readings:} \begin{itemize}
+%  \item Gonick and Smith, Chapters 6-8
+%  \item Freedman et al., Chapters 16-26
+%\end{itemize}
+
+
+\section{What is Regression?}
+
+\begin{itemize}
+\item Nonparametric Regression
+\item Linear Regression
+\item Bias-Variance Tradeoff
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapter 1
+\end{itemize}
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, Sections 2-3.2
+%  \item Fox02, Sections 2-3.2
+% \item Tatem, Andrew J; Carlos A. Guerra; Peter M. Atkinson; and
+%   Simon I. Hay. 2004. ``Momentous Sprint at the 2156 Olympics.''
+%    \emph{Nature} 431 (30 September): 525. (available at course website)
+%\end{itemize}
+
+%\textit{Optional Readings:} \begin{itemize}
+% \item Cleveland, Chapter 2 pp. 16 - 33 and Chapter 3 pp. 86-101
+%  \item Achen, Chapter 2
+%   \item Tufte, Edward. 2001. \emph{The Visual Display of Quantitative Information, 2nd Edition}. Cheshire, CT: Graphics Press.
+%  \item Cleveland, William S. and Robert McGill. 1987. ``Graphical
+ %Perception: The Visual Decoding of Quantitative Information on
+ % Graphical Displays of Data.'' (with discussion) \emph{JRSS A}. 150:
+%  192-229.  (available via JSTOR)
+%  \item Cleveland, William S. and Robert McGill. 1984. ``Graphical
+%  Perception: Theory, Experimentation, and Application to the
+%  Development of Graphical Methods.'' \emph{JASA}. 79: 531-554
+%  (available via JSTOR)
+ % \item Cleveland, William S.; Persi Diaconis; and Robert
+%  McGill. 1982. ``Variables on Scatterplots Look More Highly
+%  Correlated When the Scales are Increased.'' \emph{Science}. 216:
+%  1138-1141 (available via JSTOR)
+% \end{itemize}
+
+
+%\section{Visualization}
+
+%\textit{Required Readings:} \begin{itemize}
+ % \item Cleveland, Chapters 4, 5, and 6 (review chapters 2 and 3)
+%\end{itemize}
+%\begin{Background Reading} % \item Freedman et al., Chapters 3-7
+%\item Cleveland, William S. 1994. \emph{The Elements of Graphing
+ % Data}. Summit, NJ: Hobart Press.
+%\end{Background Reading}
+
+
+%\textit{Optional Readings:} \begin{itemize}
+  %\item Cleveland, William S. and Robert McGill. 1987. ``Graphical
+ % Perception: The Visual Decoding of Quantitative Information on
+  %Graphical Displays of Data.'' (with discussion) \emph{JRSS A}. 150:
+  %192-229.  (available via JSTOR)
+  %\item Cleveland, William S. and Robert McGill. 1984. ``Graphical
+  %Perception: Theory, Experimentation, and Application to the
+  %Development of Graphical Methods.'' \emph{JASA}. 79: 531-554
+  %(available via JSTOR)
+  %\item Cleveland, William S.; Persi Diaconis; and Robert
+  %McGill. 1982. ``Variables on Scatterplots Look More Highly
+  %Correlated When the Scales are Increased.'' \emph{Science}. 216:
+  %1138-1141 (available via JSTOR)
+  %\item Trellis Display homepage at Bell Labs\\ \texttt{http://cm.bell-labs.com/cm/ms/departments/sia/project/trellis/}
+%\end{itemize}
+
+
+
+\section{Simple Linear Regression}
+
+\begin{itemize}
+\item Mechanics of Ordinary Least Squares
+\item Linear Model Assumptions
+\item Properties of the Least Squares Estimator
+\item Gauss-Markov Theorem
+\item Testing and Confidence Intervals
+\item Large Sample Inference
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapter 2
+  \item Alternative: Hill, Griffiths, and Lim, Chapters 2 \& 3\onsite
+\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%\item Tatem, Andrew J; Carlos A. Guerra; Peter M. Atkinson; and Simon I. Hay. 2004. ``Momentous Sprint at the 2156 Olympics.'' \emph{Nature} 431 (30 September): 525.
+%\end{itemize}
+
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, Sections 5.1 and 6.1
+%  \item Fox02, Section 4.1.1
+%  \item Wooldridge, Chapter 2
+%  \item Fox97, Sections 4-4.4
+%  \item Fox02, Section 3.4
+
+%\item Osberg, Lars and Timothy Smeeding. 2004. `` `Fair' Inequality? An International Comparison of Attitudes to Pay Differentials'' \emph{American Sociological Review}, 71: 450-473.
+ %  \item Epstein, Lee and Carol Mershon. 1996. ``Measuring Political
+   % Preferences.'' \emph{American Journal of Political Science}, 40:
+   % 261-294. (available via JSTOR)
+%\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%  \item Freedman et al., Chapters 8-12
+%\item Wonnacott \& Wonnacott, Chapters 11 and 12
+%  \item Tufte, Edward. 1974. \emph{Data Analysis for Politics and
+%    Policy}. Englewood Cliffs, NJ: Prentice-Hall. Chapter 3.
+%    \item Stigler, Steven M. 1986. \emph{The History of Statistics: The
+%  Measurement of Uncertainty before 1900}. Cambridge, MA: Harvard
+%  University Press. Chapters 1,8
+%\end{itemize}
+
+\section{Linear Regression with Two Regressors}
+\subsection{Mechanics of Regression with Two Regressors}
+\begin{itemize}
+\item Motivation for Multiple Regression
+\item Mechanics for OLS with Two Regressors
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapter 3
+\end{itemize}
+\begin{itemize}
+\item Inference for OLS with Two Regressors
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapters 4 \& 5
+\end{itemize}
+
+\subsection{Omitted Variables and Multicollinearity}
+\begin{itemize}
+\item Omitted Variable Bias
+\item Multicollinearity
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapter 6
+      \item Alternative: Hill, Griffiths, and Lim, Chapter 6\onsite
+\end{itemize}
+\subsection{Dummy Variables, Interactions and Polynomials}
+\begin{itemize}
+\item Dummy Variables
+\item Interaction Terms
+\item Polynomials and Logarithms
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapter 7
+    \item Alternative: Hill, Griffiths, and Lim, Chapters 4 \& 7\onsite
+\end{itemize}
+
+%\textit{Optional Readings:} \begin{itemize}
+%\item Brambor, Thomas,  William Clark, and Matt Golder. 2005. ``Understanding Interaction Models: Improving Empirical Analyses.'' \emph{Political Analysis}. 13: 1-20.
+%\item Braumoeller, Bear. 2004. ``Hypothesis Testing and Multiplicative Interaction Terms.'' \emph{International Organization}. 58: 807-820.
+%\end{itemize}
+
+
+\section{Multiple Linear Regression}
+\subsection{Mechanics of Multiple Regression}
+\begin{itemize}
+\item Review of Matrix Algebra and Vector Calculus
+\item Mechanics of Multiple Linear Regression
+\end{itemize}
+\subsection{Statistical Inference with Multiple Regression}
+\begin{itemize}
+\item Statistical Inference for Multiple Linear Regression
+\item Testing Multiple Hypotheses
+\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Appendix D \& E
+\end{itemize}
+
+%\textit{Required Readings:} \begin{itemize}
+%\item Simon and Blume. 1994. \emph{Mathematics for
+%  Economists}. Sections 8.1-8.4 (handout)
+% \item Gill Chapters 3, 4, 5, 6
+
+% \item Gill. 2006. Chapter 3.1, 3.2 pp. 82-88 (81-86 on web)
+ %\item Gill. 2006. Chapter 3.3, 3.4 pp. 100-112 (102-110 on web)
+ %\item Gill. 2006. Chapter 3.5
+ %\item Gill. 2006. Chapter 4.3 pp. 139-142 (132-134 on web)
+ %\item Gill. 2006. Chapter 4.6
+ %\item Fox97, Appendix B
+%\item Fox97 Section 10.1,10.2
+% \item Fox97, Appendices C.1, C.3
+%  \item Fox97, Sections 9.1 pp. 204-206, 9.2
+%  \item Fox02, Sections 1.2 and 4.1
+
+  %\item Tsebelis, George. 1999. ``Veto Players and Law Production in
+   % Parliamentary Democracies: An Empirical Analysis." \emph{The
+     % American Political Science Review}, 93: 591-608. (available via JSTOR)
+%\end{itemize}
+
+%\section{Properties of the Least Squares Estimator, Causality, and Measurement Error - Nov. 19}
+
+%\textit{Required Readings:} \begin{itemize}
+
+%\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%  \item Freedman et al., Chapters 26-29
+%  \item Achen, Chapter 3
+%  \item Simon and Blume. 1994. \emph{Mathematics for
+%  Economists}. Sections 8.1-8.4
+% \item Cleveland. Chapter 4
+%\end{itemize}
+
+%\section{Causal Inference for Least Squares Regression}
+
+%\textit{Required Readings:} \begin{itemize}
+%\item Pearl, Judea \emph{Causality} (Handout)
+%\end{itemize}
+
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, Sections 6.2-6.5, 9.3-9.7
+%  \item Fox02, Sections 4.5 and 4.6
+%  \item Braumoeller, Bear. 2004. ``Hypothesis Testing and
+%  Multiplicative Interaction Terms.'' \emph{International
+%  Organization}. 58: 807-820.
+%\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%\item Wooldridge, Chapters 3,4,5
+% \item Kennedy, Appendix A, 418-422
+%  \item Freedman et al., Chapters 26-29
+%   \item Achen, Chapter 4
+%\end{itemize}
+
+%\section{Causal Inference for Least Squares Regression}
+
+%\textit{Required Readings:} \begin{itemize}
+%\item Pearl, Judea \emph{Causality} (Handout)
+%\end{itemize}
+
+%\section{Dummy Variables, Interaction Terms, and Polynomial Regression - Dec. 17}
+
+%\textit{Required Readings:} \begin{itemize}
+ % \item Fox97, Chapter 7
+   %\item Fox97, Section 14.2-14.2.1
+  %\item Fox02, Section 4.2
+  %\item Brambor, Thomas,  William Clark, and Matt
+  %Golder. 2005. ``Understanding Interaction Models: Improving
+  %Empirical Analyses.'' \emph{Political Analysis}. 13: 1-20.
+  %\item Braumoeller, Bear. 2004. ``Hypothesis Testing and
+  %Multiplicative Interaction Terms.'' \emph{International
+  %Organization}. 58: 807-820.
+
+ % \item Gelman, Andrew and Gary King. 1990. ``Estimating the
+  %Incumbency Advantage without Bias.'' \emph{AJPS}. 34:
+  %1142-1164. (available via JSTOR)
+  %\item Wilkerson, John D. 1999. `` `Killer' Amendments in Congress."
+    %\emph{The American Political Science Review}, Vol. 93:
+    %535-552. (available via JSTOR)
+%\end{itemize}
+
+
+\section{Diagnosing and Fixing Problems in Linear Regression}
+\subsection{Outliers and Influential Observations}
+	\begin{itemize}
+	\item Plotting Residuals
+	\item Standardized and Studentized Residuals
+	\item Added Variable and Component Residual Plots
+	\item Leverage and Influence
+\end{itemize}
+\textit{Required Readings:}
+	\begin{itemize}
+  \item Fox, Chapter 11\onsite
+\end{itemize}
+	
+\subsection{Heteroskedasticity, Serial Correlation and Clustering}
+	\begin{itemize}
+	\item Weighted Least Squares
+	%\item Generalized Least Squares
+	\item Heteroskedasticity-robust Standard Errors
+	\item Cluster-robust Standard Errors
+	\item Autocorrelation
+\end{itemize}
+%	\end{itemize}
+%\subsection{Measurement Error}
+%	\begin{itemize}
+%	\item Types of Measurement Errors
+%	\item Measurement Error in the Dependent Variable
+%	\item Measurement Error in an Independent Variable
+%	\end{itemize}
+\textit{Required Readings:} \begin{itemize}
+  \item Wooldridge, Chapters 8--9
+\item  Fox, Chapter 12\onsite
+  \item Alternative: Hill, Griffiths, and Lim, Chapter 8\onsite
+\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+% \item Jackman, Robert W. 1987.``The Politics of Economic Growth in
+%     the Industrial Democracies, 1974-80: Leftist Strength or North Sea
+%     Oil?'' \emph{The Journal of Politics}, Vol. 49, No. 1,
+%     pp. 242-256. (available via JSTOR)
+%        \item Wand, Jonathan; Kenneth Shotts; Jasjeet Sekhon; Walter Mebane;
+%    Michael Herron; and Henry Brady. 2001 ``The Butterfly Did It: The
+%    Aberrant Vote for Buchanan in Palm Beach County, Florida.''
+%    \emph{APSR}. 95: 793-810.
+%\end{itemize}
+
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, 12.2, 14.1
+%  \item Fox02, Sections 6.3
+%  \item Fox02, Appendix: ``Time-Series Regression and Generalized Least Squares''
+%    \item Beck, Nathaniel and Katz, Jonathan. 1995. ``What to do (and not to do) with Time Series Cross-Sectional Data.'' \emph{APSR}. 89:
+%  634-647. (available via JSTOR)
+%\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%\item Berk, Kenneth. 1998. ``Regression Diagnostic Plots in 3-D'' \emph{Technometrics}. 40: 39-47.
+%   \item Weisberg, Sanford. 2005. \emph{Applied Linear Regression}. 3rd Edition. Hoboken, NJ: John Wiley.
+% \item Achen, Chapters 5, 6, and 7
+%\item Wooldridge, Chapters 10-12
+%\end{itemize}
+
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, Chapter 11
+%  \item Fox02, Section 6.1
+%
+%    \item Fox97, 12.1,12.3,12.4, 12.7
+%  \item Fox02, Sections 6.2, 6.3, and 6.4
+%  (available via JSTOR)
+ % \item Lange, Peter and Geoffrey Garrett. 1985. ``The Politics of
+  %  Growth: Strategic Interaction and Economic Performance in the
+   % Advanced Industrial Democracies, 1974-1980.'' \emph{The Journal of
+   % Politics}. Vol. 47. No. 3. pp. 792-827. (available via JSTOR)
+
+%  \item R. Michael Alvarez, Geoffrey Garrett, and Peter
+  % Lange. 1991. ``Government Partisanship, Labor Organization, and
+   % Macroeconomic Performance.''  \emph{American Political Science
+    %  Review}, Vol 85, No. 2, pp. 539-556. (available via JSTOR)
+%  \item Beck, Nathaniel; Jonathan Katz; R. Michael Alvarez; Geoffrey
+ %  Garrett; and Peter Lange. 1993. ``Government Partisanship, Labor
+    %Organization, and Macroeconomic Performance: A Corrigendum.''
+   % \emph{American Political Science Review} Vol 87 No. 4,
+   % pp. 945-948. (available via JSTOR)
+%\end{itemize}
+
+%\textit{Optional Readings:} \begin{itemize}
+%  \item Weisberg, Sanford. 2005. \emph{Applied Linear Regression}. 3rd Edition. Hoboken, NJ: John Wiley.
+%   \item Hastie, Trevor; Robert Tibshirani; and Jerome
+%  Friedman. 2001. \emph{The Elements of Statistical Learning}. New
+%  York: Springer.
+%  \item Hastie, Trevor and Rob Tibshirani. 1990. \emph{Generalized
+%    Additive Models}. London: Chapman \& Hall.
+
+%\end{itemize}
+%
+%\section{Extensions and Advanced Topics (time permitting)}
+%\begin{itemize}
+%\item Nonlinear Regression Models
+%	\begin{itemize}
+%	\item Logit and Probit Models
+%	\item Generalized Linear Models
+%	\end{itemize}
+%\item Semiparametric and Nonparametric Regression Models
+%	\begin{itemize}
+%	\item Generalized Additive Models
+%	\end{itemize}
+%\end{itemize}
+%\textit{Required Readings:} \begin{itemize}
+%  \item Wooldridge, Chapter 17.1
+%\end{itemize}
+%\textit{Optional Readings:}
+%\begin{itemize}
+% \item Beck, Nathaniel and Simon Jackman. 1998. ``Beyond Linearity by
+%  Default: Generalized Additive Models.'' \emph{AJPS}. 42:
+%  596-627.
+%\end{itemize}
+
+%\textit{Required Readings:} \begin{itemize}
+%  \item Fox97, Chapter 14.2-14.4
+%  %   \item Fox97, Sections 16.1-16.1.3
+%   \item Fox97, Sections 15.1-15.1.4
+%   \item Fox97, Sections 5.1, 5.2
+%  \item Fox02, Online Appendices
+ % \item Venables and Ripley. 2002. pp. 156-163 (handout)
+ % (available via JSTOR)
+  %\item Western, Bruce. 1995. ``Concepts and Suggestions for Robust
+  %Regression Analysis.'' \emph{AJPS}. 39: 786-817. (available via JSTOR)
+
+%  \item Quinn, Kevin ``Visualizing Multivariate Outliers and Leverage
+%    Points.'' (handout)
+%\end{itemize}
+%\textit{Optional Readings:} \begin{itemize}
+%
+%  \item Hampel, Frank. 1974. ``The Influence Curve and Its Role in
+%  Robust Estimation.'' \emph{JASA}. 69: 383-393.
+%  \item Hampel, F.R., E.M. Ronchetti, P.J. Rousseeuw, and W.A. Stahel,
+%  1986. \emph{Robust Statistics: The Approach Based on Influence
+%  Functions.} New York: Wiley.
+%  %\item Huber, P. J. 1964. ``Robust Estimation of a Location
+%  Parameter.'' \emph{Annals of Mathematical Statistics}. 35: 73-101.
+%  \item Rousseeuw, R.J. and A.M. Leroy. 1987. \emph{Robust Regression
+%  and Outlier Detection}. New York: Wiley.
+%  \item Stefanski, L.A. 1991. ``A Note on High-Breakdown Estimators.''
+%  \emph{Statistics and Probability Letters}. 11: 353-358.
+%\end{itemize}
+
+
+%\textit{Optional Readings:} \begin{itemize}
+%\item Rousseeuw, Peter J. and Bert C. van Zomeren. 1990. ``Unmasking Multivariate Outliers and Leverage Points (with Discussion).''\emph{JASA}. 85: 633-651.
+%\item Hampel, Frank. 2001. ``Robust Statistics: A Brief Introduction
+%  and Overview.'' \href{http://e-collection.ethbib.ethz.ch/ecol-pool/incoll/incoll\_105.pdf}{Link}.
+%\end{itemize}
+
+
+%\section{Nonparametric Regression and Additive Models Revisited, Bootstrapping, and an Introduction to Logit and Probit - Dec. 17}
+
+%\textit{Required Readings:} \begin{itemize}
+ % \item Fox97, Sections 14.4
+%  \item Fox97, Sections 16.1-16.1.3
+  %\item Fox97, Sections 15.1-15.1.4
+%\item Fox97, Sections 5.1, 5.2
+ % \item Stock and Watson, 2003. Chapter 6 (handout)
+%  \item Friedrich, Robert. 1982. ``In Defense of Multiplicative Terms
+ % in Multiple Regression Equations.'' \emph{American Journal of
+ % Political Science}. 26: 797-833. (available via JSTOR)
+  % \item Neto, Octavio Amorim, and Gary W. Cox. 1997. ``Electoral
+   % Institutions, Cleavage Structures, and the Number of Parties."
+   % \emph{American Journal of Political Science}, 41:
+   % 149-174. (available via JSTOR)
+  %\item Kousser, T. ``Retrospective Voting and Strategic Behavior in European
+ %   Parliament Elections.''\emph{Electoral Studies},
+   % Vol. 23, (2004), pp. 1-21.
+ % \item Venables and Ripley. 2002. Chapter 8. (handout)
+%\end{itemize}
+
+
+%\section{Introduction to Logit and Probit Models}
+
+%\textit{Required Readings:} \begin{itemize}
+%\item Fox97, Chapter 15.1-15.1.4
+%\item Fox97, Sections 5.1, 5.2
+%\end{itemize}
+
+
+
+%King, Gary. 1986. "How Not to Lie With Statistics: Avoiding Common Mistakes in Quantitative Political Science." American Journal of Political Science 30(3):666-87.
+
+%King, Gary. 1991. "Truth is Stranger than Predication, More Questionable than Causal Inference." American Journal of Political Science 35(4):1047-53.
+
+\end{syllabus}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

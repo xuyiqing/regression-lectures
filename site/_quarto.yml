@@ -12,6 +12,8 @@ website:
     left:
       - href: index.qmd
         text: Lectures
+      - href: pdf/syllabus.pdf
+        text: Syllabus
       - href: teaching.qmd
         text: Teaching with the slides
       - href: about.qmd
