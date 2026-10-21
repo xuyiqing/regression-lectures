@@ -163,15 +163,21 @@ $$
 T \ \equiv \ \frac{\widehat{\beta}_1 - \beta_1}{\widehat{SE[\hat{\beta}_1]}} \ \sim \ \tau_{n-2}
 $$
 \end{theorem}\pause
-\begin{proof}
-\textbf{Worksheet Q1}
+\begin{proof}[Proof sketch]
+\vspace{-.3\baselineskip}
+\begin{itemize}
+\item Given $X$, $\hat{\beta}_1 = \beta_1 + \frac{\sum_{i=1}^n (x_i-\bar{x})u_i}{SST_x}$ is a linear combination of normal errors, so $Z \equiv \frac{\hat{\beta}_1-\beta_1}{SE[\hat{\beta}_1]} \sim N(0,1)$
+\item $Q \equiv \frac{(n-2)\hat{\sigma}^2_u}{\sigma^2_u} = \frac{\sum_{i=1}^n \hat{u}_i^2}{\sigma^2_u} \sim \chi^2_{n-2}$: the residuals lose two degrees of freedom to $\hat{\beta}_0$ and $\hat{\beta}_1$
+\item Under normal errors, $\hat{\beta}_1$ is independent of the residuals (fitted values and residuals are orthogonal), so $Z$ and $Q$ are independent
+\item Hence $T = \frac{Z}{\sqrt{Q/(n-2)}} \sim \tau_{n-2}$, by the definition of the $t$-distribution
+\end{itemize}
+\end{proof}
   % The logic is perfectly analogous to the t-value for the population mean --- because we are
 % estimating the denominator, we need a distribution that has fatter tails than $N(0,1)$ to
 % take into account the additional uncertainty. \\ \smallskip
 % This time, $\hat\sigma^2_u$ contains two estimated parameters ($\hat\beta_0$ and $\hat\beta_1$)
 % instead of one, hence the degrees of freedom $= n-2$. \\ \smallskip
 % See Wooldridge's Appendix for a more formal proof.
-\end{proof}
 
 }
 
@@ -576,7 +582,7 @@ $$
 \end{theorem}
 
 \begin{proof}
-\textbf{Worksheet Q2}
+\textbf{Worksheet Q1}
 \end{proof}
 }
 
@@ -644,7 +650,7 @@ $\widehat{SE}[\hat\beta_1] = \frac{\hat{\sigma}_{u}}{\sqrt{\sum_{i=1}^n (x_i - \
 $\hat{\sigma}^2_{u}=\frac{1}{n-2}\sum_{i=1}^n \hat{u}_i^2 \stackrel{p}{\rightarrow} \sigma^2_u$ (dividing by $n$ also works)
 \end{theorem}
 
-\bigskip\textbf{Worksheet Q3}
+\bigskip\textbf{Worksheet Q2}
 \end{frame}
 
 
@@ -983,7 +989,7 @@ F-statistic: 69.99 on 1 and 48 DF,  p-value: 6.199e-11
       \item Regress $\log(Y)$ on $X$ $\longrightarrow$ $100\beta_1$ approximates the \alert{percent change} in $Y$ associated with a one-unit increase in $X$
       \item Regress $Y$ on $\log(X)$ $\longrightarrow$ $\beta_1/100$ approximates the change in $Y$ associated with a \alert{one percent increase} in $X$
       \item Note that these approximations work only for small changes
-      \item In particular, they can fail for a dummy $D$ moving from 0 to 1 (Worksheet Q4)
+      \item In particular, they can fail for a dummy $D$ moving from 0 to 1 (Worksheet Q3)
     \end{itemize}
 %\medskip
 %  \item Other possible transformations: $X^2$, $\sqrt{X}$, $\log\l(\frac{Y}{1-Y}\r)$, etc.
@@ -1085,7 +1091,7 @@ a $0.617$ percent decrease in infant mortality on average}
 \frame{
 \frametitle{Be Careful: Log-Level with binary $X$}
 
-\textbf{Worksheet Q4}\\ \medskip
+\textbf{Worksheet Q3}\\ \medskip
 
 Consider $\log(Y)=\beta_0+\beta_1D + u$ with $D\in\{0,1\}$, assuming $D \perp u$.  \\
 
