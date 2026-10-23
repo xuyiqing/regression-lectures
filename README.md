@@ -36,6 +36,21 @@ The course was originally designed by Jens Hainmueller and is maintained and upd
 | 6-2 | Testing in multiple regression | [`lec6_2_handout.pdf`](lectures/_handouts/lec6_2_handout.pdf) | [7:32](https://www.youtube.com/watch?v=5bI7HBBLsMU&list=PLbHvZ-k41x9s) | [`lec6-2.pdf`](worksheets/lec6-2.pdf) |
 | 6-3 | Heteroskedasticity, clustering and serial correlation | [`lec6_3_handout.pdf`](lectures/_handouts/lec6_3_handout.pdf) | [8:37](https://www.youtube.com/watch?v=Jgi9q1KpqK4&list=PLbHvZ-k41x9s) | [`lec6-3.pdf`](worksheets/lec6-3.pdf) |
 
+## Handouts
+
+Four short handouts in `handouts/` go with the lectures (LaTeX source and PDF):
+
+| Handout | Goes with | File |
+|---|---|---|
+| Midterm review: a topic and formula list for Lectures 1 to 4-3 | 1 to 4-3 | [`midterm_review.pdf`](handouts/midterm_review.pdf) |
+| OLS estimators: derivations and properties, scalar and matrix | 4-1 to 4-3, 6-1 | [`handout_ols.pdf`](handouts/handout_ols.pdf) |
+| Interpreting regression coefficients: levels, logs and shares, with 2024 examples | 4-3 | [`interpret_reg_coeffs.pdf`](handouts/interpret_reg_coeffs.pdf) |
+| The gradient of a quadratic form | 6-1 | [`note_on_quadform.pdf`](handouts/note_on_quadform.pdf) |
+
+Every number in the coefficients handout comes from `handouts/code/interpret_examples.R` (run it from
+`handouts/code/`; its output is `interpret_examples.txt`), which reads copies of the lecture data in
+`handouts/code/data/`.
+
 ## Layout
 
 Each lecture folder under `lectures/` holds its slide source at the top. The slides are released as

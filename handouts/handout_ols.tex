@@ -1,0 +1,442 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb,amsmath,bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\onehalfspacing
+
+% === math commands (as in the lecture slides)
+\newcommand\E{\mathbb{E}}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\renewcommand{\u}{\ensuremath{\mb{u}}}
+\newcommand{\X}{\ensuremath{\mb{X}}}
+\newcommand{\x}{\ensuremath{\mb{x}}}
+\newcommand{\y}{\ensuremath{\mb{y}}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\bO}{\mathbf{O}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bzero}{\mathbf{0}}
+\newcommand{\bhy}{\hat{\mathbf{y}}}
+\newcommand{\bhu}{\hat{\mathbf{u}}}
+\renewcommand{\b}{\ensuremath{\bs{\beta}}}
+\newcommand{\XX}{\ensuremath{\X'\X}}
+\newcommand{\XXinv}{\ensuremath{\left(\XX\right)^{-1}}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\DeclareMathOperator*\plim{plim}
+\newcommand{\red}{\color{red}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE OLS Estimators}\\[4pt]
+450A Political Methodology I, handout
+\end{center}
+
+\noindent Assumptions I--VI refer to the lectures: (I) linearity, (II) random sampling,
+(III) variation in $X$ (no perfect collinearity), (IV) zero conditional mean, (V) homoskedasticity,
+(VI) normality of the errors. In the scalar sections, conditioning on $X$ means conditioning on all
+the sample values $x_1,\dots,x_n$. The limit theorems used in Section 5 are stated in Section 6.
+
+\section{OLS setup}
+\begin{itemize}
+\item $(X,Y)$ are jointly distributed, with $Y=\beta_0+\beta_1 X+ u$ and $\E[u\mid X]=0$
+\item We observe an i.i.d.\ sample $\{(x_i,y_i)\}_{i=1}^n$, that is, $(x_1,y_1), (x_2,y_2),\dots,(x_n,y_n)$
+\item OLS estimators: $\hat \beta_0$ and $\hat \beta_1$
+\item Fitted values: $\hat y_i= \hat\beta_0+\hat\beta_1 x_i$
+\item Residuals: $\hat u_i \equiv y_i-\hat y_i$
+\item $y_i=\hat y_i+\hat u_i=\hat\beta_0+\hat\beta_1 x_i+\hat u_i$ by definition
+\end{itemize}
+
+\section{Deriving the OLS estimators}
+
+\begin{itemize}
+\item Objective function: minimize the sum of squared residuals
+\begin{align*}
+S(\tilde{\beta}_0, \tilde{\beta}_1)
+  &= \sum_{i=1}^n (y_i - \tilde{\beta}_0 - \tilde{\beta}_1 x_i)^2\\
+  &= \sum_{i=1}^n (y_i^2 - 2 y_i \tilde{\beta}_0 - 2 y_i
+  \tilde{\beta}_1 x_i + \tilde{\beta}_0^2 + 2 \tilde{\beta}_0
+  \tilde{\beta}_1 x_i + \tilde{\beta}_1^2 x_i^2)
+\end{align*}
+
+\item First-order conditions (FOCs): at the minimum $(\hat\beta_0,\hat\beta_1)$ both partial derivatives are zero,
+\begin{equation}
+\frac{\partial S(\tilde{\beta}_0, \tilde{\beta}_1)}{\partial
+  \tilde{\beta}_0} = \sum_{i=1}^n (-2 y_i + 2 \tilde{\beta}_0 + 2
+\tilde{\beta}_1 x_i) = 0
+\end{equation}
+\begin{equation}
+\frac{\partial S(\tilde{\beta}_0, \tilde{\beta}_1)}{\partial
+  \tilde{\beta}_1} = \sum_{i=1}^n (-2 y_i x_i + 2 \tilde{\beta}_0 x_i
++ 2 \tilde{\beta}_1 x_i^2) = 0
+\end{equation}
+
+\item Solve the first FOC (1):
+\begin{align*}
+0 &= \sum_{i=1}^n (-2 y_i + 2 \hat{\beta}_0 + 2\hat{\beta}_1 x_i)  \\
+n \hat{\beta}_0 &= \sum_{i=1}^n y_i - \hat{\beta}_1\sum_{i=1}^n x_i \\
+\therefore\ \hat{\beta}_0 &=\bar y - \hat{\beta}_1\bar x
+\end{align*}
+
+\item Solve the second FOC (2), substituting $\hat\beta_0$:
+\begin{align*}
+0 &= \sum_{i=1}^n (-2 y_i x_i + 2 \hat{\beta}_0 x_i + 2 \hat{\beta}_1 x_i^2) \\
+\hat\beta_1 \sum_{i=1}^n x_i^2 &= \sum_{i=1}^n x_i y_i - \hat\beta_0 \sum_{i=1}^n x_i \\
+\hat\beta_1 \sum_{i=1}^n x_i^2 &= \sum_{i=1}^n x_i y_i - (\bar y - \hat{\beta}_1\bar x) \sum_{i=1}^n x_i \\
+\hat\beta_1 \sum_{i=1}^n x_i^2 &= \sum_{i=1}^n x_i y_i - \bar y\sum_{i=1}^n x_i + \hat{\beta}_1\bar x \sum_{i=1}^n x_i \\
+\hat\beta_1 \sum_{i=1}^n x_i^2 &= \sum_{i=1}^n x_i y_i - \frac{1}{n}\sum_{i=1}^n y_i\sum_{i=1}^n x_i + \hat{\beta}_1\frac{1}{n}\Big(\sum_{i=1}^n x_i\Big)^2 \\
+\hat\beta_1 \Big(\sum_{i=1}^n x_i^2 - \frac{1}{n}\Big(\sum_{i=1}^n x_i\Big)^2\Big) &= \sum_{i=1}^n x_i y_i - \frac{1}{n}\sum_{i=1}^n y_i\sum_{i=1}^n x_i \\
+\therefore\ \hat\beta_1  &= \frac{n\sum_{i=1}^n x_i y_i -\sum_{i=1}^n y_i\sum_{i=1}^n x_i}{n\sum_{i=1}^n x_i^2 - \big(\sum_{i=1}^n x_i\big)^2}
+\end{align*}
+
+\item Show that $\hat\beta_1=\widehat{\cov}(x_i,y_i)/\widehat{\var}(x_i)$.
+
+Expand the numerator and denominator of the deviation form:
+\begin{align*}
+\frac{\sum_{i=1}^n (x_i - \bar{x})(y_i -  \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}
+&= \frac{\sum_{i=1}^n (x_i y_i - x_i\bar y -\bar x y_i + \bar x \bar y)}{\sum_{i=1}^n(x_i^2-2\bar x x_i +\bar x^2)} \\
+&= \frac{\sum_{i=1}^n x_i y_i - n\bar x\bar y}{\sum_{i=1}^n x_i^2 - n\bar x^2}
+= \frac{\sum_{i=1}^n x_i y_i -\frac{1}{n} \sum_{i=1}^n x_i\sum_{i=1}^n y_i }{\sum_{i=1}^n x_i^2-\frac{1}{n}\big(\sum_{i=1}^n x_i\big)^2},
+\end{align*}
+which is the expression for $\hat\beta_1$ above. Dividing the numerator and denominator by $n-1$,
+$$
+\hat{\beta}_1  = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i -  \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}
+= \frac{\widehat{\cov}(x_i,y_i)}{\widehat{\var}(x_i)}.
+$$
+\end{itemize}
+\clearpage
+
+\section{Properties by construction}
+
+\begin{itemize}
+\item $\sum_{i=1}^n \hat{u}_i = 0$
+\[
+\sum_{i=1}^n \hat{u}_i =
+\sum_{i=1}^n (y_i- \hat\beta_0-\hat\beta_1 x_i) = 0\text{, which is FOC (1) divided by $-2$}
+\]
+
+\item $\sum_{i=1}^n x_i \hat{u}_i = 0$
+\[
+\sum_{i=1}^n x_i \hat{u}_i = \sum_{i=1}^n x_i (y_i- \hat\beta_0-\hat\beta_1 x_i) = 0\text{, which is FOC (2) divided by $-2$}
+\]
+
+\item $\sum_{i=1}^n \hat{y}_i \hat{u}_i = 0$
+\[
+\sum_{i=1}^n \hat{y}_i \hat{u}_i = \sum_{i=1}^n (\hat\beta_0+\hat\beta_1 x_i) \hat{u}_i =
+\hat\beta_0\sum_{i=1}^n \hat{u}_i + \hat\beta_1\sum_{i=1}^n x_i \hat{u}_i=0
+\]
+
+\item $\bar{\hat{y}} = \bar{y}$
+\begin{align*}
+\bar{\hat{y}} = \bar{y}
+\quad\Leftrightarrow\quad \sum_{i=1}^n \hat{y}_i = \sum_{i=1}^n y_i
+\quad\Leftrightarrow\quad \sum_{i=1}^n (y_i - \hat{y}_i)=0
+\quad\Leftrightarrow\quad \sum_{i=1}^n \hat u_i = 0,
+\end{align*}
+which holds by the first property.
+\end{itemize}
+
+\section{Sums of squares}
+
+\begin{itemize}
+\item $\text{SST} = \text{SSE} + \text{SSR}$, where $\text{SST}=\sum_i (y_i - \bar{y})^2$ (total),
+$\text{SSE}=\sum_i (\hat{y}_i - \bar{y})^2$ (explained) and $\text{SSR}=\sum_i (y_i - \hat{y}_i)^2 = \sum_i \hat u_i^2$ (residual).
+
+Add and subtract $\hat y_i$ inside the square:
+\begin{align*}
+\sum_{i=1}^n (y_i - \bar{y})^2
+&= \sum_{i=1}^n \big[(y_i - \hat{y}_i) + (\hat{y}_i - \bar{y})\big]^2 \\
+&= \sum_{i=1}^n (y_i - \hat{y}_i)^2 + \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 + 2\sum_{i=1}^n \hat u_i(\hat{y}_i - \bar{y}) \\
+&= \text{SSR} + \text{SSE} + 2\Big(\sum_{i=1}^n \hat u_i \hat{y}_i - \bar{y}\sum_{i=1}^n \hat{u}_i\Big) \\
+&= \text{SSR} + \text{SSE},
+\end{align*}
+because $\sum_i \hat u_i \hat y_i = 0$ and $\sum_i \hat u_i = 0$ (Section 3).
+\end{itemize}
+\clearpage
+
+\section{Statistical properties}
+
+\begin{itemize}
+  \item \textbf{Unbiasedness}: $\E[\hat{\beta}_0]=\beta_0$ and $\E[\hat{\beta}_1]= \beta_1$ (Assumptions I--IV).
+
+Using $\sum_i (x_i - \bar x) = 0$ twice (so $\sum_i (x_i-\bar x)\bar y = 0$ and $\sum_i (x_i-\bar x)x_i = \sum_i (x_i-\bar x)^2$):
+\begin{align*}
+\hat{\beta}_1
+=& \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}
+ = \frac{\sum_{i=1}^n (x_i - \bar{x})y_i}{\sum_{i=1}^n(x_i - \bar{x})^2}\\
+ = &   \frac{\sum_{i=1}^n (x_i - \bar{x})(\beta_0+\beta_1 x_i + u_i)}{\sum_{i=1}^n(x_i - \bar{x})^2} \\
+ = &  \frac{\beta_0 \sum_{i=1}^n (x_i - \bar{x})+ \beta_1 \sum_{i=1}^n (x_i - \bar{x})x_i + \sum_{i=1}^n (x_i - \bar{x})u_i}{\sum_{i=1}^n(x_i - \bar{x})^2} \\
+ = & \frac{\beta_0 \cdot 0 + \beta_1 \sum_{i=1}^n (x_i - \bar{x})^2 + \sum_{i=1}^n (x_i - \bar{x})u_i}{\sum_{i=1}^n(x_i - \bar{x})^2} \\
+ = &  \beta_1 + \frac{\sum_{i=1}^n (x_i - \bar{x})u_i}{\sum_{i=1}^n(x_i - \bar{x})^2}\\[6pt]
+\E[\hat{\beta}_1\mid X]  = & \beta_1 + \E\left[\frac{\sum_{i=1}^n(x_i-\bar{x})u_i}{\sum_{i=1}^n(x_i - \bar{x})^2} \,\Big|\, X\right] \\
+ = & \beta_1 + \sum_{i=1}^n \frac{(x_i-\bar{x})}{\sum_{j=1}^n(x_j - \bar{x})^2} \E[u_i\mid X] \\
+ = & \beta_1 \quad \text{(zero conditional mean and random sampling: $\E[u_i\mid X]=\E[u_i\mid x_i]=0$)}\\[6pt]
+\therefore\ \E[\hat{\beta}_1]  = & \E\big[\E[\hat{\beta}_1\mid X]\big] = \beta_1 \quad\text{(law of iterated expectations)}.
+\end{align*}
+For the intercept, averaging $y_i = \beta_0 + \beta_1 x_i + u_i$ over $i$ gives $\bar y = \beta_0 + \beta_1\bar x + \bar u$, so
+\begin{align*}
+\hat{\beta}_{0} =& \bar{y} - \hat{\beta}_{1}\bar{x} \\
+ = & \beta_{0} + \beta_{1}\bar{x} + \bar{u} - \hat{\beta}_{1}\bar{x} \\
+ = & \beta_{0} + \bar{x}(\beta_{1} - \hat{\beta}_{1}) + \bar u \\
+\E[\hat{\beta}_0\mid X] = & \beta_{0} + \bar{x}\big(\beta_1 - \E[\hat\beta_1\mid X]\big) + \E[\bar u\mid X] = \beta_0
+\quad\therefore\ \E[\hat{\beta}_0] = \beta_{0}.
+\end{align*}
+\clearpage
+
+\item \textbf{Sampling distribution} (Assumptions I--VI). Conditional on $X$,
+$$\hat{\beta}_1 \sim N\left(\beta_1, \var(\hat{\beta}_1\mid X)\right),
+\quad\text{where}\quad \var(\hat{\beta}_1\mid X) = \frac{\sigma^2_u}{\sum_{i=1}^n(x_i - \bar{x})^2},$$
+which implies
+$$\frac{\hat{\beta}_1 - \beta_1}{\sqrt{\var(\hat{\beta}_1\mid X)}}
+\ = \ \frac{\hat{\beta}_1 - \beta_1}{SE(\hat\beta_1)} \ \sim \ N(0,1).$$
+
+``Proof'': under Assumptions I--VI, given $X$, $\hat{\beta}_1$ is a linear combination of the independent normal errors $u_i \sim N(0,\sigma_u^2)$, so it is normal, with mean $\beta_1$ (shown above) and variance
+\begin{align*}
+\hat{\beta}_1  =& \beta_1 + \sum_{i=1}^n \frac{(x_i - \bar{x})}{\sum_{j=1}^n (x_j - \bar{x})^2}u_i \\
+\therefore\ \var(\hat{\beta}_1\mid X) = & \sum_{i=1}^n \frac{(x_i - \bar{x})^{2}}{\big[\sum_{j=1}^n (x_j - \bar{x})^2\big]^{2}} \var(u_i\mid X) \\
+= & \sum_{i=1}^n \frac{(x_i - \bar{x})^{2}}{\big[\sum_{j=1}^n (x_j - \bar{x})^2\big]^{2}} \sigma_{u}^{2}
+=  \frac{\sigma_{u}^{2}}{\sum_{j=1}^n (x_j - \bar{x})^2},
+\end{align*}
+where the first step uses independence of the $u_i$ (random sampling) and the second uses homoskedasticity.
+\bigskip
+
+\item \textbf{Consistency}: $\plim_{n\to\infty} \hat{\beta}_{0} = \beta_0$ and $\plim_{n\to\infty} \hat{\beta}_{1} = \beta_1$ (Assumptions I--IV, with finite $\var(X) > 0$).
+
+\begin{align*}
+\hat{\beta}_1 & = \beta_1 + \frac{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})u_i }{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2} \\
+\plim \hat{\beta}_1 & =  \beta_1 + \frac{\plim\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})u_i }
+ {\plim\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2}
+  =  \beta_1 + \frac{\cov(X,u)}{\var(X)} \quad \text{(LLN and continuous mapping)} \\
+ & =  \beta_1 \quad \text{($\cov(X,u)=0$ by zero conditional mean, and $\var(X)>0$)}\\
+ \plim \hat{\beta}_{0} &= \plim\,(\bar y - \hat\beta_1\bar x) = \E[Y] - \beta_1\E[X] = \beta_{0}.
+\end{align*}
+\clearpage
+
+\item \textbf{Asymptotic normality}:
+$$
+\frac{\hat{\beta}_1 - \beta_1}{\widehat{SE}(\hat{\beta}_1)} \ \stackrel{\text{approx.}}{\sim} \ N(0,1),
+$$
+where
+$$
+\widehat{SE}(\hat\beta_1) = \frac{\hat{\sigma}_{u}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}}
+\quad\text{and}\quad
+\hat{\sigma}^2_{u}=\frac{1}{n-2}\sum_{i=1}^n \hat{u}_i^2 \stackrel{p}{\rightarrow} \sigma^2_u .
+$$
+
+``Proof'' (Assumptions I--V, with no normality assumption):
+\begin{align*}
+\hat{\beta}_1  =& \beta_1 + \sum_{i=1}^n \frac{(x_i - \bar{x})}{\sum_{j=1}^n(x_j-\bar{x})^2}u_i\\
+\sqrt{n}(\hat\beta_1 - \beta_1) =& \frac{\sqrt{n}\cdot \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})u_i}{\frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^2} \stackrel{d}{\longrightarrow} \ N\big(0,\ \sigma_{u}^{2}/\var(X)\big),
+\end{align*}
+since the numerator converges in distribution to $N(0, \sigma_u^2\var(X))$ (CLT; replacing $\bar x$ by $\E[X]$ in the numerator changes nothing in the limit), the denominator converges in probability to $\var(X)$ (LLN), and Slutsky's theorem combines them. Finally,
+$$
+\frac{\hat{\beta}_1 - \beta_1}{\widehat{SE}(\hat{\beta}_1)}
+= \sqrt{n}(\hat\beta_1 - \beta_1)\cdot\frac{\sqrt{\frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^2}}{\hat\sigma_u}
+\ \stackrel{d}{\longrightarrow}\ N(0,1),
+$$
+because $\hat\sigma_u \stackrel{p}{\rightarrow} \sigma_u$ and $\frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^2 \stackrel{p}{\rightarrow} \var(X)$, so by Slutsky's theorem the limit is $N\big(0,\ \frac{\sigma_u^2}{\var(X)}\cdot\frac{\var(X)}{\sigma_u^2}\big) = N(0,1)$.
+\end{itemize}
+\clearpage
+
+\section{Reference: three limit theorems}
+
+\begin{itemize}
+\item \textbf{The weak law of large numbers (LLN):} Suppose $\{x_i\}$ is an infinite sequence of i.i.d.\ random variables with finite expected value $\E[x_i]=\mu$. Then as $n$ goes to infinity, the sample mean $\bar x_n=\frac{1}{n}\sum_{i=1}^{n} x_i$ converges in probability to $\mu$:
+    \[
+    \bar x_n \stackrel{p}{\longrightarrow} \mu \text{ as } n \rightarrow\infty.
+    \]
+
+\item \textbf{The Lindeberg--L\'evy central limit theorem (CLT):} Suppose $\{x_i\}$ is an infinite sequence of i.i.d.\ random variables with finite expected value $\E[x_i]=\mu$ and finite variance $\var(x_i)=\sigma^2$. Then as $n$ goes to infinity, $\sqrt{n}(\bar{x}_n-\mu)$ converges in distribution to a normal distribution $N(0,\sigma^2)$:
+    \[
+    \sqrt{n}(\bar{x}_n-\mu)\stackrel{d}{\longrightarrow} N(0,\sigma^2) \text{ as } n \rightarrow\infty.
+    \]
+
+\item \textbf{Slutsky's theorem:} Let $\{x_n\}$ and $\{y_n\}$ be two sequences of random variables (or matrices). If $x_n$ converges in probability to a constant $c$ and $y_n$ converges in distribution to a random variable (or matrix) $y$, then $x_n y_n \stackrel{d}{\longrightarrow} cy$ and $x_n + y_n \stackrel{d}{\longrightarrow} c + y$.
+\end{itemize}
+
+\section{OLS setup in matrix form}
+
+Let $\X$ be the $n \times (k + 1)$ data matrix for $k$ regressors (plus the constant), $\y$ the $n \times 1$ vector of the outcome, $\b$ the $(k + 1) \times 1$ vector of true coefficients (the intercept and $k$ slopes), and $\u$ the $n \times 1$ vector of errors:
+\[
+\y = \left[
+\begin{array}{c}
+    y_1 \\
+    y_2 \\
+    \vdots \\
+    y_n
+    \end{array}
+\right]_{n\times 1}\
+\X = \left[
+\begin{array}{ccccc}
+    1 & x_{11} &  x_{12} & \dots & x_{1k}  \\
+    1 & x_{21} & x_{22}  & \dots & x_{2k} \\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\
+   1 & x_{n1} & x_{n2}  & \dots & x_{nk}
+\end{array}
+\right]_{n \times (k + 1)}\
+\b = \left[
+\begin{array}{c}
+    \beta_0 \\
+    \beta_1 \\
+    \vdots \\
+    \beta_k
+\end{array}
+\right]_{(k+1)\times 1}\
+\u = \left[
+\begin{array}{c}
+    u_1 \\
+    u_2 \\
+    \vdots \\
+    u_n
+    \end{array}
+\right]_{n\times 1}
+\]
+Write $\x_i = (1, x_{i1}, \dots, x_{ik})$ for the $i$-th row of $\X$, a $1\times(k+1)$ row vector.
+A linear model of $n$ observations and $k$ regressors can then be written as
+\[
+\y=\X\b+\u .
+\]
+The OLS estimator is the $(k+1)\times 1$ vector of estimated coefficients
+\[
+\hat{\b} = \left[
+\begin{array}{c}
+    \hat\beta_0 \\
+    \hat\beta_1 \\
+    \vdots \\
+    \hat\beta_k
+\end{array}
+\right]_{(k+1)\times 1}
+=\XXinv\X'\y .
+\]
+Writing this down assumes no perfect collinearity, so that the symmetric $(k+1)\times (k+1)$ matrix $\X'\X$ is invertible. With the linearity assumption as well,
+\[
+\hat\b =\XXinv\X'(\X\b+\u)= \b + \XXinv\X'\u .
+\]
+
+\section{Properties of the OLS estimator}
+
+\subsection{Unbiasedness}
+
+\begin{align*}
+\E[\hat{\b}\mid\X] &= \E[\b + \XXinv \X'\u\mid\X] \quad\text{\red (linearity and no perfect collinearity)} \\
+ &=  \b + \XXinv \X'\,\E[\u\mid\X] \\
+ &= \b \quad\text{\red (zero conditional mean and random sampling: $\E[\u\mid\X]=\bzero$)} \\
+\therefore\ \E[\hat{\b}] &= \E\big[\E[\hat\b\mid\X]\big] = \b \quad\text{\red (law of iterated expectations)}
+\end{align*}
+
+\noindent So unbiasedness of the OLS estimator needs four assumptions:
+\begin{enumerate}
+\item linearity: $\y = \X\b + \u$
+\item random sampling of $\{(\x_i,y_i)\}$
+\item no perfect collinearity in $\X$ (so $\XXinv$ exists)
+\item zero conditional mean: $\E[u_i\mid\x_i]=0$, which with random sampling gives $\E[\u\mid\X]=\bzero$.
+\end{enumerate}
+
+\subsection{Consistency}
+
+\begin{align*}
+\hat{\b} &=  \b + \XXinv \X'\u \quad\text{\red (linearity and no perfect collinearity)} \\
+ &= \b +  \Big( \sum\nolimits_{i=1}^n \x_i'\x_i   \Big)^{-1} \Big( \sum\nolimits_{i=1}^n \x_i' u_i \Big) \\
+ &= \b +  \Big(\frac{1}{n} \sum\nolimits_{i=1}^n \x_i'\x_i   \Big)^{-1} \Big(\frac{1}{n} \sum\nolimits_{i=1}^n \x_i' u_i \Big)
+\end{align*}
+
+\noindent Applying the LLN to the two sample means {\red (random sampling)}:
+\begin{align*}
+& \frac{1}{n} \sum_{i=1}^n \x_i'\x_i  \ \stackrel{p}{\longrightarrow} \ \E[\x_i'\x_i]\equiv\mb{Q} \quad\text{\red (a positive definite $(k+1)\times(k+1)$ matrix $\mb{Q}$ exists)} \\
+& \frac{1}{n} \sum_{i=1}^n \x_i' u_i  \ \stackrel{p}{\longrightarrow} \ \E[\x_i' u_i]=\bzero \quad\text{\red (zero conditional mean)}
+\end{align*}
+
+\noindent So $\plim \hat{\b} = \b + \mb{Q}^{-1} \bzero = \b$. Consistency of the OLS estimator therefore needs five assumptions: (1) linearity, (2) random sampling, (3) no perfect collinearity, (4) zero conditional mean, and (5) the second moments of $\x_i$ exist, with $\mb{Q}$ positive definite.
+
+Because $\mb{Q}$ is positive definite, it is nonsingular, so $\mb{Q}^{-1}$ exists. And $\E[\x_i' u_i]=\E\big[\x_i'\, \E[u_i\mid\x_i]\big]=\bzero$ by the law of iterated expectations.
+
+\subsection{Asymptotic normality}
+
+\begin{align*}
+ \sqrt{n}(\hat\b-\b) &= \Big(\frac{1}{n} \sum\nolimits_{i=1}^n \x_i'\x_i   \Big)^{-1} \Big[\sqrt{n}\Big(\frac{1}{n} \sum\nolimits_{i=1}^n \x_i' u_i \Big)\Big] \\
+&\qquad\text{\red (linearity and no perfect collinearity)}
+\end{align*}
+The pieces we need:
+\begin{align*}
+ \E[\x_i'\x_i] &= \mb{Q} \\
+ \E[\x_i'u_i] &= \bzero \quad\text{\red (zero conditional mean)} \\
+ \var(\x_i'u_i) &= \E[\x_i'u_i u_i\x_i] - \E[\x_i'u_i]\,\E[\x_i'u_i]' = \E_x\big[\x_i'\,\E[u_i^2\mid\x_i]\,\x_i\big] \\
+ &= \sigma^2\, \E[\x_i'\x_i] \quad\text{\red (homoskedasticity: $\E[u_i^2\mid\x_i]=\sigma^2$)} \\
+ &= \sigma^2 \mb{Q}
+\end{align*}
+
+\noindent Applying the LLN to the sample mean of $\x_i'\x_i$ {\red (random sampling)}:
+\[
+  \frac{1}{n} \sum_{i=1}^n \x_i'\x_i  \ \stackrel{p}{\longrightarrow} \ \mb{Q}
+\]
+Applying the CLT to the sample mean of $\x_i'u_i$ {\red (random sampling)}:
+\[
+ \sqrt{n} \Big(\frac{1}{n} \sum_{i=1}^n \x_i'u_i - \bzero  \Big) \ \stackrel{d}{\longrightarrow} \ N(\bzero,\sigma^2 \mb{Q})
+\]
+Finally, by Slutsky's theorem, $\sqrt{n}(\hat\b - \b)$ converges in distribution to $\mb{Q}^{-1}$ times a $N(\bzero,\sigma^2 \mb{Q})$ vector, whose variance is $\mb{Q}^{-1}(\sigma^2\mb{Q})\mb{Q}^{-1} = \sigma^2\mb{Q}^{-1}$:
+\[
+\sqrt{n}(\hat\b - \b) \ \stackrel{d}{\longrightarrow} \ N(\bzero,\sigma^2 \mb{Q}^{-1}).
+\]
+
+\noindent Asymptotic normality of the OLS estimator therefore needs six assumptions: (1) linearity, (2) random sampling, (3) no perfect collinearity, (4) zero conditional mean, (5) the second moments of $\x_i$ exist, with $\mb{Q}$ positive definite, and (6) homoskedasticity. Without homoskedasticity, $\hat\b$ is still asymptotically normal, but its variance takes the robust (sandwich) form $\mb{Q}^{-1}\E[u_i^2\x_i'\x_i]\mb{Q}^{-1}$.
+
+\clearpage
+
+\section{The projection matrix and the residual maker}
+
+\noindent Definitions:
+\begin{itemize}
+\item $\hat\b = \XXinv\X'\y$: vector of OLS estimated coefficients
+\item $\bhy = \X\XXinv\X'\y$: fitted values
+\item $\bhu = \y - \X\XXinv\X'\y$: residuals
+\item $\bP = \X\XXinv\X'$: projection matrix
+\item $\bM = \bI - \bP = \bI - \X\XXinv\X'$: residual maker
+\item Hence $\bhy = \bP\y$ and $\bhu = \bM\y$
+\end{itemize}
+
+\noindent Properties ($\bO$ is a matrix of zeros and $\bzero$ a vector of zeros):
+
+\begin{enumerate}
+\item $\bP$ is symmetric, $\bP = \bP'$, and idempotent, $\bP\bP = \bP$
+$$\bP' = \X\big(\XXinv\big)'\X' = \X\XXinv\X' = \bP$$
+$$\bP\bP = \X\XXinv\X'\X\XXinv\X' = \X\XXinv\X' = \bP$$
+
+\item $\bM$ is symmetric and idempotent
+$$\bM' = \bI - \bP' = \bM, \qquad \bM\bM = (\bI - \bP)(\bI - \bP) = \bI - 2\bP + \bP\bP = \bI - \bP = \bM$$
+
+\item $\bM\bP=\bO$ and $\bP\bM=\bO$
+$$\bM\bP=(\bI-\bP)\bP= \bP-\bP\bP =\bP-\bP =\bO$$
+$$\bP\bM=\bP'\bM' = (\bM\bP)' = \bO' = \bO$$
+
+\item $\bP\X= \X$ and $\bM\X=\bO$
+$$\bP\X= \X\XXinv\X'\X = \X$$
+$$\bM\X= (\bI - \bP) \X = \X - \X = \bO$$
+
+\item $\bP\bhy=\bhy$ and $\bP\bhu=\bzero$
+$$\bP \bhy = \bP \X \hat\b = \X \hat\b = \bhy$$
+$$\bP\bhu = \bP(\y - \bhy) = \bP\y - \bP\bhy = \bhy - \bhy = \bzero$$
+
+\item $\bM\bhy= \bzero$ and $\bM\bhu=\bhu$
+$$\bM\bhy = (\bI - \bP)\bhy = \bhy - \bhy = \bzero$$
+$$\bM\bhu = \bM\bM\y = \bM\y = \bhu $$
+
+\item $\X'\bhy=\X'\y$
+$$\X'\bhy = \X'\bP\y = (\bP\X)'\y = \X'\y$$
+
+\item $\y'\bhy=\y'\X\hat{\b}=\hat{\b}'\X'\y=\bhy'\bhy$
+
+\medskip
+The first two equalities hold by definition ($\bhy = \X\hat\b$, and a scalar equals its transpose), so we only need $\y'\bhy=\bhy'\bhy$:
+$$\y'\bhy = (\bhy + \bhu)'\bhy = \bhy'\bhy + \bhu'\bhy = \bhy'\bhy + \y'\bM'\bP\y = \bhy'\bhy + \y'\bM\bP\y = \bhy'\bhy$$
+
+\item $\bhu'\bhu=\y'\bM\y=\y'\y-\bhy'\bhy$
+$$
+\bhu'\bhu =\y'\bM'\bM\y =\y'\bM\bM\y =\y'\bM\y =\y'(\bI-\bP)\y =\y'\y-\y'\bhy =\y'\y-\bhy'\bhy
+$$
+\end{enumerate}
+
+\end{document}

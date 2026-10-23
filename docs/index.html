@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9cb8375271a7f9cc1b230cc533d58a15.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-eda9cb8c80844f4293e48ba423f43251.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -265,6 +268,35 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>The slides have one page per slide. To present with the step-by-step reveals, build that version from the LaTeX source. The worksheets are the in-class exercises. Each lecture title opens the lecture’s folder on GitHub: the LaTeX source, the figures, the R scripts that draw them, and the data.</p>
 <p>Each lecture also has a video of five to twelve minutes, all in one <a href="https://www.youtube.com/playlist?list=PLbHvZ-k41x9s">YouTube playlist</a>. The videos are designed to be conceptual and intuitive. Each presents the main ideas, one or two real examples, and the numbers from the lecture’s R code; the details of the mathematical derivations are covered in class.</p>
+<section id="handouts" class="level2">
+<h2 class="anchored" data-anchor-id="handouts">Handouts</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Handout</th>
+<th>Goes with</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="pdf/midterm_review.pdf">Midterm review</a>: topics and formulas</td>
+<td>Lectures 1 to 4-3</td>
+</tr>
+<tr class="even">
+<td><a href="pdf/handout_ols.pdf">OLS estimators</a>: derivations and properties, scalar and matrix</td>
+<td>Lectures 4-1 to 4-3, 6-1</td>
+</tr>
+<tr class="odd">
+<td><a href="pdf/interpret_reg_coeffs.pdf">Interpreting regression coefficients</a>: levels, logs and shares, with 2024 examples</td>
+<td>Lecture 4-3</td>
+</tr>
+<tr class="even">
+<td><a href="pdf/note_on_quadform.pdf">The gradient of a quadratic form</a></td>
+<td>Lecture 6-1</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="pedagogy" class="level2">
 <h2 class="anchored" data-anchor-id="pedagogy">Pedagogy</h2>
 <p>The videos pin down the conceptual issues, so that class time can go to the worksheet questions, the mathematics, and deeper insights. In class, we watch each video in segments, one part at a time, so that each concept is tied directly to its mathematical derivation and to examples. Between segments, we pause to settle conceptual questions, turn to the slides for the derivations, and work through worksheet questions with the students at the whiteboard. Outside class, students can watch a video before the lecture as a preview and again afterwards as a review.</p>

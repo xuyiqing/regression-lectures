@@ -40,6 +40,15 @@ Each lecture also has a video of five to twelve minutes, all in one
 presents the main ideas, one or two real examples, and the numbers from the lecture's R code; the
 details of the mathematical derivations are covered in class.
 
+## Handouts
+
+| Handout | Goes with |
+|---|---|
+| [Midterm review](pdf/midterm_review.pdf): topics and formulas | Lectures 1 to 4-3 |
+| [OLS estimators](pdf/handout_ols.pdf): derivations and properties, scalar and matrix | Lectures 4-1 to 4-3, 6-1 |
+| [Interpreting regression coefficients](pdf/interpret_reg_coeffs.pdf): levels, logs and shares, with 2024 examples | Lecture 4-3 |
+| [The gradient of a quadratic form](pdf/note_on_quadform.pdf) | Lecture 6-1 |
+
 ## Pedagogy
 
 The videos pin down the conceptual issues, so that class time can go to the worksheet questions,

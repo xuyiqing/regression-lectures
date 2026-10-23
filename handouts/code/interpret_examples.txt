@@ -1,0 +1,105 @@
+
+==== States: Trump share (0-1) on BA share (0-1) ====
+n = 50 
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)    1.028    0.05982  17.190 3.767e-22
+bashare       -1.454    0.17380  -8.366 6.199e-11
+95% CI for the slope: -1.803 -1.104 
+p-value: 6.2e-11 
+mean Trump share: 0.5341 
+SD BA share: 0.0542  SD Trump share: 0.1022 
+one SD of BA share times slope: -0.0787  =  -0.77 SD of Trump share
+25th and 75th percentile BA share (type 1): 0.3086 0.3719 
+      state  pct_ba rep2p_2024
+14 Illinois 37.1855   0.444322
+16     Iowa 30.8632   0.567228
+predicted difference, 75th minus 25th: -0.0919 
+range of BA share: 0.2329 0.4662 
+           state  pct_ba
+22 Massachusetts 46.6250
+49 West Virginia 23.2856
+
+Women's share of the legislature, 168 countries with corruption and women's share
+n = 168  range: 0 0.638 
+    country women
+117    Oman   0.0
+132  Rwanda  63.8
+176   Yemen   0.0
+25th and 75th percentile (type 1): 0.176 0.361 
+        country women
+54       France  36.1
+114 North Korea  17.6
+
+==== Corruption (0-100) on GDP per capita ($1,000s) ====
+n = 168 
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)  66.8400    2.44400   27.35 2.244e-63
+gdp1000      -0.7607    0.06599  -11.53 5.829e-23
+fitted at $20,000 and $21,000: 51.628 50.868 
+
+fitted Trump share at BA share .30, .31, .303: 0.59227 0.57773 0.58791 
+relative change from a 1 percent rise in BA share (.30 to .303): -0.7363 percent
+
+==== Women's share (0-1) on GDP per capita ($1,000s) ====
+n = 160 
+             Estimate Std. Error t value  Pr(>|t|)
+(Intercept) 0.2424000  0.0140100  17.300 2.628e-38
+gdp1000     0.0008884  0.0003692   2.406 1.727e-02
+fitted at $20,000 and $21,000: 0.2602 0.26109 
+fitted at $20,000 and $30,000: 0.2602 0.26909 
+mean women's share: 0.2667 
+
+==== Corruption (0-100) on women's share (0-1) ====
+n = 168 
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)    62.11      5.208  11.930 4.477e-24
+wshare        -57.80     17.590  -3.286 1.240e-03
+fitted at women's share .25 and .26: 47.66 47.082 
+fitted at the 25th and 75th percentile: 51.937 41.245  difference: -10.693 
+
+==== log GDP per capita on corruption (0-100) ====
+n = 168 
+            Estimate Std. Error t value   Pr(>|t|)
+(Intercept) 10.80000   0.127700   84.64 1.822e-138
+corr100     -0.02557   0.002293  -11.15  6.487e-22
+fitted GDP per capita at corruption 50 and 51: 13713.6 13367.4  percent change: -2.525 
+
+==== log GDP per capita on democracy (0/1) ====
+n = 168 
+            Estimate Std. Error t value   Pr(>|t|)
+(Intercept)   9.1390     0.1187  76.960 8.855e-132
+democracy     0.9186     0.1669   5.502  1.397e-07
+100*b: 91.9   exact 100*(exp(b)-1): 150.6 
+fitted GDP per capita (exp of fitted log), autocracies and democracies: 9314 23339 
+geometric means by group: 9314 23339 
+counts by group (with GDP): 83 85 
+
+==== Counties: log density on BA share (0-1) ====
+n = 3034 
+            Estimate Std. Error t value   Pr(>|t|)
+(Intercept)    1.949    0.07413   26.29 2.248e-137
+bashare        7.673    0.28320   27.10 5.534e-145
+fitted density at BA share .20 and .21: 32.565 35.162  percent change: 7.975 
+
+==== Corruption (0-100) on log GDP per capita ====
+n = 168 
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)   207.90     14.530   14.30 9.362e-31
+log(gdppc)    -16.75      1.502  -11.15 6.487e-22
+fitted at $20,000 and $20,200: 41.9362 41.7695  difference: -0.1667 
+doubling GDP per capita, b*log(2): -11.61 
+
+==== Counties: Trump share (0-1) on log density ====
+n = 3034 
+             Estimate Std. Error t value   Pr(>|t|)
+(Intercept)   0.85810   0.005806  147.80  0.000e+00
+log(density) -0.04709   0.001386  -33.99 8.265e-215
+fitted at density 100 and 101: 0.641258 0.64079  difference: -0.000469 
+tenfold density, b*log(10): -0.1084 
+
+==== Counties: log votes cast 2024 on log population ====
+n = 3034 
+            Estimate Std. Error t value   Pr(>|t|)
+(Intercept)  -0.5520   0.023920  -23.08 1.106e-108
+log(pop)      0.9833   0.002305  426.70  0.000e+00
+fitted votes at population 50,000 and 50,500: 24031.6 24267.9  percent change: 0.9832 

@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+{\large\bfseries The Gradient of the Quadratic Form of a Symmetric Matrix}\\[4pt]
+450A Political Methodology I, handout
+\end{center}
+
+Let $A$ be an $n \times n$ symmetric matrix and let $x$ be a column vector of length $n$. Consider the quadratic form $x'Ax$. We want to show that its gradient is $\frac{\partial x'Ax}{\partial x} = 2 x' A$. We do this by writing out the elements of $x'Ax$ one by one, computing the partial derivatives, putting them into a vector, and showing that this vector equals the matrix product $2x'A$.
+
+Start by writing out $x$ and the columns of $A$:
+\begin{align}
+x'Ax &= [ x_1 \,\,  x_2 \,\, \cdots \,\, x_n ]_{1 \times n} [
+	A_1 \,\, A_2 \,\, \cdots \,\, A_n]_{n\times n} \begin{bmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{bmatrix}_{n\times 1}
+\end{align}
+where $A_i$ is the $i$-th column of $A$, a vector of length $n$, and $A_{ji}$ is its $j$-th element (row $j$, column $i$ of $A$). The subscripts show right away that $x'Ax$ is $1 \times 1$, a scalar. So its gradient will be $1 \times n$, one partial derivative for each of the $n$ elements of $x$.
+
+Next, multiplying the first two terms, we have
+\begin{align}
+	x'Ax &= [x \cdot A_1 \quad x \cdot A_2 \quad \cdots \quad x \cdot A_n]_{1 \times n} \begin{bmatrix}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{bmatrix}_{n\times 1},
+\end{align}
+where $x \cdot A_i = x'A_i$ is the dot product of $x$ and the $i$-th column of $A$. Finally, doing the last multiplication, we get
+\begin{align}
+	x'Ax &= (x \cdot A_1) x_1 +( x \cdot A_2  )x_2 + \dots + (x \cdot A_n ) x_n \\
+	&= (x_1 A_{11} + x_2 A_{21} + \dots + x_n A_{n1}) x_1 + (x_1 A_{12} + x_2 A_{22} + \dots +  x_n A_{n2}) x_2 \nonumber \\
+	&\quad + \dots + (x_1 A_{1n} + x_2 A_{2n} + \dots + x_n A_{nn}) x_n .
+\end{align}
+In the first line, note the difference between the dot product $x \cdot A_i$ and the product of that scalar with $x_i$.
+
+To get the gradient with respect to $x$, we take the vector of partial derivatives. Here is the partial derivative with respect to $x_1$. The first group of terms contains $x_1$ twice (once inside the parentheses, once outside); every other group contains it once, inside the parentheses:
+\begin{align}
+\frac{\partial x'Ax} { \partial x_1} &= (2x_1  A_{11} + x_2 A_{21} + x_3 A_{31} + \dots + x_n A_{n1}) \nonumber \\
+&\quad + (x_2 A_{12} + x_3 A_{13} + \dots + x_n A_{1n}). \label{eq:derx1}
+\end{align}
+(Write this step out yourself if you are not convinced.)
+
+Because $A$ is symmetric, $A_{1i} = A_{i1}$, so we can rewrite (\ref{eq:derx1}) as
+\begin{align}
+	\frac{\partial x'Ax} { \partial x_1} &= 2 x_1 A_{11} + 2 x_2 A_{21} + 2 x_3 A_{31} + \dots + 2 x_n A_{n1} \\
+	&= 2 \sum_{i = 1}^n x_i A_{i1}.
+\end{align}
+How do you write that sum in matrix notation? It is $x' A_1$, the dot product of $x$ and the first column of $A$. So the partial derivative with respect to $x_1$ is
+\begin{align*}
+		\frac{\partial x'Ax} { \partial x_1} &= 2 x' A_1.
+\end{align*}
+
+The other partial derivatives work the same way, so in general
+\begin{align}
+\frac{\partial x'Ax}{\partial x_i} &= 2x'A_i,
+\end{align}
+where again $A_i$ is the $i$-th column of $A$. The gradient puts these partial derivatives into a vector:
+\begin{align*}
+\nabla x'Ax &= [2 x' A_1 \quad 2 x' A_2 \quad \cdots \quad 2 x' A_n] .
+\end{align*}
+This is exactly $2x'$ multiplied by $A$, so $\nabla x'Ax = 2 x' A$, and we are done.
+
+Two remarks. First, some texts write the gradient as a column vector; it is then the transpose, $2Ax$ (using $A' = A$). Second, if $A$ is not symmetric, the same steps give $\nabla x'Ax = x'(A + A')$, which reduces to $2x'A$ when $A' = A$.
+
+\end{document}

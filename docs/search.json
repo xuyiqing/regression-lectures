@@ -70,6 +70,13 @@
     "text": "Lecture slides, worksheets, short videos, R code and data for the first course in Stanford’s political science PhD methods sequence. The course also suits advanced undergraduates in economics, political science, and other social sciences. The course covers point and interval estimation, hypothesis testing, simple and multiple regression, and robust and clustered standard errors. The R scripts in the repository draw the figures and print the numbers on the slides from public data. The syllabus lists the topics, readings, and course policies, including the policy on generative AI.\nThe slides have one page per slide. To present with the step-by-step reveals, build that version from the LaTeX source. The worksheets are the in-class exercises. Each lecture title opens the lecture’s folder on GitHub: the LaTeX source, the figures, the R scripts that draw them, and the data.\nEach lecture also has a video of five to twelve minutes, all in one YouTube playlist. The videos are designed to be conceptual and intuitive. Each presents the main ideas, one or two real examples, and the numbers from the lecture’s R code; the details of the mathematical derivations are covered in class."
   },
   {
+    "objectID": "index.html#handouts",
+    "href": "index.html#handouts",
+    "title": "POLI 450A: Political Methodology I (Regression)",
+    "section": "Handouts",
+    "text": "Handouts\n\n\n\nHandout\nGoes with\n\n\n\n\nMidterm review: topics and formulas\nLectures 1 to 4-3\n\n\nOLS estimators: derivations and properties, scalar and matrix\nLectures 4-1 to 4-3, 6-1\n\n\nInterpreting regression coefficients: levels, logs and shares, with 2024 examples\nLecture 4-3\n\n\nThe gradient of a quadratic form\nLecture 6-1"
+  },
+  {
     "objectID": "index.html#pedagogy",
     "href": "index.html#pedagogy",
     "title": "POLI 450A: Political Methodology I (Regression)",

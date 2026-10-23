@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb,amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\onehalfspacing
+
+\newcommand\E{\mathbb{E}}
+\newcommand\V{\mathbb{V}}
+\newcommand\Var{\text{Var}}
+\newcommand\Cov{\text{Cov}}
+\newcommand\Cor{\text{Cor}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE Midterm Review}\\[4pt]
+450A Political Methodology I, handout (Lectures 1 to 4-3)
+\end{center}
+
+\section{Probability (background)}
+\begin{itemize}
+\item Probability rules; conditional probability
+\item Bayes' rule
+\[
+P(A\mid B)=\frac{P(A)P(B\mid A)}{P(B)}
+\]
+\item Independence; conditional independence
+\end{itemize}
+
+\section{Random variables}
+
+\begin{itemize}
+\item PDF, PMF, CDF
+\item Expectation (discrete and continuous)
+\[
+\E[X]=\sum_{x} x\,P(X=x), \qquad \E[X]=\int x f(x)\,dx
+\]
+\item Variance
+\[
+\sigma_X ^2=\Var(X)=\E[(X-\E[X])^2]=\E[X^2]-(\E[X])^2
+\]
+\item Normal distribution
+\item Conditional expectation; law of iterated expectations, $\E[Y]=\E\big[\E[Y\mid X]\big]$
+\item Conditional variance
+\item Covariance
+\[
+\Cov(X,Y)=\E[XY]-\E[X]\E[Y]
+\]
+\item Correlation
+\[
+\Cor(X,Y)=\frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}
+\]
+\end{itemize}
+
+\section{Point estimation (Lecture 2-1)}
+
+\begin{itemize}
+\item Estimands, estimators, and estimates
+\item Unbiasedness and bias, $\E[\hat\theta]-\theta$
+\item Efficiency
+\item Mean squared error
+\[
+MSE(\hat \theta)=\E[(\hat\theta-\theta)^2]=\big(\E[\hat \theta]-\theta\big)^2+\Var(\hat \theta)
+\]
+\item Consistency; convergence in probability
+\item Weak law of large numbers (statement)
+\item Asymptotic normality; convergence in distribution
+\item Central limit theorem (statement)
+\end{itemize}
+
+\section{Interval estimation (Lecture 2-2)}
+
+\begin{itemize}
+\item Interpreting a confidence interval: coverage over repeated samples
+\item Estimating the population variance
+\[
+S_{n}^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X_n)^2
+\]
+\item Standard error of $\bar X_n$
+\[
+SE(\bar X_n)=S_{n}/\sqrt{n}
+\]
+\item $t$ distribution and $t$ statistic (exact if the population is normal)
+\[
+T_n=\frac{\bar X_n-\mu}{S_n/\sqrt{n}}=\frac{\bar X_n-\mu}{SE(\bar X_n)} \sim \tau_{n-1}
+\]
+\item Confidence intervals: exact with a normal population, asymptotic otherwise
+\[
+\big[\bar X_n-t_{n-1,\,0.975}\,SE(\bar X_n),\ \bar X_n+t_{n-1,\,0.975}\,SE(\bar X_n)\big]
+\]
+or, in large samples,
+\[
+\big[\bar X_n-1.96\,SE(\bar X_n),\ \bar X_n+1.96\,SE(\bar X_n)\big],
+\]
+where $t_{df,\,0.975}$ is the 0.975 quantile of the $\tau_{df}$ distribution.
+\end{itemize}
+
+\section{Hypothesis testing (Lecture 2-3)}
+
+\begin{itemize}
+\item Null and alternative hypotheses; steps of a test
+\item Type I error (its probability is the significance level, $\alpha$)
+\item Type II error (its probability is 1 minus the power)
+\item One-sample $t$-test
+\[
+T=\frac{\bar X-\mu_0}{S/\sqrt{n}} \sim \tau_{n-1}\ \text{under } H_0
+\]
+\item Two-sample $t$-test (large samples)
+\[
+T=\frac{\bar Y_A-\bar Y_B}{\sqrt{S_A^2/n_A+S_B^2/n_B}} \ \stackrel{\text{approx.}}{\sim}\ N(0,1)\ \text{under } H_0\!: \mu_A=\mu_B
+\]
+\item $p$-values; critical values; one-sided versus two-sided tests
+\item Confidence intervals and tests: a 95\% CI holds the values of $\mu_0$ that a 5\% two-sided test does not reject
+\item Practical versus statistical significance; power depends on effect size, variance and $n$
+\end{itemize}
+
+\section{Bootstrap and clusters (Lecture 2-4)}
+
+\begin{itemize}
+\item Nonparametric bootstrap: resample $n$ observations with replacement, recompute the statistic,
+  and use the standard deviation of the replicates as its standard error
+\item Parametric bootstrap
+\item Clustered data: $G$ clusters of size $m$, intra-cluster correlation $\rho$
+\[
+\Var(\bar X)=\frac{\sigma^2}{mG}\big(1+(m-1)\rho\big)
+\]
+\item Cluster (block) bootstrap: resample whole clusters
+\end{itemize}
+
+\section{What is regression? (Lecture 3)}
+
+\begin{itemize}
+\item Regression as the conditional expectation function, $\E[Y\mid X=x]$
+\item Nonparametric regression: conditional means for discrete $X$; local averages (kernel
+  regression) for continuous $X$
+\item Bandwidth and the bias-variance tradeoff
+\end{itemize}
+
+\section{Simple regression (Lectures 4-1 to 4-3)}
+
+\begin{itemize}
+\item OLS minimizes the sum of squared residuals (SSR)
+\[
+\hat\beta_1=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)}{\sum_{i=1}^n(x_i-\bar x)^2}
+=\frac{\widehat{\Cov}(x,y)}{\widehat{\Var}(x)},
+\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x
+\]
+\item Residuals sum to zero and are uncorrelated with $x$ and $\hat y$; SST = SSE + SSR;
+  $R^2 = \text{SSE}/\text{SST} = 1-\text{SSR}/\text{SST}$
+\item Assumptions: (I) linearity, (II) random sampling, (III) variation in $X$, (IV) zero conditional
+  mean, (V) homoskedasticity, (VI) normality
+\item Unbiasedness under I--IV; with a binary $X$, the slope is a difference in means
+\item Variance under I--V, and its estimate
+\[
+\Var(\hat\beta_1\mid X)=\frac{\sigma_u^2}{\sum_{i=1}^n(x_i-\bar x)^2},
+\qquad \hat\sigma_u^2=\frac{1}{n-2}\sum_{i=1}^n\hat u_i^2
+\]
+\item Gauss-Markov theorem: under I--V, OLS is the best linear unbiased estimator
+\item Inference under I--VI (exact) or in large samples (approximate)
+\[
+T=\frac{\hat\beta_1-\beta_1}{\widehat{SE}(\hat\beta_1)}\sim\tau_{n-2},
+\qquad \hat\beta_1 \pm t_{n-2,\,0.975}\,\widehat{SE}(\hat\beta_1)
+\]
+($T$ is exactly $\tau_{n-2}$ under I--VI; without normality, approximately so, close to $N(0,1)$, in large samples)
+\item Consistency and asymptotic normality of OLS
+\item Interpretation: units, statistical significance, substantive significance, and no causal
+  language without a design that justifies it
+\item Logs: level-level, log-level, level-log, log-log; a binary $X$ with $\log Y$
+\end{itemize}
+
+\end{document}
