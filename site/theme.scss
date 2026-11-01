@@ -1,11 +1,11 @@
 /*-- scss:defaults --*/
-// Colors of yiqingxu.org: sky blue #0089ff for links and accents, dark ink for text and headings;
-// the top bar is a darker shade of the same blue (#004a8c, white text at contrast 8.9).
-$primary: #0089ff;
-$body-color: #232b34;
-$headings-color: #001527;
-$link-color: #0089ff;
-$navbar-bg: #004a8c;
+// Colors of the redesigned yiqingxu.org (10-31): stone blue #1685a9 for links and accents, deep stone
+// blue #0b4f6c for headings and the top bar (white text), slate ink #3d4950 for text.
+$primary: #1685a9;
+$body-color: #3d4950;
+$headings-color: #0b4f6c;
+$link-color: #1685a9;
+$navbar-bg: #0b4f6c;
 $navbar-fg: #ffffff;
 $navbar-hl: #ffffff;
 $font-size-root: 17px;
