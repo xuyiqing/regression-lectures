@@ -82,14 +82,15 @@
 \y=\begin{bmatrix}1\\2\\3\end{bmatrix},\quad 
 \X=\begin{bmatrix}1&1\\1&3\\1&2\end{bmatrix}.
 \]
-\begin{enumerate}
+\begin{enumerate}\itemsep9em
     \item Compute $\hat{\boldsymbol{\beta}}$, fitted values $\hat\y$, residuals $\hat\u$.
     \item Verify the normal equations $\X'\hat\u=\mb{0}$.
     \item Compute $SSR=\hat\u'\hat\u$ and $\hat\sigma^2=SSR/(n-(k+1))$.
 \end{enumerate}
 
+\clearpage
 \item Under homoskedasticity and independent sampling, $V[\u|\X]=\sigma^2\I_n$.  
-\begin{enumerate}
+\begin{enumerate}\itemsep10em
     \item Prove that $V[\hat{\boldsymbol{\beta}}|\X]=\sigma^2\XXinv$.  
     \item For any fixed $(k\!+\!1)\times 1$ vector $\a$, \emph{derive} $V[\a'\hat{\boldsymbol{\beta}}|\X]$ and the plug-in standard error.  
     \item Return to the data in Question 1 and report the estimated variance–covariance matrix $\widehat{V}[\hat{\boldsymbol{\beta}}]=\hat\sigma^2\XXinv$.
@@ -97,7 +98,7 @@
 \clearpage
 
 \item Suppose the true model is $y_i = \mb{x}_i\boldsymbol{\beta} + u_i$ with $E[u_i|\mb{x}_i]=0$, and the sample $\{(y_i,\mb{x}_i)\}_{i=1}^n$ is i.i.d. with $E[\mb{x}_i'\mb{x}_i]$ finite and nonsingular.  
-\begin{enumerate}
+\begin{enumerate}\itemsep14em
     \item Show that $\hat{\boldsymbol{\beta}}$ is a consistent estimator of $\boldsymbol{\beta}$.
     \item Assume further that $E[u_i^2|\mb{x}_i]=\sigma^2<\infty$, derive the asymptotic distribution of $\hat{\boldsymbol{\beta}}$.
 \end{enumerate}
@@ -111,7 +112,7 @@ Assume the classical linear regression model satisfying Assumptions I–V:
 \]
 where $\mathbf{X}$ is an $n \times k$ matrix of full column rank, and $\mathbf{y}$ is an $n \times 1$ vector of responses.  
 
-\begin{enumerate}
+\begin{enumerate}\itemsep6em
 \item What does ${\bf (X'X)^{-1}X'y}$ represent in the context of OLS estimation?  
 
 \item What is the interpretation of ${\bf X(X'X)^{-1}X'y}$?  
@@ -136,7 +137,9 @@ where $\mathbf{X}$ is an $n \times k$ matrix of full column rank, and $\mathbf{y
 \]
 Here, $\P$ is the projection (hat) matrix and $\M$ is the residual maker matrix.
 
-\begin{enumerate}
+\medskip\noindent \textbf{Hint:} Many of the results in this problem build on earlier parts. Use previously shown equalities (e.g., $\P^2=\P$, $\P'=\P$, $\M=\I-\P$) to simplify the algebra.
+
+\begin{enumerate}\itemsep7em
 \item Express the residuals from regressing $\y$ on $\X$ as a function of $\M$.  
 
 \item Show that $\P$ is symmetric and idempotent. 
@@ -156,7 +159,6 @@ Here, $\P$ is the projection (hat) matrix and $\M$ is the residual maker matrix.
 \item Show that $\widehat{\mathbf{u}}'\widehat{\mathbf{u}}=\y'\M\y=\y'\y-\widehat{\y}'\widehat{\y}$.  
 
 \end{enumerate}
-\medskip\noindent \textbf{Hint:} Many of the results in this problem build on earlier parts. Use previously shown equalities (e.g., $\P^2=\P$, $\P'=\P$, $\M=\I-\P$) to simplify the algebra.
 
 
 

@@ -66,12 +66,13 @@ Suppose
 (\hat\beta_0,\hat\beta_1,\hat\beta_2)=(78.3,\,-10.6,\,-21.5),
 \]
 where $y$ is executive corruption (0--100), $x_1$ is high court independence (0--4), and $x_2\in\{0,1\}$ indicates democracy.
-\begin{enumerate}
+\begin{enumerate}\itemsep9em
     \item For a fixed level of court independence $x_1$, compute the predicted difference $\widehat{y}(x_2=1)-\widehat{y}(x_2=0)$ and interpret.  
     \item For a fixed regime type, compute the predicted change when $x_1$ increases by one unit.  
     \item Verify that the slope on court independence is the same in both groups and explain why.
 \end{enumerate}
 
+\clearpage
 \item (\emph{Regression Plane and Counterfactual Prediction})  
 With two continuous covariates, suppose
 \[
@@ -79,21 +80,25 @@ With two continuous covariates, suppose
 (\hat\beta_0,\hat\beta_1,\hat\beta_2)=(166.4,\,-13.95,\,-22.0),
 \]
 where $y$ is executive corruption (0--100), $x_1$ is high court independence (0--4), and $x_2$ is $\log_{10}$ GDP per capita.
-(a) Show that for any two units $A$ and $B$,
+\begin{enumerate}\itemsep9em
+    \item Show that for any two units $A$ and $B$,
 \[
 \widehat{y}_A-\widehat{y}_B=\hat\beta_1(x_{1A}-x_{1B})+\hat\beta_2(x_{2A}-x_{2B}).
 \]
-(b) Using $(x_1,x_2)=(2.96,\,4.48)$ for Chile and $(0.21,\,4.38)$ for China, compute the predicted levels and their difference.  
-(c) Explain the ``partial effect'' meaning of $\hat\beta_1$ and $\hat\beta_2$.
+    \item Using $(x_1,x_2)=(2.96,\,4.48)$ for Chile and $(0.21,\,4.38)$ for China, compute the predicted levels and their difference.
+    \item Explain the ``partial effect'' meaning of $\hat\beta_1$ and $\hat\beta_2$.
+\end{enumerate}
 
+\clearpage
 \item (\emph{Properties of the fitted values and residuals}) Show that
-\begin{enumerate}
+\begin{enumerate}\itemsep9em
   \item $\sum_{i=1}^n \hat{u}_i=0 \Rightarrow \bar{y}=\hat{\bar{y}}$.
 \item The point ($\bar{y}, \bar{x},\bar{z}$) is always on the regression plane.
 \item $Cov(x,\hat{u})=Cov(z,\hat{u})=0 \Rightarrow Cov(\hat{y},\hat{u})=0$.
 \end{enumerate}
 
 
+\clearpage
 \item (\emph{ANOVA Decomposition, $R^2$, and Adjusted $R^2$})  
 Let $\hat y_i$ be fitted values from OLS with intercept and two regressors, and $\hat u_i=y_i-\hat y_i$. Prove that
 \[
