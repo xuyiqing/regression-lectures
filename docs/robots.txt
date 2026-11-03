@@ -1,1 +1,1 @@
-Sitemap: https://xuyiqing.github.io/regression-lectures/sitemap.xml
+Sitemap: https://teaching.yiqingxu.org/regression-lectures/sitemap.xml

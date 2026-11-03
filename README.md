@@ -7,7 +7,7 @@ on the slides, and the public datasets they use. Short preview and review videos
 science, and other social sciences.
 Version: Fall 2026.
 
-Course website: <https://xuyiqing.github.io/regression-lectures/> · Syllabus:
+Course website: <https://teaching.yiqingxu.org/regression-lectures/> · Syllabus:
 [`syllabus/PS450A_syllabus.pdf`](syllabus/PS450A_syllabus.pdf)
 
 Each lecture entered this repository after a release review: numbers rerun from the code, citations

@@ -6,7 +6,7 @@ project:
 
 website:
   title: "POLI 450A: Regression"
-  site-url: https://xuyiqing.github.io/regression-lectures/
+  site-url: https://teaching.yiqingxu.org/regression-lectures/
   repo-url: https://github.com/xuyiqing/regression-lectures
   navbar:
     left:
