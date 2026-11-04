@@ -224,6 +224,22 @@ And so forth. (See Wooldridge 3A.3. for a complete treatment)
 %Notice: We don't need this assumption for a purely predictive/descriptive interpretation of regression.
 }
 
+\frame{
+\frametitle{Unbiasedness of OLS}
+\small
+\textbf{Worksheet Q1}\\ \medskip
+
+Let the true model $y=\beta_0+\beta_1 x_1+\beta_2 x_2+u$ satisfy Assumptions I--IV. Let $\hat r_{1,i}$ be the residuals from the OLS regression of $x_1$ on $x_2$ and a constant. The OLS slope on $x_1$ in the regression of $y$ on $(1,x_1,x_2)$ can be written as
+\[
+\hat\beta_1=\frac{\sum_{i=1}^n \hat r_{1,i}\,y_i}{\sum_{i=1}^n \hat r_{1,i}^2}.
+\]
+\begin{enumerate}\itemsep0.5em
+  \item Show that $\sum_i \hat r_{1,i}=0$, $\sum_i \hat r_{1,i}x_{2,i}=0$, and $\sum_i \hat r_{1,i}x_{1,i}=\sum_i \hat r_{1,i}^2$.
+  \item Plug in $y_i=\beta_0+\beta_1 x_{1,i}+\beta_2 x_{2,i}+u_i$ and show that $\hat\beta_1=\beta_1+\dfrac{\sum_i \hat r_{1,i}u_i}{\sum_i \hat r_{1,i}^2}$.
+  \item Take expectations given $X$ to show that $E[\hat\beta_1\mid X]=\beta_1$. Which assumption does each step use?
+\end{enumerate}
+}
+
 
 % \frame{
 % \frametitle{Omitted Variable Bias: Simple Case}
@@ -446,6 +462,19 @@ Further points:
   \item In the more general case  with $k\geq3$ the bias is more difficult to discern. It depends on all the pairwise correlations.
 \end{itemize}
 
+}
+
+\frame{
+\frametitle{Omitted Variable Bias: Simple Case}
+\small
+\textbf{Worksheet Q2}\\ \medskip
+
+Suppose the true DGP is $Y=\beta_0+\beta_1 X_1+\beta_2 X_2+u$ with $\beta_2=0.8$. In your sample, $SST_1=n\cdot MSD(X_1)$ and the auxiliary regression of $X_2$ on $(1,X_1)$ yields slope $\tilde\delta=0.5$ and $R^2=0.64$. You omit $X_2$ and estimate $Y$ on $(1,X_1)$ only.
+\begin{enumerate}\itemsep0.5em
+  \item What is the sign and magnitude of the OVB on $\tilde\beta_1$?
+  \item If the true $\beta_1=1.0$, what is $E[\tilde\beta_1\mid X]$?
+  \item If instead $\tilde\delta=-0.3$ with the same $\beta_2$, what happens?
+\end{enumerate}
 }
 
 \section{Multicollinearity}
@@ -736,6 +765,24 @@ Why? V-Dem builds libdem from polyarchy plus a liberal component. The data have 
 }
 
 \frame{
+\frametitle{Multicollinearity: Including an Irrelevant Variable}
+
+\alert{True Population Model}: $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + u$, where $\beta_2 = 0$, and Assumptions I--V hold.\\\medskip
+\alert{Overspecified Model} that we use: $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2$\\\medskip
+Q: Is $\hat{\beta}_1$ biased? \pause\\\medskip
+A: No. Given Assumptions I--IV, $E[\hat{\beta}_j]=\beta_j$ for \alert{all} values of $\beta_j$, so $E[\hat{\beta}_1]=\beta_1$ and $E[\hat{\beta}_2]=0$.\\\medskip\pause
+
+But the variance of $\hat\beta_1$ grows unless $x_2$ is uncorrelated with $x_1$ in the sample ($R_1^2=0$):
+  \[
+  V[\hat\beta_1\mid X]=\frac{\sigma_u^2}{SST_1(1-R_1^2)}\ \ge\ \frac{\sigma_u^2}{SST_1}=V[\tilde\beta_1\mid X],\qquad R_1^2\equiv R^2\text{ from regressing }x_1\text{ on }(1,x_2),
+  \]
+where $\tilde\beta_1$ is the slope from the correct simple regression of $y$ on $x_1$.\\\medskip\pause
+A control that predicts $x_1$ but not $y$ buys nothing and costs precision: multicollinearity with no payoff.
+
+%You can cook up examples where it actually does lead to bias (M-bias), but this is empirically rare.
+}
+
+\frame{
 \frametitle{So How Should I Think about Multicollinearity?}
 
 \begin{itemize}
@@ -969,52 +1016,6 @@ the partial effects of $X_1$ and $X_2$ if they are essentially the same.\pause
 %}
 
 
-
-\section{Including an Irrelevant Variable}
-
-
-\frame{
-\frametitle{Including an Irrelevant Variable: Simple Case}
-
-\alert{True Population Model}:
-$$
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + u \quad \text{where} \quad \beta_2 = 0
-$$ and Assumptions I--IV hold.\\\medskip
-\alert{Overspecified Model} that we use:
-$$
-\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2
-$$
-Q: Which statement is correct?
-\begin{enumerate}
-  \item $E[\hat{\beta}_1] > \beta_1$
-  \item $E[\hat{\beta}_1] < \beta_1$
-  \item $E[\hat{\beta}_1] = \beta_1$
-  \item Can't tell
-\end{enumerate}
-}
-
-\frame{
-\frametitle{Including an Irrelevant Variable: Simple Case}
-
-Recall: Given Assumptions I--IV, we have:
-$$
-E[\hat{\beta}_j]=\beta_j
-$$
-for \alert{all} values of $\beta_j$. So, if $\beta_2=0$, we get
-$$
-E[\hat{\beta}_0]=\beta_0,\, E[\hat{\beta}_1]=\beta_1,\,E[\hat{\beta}_2]=0
-$$
-and thus including the irrelevant variable does not affect the unbiasedness. The sampling distribution of $\hat{\beta}_2$ will be centered about zero.\\\medskip\pause
-
-But under Assumption V (homoskedasticity), including an irrelevant variable increases the variance of $\hat\beta_1$ (unless $x_2$ is uncorrelated with $x_1$ in the sample, so that $R_1^2=0$), because\\
-  \[
-  V[\hat\beta_1\mid X]=\frac{\sigma_u^2}{SST_1(1-R_1^2)}\ \ge\ \frac{\sigma_u^2}{SST_1}=V[\tilde\beta_1\mid X],\qquad R_1^2\equiv R^2\text{ from regressing }x_1\text{ on }(1,x_2),
-  \]
-where $\tilde\beta_1$ is the slope from the correct simple regression of $y$ on $x_1$.
-
-%You can cook up examples where it actually does lead to bias (M-bias), but this is empirically rare.
-
-}
 
 % \frame{
 % \frametitle{Including an Irrelevant Variable: Simple Case}

@@ -53,10 +53,7 @@
 \item Variance of OLS estimators \& estimation
 \item Detecting multicollinearity
 \item Variance inflation factor
-\end{itemize}
-\item Including irrelevant variables
-\begin{itemize}
-\item No bias, but larger variance
+\item Including an irrelevant variable: no bias, but larger variance
 \end{itemize}
 \end{itemize}
 
@@ -64,32 +61,39 @@
 \clearpage
 
 
-% \section*{Worksheet}
+\section*{Worksheet}
 
-% \begin{enumerate}\itemsep12em
+\begin{enumerate}\itemsep3em
 
-% \item (\emph{Two–regressor OVB algebra})  
-% Let the true model satisfy Assumptions I–IV: $y=\beta_0+\beta_1 x_1+\beta_2 x_2+u$. Suppose we estimate the underspecified model $\tilde y=\tilde\beta_0+\tilde\beta_1 x_1$. Regress $x_2$ on $x_1$ with intercept to get $x_2=\tilde\gamma_0+\tilde\delta x_1+v$, where $v$ are residuals orthogonal to $1$ and $x_1$. Show that  
-% \[
-% E[\tilde\beta_1\mid X]=\beta_1+\beta_2\,\tilde\delta,
-% \]
-% identify the two conditions under which $E[\tilde\beta_1\mid X]=\beta_1$, and interpret $\tilde\delta$.
+\item (\emph{Walking through the unbiasedness proof})  
+Let the true model $y=\beta_0+\beta_1 x_1+\beta_2 x_2+u$ satisfy Assumptions I--IV. Let $\hat r_{1,i}$ be the residuals from the OLS regression of $x_1$ on $x_2$ and a constant. The OLS slope on $x_1$ in the regression of $y$ on $(1,x_1,x_2)$ can be written as
+\[
+\hat\beta_1=\frac{\sum_{i=1}^n \hat r_{1,i}\,y_i}{\sum_{i=1}^n \hat r_{1,i}^2}.
+\]
+\begin{enumerate}\itemsep12em
+    \item Show that $\sum_i \hat r_{1,i}=0$, $\sum_i \hat r_{1,i}x_{2,i}=0$, and $\sum_i \hat r_{1,i}x_{1,i}=\sum_i \hat r_{1,i}^2$.
+    \item Plug in $y_i=\beta_0+\beta_1 x_{1,i}+\beta_2 x_{2,i}+u_i$ and show that $\hat\beta_1=\beta_1+\dfrac{\sum_i \hat r_{1,i}u_i}{\sum_i \hat r_{1,i}^2}$.
+    \item Take expectations given $X$ to show that $E[\hat\beta_1\mid X]=\beta_1$. Which assumption does each step use?
+\end{enumerate}
 
+\clearpage
+\item (\emph{Applied OVB sign and magnitude})  
+Suppose the true DGP is $Y=\beta_0+\beta_1 X_1+\beta_2 X_2+u$ with $\beta_2=0.8$. In your sample, $SST_1=n\cdot MSD(X_1)$ and the auxiliary regression of $X_2$ on $(1,X_1)$ yields slope $\tilde\delta=0.5$ and $R^2=0.64$. You omit $X_2$ and estimate $Y$ on $(1,X_1)$ only.
+\begin{enumerate}\itemsep8em
+    \item What is the sign and magnitude of the OVB on $\tilde\beta_1$?
+    \item If the true $\beta_1=1.0$, what is $E[\tilde\beta_1\mid X]$?
+    \item If instead $\tilde\delta=-0.3$ with the same $\beta_2$, what happens?
+\end{enumerate}
 
-% \item (\emph{Including an irrelevant variable})  
-% Suppose the true model is $y=\beta_0+\beta_1 x_1+u$ and Assumptions I–V hold. You nevertheless estimate the overspecified model $\tilde y=\tilde\beta_0+\tilde\beta_1 x_1+\tilde\beta_2 x_2$, where $x_2$ is correlated with $x_1$ but is irrelevant in truth ($\beta_2=0$).
+\clearpage
+\item \textbf{(Optional)} (\emph{Two–regressor OVB algebra})  
+Let the true model satisfy Assumptions I–IV: $y=\beta_0+\beta_1 x_1+\beta_2 x_2+u$. Suppose we estimate the underspecified model $\tilde y=\tilde\beta_0+\tilde\beta_1 x_1$. Regress $x_2$ on $x_1$ with intercept to get $x_2=\tilde\gamma_0+\tilde\delta x_1+v$, where $v$ are residuals orthogonal to $1$ and $x_1$. Show that  
+\[
+E[\tilde\beta_1\mid X]=\beta_1+\beta_2\,\tilde\delta,
+\]
+identify the two conditions under which $E[\tilde\beta_1\mid X]=\beta_1$, and interpret $\tilde\delta$.
 
-% \begin{enumerate}
-%   \item Show that $E[\hat{\beta}_0]=\beta_0,\, E[\hat{\beta}_1]=\beta_1,\,E[\hat{\beta}_2]=0$.  
-%   \item Explain that the conditional variance inflates according to
-%   \[
-%   V[\tilde\beta_1\mid X]=\frac{\sigma_u^2}{SST_1(1-R_1^2)},\qquad R_1^2\equiv R^2\text{ from regressing }x_1\text{ on }(1,x_2),
-%   \]
-%   and compare to the variance in the correctly specified simple regression, $V[\hat\beta_1^{(SR)}\mid X]=\sigma_u^2/SST_1$.  
-% \end{enumerate}
-
-%\end{enumerate}
-
+\end{enumerate}
 
 
 \end{document}
