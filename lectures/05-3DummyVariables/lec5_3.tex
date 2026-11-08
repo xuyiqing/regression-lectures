@@ -341,7 +341,7 @@ with London omitted.
 \begin{enumerate}
     \item Interpret $\beta_0$
     \item Interpret each $\beta_j$, $j\in\{1,\ldots,10\}$.
-    \item Derive the estimand and an OLS $t$–test for $H_0:\,E[Y|\text{Wales}]=E[Y|\text{Scotland}]$. Express the test as a linear restriction $R\boldsymbol{\beta}=\mathbf{0}$ and give the variance formula used for its standard error.
+    \item Derive the estimand and an OLS $t$–test for $H_0:\,E[Y|\text{Wales}]=E[Y|\text{Scotland}]$. Write $H_0$ in terms of $\beta_9$ and $\beta_{10}$, and give the variance formula used for the standard error of $\hat\beta_9-\hat\beta_{10}$.
 \end{enumerate}
 \end{frame}
 
@@ -462,9 +462,11 @@ college     -0.115424   0.004912  -23.50   <2e-16 ***
 Signif. codes:  0 *** 0.001 ** 0.01 * 0.05 . 0.1   1
 \end{Verbatim}
 \spacingset{1}
+% fixed-height question box: the table below sits at the same height on this slide and the next
 \begin{small}
+\begin{overlayarea}{\textwidth}{3\baselineskip}
 What does the model imply for the mean of $Y$ (the Trump share) in each category?
-\bigskip
+\end{overlayarea}
 \end{small}
 \begin{footnotesize}
 \begin{center}
@@ -502,10 +504,13 @@ college     -0.115424   0.004912  -23.50   <2e-16 ***
 Signif. codes:  0 *** 0.001 ** 0.01 * 0.05 . 0.1   1
 \end{Verbatim}
 \spacingset{1}
+% same fixed-height box as the previous slide: the question wraps to one or two lines, the table stays put
 \begin{small}
-\only<1-2| handout:0>{What does the model imply for the difference in the Trump share between \alert{white} and \alert{non-white} voters \alert{with a college degree}?}
-\only<3-4| handout:0>{What does the model imply for the difference in the Trump share between \alert{white} and \alert{non-white} voters \alert{without a college degree}?}
+\begin{overlayarea}{\textwidth}{3\baselineskip}
+\only<1-2| handout:0>{What does the model imply for the difference in the Trump share between \alert{white} and \alert{non-white} voters \alert{with a college degree}?}%
+\only<3-4| handout:0>{What does the model imply for the difference in the Trump share between \alert{white} and \alert{non-white} voters \alert{without a college degree}?}%
 \only<5-6>{What does the model imply for the difference in the Trump share between voters \alert{with} and \alert{without a college degree}?}
+\end{overlayarea}
 \end{small}
 \begin{footnotesize}
 \begin{center}
