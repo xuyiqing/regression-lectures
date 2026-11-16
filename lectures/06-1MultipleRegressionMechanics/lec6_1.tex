@@ -46,6 +46,32 @@ where:
 \end{itemize}
 }
 
+\begin{frame}[fragile]
+\frametitle{Explanatory Data Matrix}
+The $n \times (k + 1)$ matrix $\mb{X}$ is often called the \alert{design matrix}. Example:
+
+% Output of code/fig_chile_matrices.R (saved in code/fig_chile_matrices.txt).
+\begin{Verbatim}[fontsize=\footnotesize, frame=single, label=R Code]
+> fit <- lm(vote1 ~ fem + educ + age, data = d)
+> X <- model.matrix(fit)
+> dim(X)
+[1] 1703    4
+> head(X, 8)
+  (Intercept) fem educ age
+1           1   0    1  65
+2           1   0    3  29
+3           1   1    1  38
+4           1   1    1  49
+5           1   1    2  23
+6           1   1    1  28
+7           1   0    3  26
+8           1   1    2  24
+\end{Verbatim}
+In R, the design matrix can be extracted from a fitted {\tt lm} object
+by the {\tt model.matrix} function.
+\slidesource{national survey by FLACSO/Chile, April--May 1988, before the plebiscite (\texttt{carData::Chile}); we keep the 1,703 of 2,700 respondents who intended to vote Yes or No and answered every question. \texttt{vote1} $=1$ if the respondent intends to vote Yes (for Pinochet), $0$ if No; \texttt{fem} $=1$ if female; \texttt{educ}: 1 = primary, 2 = secondary, 3 = post-secondary.\par}
+\end{frame}
+
 \frame{
 \frametitle{Sum of Squared Residuals}
 \scriptsize
@@ -395,7 +421,45 @@ Setting the vector of partial derivatives equal to zero and substituting $\hat{\
 
 }
 
+\frame{
+\frametitle{Some Non-invertible Explanatory Data Matrices}
 
+\small
+$\mb{X'X}$ is invertible iff $\mb{X}$ is full column rank (see Blackwell, ch.~7.4), so the collection of predictors need to be linearly independent (no perfect collinearity).\\\bigskip Some example of $\mb{X}$ that are not full column rank:
+\begin{small}
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 2 &  -2   \\
+    1 & 3 &  -3   \\
+    1 & 4 &  -4   \\
+    1 & 5 &  -5
+\end{array}
+\right] \]
+%\[ \mathbf{X} = \left[
+%\begin{array}{cccc}
+%    1 & 27 &  12 & 0     \\
+%    1 & 46 & 16  & 1   \\
+%   1 & 33 & 12  & 1
+%\end{array}
+%\right] \]\pause
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 54 &  54{,}000      \\
+    1 & 37 &  37{,}000   \\
+   1 & 89 &  89{,}000   \\
+   1& 72 & 72{,}000
+\end{array}
+\right] \]
+\[ \mathbf{X} = \left[
+\begin{array}{ccc}
+    1 & 0 &  1      \\
+    1 & 1 &  0   \\
+   1 & 1 &  0   \\
+   1& 0 & 1
+\end{array}
+\right] \]
+\end{small}
+}
 
 \frame{
 \frametitle{Numerical Example}
